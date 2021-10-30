@@ -15,8 +15,14 @@ public class PlayerLocomotion : MonoBehaviour
     bool wantsToJump;
     public bool isGrounded;
     bool isInputingMove;
+
+    //POWERS BOOLEANS : Those booleans are used to let the code know whether the player is allowed to use some powers or not
     bool hasDashPower;
     bool hasDoubleJumpPower;
+
+
+    //Other variables used by POWERS
+    bool doubleJumpAvailable;
 
     bool isDashing;
     float dashCooldownTimer;
@@ -64,7 +70,7 @@ public class PlayerLocomotion : MonoBehaviour
         else
             isInputingMove = true;
 
-        if (Input.GetAxis("Jump") > 0)
+        if (Input.GetButtonDown("Jump")) //old version if (Input.GetAxis("Jump") > 0)
             wantsToJump = true;
         else
             wantsToJump = false;
@@ -99,6 +105,16 @@ public class PlayerLocomotion : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
             wantsToJump = false;
         }
+
+        //DoubleJump
+        if (wantsToJump && !isGrounded && hasDoubleJumpPower && doubleJumpAvailable)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.AddForce(Vector2.up * (jumpForceMultiplier*0.75f), ForceMode2D.Impulse);
+            wantsToJump = false;
+            doubleJumpAvailable = false;
+
+        }
     }
 
     private void DetectGround()
@@ -109,6 +125,7 @@ public class PlayerLocomotion : MonoBehaviour
         if (hit.collider != null)
         {
             isGrounded = true;
+            doubleJumpAvailable = true; //Recover ability to double jump when player is grounded
             groundNormal = hit.normal;
         }
         else
