@@ -843,7 +843,7 @@ MonoBehaviour:
   gravityMultiplier: 3
   maxVelocity: 10
   accelerationMultiplier: 30
-  jumpForceMultiplier: 20
+  jumpForceMultiplier: 17
   counterForceMult: 10
   dashSpeedGain: 40
   groundDetectionDistance: 1.1
