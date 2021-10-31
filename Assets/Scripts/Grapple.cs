@@ -9,6 +9,8 @@ public class Grapple : MonoBehaviour
     public LineRenderer _lineRenderer;
     public SpringJoint2D _springJoint;
 
+    private PlayerLocomotion myPlayerLocomotion;
+
     // The max range of the grapple
     public float maxDistance = 1.0f;
 
@@ -19,13 +21,14 @@ public class Grapple : MonoBehaviour
     {
         //_distanceJoint.enabled = false;
         _springJoint.enabled = false;
+        myPlayerLocomotion = GetComponent<PlayerLocomotion>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && myPlayerLocomotion.CanGrapple())
         {
             // convert mouse position to world position
             Vector2 targetPos = (Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -44,6 +47,7 @@ public class Grapple : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
+            myPlayerLocomotion.SetCantGrapple(); // disable grapple until another script enables it again
             _springJoint.enabled = false; // disable joint
             _lineRenderer.enabled = false;
         }

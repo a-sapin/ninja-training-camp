@@ -15,8 +15,12 @@ public class PlayerLocomotion : MonoBehaviour
     bool wantsToJump;
     public bool isGrounded;
     bool isInputingMove;
+
     bool hasDashPower;
     bool hasDoubleJumpPower;
+    bool hasGrapplePower;
+
+    bool canGrapple;
 
     bool isDashing;
     float dashCooldownTimer;
@@ -33,6 +37,8 @@ public class PlayerLocomotion : MonoBehaviour
 
     public float groundDetectionDistance = 1.0f;
     
+    public bool CanGrapple() { return canGrapple; }
+    public void SetCantGrapple() { canGrapple = false; }
 
     // Start is called before the first frame update
     void Start()
@@ -110,6 +116,7 @@ public class PlayerLocomotion : MonoBehaviour
         {
             isGrounded = true;
             groundNormal = hit.normal;
+            canGrapple = true;
         }
         else
         {
