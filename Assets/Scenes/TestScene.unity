@@ -712,7 +712,7 @@ GameObject:
   - component: {fileID: 2104843468}
   - component: {fileID: 2104843471}
   - component: {fileID: 2104843472}
-  - component: {fileID: 2104843474}
+  - component: {fileID: 2104843476}
   - component: {fileID: 2104843473}
   - component: {fileID: 2104843467}
   - component: {fileID: 2104843475}
@@ -947,8 +947,23 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!232 &2104843474
-DistanceJoint2D:
+--- !u!114 &2104843475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104843466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818542e7c0f17ec46a4f74986465fa62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
+  _lineRenderer: {fileID: 2104843473}
+  _springJoint: {fileID: 2104843476}
+--- !u!231 &2104843476
+SpringJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -964,20 +979,6 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
-  m_Distance: 1.11
-  m_MaxDistanceOnly: 1
---- !u!114 &2104843475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104843466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818542e7c0f17ec46a4f74986465fa62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420031}
-  _lineRenderer: {fileID: 2104843473}
-  _distanceJoint: {fileID: 2104843474}
+  m_Distance: 0.6
+  m_DampingRatio: 1
+  m_Frequency: 1

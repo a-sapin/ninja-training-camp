@@ -7,12 +7,13 @@ public class Grapple : MonoBehaviour
 
     public Camera mainCamera;
     public LineRenderer _lineRenderer;
-    public DistanceJoint2D _distanceJoint;
+    public SpringJoint2D _springJoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        _distanceJoint.enabled = false;
+        //_distanceJoint.enabled = false;
+        _springJoint.enabled = false;
     }
 
     // Update is called once per frame
@@ -27,17 +28,17 @@ public class Grapple : MonoBehaviour
             _lineRenderer.SetPosition(0, mousePos);
             _lineRenderer.SetPosition(1, transform.position);
 
-            _distanceJoint.connectedAnchor = mousePos;
-            _distanceJoint.enabled = true;
+            _springJoint.connectedAnchor = mousePos;
+            _springJoint.enabled = true;
             _lineRenderer.enabled = true;
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            _distanceJoint.enabled = false; // disable joint
+            _springJoint.enabled = false; // disable joint
             _lineRenderer.enabled = false;
         }
 
-        if (_distanceJoint.enabled)
+        if (_springJoint.enabled)
         {
             _lineRenderer.SetPosition(1, transform.position);
         }
