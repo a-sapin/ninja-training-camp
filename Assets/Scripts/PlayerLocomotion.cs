@@ -19,6 +19,9 @@ public class PlayerLocomotion : MonoBehaviour
     //POWERS BOOLEANS : Those booleans are used to let the code know whether the player is allowed to use some powers or not
     bool hasDashPower;
     bool hasDoubleJumpPower;
+    bool hasGrapplePower;
+
+    bool canGrapple;
 
 
     //Other variables used by POWERS
@@ -39,6 +42,8 @@ public class PlayerLocomotion : MonoBehaviour
 
     public float groundDetectionDistance = 1.0f;
     
+    public bool CanGrapple() { return canGrapple; }
+    public void SetCantGrapple() { canGrapple = false; }
 
     // Start is called before the first frame update
     void Start()
@@ -127,6 +132,7 @@ public class PlayerLocomotion : MonoBehaviour
             isGrounded = true;
             doubleJumpAvailable = true; //Recover ability to double jump when player is grounded
             groundNormal = hit.normal;
+            canGrapple = true;
         }
         else
         {
