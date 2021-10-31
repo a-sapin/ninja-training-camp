@@ -13,6 +13,7 @@ public class PlayerLocomotion : MonoBehaviour
     Vector2 inputDirection;
     Vector3 groundNormal;
     bool wantsToJump;
+    bool holdingJump;
     public bool isGrounded;
     bool isInputingMove;
 
@@ -50,6 +51,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         wantsToJump = false;
+        holdingJump = false;
         hasDashPower = true;
         hasDoubleJumpPower = true;
 
@@ -69,18 +71,21 @@ public class PlayerLocomotion : MonoBehaviour
         DetectGround();
 
 
-
         if (moveDirection.Equals(Vector2.zero))
             isInputingMove = false;
         else
             isInputingMove = true;
 
-        if (Input.GetButtonDown("Jump")) //old version if (Input.GetAxis("Jump") > 0)
+        if (Input.GetAxis("Jump") > 0)
+        { 
             wantsToJump = true;
+        }
         else
+        {
+            holdingJump = false;
             wantsToJump = false;
-
-        
+        }
+           
     }
 
     private void FixedUpdate()
@@ -109,16 +114,18 @@ public class PlayerLocomotion : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
             wantsToJump = false;
+            holdingJump = true;
+            Debug.Log("Jump");
         }
 
         //DoubleJump
-        if (wantsToJump && !isGrounded && hasDoubleJumpPower && doubleJumpAvailable)
+        if (wantsToJump && !isGrounded && hasDoubleJumpPower && doubleJumpAvailable && !holdingJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * (jumpForceMultiplier*0.75f), ForceMode2D.Impulse);
             wantsToJump = false;
             doubleJumpAvailable = false;
-
+            Debug.Log("DJ");
         }
     }
 
