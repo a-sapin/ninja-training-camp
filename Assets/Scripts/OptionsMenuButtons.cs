@@ -13,7 +13,7 @@ public class OptionsMenuButtons : MonoBehaviour
 
     public void GoBackToMainMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
