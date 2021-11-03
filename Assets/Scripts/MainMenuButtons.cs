@@ -15,7 +15,7 @@ public class MainMenuButtons : MonoBehaviour
 
     public void AccessOptionsMenu()
     {
-
+        SceneManager.LoadScene("OptionsMenu");
     }
 
     public void QuitGame()
