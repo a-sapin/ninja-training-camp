@@ -46,6 +46,10 @@ public class PlayerLocomotion : MonoBehaviour
     public bool CanGrapple() { return canGrapple; }
     public void SetCantGrapple() { canGrapple = false; }
 
+    public void RemoveDash() { hasDashPower = false; }
+    public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
+    public void RemoveGrapple() { hasGrapplePower = false; }
+
     // Start is called before the first frame update
     void Start()
     {
