@@ -914,6 +914,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7507582941812319434, guid: 76957e45ba32e384e85f6ff010e4c703, type: 3}
+      propertyPath: grapple
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507582941812319434, guid: 76957e45ba32e384e85f6ff010e4c703, type: 3}
+      propertyPath: doubleJump
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507582941812319434, guid: 76957e45ba32e384e85f6ff010e4c703, type: 3}
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 2104843466}
