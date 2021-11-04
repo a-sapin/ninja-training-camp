@@ -196,4 +196,17 @@ public class PlayerLocomotion : MonoBehaviour
             }
         }
     }
+
+    public void ResetPlayerAndPosition(Vector2 position)
+    {
+        wantsToJump = false;
+        holdingJump = false;
+        dashCooldownTimer = 0.0f;
+        isDashing = false;
+        doubleJumpAvailable = false;
+
+        transform.position = position;
+        rb.velocity = Vector3.zero; // reset velocity
+    }
+
 }
