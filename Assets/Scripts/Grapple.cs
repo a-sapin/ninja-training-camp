@@ -47,9 +47,7 @@ public class Grapple : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            myPlayerLocomotion.SetCantGrapple(); // disable grapple until another script enables it again
-            _springJoint.enabled = false; // disable joint
-            _lineRenderer.enabled = false;
+            ForceDetachGrapple();
         }
 
         if (_springJoint.enabled) // update position of origin, i.e.: when the button is held down
@@ -77,4 +75,10 @@ public class Grapple : MonoBehaviour
         }
     }
 
+    public void ForceDetachGrapple()
+    {
+        myPlayerLocomotion.SetCantGrapple(); // disable grapple until another script enables it again
+        _springJoint.enabled = false; // disable joint
+        _lineRenderer.enabled = false;
+    }
 }
