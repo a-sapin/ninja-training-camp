@@ -69,7 +69,6 @@ public class PowerRemover : MonoBehaviour
         if (collision.gameObject.layer == playerLayer)
         {
             currentLoopCount++;
-            Debug.Log(currentLoopCount);
         }
         HandleRemoveDash();
         HandleRemoveDoubleJump();
