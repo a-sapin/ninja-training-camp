@@ -28,7 +28,7 @@ public class Grapple : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Mouse0) && myPlayerLocomotion.CanGrapple())
+        if (Input.GetKeyDown(KeyCode.Mouse0) && myPlayerLocomotion.CanGrapple() && myPlayerLocomotion.GetHasGrapplePower())
         {
             // convert mouse position to world position
             Vector2 targetPos = (Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition);
