@@ -13,10 +13,20 @@ public class PlayerLocomotion : MonoBehaviour
     Vector2 inputDirection;
     Vector3 groundNormal;
     bool wantsToJump;
+    bool holdingJump;
     public bool isGrounded;
     bool isInputingMove;
+
+    //POWERS BOOLEANS : Those booleans are used to let the code know whether the player is allowed to use some powers or not
     bool hasDashPower;
     bool hasDoubleJumpPower;
+    bool hasGrapplePower;
+
+    bool canGrapple;
+
+
+    //Other variables used by POWERS
+    bool doubleJumpAvailable;
 
     bool isDashing;
     float dashCooldownTimer;
@@ -33,12 +43,19 @@ public class PlayerLocomotion : MonoBehaviour
 
     public float groundDetectionDistance = 1.0f;
     
+    public bool CanGrapple() { return canGrapple; }
+    public void SetCantGrapple() { canGrapple = false; }
+
+    public void RemoveDash() { hasDashPower = false; }
+    public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
+    public void RemoveGrapple() { hasGrapplePower = false; }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         wantsToJump = false;
+        holdingJump = false;
         hasDashPower = true;
         hasDoubleJumpPower = true;
 
@@ -58,18 +75,21 @@ public class PlayerLocomotion : MonoBehaviour
         DetectGround();
 
 
-
         if (moveDirection.Equals(Vector2.zero))
             isInputingMove = false;
         else
             isInputingMove = true;
 
         if (Input.GetAxis("Jump") > 0)
+        { 
             wantsToJump = true;
+        }
         else
+        {
+            holdingJump = false;
             wantsToJump = false;
-
-        
+        }
+           
     }
 
     private void FixedUpdate()
@@ -98,6 +118,18 @@ public class PlayerLocomotion : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
             wantsToJump = false;
+            holdingJump = true;
+            Debug.Log("Jump");
+        }
+
+        //DoubleJump
+        if (wantsToJump && !isGrounded && hasDoubleJumpPower && doubleJumpAvailable && !holdingJump)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.AddForce(Vector2.up * (jumpForceMultiplier*0.75f), ForceMode2D.Impulse);
+            wantsToJump = false;
+            doubleJumpAvailable = false;
+            Debug.Log("DJ");
         }
     }
 
@@ -109,7 +141,9 @@ public class PlayerLocomotion : MonoBehaviour
         if (hit.collider != null)
         {
             isGrounded = true;
+            doubleJumpAvailable = true; //Recover ability to double jump when player is grounded
             groundNormal = hit.normal;
+            canGrapple = true;
         }
         else
         {
