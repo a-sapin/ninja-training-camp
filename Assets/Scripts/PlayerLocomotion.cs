@@ -47,6 +47,10 @@ public class PlayerLocomotion : MonoBehaviour
     public void SetCantGrapple() { canGrapple = false; }
     public bool GetHasGrapplePower() { return hasGrapplePower; }
 
+    public void RemoveDash() { hasDashPower = false; }
+    public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
+    public void RemoveGrapple() { hasGrapplePower = false; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -194,4 +198,17 @@ public class PlayerLocomotion : MonoBehaviour
             }
         }
     }
+
+    public void ResetPlayerAndPosition(Vector2 position)
+    {
+        wantsToJump = false;
+        holdingJump = false;
+        dashCooldownTimer = 0.0f;
+        isDashing = false;
+        doubleJumpAvailable = false;
+
+        transform.position = position;
+        rb.velocity = Vector3.zero; // reset velocity
+    }
+
 }
