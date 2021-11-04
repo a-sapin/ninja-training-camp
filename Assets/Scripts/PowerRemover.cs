@@ -58,6 +58,11 @@ public class PowerRemover : MonoBehaviour
         }
     }
 
+    private void ResetPlayer()
+    {
+        playerLocomotion.ResetPlayerAndPosition(respawnLocation.transform.position);
+    }
+
     private const int playerLayer = 3;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -66,6 +71,11 @@ public class PowerRemover : MonoBehaviour
             currentLoopCount++;
             Debug.Log(currentLoopCount);
         }
+        HandleRemoveDash();
+        HandleRemoveDoubleJump();
+        HandleRemoveGrapple();
+
+        ResetPlayer();
     }
 
 }
