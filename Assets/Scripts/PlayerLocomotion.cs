@@ -55,6 +55,7 @@ public class PlayerLocomotion : MonoBehaviour
         holdingJump = false;
         hasDashPower = true;
         hasDoubleJumpPower = true;
+        hasGrapplePower = true;
 
         dashCooldownTimer = 0.0f;
         isDashing = false;
