@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerLocomotion : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayerMask;
-
+    [SerializeField] private Grapple myGrapple;
 
     Rigidbody2D rb;
     Vector2 moveDirection;
