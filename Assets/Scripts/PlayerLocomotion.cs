@@ -201,6 +201,8 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void ResetPlayerAndPosition(Vector2 position)
     {
+        myGrapple.ForceDetachGrapple();
+
         wantsToJump = false;
         holdingJump = false;
         dashCooldownTimer = 0.0f;
