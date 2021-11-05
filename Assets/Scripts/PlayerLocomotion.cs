@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerLocomotion : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayerMask;
-
+    [SerializeField] private Grapple myGrapple;
 
     Rigidbody2D rb;
     Vector2 moveDirection;
@@ -201,6 +201,8 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void ResetPlayerAndPosition(Vector2 position)
     {
+        myGrapple.ForceDetachGrapple();
+
         wantsToJump = false;
         holdingJump = false;
         dashCooldownTimer = 0.0f;

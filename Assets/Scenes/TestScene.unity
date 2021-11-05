@@ -856,6 +856,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5409001243050288736, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
+      propertyPath: myGrapple
+      value: 
+      objectReference: {fileID: 5409001241359284908}
     - target: {fileID: 5409001243050288737, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -906,6 +910,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
+--- !u!114 &5409001241359284908 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5409001243050288760, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
+  m_PrefabInstance: {fileID: 5409001241359284907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104843466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818542e7c0f17ec46a4f74986465fa62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7507582942421477839
 PrefabInstance:
   m_ObjectHideFlags: 0
