@@ -121,7 +121,6 @@ public class PlayerLocomotion : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
             wantsToJump = false;
             holdingJump = true;
-            Debug.Log("Jump");
         }
 
         //DoubleJump
@@ -131,7 +130,6 @@ public class PlayerLocomotion : MonoBehaviour
             rb.AddForce(Vector2.up * (jumpForceMultiplier*0.75f), ForceMode2D.Impulse);
             wantsToJump = false;
             doubleJumpAvailable = false;
-            Debug.Log("DJ");
         }
     }
 
