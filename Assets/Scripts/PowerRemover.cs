@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PowerRemover : MonoBehaviour
 {
@@ -26,12 +28,21 @@ public class PowerRemover : MonoBehaviour
     void Start()
     {
         playerLocomotion = playerObject.GetComponent<PlayerLocomotion>();
+
+        // just to make sure the level doesn't end immediately
+        if(maxLoopCount <= currentLoopCount)
+        {
+            maxLoopCount = currentLoopCount + 1;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(maxLoopCount <= currentLoopCount)
+        {
+            SceneManager.LoadScene("VictoryScreen");
+        }
     }
 
     private void HandleRemoveDash()
