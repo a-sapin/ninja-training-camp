@@ -10,7 +10,7 @@ public class MainMenuButtons : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("Prototype_Scene1");
     }
 
     public void AccessOptionsMenu()
