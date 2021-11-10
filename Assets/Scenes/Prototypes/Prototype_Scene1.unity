@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 138113772}
   - component: {fileID: 138113771}
   m_Layer: 0
-  m_Name: dbdw75i-649fd334-a32f-47a3-a98c-c6e56cf6e967 (1)
+  m_Name: BG2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,7 +551,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138113770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 75, y: 5, z: 1}
+  m_LocalPosition: {x: 75, y: 5, z: 10}
   m_LocalScale: {x: 15, y: 15, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 292456102}
   - component: {fileID: 292456101}
   m_Layer: 0
-  m_Name: dbdw75i-649fd334-a32f-47a3-a98c-c6e56cf6e967 (2)
+  m_Name: BG3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -675,7 +675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292456100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: 5, z: 1}
+  m_LocalPosition: {x: -75, y: 5, z: 10}
   m_LocalScale: {x: 15, y: 15, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2201,7 +2201,7 @@ GameObject:
   - component: {fileID: 508422566}
   - component: {fileID: 508422565}
   m_Layer: 0
-  m_Name: dbdw75i-649fd334-a32f-47a3-a98c-c6e56cf6e967
+  m_Name: BG1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2266,7 +2266,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508422564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 10}
   m_LocalScale: {x: 15, y: 15, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
