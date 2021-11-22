@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerLocomotion : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayerMask;
-
+    [SerializeField] private Grapple myGrapple;
+    [SerializeReference] private Animator myAnimator;
 
     Rigidbody2D rb;
     Vector2 moveDirection;
@@ -13,6 +14,7 @@ public class PlayerLocomotion : MonoBehaviour
     Vector2 inputDirection;
     Vector3 groundNormal;
     bool wantsToJump;
+    bool holdingJump;
     public bool isGrounded;
     bool isInputingMove;
 
@@ -44,14 +46,21 @@ public class PlayerLocomotion : MonoBehaviour
     
     public bool CanGrapple() { return canGrapple; }
     public void SetCantGrapple() { canGrapple = false; }
+    public bool GetHasGrapplePower() { return hasGrapplePower; }
+
+    public void RemoveDash() { hasDashPower = false; }
+    public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
+    public void RemoveGrapple() { hasGrapplePower = false; }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         wantsToJump = false;
+        holdingJump = false;
         hasDashPower = true;
         hasDoubleJumpPower = true;
+        hasGrapplePower = true;
 
         dashCooldownTimer = 0.0f;
         isDashing = false;
@@ -63,24 +72,26 @@ public class PlayerLocomotion : MonoBehaviour
     void Update()
     {
         inputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
+        SetAnimation(inputDirection);
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), 0);
 
         DetectGround();
 
-
-
         if (moveDirection.Equals(Vector2.zero))
             isInputingMove = false;
         else
-            isInputingMove = true;
+            isInputingMove = true; 
 
-        if (Input.GetButtonDown("Jump")) //old version if (Input.GetAxis("Jump") > 0)
+        if (Input.GetAxis("Jump") > 0)
+        { 
             wantsToJump = true;
+        }
         else
+        {
+            holdingJump = false;
             wantsToJump = false;
-
-        
+        }
+           
     }
 
     private void FixedUpdate()
@@ -90,6 +101,26 @@ public class PlayerLocomotion : MonoBehaviour
         ApplyMovement();
         TryToJump();
         HandleDashing(delta);
+    }
+
+    private void SetAnimation(Vector2 direction)
+    {
+        if(direction.x < 0)
+        {
+            myAnimator.SetBool("runLeft", true);
+            myAnimator.SetBool("runRight", false);
+        }
+        else if (direction.x > 0)
+        {
+            myAnimator.SetBool("runLeft", false);
+            myAnimator.SetBool("runRight", true);
+        }
+        else
+        {
+            myAnimator.SetBool("runLeft", false);
+            myAnimator.SetBool("runRight", false);
+        }
+
     }
 
     private void ApplyMovement()
@@ -109,16 +140,16 @@ public class PlayerLocomotion : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
             wantsToJump = false;
+            holdingJump = true;
         }
 
         //DoubleJump
-        if (wantsToJump && !isGrounded && hasDoubleJumpPower && doubleJumpAvailable)
+        if (wantsToJump && !isGrounded && hasDoubleJumpPower && doubleJumpAvailable && !holdingJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * (jumpForceMultiplier*0.75f), ForceMode2D.Impulse);
             wantsToJump = false;
             doubleJumpAvailable = false;
-
         }
     }
 
@@ -185,4 +216,19 @@ public class PlayerLocomotion : MonoBehaviour
             }
         }
     }
+
+    public void ResetPlayerAndPosition(Vector2 position)
+    {
+        myGrapple.ForceDetachGrapple();
+
+        wantsToJump = false;
+        holdingJump = false;
+        dashCooldownTimer = 0.0f;
+        isDashing = false;
+        doubleJumpAvailable = false;
+
+        transform.position = position;
+        rb.velocity = Vector3.zero; // reset velocity
+    }
+
 }
