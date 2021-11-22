@@ -6,6 +6,7 @@ public class PlayerLocomotion : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private Grapple myGrapple;
+    [SerializeReference] private Animator myAnimator;
 
     Rigidbody2D rb;
     Vector2 moveDirection;
@@ -71,16 +72,15 @@ public class PlayerLocomotion : MonoBehaviour
     void Update()
     {
         inputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
+        SetAnimation(inputDirection);
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), 0);
 
         DetectGround();
 
-
         if (moveDirection.Equals(Vector2.zero))
             isInputingMove = false;
         else
-            isInputingMove = true;
+            isInputingMove = true; 
 
         if (Input.GetAxis("Jump") > 0)
         { 
@@ -103,6 +103,26 @@ public class PlayerLocomotion : MonoBehaviour
         HandleDashing(delta);
     }
 
+    private void SetAnimation(Vector2 direction)
+    {
+        if(direction.x < 0)
+        {
+            myAnimator.SetBool("runLeft", true);
+            myAnimator.SetBool("runRight", false);
+        }
+        else if (direction.x > 0)
+        {
+            myAnimator.SetBool("runLeft", false);
+            myAnimator.SetBool("runRight", true);
+        }
+        else
+        {
+            myAnimator.SetBool("runLeft", false);
+            myAnimator.SetBool("runRight", false);
+        }
+
+    }
+
     private void ApplyMovement()
     {
         // if velocity is less than max speed or opposite to the move direction
@@ -121,7 +141,6 @@ public class PlayerLocomotion : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
             wantsToJump = false;
             holdingJump = true;
-            Debug.Log("Jump");
         }
 
         //DoubleJump
@@ -131,7 +150,6 @@ public class PlayerLocomotion : MonoBehaviour
             rb.AddForce(Vector2.up * (jumpForceMultiplier*0.75f), ForceMode2D.Impulse);
             wantsToJump = false;
             doubleJumpAvailable = false;
-            Debug.Log("DJ");
         }
     }
 
