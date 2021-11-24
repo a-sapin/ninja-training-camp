@@ -134,6 +134,8 @@ public class PowerRemover : MonoBehaviour
                 yield return null;
             }
             
+            ResetPlayer();
+            
             t = 0f;
             while(t < 1)
             {
@@ -145,8 +147,6 @@ public class PowerRemover : MonoBehaviour
             shurikenTransition.transform.position = new Vector3(960, 540, 0);
             shurikenTransition.transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
             
-            
-            ResetPlayer();
             Time.timeScale = 1;
         }
     }

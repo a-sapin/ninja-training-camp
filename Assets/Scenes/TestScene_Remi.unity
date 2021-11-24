@@ -433,6 +433,10 @@ PrefabInstance:
       propertyPath: respawnLocation
       value: 
       objectReference: {fileID: 1367652526}
+    - target: {fileID: 7507582941812319434, guid: 76957e45ba32e384e85f6ff010e4c703, type: 3}
+      propertyPath: shurikenTransition
+      value: 
+      objectReference: {fileID: 91367537}
     - target: {fileID: 7507582941812319435, guid: 76957e45ba32e384e85f6ff010e4c703, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -4529,8 +4533,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2056, y: 0}
-  m_SizeDelta: {x: 2000, y: 1200}
+  m_AnchoredPosition: {x: 2556, y: 0}
+  m_SizeDelta: {x: 3000, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1971909789
 MonoBehaviour:
