@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class PowerRemover : MonoBehaviour
@@ -9,10 +11,13 @@ public class PowerRemover : MonoBehaviour
     [Header("Order of powers to remove")]
     [Range(1,10)]
     [SerializeField] private int dash = 1;
+    public RawImage dashImage;
     [Range(1, 10)]
     [SerializeField] private int doubleJump = 1;
+    public RawImage doubleJumpImage;
     [Range(1, 10)]
     [SerializeField] private int grapple = 1;
+    public RawImage grappleImage;
 
     [Header("GameObject References")]
     [SerializeReference] private GameObject respawnLocation;
@@ -50,6 +55,14 @@ public class PowerRemover : MonoBehaviour
         if(dash == currentLoopCount)
         {
             playerLocomotion.RemoveDash();
+            try
+            {
+                dashImage.enabled = false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 
@@ -58,6 +71,14 @@ public class PowerRemover : MonoBehaviour
         if (doubleJump == currentLoopCount)
         {
             playerLocomotion.RemoveDoubleJump();
+            try
+            {
+                doubleJumpImage.enabled = false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 
@@ -66,6 +87,14 @@ public class PowerRemover : MonoBehaviour
         if (grapple == currentLoopCount)
         {
             playerLocomotion.RemoveGrapple();
+            try
+            {
+                grappleImage.enabled = false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 
