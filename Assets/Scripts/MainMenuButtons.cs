@@ -29,4 +29,8 @@ public class MainMenuButtons : MonoBehaviour
         yield return null;
         Application.Quit();
     }
+    public void AccessCredit()
+    {
+        SceneManager.LoadScene("CreditScene");
+    }
 }
