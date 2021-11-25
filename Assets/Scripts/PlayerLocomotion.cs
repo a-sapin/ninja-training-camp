@@ -40,6 +40,7 @@ public class PlayerLocomotion : MonoBehaviour
     public float maxVelocity = 5.0f;
     public float accelerationMultiplier = 1.0f;
     public float jumpForceMultiplier = 10.0f;
+    public float relativeDoubleJumpForceMultiplier = 0.75f; // is relative to jumpForceMultiplier
     public float counterForceMult = 1.0f;
     public float dashSpeedGain = 40.0f;
 
