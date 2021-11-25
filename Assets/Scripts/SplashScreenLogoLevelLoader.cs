@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SplashScreenLogoLevelLoader : MonoBehaviour
 {
-    public float transitionTime = 1f;
+    public float transitionTime = 7f;
 
     // Update is called once per frame
     void Update()
