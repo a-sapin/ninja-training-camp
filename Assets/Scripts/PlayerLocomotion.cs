@@ -17,6 +17,7 @@ public class PlayerLocomotion : MonoBehaviour
     bool holdingJump;
     public bool isGrounded;
     bool isInputingMove;
+    bool canMove;
 
     //POWERS BOOLEANS : Those booleans are used to let the code know whether the player is allowed to use some powers or not
     bool hasDashPower;
@@ -56,6 +57,7 @@ public class PlayerLocomotion : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        canMove = true;
         wantsToJump = false;
         holdingJump = false;
         hasDashPower = true;
@@ -125,10 +127,13 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void ApplyMovement()
     {
-        // if velocity is less than max speed or opposite to the move direction
-        if (Mathf.Abs(rb.velocity.x) < maxVelocity || Mathf.Clamp(rb.velocity.x, -1f, 1f) == -moveDirection.x)
+        if (canMove)
         {
-            rb.AddForce(angledMoveDir * accelerationMultiplier);
+            // if velocity is less than max speed or opposite to the move direction
+            if (Mathf.Abs(rb.velocity.x) < maxVelocity || Mathf.Clamp(rb.velocity.x, -1f, 1f) == -moveDirection.x)
+            {
+                rb.AddForce(angledMoveDir * accelerationMultiplier);
+            }
         }
 
         ApplyCounterForce();
