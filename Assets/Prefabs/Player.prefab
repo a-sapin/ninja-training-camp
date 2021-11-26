@@ -237,7 +237,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5409001243050288737}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -320,8 +320,8 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 10
+    numCapVertices: 10
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -352,6 +352,7 @@ MonoBehaviour:
   maxVelocity: 10
   accelerationMultiplier: 30
   jumpForceMultiplier: 17
+  relativeDoubleJumpForceMultiplier: 0.75
   counterForceMult: 10
   dashSpeedGain: 40
   groundDetectionDistance: 1.1
@@ -370,6 +371,30 @@ MonoBehaviour:
   mainCamera: {fileID: 5409001241448039124}
   _lineRenderer: {fileID: 5409001243050288762}
   _springJoint: {fileID: 5409001243050288767}
+  affectCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2.139657
+      outSlope: -2.139657
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.013901949
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   maxDistance: 17
   grappleLayerMask:
     serializedVersion: 2
