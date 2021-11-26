@@ -17,7 +17,7 @@ public class PlayerLocomotion : MonoBehaviour
     bool holdingJump;
     public bool isGrounded;
     bool isInputingMove;
-    bool canMove;
+    public bool canMove;
 
     //POWERS BOOLEANS : Those booleans are used to let the code know whether the player is allowed to use some powers or not
     bool hasDashPower;
