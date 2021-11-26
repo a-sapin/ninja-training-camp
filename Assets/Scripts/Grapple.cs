@@ -19,7 +19,6 @@ public class Grapple : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //_distanceJoint.enabled = false;
         _springJoint.enabled = false;
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
     }
