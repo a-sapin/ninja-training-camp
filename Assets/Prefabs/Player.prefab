@@ -323,7 +323,7 @@ LineRenderer:
     numCornerVertices: 10
     numCapVertices: 10
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1
@@ -346,6 +346,7 @@ MonoBehaviour:
   myGrapple: {fileID: 5409001243050288760}
   myAnimator: {fileID: 347208655329130541}
   isGrounded: 0
+  canMove: 0
   dashCooldown: 1
   dashDuration: 0.2
   gravityMultiplier: 3
@@ -399,6 +400,14 @@ MonoBehaviour:
   grappleLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  resolution: 300
+  wiggleHeight: 2
+  wiggleFrequency: 3
+  travelSpeed: 12
+  damper: 14
+  strength: 800
+  initialWiggleVelocity: 15
+  currentWiggleVelocity: 0
 --- !u!114 &8223631209164994103
 MonoBehaviour:
   m_ObjectHideFlags: 0
