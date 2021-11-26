@@ -11,19 +11,35 @@ public class Grapple : MonoBehaviour
     public AnimationCurve affectCurve;
 
     private PlayerLocomotion myPlayerLocomotion;
+    private Vector3 visualRopeEnd; // where the line renderer ends, between the player and the grapple target
 
     // The max range of the grapple
     public float maxDistance = 1.0f;
 
     [SerializeField] private LayerMask grappleLayerMask;
+    [Header("Rope Appearance")]
+    public int resolution = 300; // how many points are calculated in the rope
+    public float wiggleHeight = 2.0f; // how far sideways the rope wiggles
+    public float wiggleFrequency = 3.0f; // how many waves do we see along the length of the rope
+    public float travelSpeed = 12.0f; // visual only, how fast the end of the rope travels towards target
+
+    [Header("Wiggle Simulation Variables")]
+    public float damper = 14f;
+    public float strength = 800f;
+    public float initialWiggleVelocity = 15f;
+    public float currentWiggleVelocity = 0f;
+    private float wiggleModifier = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         _springJoint.enabled = false;
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
+        currentWiggleVelocity = initialWiggleVelocity;
+        _lineRenderer.positionCount = resolution + 1;
     }
 
+    private Vector3 targetLocation;
     // Update is called once per frame
     void Update()
     {
