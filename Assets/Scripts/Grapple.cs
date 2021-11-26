@@ -35,8 +35,8 @@ public class Grapple : MonoBehaviour
             if(DetectGrapplePoint(transform.position, ref targetPos))
             {
                 // set origin and target points of line renderer
-                _lineRenderer.SetPosition(0, targetPos);
-                _lineRenderer.SetPosition(1, transform.position);
+                _lineRenderer.SetPosition(1, targetPos);
+                _lineRenderer.SetPosition(0, transform.position);
 
                 _springJoint.connectedAnchor = targetPos;
                 _springJoint.enabled = true;
@@ -51,7 +51,7 @@ public class Grapple : MonoBehaviour
 
         if (_springJoint.enabled) // update position of origin, i.e.: when the button is held down
         {
-            _lineRenderer.SetPosition(1, transform.position);
+            _lineRenderer.SetPosition(0, transform.position);
         }
     }
 
