@@ -47,15 +47,16 @@ public class Grapple : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && myPlayerLocomotion.CanGrapple() && myPlayerLocomotion.GetHasGrapplePower())
         {
             // convert mouse position to world position
-            Vector2 targetPos = (Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 evaluateTargetPos = (Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            if(DetectGrapplePoint(transform.position, ref targetPos))
+            if(DetectGrapplePoint(transform.position, ref evaluateTargetPos))
             {
-                // set origin and target points of line renderer
-                _lineRenderer.SetPosition(1, targetPos);
-                _lineRenderer.SetPosition(0, transform.position);
+                // keep target location for later use
+                targetLocation = evaluateTargetPos;
 
-                _springJoint.connectedAnchor = targetPos;
+                // Activate grapple and its visuals
+                DrawRope(targetLocation);
+                _springJoint.connectedAnchor = targetLocation;
                 _springJoint.enabled = true;
                 _lineRenderer.enabled = true;
             }
@@ -68,7 +69,11 @@ public class Grapple : MonoBehaviour
 
         if (_springJoint.enabled) // update position of origin, i.e.: when the button is held down
         {
-            _lineRenderer.SetPosition(0, transform.position);
+            DrawRope(targetLocation);
+        }
+        else
+        {
+            visualRopeEnd = transform.position; // reset rope end to player origin when not grappling
         }
     }
 
@@ -96,5 +101,42 @@ public class Grapple : MonoBehaviour
         myPlayerLocomotion.SetCantGrapple(); // disable grapple until another script enables it again
         _springJoint.enabled = false; // disable joint
         _lineRenderer.enabled = false;
+
+        // reset wiggle
+        wiggleModifier = 0f;
+        currentWiggleVelocity = initialWiggleVelocity;
+    }
+
+    private void DrawRope(Vector3 targetLocation)
+    {
+        //_lineRenderer.SetPosition(0, transform.position);
+        Vector3 towardsTarget = targetLocation - transform.position; // vector pointing to target
+        Vector3 perpendicularToTarget = Quaternion.Euler(0, 0, 90) * towardsTarget; // rotate 90 deg around Z axis
+        WiggleSimulation(Time.deltaTime); // get the wiggle amplitude for this current frame
+
+        // Move rope end towards the target location
+        visualRopeEnd = Vector3.Lerp(visualRopeEnd, targetLocation, Time.deltaTime * travelSpeed);
+
+        // Offset each point along the rope following a sine wave and the affectCurve
+        for(var i = 0; i < resolution + 1; i++)
+        {
+            var delta = i / (float)resolution;
+            var offset = perpendicularToTarget * wiggleHeight * Mathf.Sin(delta * wiggleFrequency * Mathf.PI) 
+                * wiggleModifier * affectCurve.Evaluate(delta);
+            _lineRenderer.SetPosition(i, Vector3.Lerp(transform.position, visualRopeEnd, delta) + offset);
+        }
+    }
+
+    // Make wiggleModifier vary like a step response in a second order system
+    // bruh
+    // Basically a sine wave that starts with high amplitude and quickly (relative to damper) 
+    // drops to a low amplitude
+    private void WiggleSimulation(float deltaTime)
+    {
+        var direction =  wiggleModifier < 0 ? 1f : -1f; // whether the wave is flipped or not
+        var force = Mathf.Abs(wiggleModifier) * strength; // how strong the wiggle will be
+        currentWiggleVelocity += (force * direction - currentWiggleVelocity * damper) * deltaTime;
+        wiggleModifier += currentWiggleVelocity * deltaTime;
+        Debug.Log(wiggleModifier);
     }
 }
