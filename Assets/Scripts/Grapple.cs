@@ -8,6 +8,7 @@ public class Grapple : MonoBehaviour
     public Camera mainCamera;
     public LineRenderer _lineRenderer;
     public SpringJoint2D _springJoint;
+    public AnimationCurve affectCurve;
 
     private PlayerLocomotion myPlayerLocomotion;
 
