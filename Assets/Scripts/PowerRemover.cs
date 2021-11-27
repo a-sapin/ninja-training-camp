@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class PowerRemover : MonoBehaviour
 {
 
-    public GameObject UICanvas;
+    [SerializeField] private GameObject UICanvas;
     private GameObject shurikenTransition;
     
     [Header("Order of powers to remove")]
@@ -97,19 +97,21 @@ public class PowerRemover : MonoBehaviour
             currentLoopCount++;
             if(maxLoopCount > currentLoopCount){
                 shurikenTransition.SendMessage("doTransition");
+                StartCoroutine(Waiter());
             }
-            StartCoroutine(WaitBeforeReset(1));
         }
+    }
 
+    IEnumerator Waiter()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
         HandleRemoveDash();
         HandleRemoveDoubleJump();
         HandleRemoveGrapple();
-    }
-
-    IEnumerator WaitBeforeReset(float time)
-    {
-        yield return new WaitForSecondsRealtime(time);
+        yield return new WaitForSecondsRealtime(4);
+        shurikenTransition.SendMessage("fadeOut");
         ResetPlayer();
+        yield return new WaitForSecondsRealtime(1);
     }
 
 }
