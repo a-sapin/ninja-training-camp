@@ -9,7 +9,8 @@ public class Timer : MonoBehaviour
     [Header("Timer")] 
     [SerializeField] private Text timerText;
 
-    [Header("Power images")] 
+    [Header("Powers")] 
+    [SerializeField] private new ParticleSystem particleSystem;
     [SerializeField] private RawImage grappleImage;
     [SerializeField] private RawImage removeGrappleImage;
     [SerializeField] private RawImage doubleJumpImage;
@@ -77,12 +78,12 @@ public class Timer : MonoBehaviour
 
     IEnumerator ShurikenTransition(Boolean reset)
     {
-        Vector3 currentPos = transform.position;
+        Vector3 currentPos = transform.localPosition;
         float t = 0f;
         while (t < 1)
         {
             t += Time.fixedDeltaTime / 5;
-            transform.position = Vector3.Lerp(currentPos, new Vector3(-(Screen.width + 100), 540, 0), t);
+            transform.localPosition = Vector3.Lerp(currentPos, new Vector3(-(Screen.width + 500), 0, 200), t);;
             yield return null;
         }
 
@@ -106,9 +107,9 @@ public class Timer : MonoBehaviour
             }
 
             t = 0f;
-            while (t < 0.5)
+            while (t < 1)
             {
-                t += Time.fixedDeltaTime / 10;
+                t += Time.fixedDeltaTime / 5;
                 Color fadeIn = new Color(1, 1, 1, t);
                 scoreText.color = fadeIn;
                 goldImage.color = fadeIn;
@@ -119,12 +120,12 @@ public class Timer : MonoBehaviour
             }
             
             t = 0f;
-            while (t < 0.25)
+            while (t < 1)
             {
-                t += Time.fixedDeltaTime / 10;
+                t += Time.fixedDeltaTime / 4;
                 Color fadeIn = new Color(1, 1, 1, t);
                 continueButton.GetComponent<Image>().color = fadeIn;
-                continueButton.GetComponentInChildren<Image>().color = fadeIn;
+                continueButton.GetComponentInChildren<Text>().color = fadeIn;
                 yield return null;
             }
         }
@@ -140,15 +141,16 @@ public class Timer : MonoBehaviour
             yield return null;
         }
         
-        transform.position = new Vector3(960, 540, 0);
+        transform.localPosition = new Vector3(0, 0, 200);
         transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
-
+        particleSystem.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
     
     IEnumerator fadeInOut(RawImage image)
     {
         image.gameObject.SetActive(true);
+        particleSystem.gameObject.SetActive(true);
         
         float t = 0f;
         while (t < 1)
@@ -158,16 +160,19 @@ public class Timer : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(3f);
+        particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        //yield return new WaitForSecondsRealtime(2.5f);
         
         t = 0f;
         while (t < 1)
         {
-            t += Time.fixedDeltaTime / 2;
+            t += Time.fixedDeltaTime/2;
             image.color = new Color(1, 1, 1, 1-t);
             yield return null;
         }
         
+        //particleSystem.gameObject.SetActive(false);
         image.gameObject.SetActive(false);
     }
 }

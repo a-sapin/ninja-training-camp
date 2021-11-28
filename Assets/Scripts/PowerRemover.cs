@@ -1,11 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.UI;
 
 
 public class PowerRemover : MonoBehaviour
@@ -108,7 +102,7 @@ public class PowerRemover : MonoBehaviour
         HandleRemoveDash();
         HandleRemoveDoubleJump();
         HandleRemoveGrapple();
-        yield return new WaitForSecondsRealtime(4);
+        yield return new WaitForSecondsRealtime(7);
         shurikenTransition.SendMessage("fadeOut");
         ResetPlayer();
         yield return new WaitForSecondsRealtime(1);
