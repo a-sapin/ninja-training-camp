@@ -1,11 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 
 public class PowerRemover : MonoBehaviour
 {
+
+    public GameObject UICanvas;
+    private GameObject shurikenTransition;
+    
     [Header("Order of powers to remove")]
     [Range(1,10)]
     [SerializeField] private int dash = 1;
@@ -34,6 +42,8 @@ public class PowerRemover : MonoBehaviour
         {
             maxLoopCount = currentLoopCount + 1;
         }
+
+        shurikenTransition = UICanvas.transform.Find("ShurikenTransition").gameObject;
     }
 
     // Update is called once per frame
@@ -41,7 +51,9 @@ public class PowerRemover : MonoBehaviour
     {
         if(maxLoopCount <= currentLoopCount)
         {
-            SceneManager.LoadScene("VictoryScreen");
+            shurikenTransition.SendMessage("displayScore");
+            Time.timeScale = 0;
+            //SceneManager.LoadScene("VictoryScreen");
         }
     }
 
@@ -50,6 +62,7 @@ public class PowerRemover : MonoBehaviour
         if(dash == currentLoopCount)
         {
             playerLocomotion.RemoveDash();
+            shurikenTransition.SendMessage("removeDash");
         }
     }
 
@@ -58,6 +71,7 @@ public class PowerRemover : MonoBehaviour
         if (doubleJump == currentLoopCount)
         {
             playerLocomotion.RemoveDoubleJump();
+            shurikenTransition.SendMessage("removeDoubleJump");
         }
     }
 
@@ -66,6 +80,7 @@ public class PowerRemover : MonoBehaviour
         if (grapple == currentLoopCount)
         {
             playerLocomotion.RemoveGrapple();
+            shurikenTransition.SendMessage("removeGrapple");
         }
     }
 
@@ -80,11 +95,20 @@ public class PowerRemover : MonoBehaviour
         if (collision.gameObject.layer == playerLayer)
         {
             currentLoopCount++;
+            if(maxLoopCount > currentLoopCount){
+                shurikenTransition.SendMessage("doTransition");
+            }
+            StartCoroutine(WaitBeforeReset(1));
         }
+
         HandleRemoveDash();
         HandleRemoveDoubleJump();
         HandleRemoveGrapple();
+    }
 
+    IEnumerator WaitBeforeReset(float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
         ResetPlayer();
     }
 
