@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour
 {
@@ -17,6 +15,7 @@ public class PlayerLocomotion : MonoBehaviour
     bool holdingJump;
     public bool isGrounded;
     bool isInputingMove;
+    public bool canMove;
 
     //POWERS BOOLEANS : Those booleans are used to let the code know whether the player is allowed to use some powers or not
     bool hasDashPower;
@@ -39,6 +38,7 @@ public class PlayerLocomotion : MonoBehaviour
     public float maxVelocity = 5.0f;
     public float accelerationMultiplier = 1.0f;
     public float jumpForceMultiplier = 10.0f;
+    public float relativeDoubleJumpForceMultiplier = 0.75f; // is relative to jumpForceMultiplier
     public float counterForceMult = 1.0f;
     public float dashSpeedGain = 40.0f;
 
@@ -56,6 +56,7 @@ public class PlayerLocomotion : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        canMove = true;
         wantsToJump = false;
         holdingJump = false;
         hasDashPower = true;
@@ -125,10 +126,13 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void ApplyMovement()
     {
-        // if velocity is less than max speed or opposite to the move direction
-        if (Mathf.Abs(rb.velocity.x) < maxVelocity || Mathf.Clamp(rb.velocity.x, -1f, 1f) == -moveDirection.x)
+        if (canMove)
         {
-            rb.AddForce(angledMoveDir * accelerationMultiplier);
+            // if velocity is less than max speed or opposite to the move direction
+            if (Mathf.Abs(rb.velocity.x) < maxVelocity || Mathf.Clamp(rb.velocity.x, -1f, 1f) == -moveDirection.x)
+            {
+                rb.AddForce(angledMoveDir * accelerationMultiplier);
+            }
         }
 
         ApplyCounterForce();
@@ -147,7 +151,7 @@ public class PlayerLocomotion : MonoBehaviour
         if (wantsToJump && !isGrounded && hasDoubleJumpPower && doubleJumpAvailable && !holdingJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.AddForce(Vector2.up * (jumpForceMultiplier*0.75f), ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForceMultiplier * relativeDoubleJumpForceMultiplier, ForceMode2D.Impulse);
             wantsToJump = false;
             doubleJumpAvailable = false;
         }
@@ -220,15 +224,15 @@ public class PlayerLocomotion : MonoBehaviour
     public void ResetPlayerAndPosition(Vector2 position)
     {
         myGrapple.ForceDetachGrapple();
+        rb.velocity = Vector3.zero;
 
         wantsToJump = false;
         holdingJump = false;
         dashCooldownTimer = 0.0f;
         isDashing = false;
         doubleJumpAvailable = false;
-
-        transform.position = position;
-        rb.velocity = Vector3.zero; // reset velocity
+        myAnimator.Play("Idle");
+        transform.position = position; // reset velocity
     }
 
 }

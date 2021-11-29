@@ -1,11 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class PowerRemover : MonoBehaviour
 {
+
+    [SerializeField] private GameObject UICanvas;
+    private GameObject shurikenTransition;
+    
     [Header("Order of powers to remove")]
     [Range(1,10)]
     [SerializeField] private int dash = 1;
@@ -34,6 +36,8 @@ public class PowerRemover : MonoBehaviour
         {
             maxLoopCount = currentLoopCount + 1;
         }
+
+        shurikenTransition = UICanvas.transform.Find("ShurikenTransition").gameObject;
     }
 
     // Update is called once per frame
@@ -41,7 +45,9 @@ public class PowerRemover : MonoBehaviour
     {
         if(maxLoopCount <= currentLoopCount)
         {
-            SceneManager.LoadScene("VictoryScreen");
+            shurikenTransition.SendMessage("displayScore");
+            Time.timeScale = 0;
+            //SceneManager.LoadScene("VictoryScreen");
         }
     }
 
@@ -50,6 +56,7 @@ public class PowerRemover : MonoBehaviour
         if(dash == currentLoopCount)
         {
             playerLocomotion.RemoveDash();
+            shurikenTransition.SendMessage("removeDash");
         }
     }
 
@@ -58,6 +65,7 @@ public class PowerRemover : MonoBehaviour
         if (doubleJump == currentLoopCount)
         {
             playerLocomotion.RemoveDoubleJump();
+            shurikenTransition.SendMessage("removeDoubleJump");
         }
     }
 
@@ -66,6 +74,7 @@ public class PowerRemover : MonoBehaviour
         if (grapple == currentLoopCount)
         {
             playerLocomotion.RemoveGrapple();
+            shurikenTransition.SendMessage("removeGrapple");
         }
     }
 
@@ -80,12 +89,23 @@ public class PowerRemover : MonoBehaviour
         if (collision.gameObject.layer == playerLayer)
         {
             currentLoopCount++;
+            if(maxLoopCount > currentLoopCount){
+                shurikenTransition.SendMessage("doTransition");
+                StartCoroutine(Waiter());
+            }
         }
+    }
+
+    IEnumerator Waiter()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
         HandleRemoveDash();
         HandleRemoveDoubleJump();
         HandleRemoveGrapple();
-
+        yield return new WaitForSecondsRealtime(7);
+        shurikenTransition.SendMessage("fadeOut");
         ResetPlayer();
+        yield return new WaitForSecondsRealtime(1);
     }
 
 }
