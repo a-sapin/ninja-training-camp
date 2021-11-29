@@ -1,25 +1,36 @@
 using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [Header("Timer")] public TextMeshProUGUI timerText;
+    [Header("Timer")] 
+    [SerializeField] private Text timerText;
 
-    [Header("Power images")] public RawImage grappleImage;
-    public RawImage doubleJumpImage;
-    public RawImage dashImage;
+    [Header("Powers")] 
+    [SerializeField] private new ParticleSystem particleSystem;
+    [SerializeField] private RawImage grappleImage;
+    [SerializeField] private RawImage removeGrappleImage;
+    [SerializeField] private RawImage doubleJumpImage;
+    [SerializeField] private RawImage removeDoubleJumpImage;
+    [SerializeField] private RawImage dashImage;
+    [SerializeField] private RawImage removeDashImage;
 
 
-    [Header("Medal")] public RawImage bronzeImage;
-    public float bronzeTime = 90;
-    public RawImage silverImage;
-    public float silverTime = 60;
-    public RawImage goldImage;
-    public float goldTime = 30;
-
+    [Header("Medal")] 
+    [SerializeField] private RawImage bronzeImage;
+    [SerializeField] private float bronzeTime = 90;
+    [SerializeField] private RawImage silverImage;
+    [SerializeField] private float silverTime = 60;
+    [SerializeField] private RawImage goldImage;
+    [SerializeField] private float goldTime = 30;
+    
+    [Header("Ending")] 
+    [SerializeField] private Text scoreText;
+    [SerializeField] private GameObject continueButton;
+    
     private float timer;
 
     // Update is called once per frame
@@ -27,22 +38,25 @@ public class Timer : MonoBehaviour
     {
         timer += Time.deltaTime;
         TimeSpan time = TimeSpan.FromSeconds(timer);
-        timerText.SetText(time.ToString(@"mm\:ss\:fff"));
+        timerText.text = time.ToString(@"mm\:ss\:fff");
     }
 
     void removeGrapple()
     {
-        grappleImage.enabled = false;
+        grappleImage.gameObject.SetActive(false);
+        StartCoroutine(fadeInOut(removeGrappleImage));
     }
 
     void removeDoubleJump()
     {
-        doubleJumpImage.enabled = false;
+        doubleJumpImage.gameObject.SetActive(false);
+        StartCoroutine(fadeInOut(removeDoubleJumpImage));
     }
 
     void removeDash()
     {
-        dashImage.enabled = false;
+        dashImage.gameObject.SetActive(false);
+        StartCoroutine(fadeInOut(removeDashImage));
     }
 
     void displayScore()
@@ -57,35 +71,28 @@ public class Timer : MonoBehaviour
         StartCoroutine(ShurikenTransition(true));
     }
 
+    public void ContinueButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
+    }
+
     IEnumerator ShurikenTransition(Boolean reset)
     {
-        Vector3 currentPos = transform.position;
+        Vector3 currentPos = transform.localPosition;
         float t = 0f;
-        while (t < 0.75)
+        while (t < 1)
         {
-            t += Time.fixedDeltaTime / 10;
-            transform.position = Vector3.Lerp(currentPos, new Vector3(-(Screen.width + 100), 540, 0), t);
+            t += Time.fixedDeltaTime / 5;
+            transform.localPosition = Vector3.Lerp(currentPos, new Vector3(-(Screen.width + 500), 0, 200), t);;
             yield return null;
         }
 
-        if (reset) {
-            t = 0f;
-            while (t < 0.8)
-            {
-                t += Time.fixedDeltaTime / 10;
-                transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1 - t);
-                yield return null;
-            }
+        if (!reset)
+        {
+            continueButton.gameObject.SetActive(true);
+            scoreText.gameObject.SetActive(true);
+            scoreText.text = "Total time :\n" + timerText.text;
 
-
-            transform.position = new Vector3(960, 540, 0);
-            transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
-
-            Time.timeScale = 1;
-        }
-
-        else {
-            timerText.color = new Color(0, 0, 0, 0);
             if (timer < goldTime)
             {
                 goldImage.gameObject.SetActive(true);
@@ -99,20 +106,73 @@ public class Timer : MonoBehaviour
                 bronzeImage.gameObject.SetActive(true);
             }
 
-            timerText.transform.position = new Vector3(Screen.width / 2, Screen.height / 2 - 100);
-            timerText.transform.SetAsLastSibling();
-
             t = 0f;
-            while (t < 0.5)
+            while (t < 1)
             {
-                t += Time.fixedDeltaTime / 10;
-                timerText.color = new Color(1, 1, 1, t);
-                goldImage.color = new Color(1, 1, 1, t);
-                silverImage.color = new Color(1, 1, 1, t);
-                bronzeImage.color = new Color(1, 1, 1, t);
+                t += Time.fixedDeltaTime / 5;
+                Color fadeIn = new Color(1, 1, 1, t);
+                scoreText.color = fadeIn;
+                goldImage.color = fadeIn;
+                silverImage.color = fadeIn;
+                bronzeImage.color = fadeIn;
 
                 yield return null;
             }
+            
+            t = 0f;
+            while (t < 1)
+            {
+                t += Time.fixedDeltaTime / 4;
+                Color fadeIn = new Color(1, 1, 1, t);
+                continueButton.GetComponent<Image>().color = fadeIn;
+                continueButton.GetComponentInChildren<Text>().color = fadeIn;
+                yield return null;
+            }
         }
+    }
+
+    IEnumerator fadeOut()
+    {
+        float t = 0f;
+        while (t < 0.8)
+        {
+            t += Time.fixedDeltaTime / 5;
+            transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1 - t);
+            yield return null;
+        }
+        
+        transform.localPosition = new Vector3(0, 0, 200);
+        transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
+        particleSystem.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+    
+    IEnumerator fadeInOut(RawImage image)
+    {
+        image.gameObject.SetActive(true);
+        particleSystem.gameObject.SetActive(true);
+        
+        float t = 0f;
+        while (t < 1)
+        {
+            t += Time.fixedDeltaTime / 5;
+            image.color = new Color(1, 1, 1, t);
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(3f);
+        particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        //yield return new WaitForSecondsRealtime(2.5f);
+        
+        t = 0f;
+        while (t < 1)
+        {
+            t += Time.fixedDeltaTime/2;
+            image.color = new Color(1, 1, 1, 1-t);
+            yield return null;
+        }
+        
+        //particleSystem.gameObject.SetActive(false);
+        image.gameObject.SetActive(false);
     }
 }
