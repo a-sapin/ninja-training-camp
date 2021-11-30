@@ -7,6 +7,7 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private Grapple myGrapple;
     [SerializeReference] private Animator myAnimator;
+    [SerializeField] private LayerMask ladderLayer;
 
     Rigidbody2D rb;
     Vector2 moveDirection;
@@ -18,6 +19,7 @@ public class PlayerLocomotion : MonoBehaviour
     public bool isGrounded;
     bool isInputingMove;
     public bool canMove;
+    public bool isUsingLadder;
 
     //POWERS BOOLEANS : Those booleans are used to let the code know whether the player is allowed to use some powers or not
     bool hasDashPower;
@@ -59,6 +61,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         canMove = true;
+        isUsingLadder = false;
         wantsToJump = false;
         holdingJump = false;
         hasDashPower = true;
@@ -106,6 +109,7 @@ public class PlayerLocomotion : MonoBehaviour
         HandleDashing(delta);
     }
 
+    // TODO: ladder climb animation
     private void SetAnimation(Vector2 direction)
     {
         if(direction.x < 0)
@@ -142,7 +146,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void TryToJump()
     {
-        if (wantsToJump && isGrounded)
+        if (wantsToJump && (isGrounded || isUsingLadder))
         {
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
             wantsToJump = false;
@@ -150,7 +154,7 @@ public class PlayerLocomotion : MonoBehaviour
         }
 
         //DoubleJump
-        if (wantsToJump && !isGrounded && hasDoubleJumpPower && doubleJumpAvailable && !holdingJump)
+        if (wantsToJump && !isGrounded && hasDoubleJumpPower && doubleJumpAvailable && !holdingJump && !isUsingLadder)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * jumpForceMultiplier * relativeDoubleJumpForceMultiplier, ForceMode2D.Impulse);
@@ -183,8 +187,11 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (!isGrounded)
+        if (!isGrounded && !isUsingLadder) // not in the air or on ladder
+        {
             rb.AddForce(Vector2.down * 9.8f * gravityMultiplier);
+        }
+            
     }
 
     // Slows down the player when grounded 
@@ -205,8 +212,8 @@ public class PlayerLocomotion : MonoBehaviour
         if (hasDashPower && Input.GetAxis("Fire3") > 0 && dashCooldownTimer <= 0.0f && rb.velocity.magnitude < dashSpeedGain)
         {
             isDashing = true;
+            isUsingLadder = false;
             rb.velocity += boost;
-            //rb.AddForce(inputDirection.normalized * dashForceMult, ForceMode2D.Impulse);
             dashCooldownTimer = dashCooldown; // reset cooldown timer
             previousDash = boost;
         }
@@ -237,4 +244,15 @@ public class PlayerLocomotion : MonoBehaviour
         rb.velocity = Vector3.zero; // reset velocity
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == ladderLayer)
+        {
+            Debug.Log("Touching ladder");
+            if(Mathf.Abs(inputDirection.y) >= 0.1)
+            {
+
+            }
+        }
+    }
 }
