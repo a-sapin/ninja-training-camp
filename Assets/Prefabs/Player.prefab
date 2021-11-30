@@ -345,8 +345,12 @@ MonoBehaviour:
     m_Bits: 64
   myGrapple: {fileID: 5409001243050288760}
   myAnimator: {fileID: 347208655329130541}
+  ladderLayer:
+    serializedVersion: 2
+    m_Bits: 512
   isGrounded: 0
   canMove: 0
+  isUsingLadder: 0
   dashCooldown: 1
   dashDuration: 0.2
   gravityMultiplier: 3
