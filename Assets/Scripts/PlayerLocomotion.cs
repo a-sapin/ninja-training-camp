@@ -7,7 +7,6 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private Grapple myGrapple;
     [SerializeReference] private Animator myAnimator;
-    [SerializeField] private LayerMask ladderLayer;
 
     Rigidbody2D rb;
     Vector2 moveDirection;
@@ -45,6 +44,7 @@ public class PlayerLocomotion : MonoBehaviour
     public float relativeDoubleJumpForceMultiplier = 0.75f; // is relative to jumpForceMultiplier
     public float counterForceMult = 1.0f;
     public float dashSpeedGain = 40.0f;
+    public float ladderClimbSpeed = 1.0f;
 
     public float groundDetectionDistance = 1.0f;
     
@@ -151,6 +151,7 @@ public class PlayerLocomotion : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
             wantsToJump = false;
             holdingJump = true;
+            isUsingLadder = false; // stop climbing ladder when jump is input
         }
 
         //DoubleJump
@@ -244,15 +245,42 @@ public class PlayerLocomotion : MonoBehaviour
         rb.velocity = Vector3.zero; // reset velocity
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private const int ladderLayer = 9; // for some reason a layermask doesnt work
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == ladderLayer)
+        
+        if (collision.gameObject.layer == ladderLayer)
         {
-            Debug.Log("Touching ladder");
-            if(Mathf.Abs(inputDirection.y) >= 0.1)
-            {
+            // Get the closest position to the player that is centered on the ladder
+            Vector3 onLadder = new Vector3(collision.gameObject.transform.position.x, transform.position.y, 0);
 
+            
+            if (Mathf.Abs(inputDirection.y) >= 0.1)
+            {
+                transform.position = onLadder;
+                isGrounded = false;
+                isUsingLadder = true;
+                rb.velocity = Vector2.zero;
+                doubleJumpAvailable = true; // Recover ability to double jump when climbing ladder
+                transform.position = transform.position + (inputDirection.y * ladderClimbSpeed * Vector3.up); // climb
             }
+            else if (isUsingLadder == true)
+            {
+                transform.position = onLadder;
+                isGrounded = false;
+                rb.velocity = Vector2.zero;
+                doubleJumpAvailable = true; // Recover ability to double jump when climbing ladder
+            }
+
+
+        }
+    }
+     // TODO: May need to remove this for proper ladder behaviour
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == ladderLayer)
+        {
+            isUsingLadder = false;
         }
     }
 }

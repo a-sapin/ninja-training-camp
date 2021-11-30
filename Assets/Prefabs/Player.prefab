@@ -345,9 +345,6 @@ MonoBehaviour:
     m_Bits: 64
   myGrapple: {fileID: 5409001243050288760}
   myAnimator: {fileID: 347208655329130541}
-  ladderLayer:
-    serializedVersion: 2
-    m_Bits: 512
   isGrounded: 0
   canMove: 0
   isUsingLadder: 0
@@ -360,6 +357,7 @@ MonoBehaviour:
   relativeDoubleJumpForceMultiplier: 0.75
   counterForceMult: 10
   dashSpeedGain: 40
+  ladderClimbSpeed: 0.15
   groundDetectionDistance: 1.1
 --- !u!114 &5409001243050288760
 MonoBehaviour:
