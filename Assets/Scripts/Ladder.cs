@@ -17,7 +17,7 @@ public class Ladder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lr.SetPosition(0, top.position);
-        lr.SetPosition(1, bottom.position);
+        lr.SetPosition(0, top.localPosition);
+        lr.SetPosition(1, bottom.localPosition);
     }
 }
