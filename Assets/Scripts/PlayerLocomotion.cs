@@ -245,6 +245,9 @@ public class PlayerLocomotion : MonoBehaviour
         rb.velocity = Vector3.zero; // reset velocity
     }
 
+    [SerializeField] private bool refreshDoubleJumpOnLadder = true;
+    [SerializeField] private bool refreshGrappleOnLadder = true;
+
     private const int ladderLayer = 9; // for some reason a layermask doesnt work
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -254,22 +257,32 @@ public class PlayerLocomotion : MonoBehaviour
             // Get the closest position to the player that is centered on the ladder
             Vector3 onLadder = new Vector3(collision.gameObject.transform.position.x, transform.position.y, 0);
 
-            
-            if (Mathf.Abs(inputDirection.y) >= 0.1)
-            {
+            if (Mathf.Abs(inputDirection.x) >= 0.1 && Mathf.Abs(inputDirection.y) < 0.1)
+            { // Moving horizontally, NO DIAGONALS
+                isUsingLadder = false;
+            }
+            else if (Mathf.Abs(inputDirection.y) >= 0.1)
+            { // Moving vertically
                 transform.position = onLadder;
                 isGrounded = false;
                 isUsingLadder = true;
                 rb.velocity = Vector2.zero;
-                doubleJumpAvailable = true; // Recover ability to double jump when climbing ladder
+                if (refreshDoubleJumpOnLadder)
+                {
+                    doubleJumpAvailable = true;
+                }
+                if (refreshGrappleOnLadder)
+                {
+                    canGrapple = true;
+                }
                 transform.position = transform.position + (inputDirection.y * ladderClimbSpeed * Vector3.up); // climb
             }
             else if (isUsingLadder == true)
-            {
+            { // Not moving on ladder
                 transform.position = onLadder;
                 isGrounded = false;
                 rb.velocity = Vector2.zero;
-                doubleJumpAvailable = true; // Recover ability to double jump when climbing ladder
+                doubleJumpAvailable = true; // Refresh double jump when climbing ladder
             }
 
 
