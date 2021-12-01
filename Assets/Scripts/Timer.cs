@@ -34,7 +34,7 @@ public class Timer : MonoBehaviour
     private float timer;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         timer += Time.deltaTime;
         TimeSpan time = TimeSpan.FromSeconds(timer);
@@ -44,19 +44,19 @@ public class Timer : MonoBehaviour
     void removeGrapple()
     {
         grappleImage.gameObject.SetActive(false);
-        StartCoroutine(fadeInOut(removeGrappleImage));
+        StartCoroutine(FadeInOut(removeGrappleImage));
     }
 
     void removeDoubleJump()
     {
         doubleJumpImage.gameObject.SetActive(false);
-        StartCoroutine(fadeInOut(removeDoubleJumpImage));
+        StartCoroutine(FadeInOut(removeDoubleJumpImage));
     }
 
     void removeDash()
     {
         dashImage.gameObject.SetActive(false);
-        StartCoroutine(fadeInOut(removeDashImage));
+        StartCoroutine(FadeInOut(removeDashImage));
     }
 
     void displayScore()
@@ -131,7 +131,7 @@ public class Timer : MonoBehaviour
         }
     }
 
-    IEnumerator fadeOut()
+    IEnumerator FadeOut()
     {
         float t = 0f;
         while (t < 0.8)
@@ -147,7 +147,7 @@ public class Timer : MonoBehaviour
         Time.timeScale = 1;
     }
     
-    IEnumerator fadeInOut(RawImage image)
+    IEnumerator FadeInOut(RawImage image)
     {
         image.gameObject.SetActive(true);
         particleSystem.gameObject.SetActive(true);
@@ -155,12 +155,12 @@ public class Timer : MonoBehaviour
         float t = 0f;
         while (t < 1)
         {
-            t += Time.fixedDeltaTime / 5;
+            t += Time.fixedDeltaTime;
             image.color = new Color(1, 1, 1, t);
             yield return null;
         }
 
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(1f);
         particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         //yield return new WaitForSecondsRealtime(2.5f);
         
