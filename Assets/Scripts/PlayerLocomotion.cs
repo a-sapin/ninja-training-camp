@@ -43,7 +43,8 @@ public class PlayerLocomotion : MonoBehaviour
     public float dashSpeedGain = 40.0f;
 
     public float groundDetectionDistance = 1.0f;
-    
+    public Vector2 ExternForce { get; set; }
+
     public bool CanGrapple() { return canGrapple; }
     public void SetCantGrapple() { canGrapple = false; }
     public bool GetHasGrapplePower() { return hasGrapplePower; }
@@ -51,7 +52,7 @@ public class PlayerLocomotion : MonoBehaviour
     public void RemoveDash() { hasDashPower = false; }
     public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
     public void RemoveGrapple() { hasGrapplePower = false; }
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -141,10 +142,15 @@ public class PlayerLocomotion : MonoBehaviour
                 rb.AddForce(angledMoveDir * accelerationMultiplier);
             }
         }
-
+        ApplyExternForce();
         ApplyCounterForce();
     }
 
+    private void ApplyExternForce()
+    {
+        rb.AddForce(ExternForce, ForceMode2D.Impulse);
+        ExternForce = Vector2.zero;
+    }
     private void TryToJump()
     {
         if (!canMove) return;
