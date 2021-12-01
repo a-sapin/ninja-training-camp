@@ -106,7 +106,13 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void SetAnimation(Vector2 direction)
     {
-        if(direction.x < 0)
+        if (!canMove)
+        {
+            myAnimator.SetBool("runLeft", false);
+            myAnimator.SetBool("runRight", false);
+            return;
+        }
+        if (direction.x < 0)
         {
             myAnimator.SetBool("runLeft", true);
             myAnimator.SetBool("runRight", false);
@@ -140,6 +146,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void TryToJump()
     {
+        if (!canMove) return;
         if (wantsToJump && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
