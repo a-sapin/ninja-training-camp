@@ -6,6 +6,7 @@ public class Dummy : MonoBehaviour
 {
     [SerializeField] private bool canMove;
     [SerializeField] private float speed;
+    [SerializeField] private float force;
     [SerializeField] private GameObject dummy,leftPoint,rightPoint;
     private SpriteRenderer dummySprite;
     private bool goLeft = true;
@@ -18,7 +19,8 @@ public class Dummy : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            FindObjectOfType<PlayerLocomotion>().ResetPlayerAndPosition(new Vector2(0, 0));
+            Vector2 dir = (collision.transform.position- this.transform.position).normalized;
+            FindObjectOfType<PlayerLocomotion>().ExternForce = FindObjectOfType<PlayerLocomotion>().ExternForce+ dir * force;
         }
     }
     // Update is called once per frame
