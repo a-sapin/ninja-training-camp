@@ -2828,7 +2828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6851174165892084318, guid: 6179315b25e892d499984b443dc623a3, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6851174165892084318, guid: 6179315b25e892d499984b443dc623a3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2902,9 +2902,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6851174165892084321, guid: 6179315b25e892d499984b443dc623a3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851174165892084321, guid: 6179315b25e892d499984b443dc623a3, type: 3}
+      propertyPath: m_TargetDisplay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6851174165892084322, guid: 6179315b25e892d499984b443dc623a3, type: 3}
       propertyPath: m_Name
       value: CanvasMenuPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851174166342656915, guid: 6179315b25e892d499984b443dc623a3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume2Button
       objectReference: {fileID: 0}
     - target: {fileID: 7513889165880984773, guid: 6179315b25e892d499984b443dc623a3, type: 3}
       propertyPath: audioSourceInScene
@@ -4177,7 +4189,7 @@ RectTransform:
   - {fileID: 1433167947}
   - {fileID: 1621932821}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

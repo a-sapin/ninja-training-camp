@@ -39,7 +39,7 @@ public class Dialogue : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         while (true)
         {
-            if (Input.anyKeyDown)
+            if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
             {
                
                 dialogueIndex++;
