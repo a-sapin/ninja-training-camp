@@ -102,8 +102,8 @@ public class PowerRemover : MonoBehaviour
         HandleRemoveDash();
         HandleRemoveDoubleJump();
         HandleRemoveGrapple();
-        yield return new WaitForSecondsRealtime(7);
-        shurikenTransition.SendMessage("fadeOut");
+        yield return new WaitForSecondsRealtime(3.5f);
+        shurikenTransition.SendMessage("FadeOut");
         ResetPlayer();
         yield return new WaitForSecondsRealtime(1);
     }
