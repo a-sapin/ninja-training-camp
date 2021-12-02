@@ -41,114 +41,85 @@ public class Timer : MonoBehaviour
         timerText.text = time.ToString(@"mm\:ss\:fff");
     }
 
-    void removeGrapple()
+    void RemoveGrapple()
     {
         grappleImage.gameObject.SetActive(false);
-        StartCoroutine(FadeInOut(removeGrappleImage));
+        StartCoroutine(DisplayRemovedPower(removeGrappleImage));
     }
 
-    void removeDoubleJump()
+    void RemoveDoubleJump()
     {
         doubleJumpImage.gameObject.SetActive(false);
-        StartCoroutine(FadeInOut(removeDoubleJumpImage));
+        StartCoroutine(DisplayRemovedPower(removeDoubleJumpImage));
     }
 
-    void removeDash()
+    void RemoveDash()
     {
         dashImage.gameObject.SetActive(false);
-        StartCoroutine(FadeInOut(removeDashImage));
+        StartCoroutine(DisplayRemovedPower(removeDashImage));
     }
 
-    void displayScore()
+    IEnumerator DisplayScore()
     {
+        SendMessage("AnimateTransition");
+        yield return new WaitForSecondsRealtime(0.5f);
+        
         Time.timeScale = 0;
-        StartCoroutine(ShurikenTransition(false));
+        float t = 0;
+        continueButton.gameObject.SetActive(true);
+        scoreText.gameObject.SetActive(true);
+        scoreText.text = "Total time :\n" + timerText.text;
+
+        if (timer < goldTime)
+        {
+            goldImage.gameObject.SetActive(true);
+        }
+        else if (timer < silverTime)
+        {
+            silverImage.gameObject.SetActive(true);
+        }
+        else if (timer < bronzeTime)
+        {
+            bronzeImage.gameObject.SetActive(true);
+        }
+
+        while (t < 1)
+        {
+            t += Time.fixedDeltaTime / 5;
+            Color fadeIn = new Color(1, 1, 1, t);
+            scoreText.color = fadeIn;
+            goldImage.color = fadeIn;
+            silverImage.color = fadeIn;
+            bronzeImage.color = fadeIn;
+
+            yield return null;
+        }
+            
+        t = 0f;
+        while (t < 1)
+        {
+            t += Time.fixedDeltaTime / 4;
+            Color fadeIn = new Color(1, 1, 1, t);
+            continueButton.GetComponent<Image>().color = fadeIn;
+            continueButton.GetComponentInChildren<Text>().color = fadeIn;
+            yield return null;
+        }
     }
 
-    void doTransition()
+    void DoTransition()
     {
-        Time.timeScale = 0;
-        StartCoroutine(ShurikenTransition(true));
+        SendMessage("AnimateTransition");
     }
 
     public void ContinueButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
     }
-
-    IEnumerator ShurikenTransition(Boolean reset)
-    {
-        Vector3 currentPos = transform.localPosition;
-        float t = 0f;
-        while (t < 1)
-        {
-            t += Time.fixedDeltaTime / 5;
-            transform.localPosition = Vector3.Lerp(currentPos, new Vector3(-(Screen.width + 500), 0, 200), t);;
-            yield return null;
-        }
-
-        if (!reset)
-        {
-            continueButton.gameObject.SetActive(true);
-            scoreText.gameObject.SetActive(true);
-            scoreText.text = "Total time :\n" + timerText.text;
-
-            if (timer < goldTime)
-            {
-                goldImage.gameObject.SetActive(true);
-            }
-            else if (timer < silverTime)
-            {
-                silverImage.gameObject.SetActive(true);
-            }
-            else if (timer < bronzeTime)
-            {
-                bronzeImage.gameObject.SetActive(true);
-            }
-
-            t = 0f;
-            while (t < 1)
-            {
-                t += Time.fixedDeltaTime / 5;
-                Color fadeIn = new Color(1, 1, 1, t);
-                scoreText.color = fadeIn;
-                goldImage.color = fadeIn;
-                silverImage.color = fadeIn;
-                bronzeImage.color = fadeIn;
-
-                yield return null;
-            }
-            
-            t = 0f;
-            while (t < 1)
-            {
-                t += Time.fixedDeltaTime / 4;
-                Color fadeIn = new Color(1, 1, 1, t);
-                continueButton.GetComponent<Image>().color = fadeIn;
-                continueButton.GetComponentInChildren<Text>().color = fadeIn;
-                yield return null;
-            }
-        }
-    }
-
-    IEnumerator FadeOut()
-    {
-        float t = 0f;
-        while (t < 0.8)
-        {
-            t += Time.fixedDeltaTime / 5;
-            transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1 - t);
-            yield return null;
-        }
-        
-        transform.localPosition = new Vector3(0, 0, 200);
-        transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
-        particleSystem.gameObject.SetActive(false);
-        Time.timeScale = 1;
-    }
     
-    IEnumerator FadeInOut(RawImage image)
+    
+    IEnumerator DisplayRemovedPower(RawImage image)
     {
+        yield return new WaitForSecondsRealtime(0.5f);
         image.gameObject.SetActive(true);
         particleSystem.gameObject.SetActive(true);
         
@@ -162,7 +133,6 @@ public class Timer : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1f);
         particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        //yield return new WaitForSecondsRealtime(2.5f);
         
         t = 0f;
         while (t < 1)

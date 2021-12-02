@@ -3881,9 +3881,31 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1712016434724317974, guid: 688c0089137bd4d449df18c91542c612, type: 3}
+      propertyPath: m_Text
+      value: 'Total time:
+
+        00:00:00'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712016434724317974, guid: 688c0089137bd4d449df18c91542c612, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712016434724317974, guid: 688c0089137bd4d449df18c91542c612, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: b6349d08a5335cd4aa534282435d11cc, type: 3}
+    - target: {fileID: 1712016434724317974, guid: 688c0089137bd4d449df18c91542c612, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712016434724317974, guid: 688c0089137bd4d449df18c91542c612, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797845975210002675, guid: 688c0089137bd4d449df18c91542c612, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6902192829583218897, guid: 688c0089137bd4d449df18c91542c612, type: 3}
       propertyPath: m_Name
       value: UI
@@ -3930,6 +3952,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6902192829583218902, guid: 688c0089137bd4d449df18c91542c612, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861858286323380149, guid: 688c0089137bd4d449df18c91542c612, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 343
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861858286323380149, guid: 688c0089137bd4d449df18c91542c612, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
