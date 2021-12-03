@@ -56,6 +56,7 @@ public class Grapple : MonoBehaviour
 
                 // Activate grapple and its visuals
                 DrawRope(targetLocation);
+                myPlayerLocomotion.isUsingLadder = false; // make player let go of ladder upon grappling
                 _springJoint.connectedAnchor = targetLocation;
                 _springJoint.enabled = true;
                 _lineRenderer.enabled = true;
