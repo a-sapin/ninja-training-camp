@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +13,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private Text textZone;
     [SerializeField] private GameObject sensei, player, canvas;
     [SerializeField] private DialoguePart[] dialogue;
+    private PlayerLocomotion playerLocomotion;
 
     void Start()
     {
@@ -28,6 +28,9 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator PlayDialogue(DialoguePart[] dialogue)
     {
+        playerLocomotion = FindObjectOfType<PlayerLocomotion>();
+        bool normalPlayerCanMove = playerLocomotion.canMove;
+        playerLocomotion.canMove = false;
         int dialogueIndex = 0;
         canvas.SetActive(true);
         if(dialogue.Length > 0)
@@ -53,6 +56,7 @@ public class Dialogue : MonoBehaviour
             }
             yield return null;
         }
+        playerLocomotion.canMove = normalPlayerCanMove;
         canvas.SetActive(false);
     }
 }

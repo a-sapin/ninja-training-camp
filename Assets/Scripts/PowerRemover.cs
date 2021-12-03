@@ -1,27 +1,20 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.UI;
 
 
 public class PowerRemover : MonoBehaviour
 {
 
-    public GameObject shurikenTransition;
+    [SerializeField] private GameObject UICanvas;
+    private GameObject shurikenTransition;
     
     [Header("Order of powers to remove")]
     [Range(1,10)]
     [SerializeField] private int dash = 1;
-    public RawImage dashImage;
     [Range(1, 10)]
     [SerializeField] private int doubleJump = 1;
-    public RawImage doubleJumpImage;
     [Range(1, 10)]
     [SerializeField] private int grapple = 1;
-    public RawImage grappleImage;
 
     [Header("GameObject References")]
     [SerializeReference] private GameObject respawnLocation;
@@ -43,6 +36,8 @@ public class PowerRemover : MonoBehaviour
         {
             maxLoopCount = currentLoopCount + 1;
         }
+
+        shurikenTransition = UICanvas.transform.Find("ShurikenTransition").gameObject;
     }
 
     // Update is called once per frame
@@ -50,7 +45,9 @@ public class PowerRemover : MonoBehaviour
     {
         if(maxLoopCount <= currentLoopCount)
         {
-            SceneManager.LoadScene("VictoryScreen");
+            shurikenTransition.SendMessage("displayScore");
+            Time.timeScale = 0;
+            //SceneManager.LoadScene("VictoryScreen");
         }
     }
 
@@ -59,14 +56,7 @@ public class PowerRemover : MonoBehaviour
         if(dash == currentLoopCount)
         {
             playerLocomotion.RemoveDash();
-            try
-            {
-                dashImage.enabled = false;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            shurikenTransition.SendMessage("removeDash");
         }
     }
 
@@ -75,14 +65,7 @@ public class PowerRemover : MonoBehaviour
         if (doubleJump == currentLoopCount)
         {
             playerLocomotion.RemoveDoubleJump();
-            try
-            {
-                doubleJumpImage.enabled = false;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            shurikenTransition.SendMessage("removeDoubleJump");
         }
     }
 
@@ -91,14 +74,7 @@ public class PowerRemover : MonoBehaviour
         if (grapple == currentLoopCount)
         {
             playerLocomotion.RemoveGrapple();
-            try
-            {
-                grappleImage.enabled = false;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            shurikenTransition.SendMessage("removeGrapple");
         }
     }
 
@@ -113,42 +89,23 @@ public class PowerRemover : MonoBehaviour
         if (collision.gameObject.layer == playerLayer)
         {
             currentLoopCount++;
-            Time.timeScale = 0;
-            StartCoroutine(ShurikenTransition());
+            if(maxLoopCount > currentLoopCount){
+                shurikenTransition.SendMessage("doTransition");
+                StartCoroutine(Waiter());
+            }
         }
+    }
+
+    IEnumerator Waiter()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
         HandleRemoveDash();
         HandleRemoveDoubleJump();
         HandleRemoveGrapple();
-
-    }
-
-    IEnumerator ShurikenTransition()
-    {
-        {
-            Vector3 currentPos = shurikenTransition.transform.position;
-            float t = 0f;
-            while(t < 1)
-            {
-                t += Time.fixedDeltaTime / 10;
-                shurikenTransition.transform.position = Vector3.Lerp(currentPos, new Vector3(-(Screen.width+100), 540, 0), t);
-                yield return null;
-            }
-            
-            ResetPlayer();
-            
-            t = 0f;
-            while(t < 1)
-            {
-                t += Time.fixedDeltaTime / 10;
-                shurikenTransition.transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1-t);
-                yield return null;
-            }
-            
-            shurikenTransition.transform.position = new Vector3(960, 540, 0);
-            shurikenTransition.transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
-            
-            Time.timeScale = 1;
-        }
+        yield return new WaitForSecondsRealtime(7);
+        shurikenTransition.SendMessage("fadeOut");
+        ResetPlayer();
+        yield return new WaitForSecondsRealtime(1);
     }
 
 }
