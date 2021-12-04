@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    [SerializeField] private SaveLoadData saveLoadData;
+    
     [Header("Timer")] 
     [SerializeField] private Text timerText;
 
@@ -18,14 +20,15 @@ public class Timer : MonoBehaviour
     [SerializeField] private RawImage dashImage;
     [SerializeField] private RawImage removeDashImage;
 
+    private TimeSpan[] medalTime = new TimeSpan[3];
 
     [Header("Medal")] 
     [SerializeField] private RawImage bronzeImage;
-    [SerializeField] private float bronzeTime = 90;
+    [SerializeField] private float bronzeTime;
     [SerializeField] private RawImage silverImage;
-    [SerializeField] private float silverTime = 60;
+    [SerializeField] private float silverTime;
     [SerializeField] private RawImage goldImage;
-    [SerializeField] private float goldTime = 30;
+    [SerializeField] private float goldTime;
     
     [Header("Ending")] 
     [SerializeField] private Text scoreText;
@@ -33,7 +36,14 @@ public class Timer : MonoBehaviour
     
     private float timer;
 
-    // Update is called once per frame
+    private void Awake()
+    {
+        medalTime[0] = TimeSpan.FromSeconds(goldTime);
+        medalTime[1] = TimeSpan.FromSeconds(silverTime);
+        medalTime[2] = TimeSpan.FromSeconds(bronzeTime);
+        SaveLoadData.SaveTimes(medalTime);
+    }
+
     void FixedUpdate()
     {
         timer += Time.deltaTime;
@@ -59,30 +69,37 @@ public class Timer : MonoBehaviour
         StartCoroutine(DisplayRemovedPower(removeDashImage));
     }
 
-    IEnumerator DisplayScore()
+    private IEnumerator DisplayScore()
     {
         SendMessage("AnimateTransition");
+        Time.timeScale = 0;
+        
+        TimeSpan bestTime = SaveLoadData.getBestTime();
+        TimeSpan time = TimeSpan.FromSeconds(timer);
+        SaveLoadData.saveNewTime(time);
+        
         yield return new WaitForSecondsRealtime(0.5f);
         
-        Time.timeScale = 0;
-        float t = 0;
         continueButton.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(true);
-        scoreText.text = "Total time :\n" + timerText.text;
 
-        if (timer < goldTime)
+        if (bestTime<time) scoreText.text = "New best time !\n Total time :\n" + timerText.text;
+        else scoreText.text = "Total time :\n" + timerText.text;
+
+        if (time < medalTime[0])
         {
             goldImage.gameObject.SetActive(true);
         }
-        else if (timer < silverTime)
+        else if (time < medalTime[1])
         {
             silverImage.gameObject.SetActive(true);
         }
-        else if (timer < bronzeTime)
+        else if (time < medalTime[2])
         {
             bronzeImage.gameObject.SetActive(true);
         }
 
+        float t = 0;
         while (t < 1)
         {
             t += Time.fixedDeltaTime / 5;
@@ -113,11 +130,10 @@ public class Timer : MonoBehaviour
 
     public void ContinueButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
     
-    
-    IEnumerator DisplayRemovedPower(RawImage image)
+    private IEnumerator DisplayRemovedPower(RawImage image)
     {
         yield return new WaitForSecondsRealtime(0.5f);
         image.gameObject.SetActive(true);

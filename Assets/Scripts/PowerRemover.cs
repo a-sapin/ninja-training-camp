@@ -26,6 +26,7 @@ public class PowerRemover : MonoBehaviour
     [SerializeField] private int maxLoopCount = 0;
 
     private PlayerLocomotion playerLocomotion;
+    private bool ended = false;
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +45,9 @@ public class PowerRemover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(maxLoopCount <= currentLoopCount)
+        if(maxLoopCount <= currentLoopCount && !ended)
         {
+            ended = true;
             transition.SendMessage("DisplayScore");
             Time.timeScale = 0;
             //SceneManager.LoadScene("VictoryScreen");
