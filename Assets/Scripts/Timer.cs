@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] private SaveLoadData saveLoadData;
     
     [Header("Timer")] 
     [SerializeField] private Text timerText;
@@ -74,7 +73,7 @@ public class Timer : MonoBehaviour
         SendMessage("AnimateTransition");
         Time.timeScale = 0;
         
-        TimeSpan bestTime = SaveLoadData.getBestTime();
+        TimeSpan bestTime = SaveLoadData.getBestTime(SceneManager.GetActiveScene().name);
         TimeSpan time = TimeSpan.FromSeconds(timer);
         SaveLoadData.saveNewTime(time);
         
@@ -118,7 +117,7 @@ public class Timer : MonoBehaviour
             t += Time.fixedDeltaTime / 4;
             Color fadeIn = new Color(1, 1, 1, t);
             continueButton.GetComponent<Image>().color = fadeIn;
-            continueButton.GetComponentInChildren<Text>().color = fadeIn;
+            //continueButton.GetComponentInChildren<Text>().color = fadeIn;
             yield return null;
         }
     }
@@ -130,7 +129,7 @@ public class Timer : MonoBehaviour
 
     public void ContinueButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        SceneManager.LoadScene("LevelSelectionMenu", LoadSceneMode.Single);
     }
     
     private IEnumerator DisplayRemovedPower(RawImage image)

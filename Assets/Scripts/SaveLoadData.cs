@@ -15,8 +15,8 @@ public class SaveLoadData : MonoBehaviour
 
     public void Start()
     {
-        LoadMedalTime();
-        LoadPlayerTime();
+        LoadMedalTime(SceneManager.GetActiveScene().name);
+        LoadPlayerTime(SceneManager.GetActiveScene().name);
         //debugData();
     }
 
@@ -56,13 +56,14 @@ public class SaveLoadData : MonoBehaviour
         //Debug.Log("Game data saved!");
     }
 
-    public static void LoadPlayerTime()
+    public static void LoadPlayerTime(String levelName)
     {
-        if (File.Exists(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "_Player.dat"))
+        //Debug.Log(Application.persistentDataPath + "/" + levelName + "_Player.dat");
+        if (File.Exists(Application.persistentDataPath + "/" + levelName + "_Player.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file =
-                File.Open(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "_Player.dat",
+                File.Open(Application.persistentDataPath + "/" + levelName + "_Player.dat",
                     FileMode.Open);
 
             LevelData data = (LevelData) bf.Deserialize(file);
@@ -77,17 +78,21 @@ public class SaveLoadData : MonoBehaviour
         }
         else
         {
-            //Debug.Log("No game data !");
+            playerTime1 = TimeSpan.Zero;
+            playerTime2 = TimeSpan.Zero;
+            playerTime3 = TimeSpan.Zero;
+            //Debug.Log("No Player time !");
         }
     }
 
-    public static void LoadMedalTime()
+    public static void LoadMedalTime(String levelName)
     {
-        if (File.Exists(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "_Times.dat"))
+        //Debug.Log(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "_Times.dat");
+        if (File.Exists(Application.persistentDataPath + "/" + levelName + "_Times.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file =
-                File.Open(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "_Times.dat",
+                File.Open(Application.persistentDataPath + "/" + levelName + "_Times.dat",
                     FileMode.Open);
 
             LevelData data = (LevelData) bf.Deserialize(file);
@@ -100,7 +105,10 @@ public class SaveLoadData : MonoBehaviour
         }
         else
         {
-            //Debug.Log("No game data !");
+            bronzeTime = TimeSpan.Zero;
+            silverTime = TimeSpan.Zero;
+            goldTime = TimeSpan.Zero;
+            //Debug.Log("No medal times !");
         }
     }
 
@@ -135,19 +143,19 @@ public class SaveLoadData : MonoBehaviour
         TimeSpan worseTime = time;
         int worseNumber = 0;
 
-        if (worseTime < playerTime1)
+        if (worseTime < playerTime1 || playerTime1 == TimeSpan.FromSeconds(-1) || playerTime1 == TimeSpan.Zero)
         {
             worseNumber = 1;
             worseTime = playerTime1;
         }
 
-        if (worseTime < playerTime2)
+        if (worseTime < playerTime2 || playerTime2 == TimeSpan.FromSeconds(-1) || playerTime1 == TimeSpan.Zero)
         {
             worseNumber = 2;
             worseTime = playerTime2;
         }
 
-        if (worseTime < playerTime3)
+        if (worseTime < playerTime3 || playerTime3 == TimeSpan.FromSeconds(-1) || playerTime1 == TimeSpan.Zero)
         {
             worseNumber = 3;
             worseTime = playerTime3;
@@ -179,9 +187,9 @@ public class SaveLoadData : MonoBehaviour
         //Debug.Log("-----------------------------------");
     }
 
-    public static TimeSpan getBestTime()
+    public static TimeSpan getBestTime(String levelName)
     {
-        LoadPlayerTime();
+        LoadPlayerTime(levelName);
         //Debug.Log("--------Best time--------");
         //debugData();
         //Debug.Log("-----------------------------------");
@@ -202,15 +210,15 @@ public class SaveLoadData : MonoBehaviour
         return bestTime;
     }
 
-    public static TimeSpan[] getTimes()
+    public static TimeSpan[] getTimes(String levelName)
     {
-        LoadPlayerTime();
+        LoadPlayerTime(levelName);
         return new[] {playerTime1, playerTime2, playerTime3};
     }
 
-    public static TimeSpan[] getMedalTimes()
+    public static TimeSpan[] getMedalTimes(String levelName)
     {
-        LoadMedalTime();
+        LoadMedalTime(levelName);
         return new[] {bronzeTime, silverTime, goldTime};
     }
 
