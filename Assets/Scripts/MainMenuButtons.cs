@@ -8,14 +8,20 @@ public class MainMenuButtons : MonoBehaviour
 
     public static bool wantsToQuit = false;
 
+    int sceneIntBuildSettings;
+
+    float transitionTime = 0.5f;
+
     public void PlayGame()
     {
-        SceneManager.LoadScene("Prototype_Scene1");
+        sceneIntBuildSettings = 4;
+        StartCoroutine(LoadLevel(sceneIntBuildSettings));
     }
 
     public void AccessOptionsMenu()
     {
-        SceneManager.LoadScene("OptionsMenu");
+        sceneIntBuildSettings = 2;
+        StartCoroutine(LoadLevel(sceneIntBuildSettings));
     }
 
     public void QuitGame()
@@ -31,6 +37,14 @@ public class MainMenuButtons : MonoBehaviour
     }
     public void AccessCredit()
     {
-        SceneManager.LoadScene("CreditScene");
+        sceneIntBuildSettings = 3;
+        StartCoroutine(LoadLevel(sceneIntBuildSettings));
+    }
+
+    IEnumerator LoadLevel(int levelID)
+    {
+        yield return new WaitForSecondsRealtime(transitionTime);
+
+        SceneManager.LoadScene(levelID);
     }
 }

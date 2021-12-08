@@ -16,6 +16,7 @@ public class PlayerLocomotion : MonoBehaviour
     public bool isGrounded;
     bool isInputingMove;
     public bool canMove;
+    public bool isUsingLadder;
 
     //POWERS BOOLEANS : Those booleans are used to let the code know whether the player is allowed to use some powers or not
     bool hasDashPower;
@@ -41,6 +42,7 @@ public class PlayerLocomotion : MonoBehaviour
     public float relativeDoubleJumpForceMultiplier = 0.75f; // is relative to jumpForceMultiplier
     public float counterForceMult = 1.0f;
     public float dashSpeedGain = 40.0f;
+    public float ladderClimbSpeed = 1.0f;
 
     public float groundDetectionDistance = 1.0f;
     public Vector2 ExternForce { get; set; }
@@ -58,6 +60,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         canMove = true;
+        isUsingLadder = false;
         wantsToJump = false;
         holdingJump = false;
         hasDashPower = true;
@@ -105,6 +108,7 @@ public class PlayerLocomotion : MonoBehaviour
         HandleDashing(delta);
     }
 
+    // TODO: ladder climb animation
     private void SetAnimation(Vector2 direction)
     {
 
@@ -154,21 +158,22 @@ public class PlayerLocomotion : MonoBehaviour
     private void TryToJump()
     {
         if (!canMove) return;
-        if (isGrounded)
+        if ((isGrounded || isUsingLadder))
         {
             myAnimator.SetBool("jump", false);
         }
         
-        if (wantsToJump && isGrounded)
+        if (wantsToJump && (isGrounded || isUsingLadder))
         {
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
             myAnimator.SetBool("jump", true);
             wantsToJump = false;
             holdingJump = true;
+            isUsingLadder = false; // stop climbing ladder when jump is input
         }
 
         //DoubleJump
-        if (wantsToJump && !isGrounded && hasDoubleJumpPower && doubleJumpAvailable && !holdingJump)
+        if (wantsToJump && !isGrounded && hasDoubleJumpPower && doubleJumpAvailable && !holdingJump && !isUsingLadder)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * jumpForceMultiplier * relativeDoubleJumpForceMultiplier, ForceMode2D.Impulse);
@@ -201,8 +206,11 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (!isGrounded)
+        if (!isGrounded && !isUsingLadder) // not in the air or on ladder
+        {
             rb.AddForce(Vector2.down * 9.8f * gravityMultiplier);
+        }
+            
     }
 
     // Slows down the player when grounded 
@@ -228,8 +236,8 @@ public class PlayerLocomotion : MonoBehaviour
             myAnimator.SetBool("dash", true);
             Invoke(nameof(StopDashAnim), 0.5f);
 
+            isUsingLadder = false;
             rb.velocity += boost;
-            //rb.AddForce(inputDirection.normalized * dashForceMult, ForceMode2D.Impulse);
             dashCooldownTimer = dashCooldown; // reset cooldown timer
             previousDash = boost;
         }
@@ -262,4 +270,55 @@ public class PlayerLocomotion : MonoBehaviour
         transform.position = position; // reset velocity
     }
 
+    [SerializeField] private bool refreshDoubleJumpOnLadder = true;
+    [SerializeField] private bool refreshGrappleOnLadder = true;
+
+    private const int ladderLayer = 9; // for some reason a layermask doesnt work
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        
+        if (collision.gameObject.layer == ladderLayer)
+        {
+            // Get the closest position to the player that is centered on the ladder
+            Vector3 onLadder = new Vector3(collision.gameObject.transform.position.x, transform.position.y, 0);
+
+            if (Mathf.Abs(inputDirection.x) >= 0.1 && Mathf.Abs(inputDirection.y) < 0.1)
+            { // Moving horizontally, NO DIAGONALS
+                isUsingLadder = false;
+            }
+            else if (Mathf.Abs(inputDirection.y) >= 0.1)
+            { // Moving vertically
+                transform.position = onLadder;
+                isGrounded = false;
+                isUsingLadder = true;
+                rb.velocity = Vector2.zero;
+                if (refreshDoubleJumpOnLadder)
+                {
+                    doubleJumpAvailable = true;
+                }
+                if (refreshGrappleOnLadder)
+                {
+                    canGrapple = true;
+                }
+                transform.position = transform.position + (inputDirection.y * ladderClimbSpeed * Vector3.up); // climb
+            }
+            else if (isUsingLadder == true)
+            { // Not moving on ladder
+                transform.position = onLadder;
+                isGrounded = false;
+                rb.velocity = Vector2.zero;
+                doubleJumpAvailable = true; // Refresh double jump when climbing ladder
+            }
+
+
+        }
+    }
+     // TODO: May need to remove this for proper ladder behaviour
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == ladderLayer)
+        {
+            isUsingLadder = false;
+        }
+    }
 }

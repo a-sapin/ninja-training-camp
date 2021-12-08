@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class OptionsMenuButtons : MonoBehaviour
 {
+    float transitionTime = 0.43f;
+
+    int sceneID;
 
     public void ChangeVolume(float value)
     {
@@ -13,7 +16,15 @@ public class OptionsMenuButtons : MonoBehaviour
 
     public void GoBackToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        sceneID = 1;
+        StartCoroutine(LoadLevel(sceneID));
+    }
+
+    IEnumerator LoadLevel(int levelID)
+    {
+        yield return new WaitForSecondsRealtime(transitionTime);
+
+        SceneManager.LoadScene(levelID);
     }
 
 }
