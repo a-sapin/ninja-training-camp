@@ -43,13 +43,18 @@ public class Grapple : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleGrapple();
         
+    }
+
+    private void HandleGrapple()
+    {
         if (Input.GetKeyDown(KeyCode.Mouse0) && myPlayerLocomotion.CanGrapple() && myPlayerLocomotion.GetHasGrapplePower())
         {
             // convert mouse position to world position
             Vector2 evaluateTargetPos = (Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            if(DetectGrapplePoint(transform.position, ref evaluateTargetPos))
+            if (DetectGrapplePoint(transform.position, ref evaluateTargetPos))
             {
                 // keep target location for later use
                 targetLocation = evaluateTargetPos;
@@ -61,7 +66,7 @@ public class Grapple : MonoBehaviour
                 _springJoint.enabled = true;
                 _lineRenderer.enabled = true;
             }
-            
+
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
