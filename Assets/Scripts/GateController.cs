@@ -14,9 +14,9 @@ public class GateController : MonoBehaviour
 
     [SerializeField] Transform gatePosition;
     [SerializeField] Transform closedPosition;
-    [SerializeField] Collider2D buttonCollider;
     [SerializeField] MoveDirection moveDirection;
     [SerializeField] float distanceToMove = 1.0f;
+    [SerializeField] float moveSpeed = 1.0f;
 
     private bool openDoor;
     private Vector2 openPosition;
@@ -43,17 +43,16 @@ public class GateController : MonoBehaviour
 
     private void MoveGateTo(Vector3 targetPosition)
     {
-        gatePosition.localPosition = Vector2.Lerp(gatePosition.localPosition, targetPosition, Time.deltaTime);
+        gatePosition.localPosition = Vector2.Lerp(gatePosition.localPosition, targetPosition, moveSpeed * Time.deltaTime);
     }
 
-    private const int playerLayer = 3;
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+    public void ToggleDoor()
     {
-        // TODO: never triggered
         if (openDoor)
         {
             openDoor = false;
-            openPosition = Vector2.zero * distanceToMove;
+            openPosition = Vector2.zero;
         }
         else
         {

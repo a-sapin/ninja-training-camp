@@ -49,6 +49,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     public bool CanGrapple() { return canGrapple; }
     public void SetCantGrapple() { canGrapple = false; }
+    public void EnableGrapple() { canGrapple = true; }
     public bool GetHasGrapplePower() { return hasGrapplePower; }
 
     public void RemoveDash() { hasDashPower = false; }
@@ -192,7 +193,7 @@ public class PlayerLocomotion : MonoBehaviour
             isGrounded = true;
             doubleJumpAvailable = true; //Recover ability to double jump when player is grounded
             groundNormal = hit.normal;
-            canGrapple = true;
+            myGrapple.TryRefreshOnLand();
         }
         else
         {
@@ -298,7 +299,7 @@ public class PlayerLocomotion : MonoBehaviour
                 }
                 if (refreshGrappleOnLadder)
                 {
-                    canGrapple = true;
+                    myGrapple.TryRefreshOnLand();
                 }
                 transform.position = transform.position + (inputDirection.y * ladderClimbSpeed * Vector3.up); // climb
             }

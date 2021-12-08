@@ -15,6 +15,10 @@ public class Grapple : MonoBehaviour
 
     // The max range of the grapple
     public float maxDistance = 1.0f;
+    public bool hasCooldown = false;
+    public float cooldownTime = 1.0f;
+    private float currentCooldownLeft = 1.0f;
+    public bool refreshOnLand = true;
 
     [SerializeField] private LayerMask grappleLayerMask;
     [Header("Rope Appearance")]
@@ -43,13 +47,43 @@ public class Grapple : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        HandleGrapple();
+        HandleCooldown(Time.deltaTime);
+    }
+
+    private void HandleCooldown(float delta)
+    {
+        if(!myPlayerLocomotion.CanGrapple() && hasCooldown)
+        {
+            currentCooldownLeft -= delta;
+        }
+        else if(currentCooldownLeft <= 0.0f && hasCooldown)
+        {
+            myPlayerLocomotion.EnableGrapple();
+            currentCooldownLeft = cooldownTime;
+        }
+    }
+
+    public void TryRefreshOnLand()
+    {
+        if (refreshOnLand)
+        {
+            myPlayerLocomotion.EnableGrapple();
+        }
+        if (hasCooldown)
+        {
+            currentCooldownLeft = cooldownTime;
+        }
+    }
+
+    private void HandleGrapple()
+    {
         if (Input.GetKeyDown(KeyCode.Mouse0) && myPlayerLocomotion.CanGrapple() && myPlayerLocomotion.GetHasGrapplePower())
         {
             // convert mouse position to world position
             Vector2 evaluateTargetPos = (Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            if(DetectGrapplePoint(transform.position, ref evaluateTargetPos))
+            if (DetectGrapplePoint(transform.position, ref evaluateTargetPos))
             {
                 // keep target location for later use
                 targetLocation = evaluateTargetPos;
@@ -61,7 +95,7 @@ public class Grapple : MonoBehaviour
                 _springJoint.enabled = true;
                 _lineRenderer.enabled = true;
             }
-            
+
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
