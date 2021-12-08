@@ -463,7 +463,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxDistance: 17
+<<<<<<< HEAD
   hasCooldown: 0
+=======
+  hasCooldown: 1
+>>>>>>> c3378d31e4fb45145dff36432baa7117feb782b1
   cooldownTime: 1
   refreshOnLand: 1
   grappleLayerMask:

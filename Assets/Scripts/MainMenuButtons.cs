@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour
 {
+    [SerializeField] private GameObject transition;
 
     public static bool wantsToQuit = false;
 
@@ -14,8 +15,7 @@ public class MainMenuButtons : MonoBehaviour
 
     public void PlayGame()
     {
-        sceneIntBuildSettings = 4;
-        StartCoroutine(LoadLevel(sceneIntBuildSettings));
+        StartCoroutine(goToNextScene("LevelSelectionMenu"));
     }
 
     public void AccessOptionsMenu()
@@ -40,11 +40,21 @@ public class MainMenuButtons : MonoBehaviour
         sceneIntBuildSettings = 3;
         StartCoroutine(LoadLevel(sceneIntBuildSettings));
     }
-
+    
     IEnumerator LoadLevel(int levelID)
     {
-        yield return new WaitForSecondsRealtime(transitionTime);
+        yield return new WaitForSecondsRealtime(0.25f);
+        transition.SendMessage("AnimateTransition");
+        yield return new WaitForSecondsRealtime(0.5f);
 
         SceneManager.LoadScene(levelID);
+    }
+    
+    IEnumerator goToNextScene(String levelname)
+    {
+        yield return new WaitForSecondsRealtime(0.25f);
+        transition.SendMessage("AnimateTransition");
+        yield return new WaitForSecondsRealtime(0.5f);
+        SceneManager.LoadScene(levelname, LoadSceneMode.Single);
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +7,7 @@ using UnityEngine.UI;
 public class LevelSelection : MonoBehaviour
 {
     [SerializeField] private SaveLoadData saveLoadData;
+    [SerializeField] private GameObject transition;
 
     [Header("Medals image")] [SerializeField]
     private Texture goldMedal;
@@ -32,24 +32,32 @@ public class LevelSelection : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        StartCoroutine(goToNextScene("MainMenu"));
     }
 
     public void Level1()
     {
-        SceneManager.LoadScene("level1", LoadSceneMode.Single);
+        StartCoroutine(goToNextScene("level1"));
     }
 
     public void Level2()
     {
-        SceneManager.LoadScene("level2", LoadSceneMode.Single);
+        StartCoroutine(goToNextScene("level2"));
     }
 
     public void Level3()
     {
-        SceneManager.LoadScene("level3", LoadSceneMode.Single);
+        StartCoroutine(goToNextScene("level3"));
     }
 
+    IEnumerator goToNextScene(String levelname)
+    {
+        yield return new WaitForSecondsRealtime(0.25f);
+        transition.SendMessage("AnimateTransition");
+        yield return new WaitForSecondsRealtime(0.5f);
+        SceneManager.LoadScene(levelname, LoadSceneMode.Single);
+    }
+    
     private void Start()
     {
         //level 1
