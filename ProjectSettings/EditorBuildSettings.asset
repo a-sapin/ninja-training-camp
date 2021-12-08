@@ -18,22 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CreditScene.unity
     guid: c431500c3a3b6f949adee1fac38698e2
   - enabled: 1
-
+    path: Assets/Scenes/LevelSelectionMenu.unity
+    guid: 92ce9de2b01701d48ac3774d2caedeb2
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: bf8824b11bdcf7646a2436f9e8a15c8e
-  - enabled: 0
-    path: Assets/Scenes/TestScene.unity
-    guid: ca1b283a2c30358459e7df4adc8ebf22
-  - enabled: 1
-    path: Assets/Scenes/VictoryScreen.unity
-    guid: e0e0d755e333a6042a6f04c56e646743
-  - enabled: 0
-    path: Assets/Scenes/level1.unity
-    guid: d726b7e6b717d3c4eb60f5c94ab30a40
-  - enabled: 0
-    path: Assets/Scenes/Level2.unity
-    guid: a493f82cf2546064e97c378f76782ad8
-  - enabled: 1
-    path: Assets/Scenes/TestScene_Remi.unity
-    guid: b687dfd6682c0b34daf5e304f688dd41
   m_configObjects: {}
