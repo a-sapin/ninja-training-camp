@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
-
     public GameObject pauseMenuUI;
-
+    public Animator animator;
     public AudioSource audioSourceInScene;
 
     float transitionTime = 0.43f;
@@ -23,7 +22,9 @@ public class PauseMenu : MonoBehaviour
         {
             if (GameIsPaused)
             {
+                animator.SetTrigger("FadeOut");
                 ResumeEchapKey();
+                StartCoroutine(AnimationTimeWaitTransition());
             }
             else
             {
@@ -38,7 +39,6 @@ public class PauseMenu : MonoBehaviour
     }
     public void ResumeEchapKey()
     {
-        pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
         audioSourceInScene.Play();
@@ -52,7 +52,6 @@ public class PauseMenu : MonoBehaviour
     }
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
         sceneID = 1;
         StartCoroutine(LoadLevel(sceneID));
     }
@@ -64,16 +63,23 @@ public class PauseMenu : MonoBehaviour
     IEnumerator LoadLevel(int levelID)
     {
         yield return new WaitForSecondsRealtime(transitionTime);
-
+        Time.timeScale = 1f;
         SceneManager.LoadScene(levelID);
     }
 
     IEnumerator TimeTransitionButton()
     {
         yield return new WaitForSecondsRealtime(transitionTime2);
-        pauseMenuUI.SetActive(false);
+        animator.SetTrigger("FadeOut");
         Time.timeScale = 1f;
         GameIsPaused = false;
         audioSourceInScene.Play();
+        yield return new WaitForSecondsRealtime(0.30f);
+        pauseMenuUI.SetActive(false);
+    }
+    IEnumerator AnimationTimeWaitTransition()
+    {
+        yield return new WaitForSecondsRealtime(0.20f);
+        pauseMenuUI.SetActive(false);
     }
 }

@@ -3,7 +3,7 @@ Link: https://incompetech.filmmusic.io/song/3801-getting-it-done
 License: https://filmmusic.io/standard-license				Musique intro SplashScreen
 
 Magic Forest by Kevin MacLeod
-Link: https://incompetech.filmmusic.io/song/4012-magic-forest
+Link: https://incompetech.filmmusic.io/song/4012-magic-forest		Musique du Main Menu
 License: https://filmmusic.io/standard-license
 
 Nowhere Land by Kevin MacLeod
@@ -11,4 +11,18 @@ Link: https://incompetech.filmmusic.io/song/4148-nowhere-land
 License: https://filmmusic.io/standard-license			       Musique Crédit (pas sure pour l'instant)
 
 The True Story of Beelzebub
-Lien et Créateur: https://patrickdearteaga.com (Musique fait par Patrick de Arteaga) 
+Lien et Créateur: https://patrickdearteaga.com (Musique fait par Patrick de Arteaga) Musique qui n'est pas utilisé pour l'instant
+
+Deeper into the Woods by Vindsvept 					Musique pas utilisé pour l'instant
+Créateur : Vindsvept
+Lien chaine youtube : https://www.youtube.com/channel/UCfSUheoljDlGDjerRylO4Nw
+Lien de la video youtube :https://youtu.be/lo3BE5DU1t0
+License : https://creativecommons.org/licenses/by/4.0/deed.fr
+Modification apporter à la musique : Fade out effectué pour ainsi finir la musique de manière plus smooth
+
+Woodland Murmur by Vindsvept 						Musique utilisé pour le lvl 1
+Créateur : Vindsvept 
+Lien chaine youtube : https://www.youtube.com/channel/UCfSUheoljDlGDjerRylO4Nw
+Lien de la vidéo youtube : https://youtu.be/MyyEOohiIcY
+License : https://creativecommons.org/licenses/by/4.0/deed.fr
+Modification apporter : Terminé la musique 7 secondes plutôt

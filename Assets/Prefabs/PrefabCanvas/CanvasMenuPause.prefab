@@ -803,7 +803,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &6851174165892084320
 MonoBehaviour:
@@ -858,6 +858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 6851174165644829406}
+  animator: {fileID: 5978806965589256398}
   audioSourceInScene: {fileID: 0}
 --- !u!1 &6851174166342656917
 GameObject:
