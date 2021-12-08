@@ -415,10 +415,10 @@ MonoBehaviour:
   gravityMultiplier: 3
   maxVelocity: 10
   accelerationMultiplier: 30
-  jumpForceMultiplier: 18
+  jumpForceMultiplier: 17
   relativeDoubleJumpForceMultiplier: 0.75
   counterForceMult: 10
-  dashSpeedGain: 30
+  dashSpeedGain: 40
   ladderClimbSpeed: 0.15
   groundDetectionDistance: 1.1
   refreshDoubleJumpOnLadder: 1
@@ -463,11 +463,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxDistance: 17
-<<<<<<< HEAD
-  hasCooldown: 0
-=======
   hasCooldown: 1
->>>>>>> c3378d31e4fb45145dff36432baa7117feb782b1
   cooldownTime: 1
   refreshOnLand: 1
   grappleLayerMask:
@@ -493,7 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3131374dd2d8b29408ca8055805d389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blastZoneYLevel: -30
+  blastZoneYLevel: -20
   respawnLocation: {fileID: 0}
   currentDeathCount: 0
 --- !u!1 &8960904663732521468
