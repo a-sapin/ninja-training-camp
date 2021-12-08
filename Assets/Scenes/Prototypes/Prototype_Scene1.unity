@@ -123,6 +123,23 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &17658836 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6851174165644829406, guid: 6179315b25e892d499984b443dc623a3, type: 3}
+  m_PrefabInstance: {fileID: 812610459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &17658837
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17658836}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &32747505
 GameObject:
   m_ObjectHideFlags: 0
@@ -2818,6 +2835,10 @@ PrefabInstance:
       propertyPath: m_UpdateMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6851174165644829406, guid: 6179315b25e892d499984b443dc623a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6851174165892084318, guid: 6179315b25e892d499984b443dc623a3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2918,6 +2939,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Resume2Button
       objectReference: {fileID: 0}
+    - target: {fileID: 7513889165880984773, guid: 6179315b25e892d499984b443dc623a3, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1361384903}
     - target: {fileID: 7513889165880984773, guid: 6179315b25e892d499984b443dc623a3, type: 3}
       propertyPath: audioSourceInScene
       value: 
@@ -3506,6 +3531,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1361384903 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5978806965589256398, guid: 6179315b25e892d499984b443dc623a3, type: 3}
+  m_PrefabInstance: {fileID: 812610459}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1367652526
 GameObject:
   m_ObjectHideFlags: 0
@@ -3786,7 +3816,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ccd805b6e1171e641b1dfa3ccbc706e8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: aeeb84a15701c654cb321bf6c249b412, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
