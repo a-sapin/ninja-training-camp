@@ -53,14 +53,17 @@ public class Grapple : MonoBehaviour
 
     private void HandleCooldown(float delta)
     {
-        if(!myPlayerLocomotion.CanGrapple() && hasCooldown)
+        if (hasCooldown)
         {
-            currentCooldownLeft -= delta;
-        }
-        else if(currentCooldownLeft <= 0.0f && hasCooldown)
-        {
-            myPlayerLocomotion.EnableGrapple();
-            currentCooldownLeft = cooldownTime;
+            if (currentCooldownLeft <= 0.0f)
+            {
+                myPlayerLocomotion.EnableGrapple();
+                currentCooldownLeft = cooldownTime;
+            }
+            else
+            {
+                currentCooldownLeft -= delta;
+            }
         }
     }
 
