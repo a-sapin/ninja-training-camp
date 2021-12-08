@@ -37,32 +37,32 @@ public class LevelSelection : MonoBehaviour
 
     public void Level1()
     {
-        StartCoroutine(goToNextScene("level1"));
+        StartCoroutine(goToNextScene("Level1"));
     }
 
     public void Level2()
     {
-        StartCoroutine(goToNextScene("level2"));
+        StartCoroutine(goToNextScene("Level2"));
     }
 
     public void Level3()
     {
-        StartCoroutine(goToNextScene("level3"));
+        StartCoroutine(goToNextScene("Level3"));
     }
 
     IEnumerator goToNextScene(String levelname)
     {
         yield return new WaitForSecondsRealtime(0.25f);
         transition.SendMessage("AnimateTransition");
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.55f);
         SceneManager.LoadScene(levelname, LoadSceneMode.Single);
     }
     
     private void Start()
     {
         //----------------level 1--------------
-        TimeSpan[] medals = SaveLoadData.getMedalTimes("level1");
-        TimeSpan[] times = SaveLoadData.getTimes("level1");
+        TimeSpan[] medals = SaveLoadData.getMedalTimes("Level1");
+        TimeSpan[] times = SaveLoadData.getTimes("Level1");
         
         score1.text = "";
         
@@ -97,8 +97,8 @@ public class LevelSelection : MonoBehaviour
         
 
         //-------------level 2-----------------
-        medals = SaveLoadData.getMedalTimes("level2");
-        times = SaveLoadData.getTimes("level2");
+        medals = SaveLoadData.getMedalTimes("Level2");
+        times = SaveLoadData.getTimes("Level2");
         
         score2.text = "";
         
@@ -134,8 +134,8 @@ public class LevelSelection : MonoBehaviour
         }
         
         //-----------------level 3---------------------
-        medals = SaveLoadData.getMedalTimes("level3");
-        times = SaveLoadData.getTimes("level3");
+        medals = SaveLoadData.getMedalTimes("Level3");
+        times = SaveLoadData.getTimes("Level3");
         
         score3.text = "";
         

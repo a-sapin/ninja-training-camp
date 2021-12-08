@@ -311,7 +311,14 @@ public class PlayerLocomotion : MonoBehaviour
                 transform.position = onLadder;
                 isGrounded = false;
                 rb.velocity = Vector2.zero;
-                doubleJumpAvailable = true; // Refresh double jump when climbing ladder
+                if (refreshDoubleJumpOnLadder)
+                {
+                    doubleJumpAvailable = true; // Refresh double jump when on ladder
+                }
+                if (refreshGrappleOnLadder)
+                {
+                    myGrapple.TryRefreshOnLand(); // Refresh grapple when on ladder
+                }
             }
 
 

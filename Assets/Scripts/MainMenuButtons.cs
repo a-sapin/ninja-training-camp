@@ -45,7 +45,7 @@ public class MainMenuButtons : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.25f);
         transition.SendMessage("AnimateTransition");
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.55f);
 
         SceneManager.LoadScene(levelID);
     }
@@ -54,7 +54,7 @@ public class MainMenuButtons : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.25f);
         transition.SendMessage("AnimateTransition");
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.55f);
         SceneManager.LoadScene(levelname, LoadSceneMode.Single);
     }
 }
