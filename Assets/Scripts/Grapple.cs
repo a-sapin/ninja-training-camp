@@ -172,6 +172,5 @@ public class Grapple : MonoBehaviour
         var force = Mathf.Abs(wiggleModifier) * strength; // how strong the wiggle will be
         currentWiggleVelocity += (force * direction - currentWiggleVelocity * damper) * deltaTime;
         wiggleModifier += currentWiggleVelocity * deltaTime;
-        Debug.Log(wiggleModifier);
     }
 }
