@@ -106,7 +106,7 @@ public class PowerRemover : MonoBehaviour
         HandleRemoveDoubleJump();
         HandleRemoveGrapple();
         yield return new WaitForSecondsRealtime(3.5f);
-        transition.SendMessage("FadeOut");
+        transition.SendMessage("FadeOut", true);
         ResetPlayer();
         yield return new WaitForSecondsRealtime(1);
     }
