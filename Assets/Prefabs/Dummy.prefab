@@ -217,6 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   speed: 4
+  force: 30
   dummy: {fileID: 4455968188664316561}
   leftPoint: {fileID: 4455968187217309097}
   rightPoint: {fileID: 4455968188125109253}
