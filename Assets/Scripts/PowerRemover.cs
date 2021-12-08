@@ -101,7 +101,7 @@ public class PowerRemover : MonoBehaviour
 
     IEnumerator Waiter()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.55f);
         HandleRemoveDash();
         HandleRemoveDoubleJump();
         HandleRemoveGrapple();

@@ -21,20 +21,21 @@ public class Transition : MonoBehaviour
         float t = 0f;
         while (t < 1)
         {
-            t += Time.fixedDeltaTime / 5;
+            t += 0.02f;
             transform.localPosition = Vector3.Lerp(currentPos, new Vector3(-(Screen.width + 500), 0, 0), t);;
-            yield return null;
+            yield return new WaitForSecondsRealtime(0.01f);
         }
+        
     }
     
     IEnumerator FadeOut()
     {
         float t = 0f;
-        while (t < 0.8)
+        while (t < 1)
         {
-            t += Time.fixedDeltaTime / 5;
+            t += 0.02f;
             transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1 - t);
-            yield return null;
+            yield return new WaitForSecondsRealtime(0.01f);
         }
         
         transform.localPosition = new Vector3(0, 0, 0);
