@@ -60,11 +60,14 @@ public class LevelSelection : MonoBehaviour
     
     private void Start()
     {
-        //level 1
+        //----------------level 1--------------
         TimeSpan[] medals = SaveLoadData.getMedalTimes("level1");
         TimeSpan[] times = SaveLoadData.getTimes("level1");
+        
+        score1.text = "";
+        
         Array.Sort(times);
-
+        
         foreach (TimeSpan time in times)
         {
             if (time == TimeSpan.Zero || time == TimeSpan.FromSeconds(-1)) continue;
@@ -83,17 +86,24 @@ public class LevelSelection : MonoBehaviour
             {
                 bronzeMedal1.texture = bronzeMedal;
             }
+            
+            score1.text = time.ToString(@"mm\:ss\:fff") + "\n" + score1.text;
         }
 
-        Array.Reverse(times);
-        score1.text = "Best times :\n" + times[0].ToString(@"mm\:ss\:fff") + "\n" + times[1].ToString(@"mm\:ss\:fff") +
-                      "\n" + times[2].ToString(@"mm\:ss\:fff");
+        if (score1.text !="")
+        {
+            score1.text = "Best times:\n" + score1.text;    
+        }
+        
 
-        //level 2
+        //-------------level 2-----------------
         medals = SaveLoadData.getMedalTimes("level2");
         times = SaveLoadData.getTimes("level2");
+        
+        score2.text = "";
+        
         Array.Sort(times);
-
+        
         foreach (TimeSpan time in times)
         {
             if (time == TimeSpan.Zero || time == TimeSpan.FromSeconds(-1)) continue;
@@ -113,16 +123,22 @@ public class LevelSelection : MonoBehaviour
             {
                 bronzeMedal2.texture = bronzeMedal;
             }
+            
+            score2.text = time.ToString(@"mm\:ss\:fff") + "\n" + score2.text;
         }
         
-
-        Array.Reverse(times);
-        score2.text = "Best times :\n" + times[0].ToString(@"mm\:ss\:fff") + "\n" + times[1].ToString(@"mm\:ss\:fff") +
-                      "\n" + times[2].ToString(@"mm\:ss\:fff");
-
-        //level 3
+        
+        if (score2.text !="")
+        {
+            score2.text = "Best times:\n" + score2.text;    
+        }
+        
+        //-----------------level 3---------------------
         medals = SaveLoadData.getMedalTimes("level3");
         times = SaveLoadData.getTimes("level3");
+        
+        score3.text = "";
+        
         Array.Sort(times);
 
         foreach (TimeSpan time in times)
@@ -143,11 +159,16 @@ public class LevelSelection : MonoBehaviour
             {
                 bronzeMedal3.texture = bronzeMedal;
             }
+            
+            score3.text = time.ToString(@"mm\:ss\:fff") + "\n" + score3.text;
         }
-
-        Array.Reverse(times);
-        score3.text = "Best times :\n" + times[0].ToString(@"mm\:ss\:fff") + "\n" + times[1].ToString(@"mm\:ss\:fff") +
-                      "\n" + times[2].ToString(@"mm\:ss\:fff");
+        
+        
+        if (score3.text !="")
+        {
+            score3.text = "Best times:\n" + score3.text;    
+        }
+        
         Time.timeScale = 1;
     }
 }
