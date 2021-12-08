@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3611456780932700386}
-  - component: {fileID: 4613926381967015224}
-  - component: {fileID: 7586785353318924626}
   m_Layer: 0
   m_Name: Interaction Volume Center
   m_TagString: Untagged
@@ -32,35 +30,6 @@ Transform:
   m_Father: {fileID: 5409001243050288741}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &4613926381967015224
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998886134618679296}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2
---- !u!114 &7586785353318924626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998886134618679296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f796b37654b98f49b57b4e095f3c3e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tryingToInteract: 0
 --- !u!1 &5409001241448039127
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +379,7 @@ MonoBehaviour:
   isGrounded: 0
   canMove: 0
   isUsingLadder: 0
+  isCloseToLadder: 0
   dashCooldown: 1
   dashDuration: 0.2
   gravityMultiplier: 3
