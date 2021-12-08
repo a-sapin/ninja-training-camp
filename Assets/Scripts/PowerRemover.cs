@@ -5,8 +5,9 @@ using UnityEngine;
 public class PowerRemover : MonoBehaviour
 {
 
-    [SerializeField] private GameObject UICanvas;
-    private GameObject shurikenTransition;
+    [SerializeField] 
+    private GameObject UICanvas;
+    private GameObject transition;
     
     [Header("Order of powers to remove")]
     [Range(1,10)]
@@ -25,6 +26,7 @@ public class PowerRemover : MonoBehaviour
     [SerializeField] private int maxLoopCount = 0;
 
     private PlayerLocomotion playerLocomotion;
+    private bool ended = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,15 +39,16 @@ public class PowerRemover : MonoBehaviour
             maxLoopCount = currentLoopCount + 1;
         }
 
-        shurikenTransition = UICanvas.transform.Find("ShurikenTransition").gameObject;
+        transition = UICanvas.transform.Find("ShurikenTransition").gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(maxLoopCount <= currentLoopCount)
+        if(maxLoopCount <= currentLoopCount && !ended)
         {
-            shurikenTransition.SendMessage("displayScore");
+            ended = true;
+            transition.SendMessage("DisplayScore");
             Time.timeScale = 0;
             //SceneManager.LoadScene("VictoryScreen");
         }
@@ -56,7 +59,7 @@ public class PowerRemover : MonoBehaviour
         if(dash == currentLoopCount)
         {
             playerLocomotion.RemoveDash();
-            shurikenTransition.SendMessage("removeDash");
+            transition.SendMessage("RemoveDash");
         }
     }
 
@@ -65,7 +68,7 @@ public class PowerRemover : MonoBehaviour
         if (doubleJump == currentLoopCount)
         {
             playerLocomotion.RemoveDoubleJump();
-            shurikenTransition.SendMessage("removeDoubleJump");
+            transition.SendMessage("RemoveDoubleJump");
         }
     }
 
@@ -74,7 +77,7 @@ public class PowerRemover : MonoBehaviour
         if (grapple == currentLoopCount)
         {
             playerLocomotion.RemoveGrapple();
-            shurikenTransition.SendMessage("removeGrapple");
+            transition.SendMessage("RemoveGrapple");
         }
     }
 
@@ -90,7 +93,7 @@ public class PowerRemover : MonoBehaviour
         {
             currentLoopCount++;
             if(maxLoopCount > currentLoopCount){
-                shurikenTransition.SendMessage("doTransition");
+                transition.SendMessage("DoTransition");
                 StartCoroutine(Waiter());
             }
         }
@@ -103,7 +106,7 @@ public class PowerRemover : MonoBehaviour
         HandleRemoveDoubleJump();
         HandleRemoveGrapple();
         yield return new WaitForSecondsRealtime(3.5f);
-        shurikenTransition.SendMessage("FadeOut");
+        transition.SendMessage("FadeOut");
         ResetPlayer();
         yield return new WaitForSecondsRealtime(1);
     }

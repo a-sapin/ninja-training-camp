@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    
     [Header("Timer")] 
     [SerializeField] private Text timerText;
 
@@ -18,14 +19,15 @@ public class Timer : MonoBehaviour
     [SerializeField] private RawImage dashImage;
     [SerializeField] private RawImage removeDashImage;
 
+    private TimeSpan[] medalTime = new TimeSpan[3];
 
     [Header("Medal")] 
     [SerializeField] private RawImage bronzeImage;
-    [SerializeField] private float bronzeTime = 90;
+    [SerializeField] private float bronzeTime;
     [SerializeField] private RawImage silverImage;
-    [SerializeField] private float silverTime = 60;
+    [SerializeField] private float silverTime;
     [SerializeField] private RawImage goldImage;
-    [SerializeField] private float goldTime = 30;
+    [SerializeField] private float goldTime;
     
     [Header("Ending")] 
     [SerializeField] private Text scoreText;
@@ -33,7 +35,14 @@ public class Timer : MonoBehaviour
     
     private float timer;
 
-    // Update is called once per frame
+    private void Awake()
+    {
+        medalTime[0] = TimeSpan.FromSeconds(goldTime);
+        medalTime[1] = TimeSpan.FromSeconds(silverTime);
+        medalTime[2] = TimeSpan.FromSeconds(bronzeTime);
+        SaveLoadData.SaveTimes(medalTime);
+    }
+
     void FixedUpdate()
     {
         timer += Time.deltaTime;
@@ -41,114 +50,91 @@ public class Timer : MonoBehaviour
         timerText.text = time.ToString(@"mm\:ss\:fff");
     }
 
-    void removeGrapple()
+    void RemoveGrapple()
     {
         grappleImage.gameObject.SetActive(false);
-        StartCoroutine(FadeInOut(removeGrappleImage));
+        StartCoroutine(DisplayRemovedPower(removeGrappleImage));
     }
 
-    void removeDoubleJump()
+    void RemoveDoubleJump()
     {
         doubleJumpImage.gameObject.SetActive(false);
-        StartCoroutine(FadeInOut(removeDoubleJumpImage));
+        StartCoroutine(DisplayRemovedPower(removeDoubleJumpImage));
     }
 
-    void removeDash()
+    void RemoveDash()
     {
         dashImage.gameObject.SetActive(false);
-        StartCoroutine(FadeInOut(removeDashImage));
+        StartCoroutine(DisplayRemovedPower(removeDashImage));
     }
 
-    void displayScore()
+    private IEnumerator DisplayScore()
     {
+        SendMessage("AnimateTransition");
         Time.timeScale = 0;
-        StartCoroutine(ShurikenTransition(false));
+        
+        TimeSpan bestTime = SaveLoadData.getBestTime(SceneManager.GetActiveScene().name);
+        TimeSpan time = TimeSpan.FromSeconds(timer);
+        SaveLoadData.saveNewTime(time);
+        
+        yield return new WaitForSecondsRealtime(0.5f);
+        
+        continueButton.gameObject.SetActive(true);
+        scoreText.gameObject.SetActive(true);
+
+        if (bestTime<time) scoreText.text = "New best time !\n Total time :\n" + timerText.text;
+        else scoreText.text = "Total time :\n" + timerText.text;
+
+        if (time < medalTime[0])
+        {
+            goldImage.gameObject.SetActive(true);
+        }
+        else if (time < medalTime[1])
+        {
+            silverImage.gameObject.SetActive(true);
+        }
+        else if (time < medalTime[2])
+        {
+            bronzeImage.gameObject.SetActive(true);
+        }
+
+        float t = 0;
+        while (t < 1)
+        {
+            t += Time.fixedDeltaTime / 5;
+            Color fadeIn = new Color(1, 1, 1, t);
+            scoreText.color = fadeIn;
+            goldImage.color = fadeIn;
+            silverImage.color = fadeIn;
+            bronzeImage.color = fadeIn;
+
+            yield return null;
+        }
+            
+        t = 0f;
+        while (t < 1)
+        {
+            t += Time.fixedDeltaTime / 4;
+            Color fadeIn = new Color(1, 1, 1, t);
+            continueButton.GetComponent<Image>().color = fadeIn;
+            //continueButton.GetComponentInChildren<Text>().color = fadeIn;
+            yield return null;
+        }
     }
 
-    void doTransition()
+    void DoTransition()
     {
-        Time.timeScale = 0;
-        StartCoroutine(ShurikenTransition(true));
+        SendMessage("AnimateTransition");
     }
 
     public void ContinueButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
-    }
-
-    IEnumerator ShurikenTransition(Boolean reset)
-    {
-        Vector3 currentPos = transform.localPosition;
-        float t = 0f;
-        while (t < 1)
-        {
-            t += Time.fixedDeltaTime / 5;
-            transform.localPosition = Vector3.Lerp(currentPos, new Vector3(-(Screen.width + 500), 0, 200), t);;
-            yield return null;
-        }
-
-        if (!reset)
-        {
-            continueButton.gameObject.SetActive(true);
-            scoreText.gameObject.SetActive(true);
-            scoreText.text = "Total time :\n" + timerText.text;
-
-            if (timer < goldTime)
-            {
-                goldImage.gameObject.SetActive(true);
-            }
-            else if (timer < silverTime)
-            {
-                silverImage.gameObject.SetActive(true);
-            }
-            else if (timer < bronzeTime)
-            {
-                bronzeImage.gameObject.SetActive(true);
-            }
-
-            t = 0f;
-            while (t < 1)
-            {
-                t += Time.fixedDeltaTime / 5;
-                Color fadeIn = new Color(1, 1, 1, t);
-                scoreText.color = fadeIn;
-                goldImage.color = fadeIn;
-                silverImage.color = fadeIn;
-                bronzeImage.color = fadeIn;
-
-                yield return null;
-            }
-            
-            t = 0f;
-            while (t < 1)
-            {
-                t += Time.fixedDeltaTime / 4;
-                Color fadeIn = new Color(1, 1, 1, t);
-                continueButton.GetComponent<Image>().color = fadeIn;
-                continueButton.GetComponentInChildren<Text>().color = fadeIn;
-                yield return null;
-            }
-        }
-    }
-
-    IEnumerator FadeOut()
-    {
-        float t = 0f;
-        while (t < 0.8)
-        {
-            t += Time.fixedDeltaTime / 5;
-            transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1 - t);
-            yield return null;
-        }
-        
-        transform.localPosition = new Vector3(0, 0, 200);
-        transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
-        particleSystem.gameObject.SetActive(false);
-        Time.timeScale = 1;
+        SceneManager.LoadScene("LevelSelectionMenu", LoadSceneMode.Single);
     }
     
-    IEnumerator FadeInOut(RawImage image)
+    private IEnumerator DisplayRemovedPower(RawImage image)
     {
+        yield return new WaitForSecondsRealtime(0.5f);
         image.gameObject.SetActive(true);
         particleSystem.gameObject.SetActive(true);
         
@@ -162,7 +148,6 @@ public class Timer : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1f);
         particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        //yield return new WaitForSecondsRealtime(2.5f);
         
         t = 0f;
         while (t < 1)

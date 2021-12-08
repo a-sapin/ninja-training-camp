@@ -267,7 +267,10 @@ public class PlayerLocomotion : MonoBehaviour
         dashCooldownTimer = 0.0f;
         isDashing = false;
         doubleJumpAvailable = false;
-        myAnimator.Play("Idle");
+        myAnimator.SetBool("jump", false);
+        myAnimator.SetBool("dash", false);
+        
+        //myAnimator.Play("Idle");
         transform.position = position; // reset velocity
     }
 
