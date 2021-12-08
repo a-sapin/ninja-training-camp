@@ -15,6 +15,10 @@ public class Grapple : MonoBehaviour
 
     // The max range of the grapple
     public float maxDistance = 1.0f;
+    public bool hasCooldown = false;
+    public float cooldownTime = 1.0f;
+    private float currentCooldownLeft = 1.0f;
+    public bool refreshOnLand = true;
 
     [SerializeField] private LayerMask grappleLayerMask;
     [Header("Rope Appearance")]
@@ -44,7 +48,32 @@ public class Grapple : MonoBehaviour
     void Update()
     {
         HandleGrapple();
-        
+        HandleCooldown(Time.deltaTime);
+    }
+
+    private void HandleCooldown(float delta)
+    {
+        if(!myPlayerLocomotion.CanGrapple() && hasCooldown)
+        {
+            currentCooldownLeft -= delta;
+        }
+        else if(currentCooldownLeft <= 0.0f && hasCooldown)
+        {
+            myPlayerLocomotion.EnableGrapple();
+            currentCooldownLeft = cooldownTime;
+        }
+    }
+
+    public void TryRefreshOnLand()
+    {
+        if (refreshOnLand)
+        {
+            myPlayerLocomotion.EnableGrapple();
+        }
+        if (hasCooldown)
+        {
+            currentCooldownLeft = cooldownTime;
+        }
     }
 
     private void HandleGrapple()
