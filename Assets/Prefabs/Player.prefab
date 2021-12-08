@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f796b37654b98f49b57b4e095f3c3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tryingToInteract: 0
 --- !u!1 &5409001241448039127
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +103,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
+  m_BackGroundColor: {r: 0.19215688, g: 0.23529413, b: 0.22352943, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -414,10 +415,10 @@ MonoBehaviour:
   gravityMultiplier: 3
   maxVelocity: 10
   accelerationMultiplier: 30
-  jumpForceMultiplier: 17
+  jumpForceMultiplier: 18
   relativeDoubleJumpForceMultiplier: 0.75
   counterForceMult: 10
-  dashSpeedGain: 40
+  dashSpeedGain: 30
   ladderClimbSpeed: 0.15
   groundDetectionDistance: 1.1
   refreshDoubleJumpOnLadder: 1
@@ -462,6 +463,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxDistance: 17
+  hasCooldown: 0
+  cooldownTime: 1
+  refreshOnLand: 1
   grappleLayerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -485,7 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3131374dd2d8b29408ca8055805d389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blastZoneYLevel: -20
+  blastZoneYLevel: -30
   respawnLocation: {fileID: 0}
   currentDeathCount: 0
 --- !u!1 &8960904663732521468
