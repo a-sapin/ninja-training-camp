@@ -17,6 +17,7 @@ public class PlayerLocomotion : MonoBehaviour
     bool isInputingMove;
     public bool canMove;
     public bool isUsingLadder;
+    public bool isCloseToLadder;
 
     //POWERS BOOLEANS : Those booleans are used to let the code know whether the player is allowed to use some powers or not
     bool hasDashPower;
@@ -164,13 +165,14 @@ public class PlayerLocomotion : MonoBehaviour
             myAnimator.SetBool("jump", false);
         }
         
-        if (wantsToJump && (isGrounded || isUsingLadder))
+        if (wantsToJump && (isGrounded || isUsingLadder || isCloseToLadder))
         {
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
             myAnimator.SetBool("jump", true);
             wantsToJump = false;
             holdingJump = true;
             isUsingLadder = false; // stop climbing ladder when jump is input
+            isCloseToLadder = false; // allow a single jump when close to ladder
         }
 
         //DoubleJump
@@ -278,6 +280,15 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] private bool refreshGrappleOnLadder = true;
 
     private const int ladderLayer = 9; // for some reason a layermask doesnt work
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == ladderLayer)
+        {
+            isCloseToLadder = true;
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         
@@ -330,6 +341,7 @@ public class PlayerLocomotion : MonoBehaviour
         if (collision.gameObject.layer == ladderLayer)
         {
             isUsingLadder = false;
+            isCloseToLadder = false;
         }
     }
 }
