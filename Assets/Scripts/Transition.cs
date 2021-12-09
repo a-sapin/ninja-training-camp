@@ -8,11 +8,16 @@ public class Transition : MonoBehaviour
     [Header("Optionnal particle system")] [SerializeField]
     private new ParticleSystem particleSystem;
 
-    private void Start()
+
+    private void Awake()
     {
         Time.timeScale = 0;
+    }
+
+    private void Start()
+    {
         transform.localPosition = new Vector3(-(Screen.width + 500), 0, 0);
-        StartCoroutine(FadeOut(true));
+        StartCoroutine(FadeOut(false));
     }
 
     IEnumerator AnimateTransition()
