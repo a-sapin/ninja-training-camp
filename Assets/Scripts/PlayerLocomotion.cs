@@ -165,8 +165,9 @@ public class PlayerLocomotion : MonoBehaviour
             myAnimator.SetBool("jump", false);
         }
         
-        if (wantsToJump && (isGrounded || isUsingLadder || isCloseToLadder))
+        if (wantsToJump && (isGrounded || isUsingLadder || isCloseToLadder) && !holdingJump)
         {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
             myAnimator.SetBool("jump", true);
             wantsToJump = false;
