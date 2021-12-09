@@ -18,14 +18,16 @@ public class Transition : MonoBehaviour
     IEnumerator AnimateTransition()
     {
         Time.timeScale = 0;
-        Vector3 currentPos = transform.localPosition;
+        //Vector3 currentPos = transform.localPosition;
         float t = 0f;
         float posDiff = -(Screen.width + 500)/50;
+        Debug.Log(transform.localPosition);
+        Debug.Log(posDiff);
         while (t < 1)
         {
             t += 0.02f;
             transform.localPosition += new Vector3(posDiff, 0, 0); //Vector3.Lerp(currentPos, new Vector3(-(Screen.width + 500), 0, 0), t);
-            Debug.Log(transform.localPosition);
+            //Debug.Log(transform.localPosition);
             yield return new WaitForSecondsRealtime(0.01f);
         }
         
