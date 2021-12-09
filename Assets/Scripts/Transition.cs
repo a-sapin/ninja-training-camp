@@ -21,8 +21,6 @@ public class Transition : MonoBehaviour
         //Vector3 currentPos = transform.localPosition;
         float t = 0f;
         float posDiff = -(Screen.width + 500)/50;
-        Debug.Log(transform.localPosition);
-        Debug.Log(posDiff);
         while (t < 1)
         {
             t += 0.02f;

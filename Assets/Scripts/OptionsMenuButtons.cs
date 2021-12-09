@@ -9,6 +9,7 @@ public class OptionsMenuButtons : MonoBehaviour
     public Slider volume;
     float transitionTime = 0.43f;
 
+    [SerializeField] private GameObject transition;
 
     int sceneID;
 
@@ -32,8 +33,9 @@ public class OptionsMenuButtons : MonoBehaviour
     IEnumerator LoadLevel(int levelID)
     {
         yield return new WaitForSecondsRealtime(transitionTime);
-
-        SceneManager.LoadScene(levelID);
+        transition.SendMessage("AnimateTransition");
+        yield return new WaitForSecondsRealtime(0.75f);
+        SceneManager.LoadScene(levelID, LoadSceneMode.Single);
     }
 
 }
