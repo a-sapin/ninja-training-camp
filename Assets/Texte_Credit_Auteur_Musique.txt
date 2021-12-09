@@ -27,9 +27,6 @@ Lien de la vidéo youtube : https://youtu.be/MyyEOohiIcY
 License : https://creativecommons.org/licenses/by/4.0/deed.fr
 Modification apporter : Terminé la musique 7 secondes plutôt
 
-
-
-
 //// EFFET SONORE ////
 
 Lien : https://lasonotheque.org/
@@ -37,3 +34,16 @@ License : https://creativecommons.org/publicdomain/zero/1.0/deed.fr
 
 Lien : https://www.sound-fishing.net/
 License : https://www.sound-fishing.net/licence-LESF.html
+
+
+//// ASSETS ////
+
+Initial D pixel car toyota Trueno AE86 by TrueKidaKun
+Créateur : TrueKidaKun
+Lien original : https://www.deviantart.com/truekidakun/art/Initial-D-pixel-car-toyota-642856038
+
+Différentes médailles : Flaticon.com
+Modification apporter : résolution réduite, création d'une médaille "vide" à partir d'un asset de médaille
+
+Icones grapin et nuage de power up : Flaticon.com
+Modification apporter : résolution réduite
