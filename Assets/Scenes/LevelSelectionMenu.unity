@@ -1819,7 +1819,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7050307170027809461, guid: 8a6f48b919c4b5245add40b8db6fd04c, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7050307170027809461, guid: 8a6f48b919c4b5245add40b8db6fd04c, type: 3}
       propertyPath: m_LocalScale.x
@@ -2668,6 +2668,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 331225925}
     m_Modifications:
+    - target: {fileID: 3960046809515572290, guid: 312e6f47ef823124493d1e33f041b247, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 331225927}
+    - target: {fileID: 3960046809515572290, guid: 312e6f47ef823124493d1e33f041b247, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960046809515572290, guid: 312e6f47ef823124493d1e33f041b247, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelSelection, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3960046809515572291, guid: 312e6f47ef823124493d1e33f041b247, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
