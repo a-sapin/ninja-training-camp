@@ -793,7 +793,7 @@ Canvas:
   m_GameObject: {fileID: 6851174165892084322}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -860,6 +860,7 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 6851174165644829406}
   animator: {fileID: 5978806965589256398}
   audioSourceInScene: {fileID: 0}
+  transition: {fileID: 0}
 --- !u!1 &6851174166342656917
 GameObject:
   m_ObjectHideFlags: 0

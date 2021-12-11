@@ -14,6 +14,8 @@ public class PauseMenu : MonoBehaviour
     float transitionTime2 = 0.6f;
 
     int sceneID;
+    
+    [SerializeField] private GameObject transition;
 
     // Update is called once per frame
     void Update()
@@ -67,8 +69,9 @@ public class PauseMenu : MonoBehaviour
     IEnumerator LoadLevel(int levelID)
     {
         yield return new WaitForSecondsRealtime(transitionTime);
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(levelID);
+        transition.SendMessage("AnimateTransition");
+        yield return new WaitForSecondsRealtime(0.75f);
+        SceneManager.LoadScene(levelID, LoadSceneMode.Single);
     }
 
     IEnumerator TimeTransitionButton()
