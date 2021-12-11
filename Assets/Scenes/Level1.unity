@@ -10225,6 +10225,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -38, y: 8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 23
+      m_TileSpriteIndex: 23
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -23, y: 8, z: 0}
     second:
       serializedVersion: 2
@@ -12083,6 +12093,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 316d10c32cfe9ed40b829600206fbf7c, type: 2}
   - m_RefCount: 36
     m_Data: {fileID: 11400000, guid: 7a2e2d66ff501c44db700856a026cf40, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: d55d7ffa5677c0143803fc6923fe30f1, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 45
     m_Data: {fileID: 1977898209629915610, guid: 544f1905171ce1848b0f6727e2cf2738, type: 3}
@@ -12130,8 +12142,10 @@ Tilemap:
     m_Data: {fileID: -6273191500651925627, guid: 544f1905171ce1848b0f6727e2cf2738, type: 3}
   - m_RefCount: 36
     m_Data: {fileID: -2513412394844625475, guid: 544f1905171ce1848b0f6727e2cf2738, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -6096294475945754885, guid: 544f1905171ce1848b0f6727e2cf2738, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 817
+  - m_RefCount: 818
     m_Data:
       e00: 1
       e01: 0
@@ -12152,7 +12166,7 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: -3.8676e-41, g: -3.8676e-41, b: -3.8676e-41, a: -3.8676e-41}
-  - m_RefCount: 817
+  - m_RefCount: 818
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -14180,7 +14194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1101042998075105393, guid: 722449ac984c8014ca93c0815ef563c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -74.04
+      value: -73.18
       objectReference: {fileID: 0}
     - target: {fileID: 1101042998075105393, guid: 722449ac984c8014ca93c0815ef563c3, type: 3}
       propertyPath: m_LocalPosition.y
