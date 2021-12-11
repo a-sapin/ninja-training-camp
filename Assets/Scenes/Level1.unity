@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5409001243050288741, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.0526524
+      value: -4.97
       objectReference: {fileID: 0}
     - target: {fileID: 5409001243050288741, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13515,6 +13515,18 @@ PrefabInstance:
     - target: {fileID: 9098849478065272558, guid: 688c0089137bd4d449df18c91542c612, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140671439711780355, guid: 688c0089137bd4d449df18c91542c612, type: 3}
+      propertyPath: goldTime
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140671439711780355, guid: 688c0089137bd4d449df18c91542c612, type: 3}
+      propertyPath: bronzeTime
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140671439711780355, guid: 688c0089137bd4d449df18c91542c612, type: 3}
+      propertyPath: silverTime
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 688c0089137bd4d449df18c91542c612, type: 3}
