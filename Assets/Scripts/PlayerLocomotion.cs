@@ -78,16 +78,10 @@ public class PlayerLocomotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        moveDirection = new Vector2(Input.GetAxis("Horizontal"), 0);
-
         SetAnimation(inputDirection);
         DetectGround();
 
-        if (moveDirection.Equals(Vector2.zero))
-            isInputingMove = false;
-        else
-            isInputingMove = true; 
+        isInputingMove = !moveDirection.Equals(Vector2.zero); 
 
         if (Input.GetAxis("Jump") > 0)
         { 
@@ -103,6 +97,8 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void FixedUpdate()
     {
+        inputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        moveDirection = new Vector2(Input.GetAxis("Horizontal"), 0);
         float delta = Time.fixedDeltaTime;
         ApplyGravity();
         ApplyMovement();
@@ -160,16 +156,19 @@ public class PlayerLocomotion : MonoBehaviour
     private void TryToJump()
     {
         if (!canMove) return;
-        if ((isGrounded || isUsingLadder))
+        if (isGrounded || isUsingLadder)
         {
             myAnimator.SetBool("jump", false);
+            myAnimator.SetBool("jumpL", false);
         }
         
         if (wantsToJump && (isGrounded || isUsingLadder || isCloseToLadder) && !holdingJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
-            myAnimator.SetBool("jump", true);
+
+            myAnimator.SetBool(moveDirection.x >= 0 ? "jumpL" : "jump", true);
+            
             wantsToJump = false;
             holdingJump = true;
             isUsingLadder = false; // stop climbing ladder when jump is input

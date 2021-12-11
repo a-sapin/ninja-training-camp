@@ -39,14 +39,14 @@ public class PauseMenu : MonoBehaviour
     }
     public void ResumeEchapKey()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 1;
         GameIsPaused = false;
         audioSourceInScene.Play();
     }
     void Paused()
     {
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0;
         GameIsPaused = true;
         audioSourceInScene.Pause();
         FindObjectOfType<VFXManager>().Pause("Movement");
