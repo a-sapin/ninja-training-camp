@@ -88,6 +88,7 @@ public class Grapple : MonoBehaviour
 
             if (DetectGrapplePoint(transform.position, ref evaluateTargetPos))
             {
+                FindObjectOfType<VFXManager>().Play("Grapple");
                 // keep target location for later use
                 targetLocation = evaluateTargetPos;
 

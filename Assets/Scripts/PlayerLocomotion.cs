@@ -174,6 +174,7 @@ public class PlayerLocomotion : MonoBehaviour
             holdingJump = true;
             isUsingLadder = false; // stop climbing ladder when jump is input
             isCloseToLadder = false; // allow a single jump when close to ladder
+            FindObjectOfType<VFXManager>().Play("Jump");
         }
 
         //DoubleJump
@@ -236,8 +237,8 @@ public class PlayerLocomotion : MonoBehaviour
         if (hasDashPower && Input.GetAxis("Fire3") > 0 && dashCooldownTimer <= 0.0f && rb.velocity.magnitude < dashSpeedGain)
         {
             isDashing = true;
-
             myAnimator.SetBool("dash", true);
+            FindObjectOfType<VFXManager>().Play("Dash");
             Invoke(nameof(StopDashAnim), 0.5f);
 
             isUsingLadder = false;
