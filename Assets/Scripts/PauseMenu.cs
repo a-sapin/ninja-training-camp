@@ -49,6 +49,10 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
         audioSourceInScene.Pause();
+        FindObjectOfType<VFXManager>().Pause("Movement");
+        FindObjectOfType<VFXManager>().Pause("Jump");
+        FindObjectOfType<VFXManager>().Pause("Dash");
+        FindObjectOfType<VFXManager>().Pause("Grapple");
     }
     public void LoadMenu()
     {
