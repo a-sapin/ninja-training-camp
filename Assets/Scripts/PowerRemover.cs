@@ -48,8 +48,8 @@ public class PowerRemover : MonoBehaviour
         if(maxLoopCount <= currentLoopCount && !ended)
         {
             ended = true;
-            transition.SendMessage("DisplayScore");
             Time.timeScale = 0;
+            transition.SendMessage("DisplayScore");
             //SceneManager.LoadScene("VictoryScreen");
         }
     }

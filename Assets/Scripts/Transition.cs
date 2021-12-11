@@ -10,11 +10,6 @@ public class Transition : MonoBehaviour
 
     [SerializeField] private bool timeStoppedAtStart = true;
 
-    private void Awake()
-    {
-        Time.timeScale = 0;
-    }
-
     private void Start()
     {
         transform.localPosition = new Vector3(-(Screen.width + 500), 0, 0);

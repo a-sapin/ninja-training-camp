@@ -37,10 +37,24 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 0;
         medalTime[0] = TimeSpan.FromSeconds(goldTime);
         medalTime[1] = TimeSpan.FromSeconds(silverTime);
         medalTime[2] = TimeSpan.FromSeconds(bronzeTime);
         SaveLoadData.SaveTimes(medalTime);
+    }
+
+    private void Start()
+    {
+        StartCoroutine(resetTimer());
+        
+    }
+
+    IEnumerator resetTimer()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        timerText.text = "00:00:000";
+        timer = 0;
     }
 
     void FixedUpdate()
