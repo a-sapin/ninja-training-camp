@@ -43,11 +43,11 @@ public class MainMenuButtons : MonoBehaviour
     
     IEnumerator LoadLevel(int levelID)
     {
-        yield return new WaitForSecondsRealtime(0.25f);
+        yield return new WaitForSecondsRealtime(transitionTime);
         transition.SendMessage("AnimateTransition");
         yield return new WaitForSecondsRealtime(0.5f);
 
-        SceneManager.LoadScene(levelID);
+        SceneManager.LoadScene(levelID, LoadSceneMode.Single);
     }
     
     IEnumerator goToNextScene(String levelname)

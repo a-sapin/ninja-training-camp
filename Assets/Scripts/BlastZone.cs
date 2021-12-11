@@ -37,7 +37,7 @@ public class BlastZone : MonoBehaviour
     {
         transition.SendMessage("AnimateTransition");
         yield return new WaitForSecondsRealtime(1f);
-        transition.SendMessage("FadeOut", true);
+        transition.SendMessage("FadeOut", false);
         playerLocomotion.ResetPlayerAndPosition(respawnLocation.transform.position);
         yield return new WaitForSecondsRealtime(1);
         isTransition = false;

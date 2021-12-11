@@ -48,8 +48,8 @@ public class PowerRemover : MonoBehaviour
         if(maxLoopCount <= currentLoopCount && !ended)
         {
             ended = true;
-            transition.SendMessage("DisplayScore");
             Time.timeScale = 0;
+            transition.SendMessage("DisplayScore");
             //SceneManager.LoadScene("VictoryScreen");
         }
     }
@@ -106,7 +106,7 @@ public class PowerRemover : MonoBehaviour
         HandleRemoveDoubleJump();
         HandleRemoveGrapple();
         yield return new WaitForSecondsRealtime(3.5f);
-        transition.SendMessage("FadeOut", true);
+        transition.SendMessage("FadeOut", false);
         ResetPlayer();
         yield return new WaitForSecondsRealtime(1);
     }

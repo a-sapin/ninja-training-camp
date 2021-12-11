@@ -14,6 +14,8 @@ public class PauseMenu : MonoBehaviour
     float transitionTime2 = 0.6f;
 
     int sceneID;
+    
+    [SerializeField] private GameObject transition;
 
     // Update is called once per frame
     void Update()
@@ -39,16 +41,20 @@ public class PauseMenu : MonoBehaviour
     }
     public void ResumeEchapKey()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 1;
         GameIsPaused = false;
         audioSourceInScene.Play();
     }
     void Paused()
     {
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 0;
         GameIsPaused = true;
         audioSourceInScene.Pause();
+        FindObjectOfType<VFXManager>().Pause("Movement");
+        FindObjectOfType<VFXManager>().Pause("Jump");
+        FindObjectOfType<VFXManager>().Pause("Dash");
+        FindObjectOfType<VFXManager>().Pause("Grapple");
     }
     public void LoadMenu()
     {
@@ -63,8 +69,9 @@ public class PauseMenu : MonoBehaviour
     IEnumerator LoadLevel(int levelID)
     {
         yield return new WaitForSecondsRealtime(transitionTime);
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(levelID);
+        transition.SendMessage("AnimateTransition");
+        yield return new WaitForSecondsRealtime(0.75f);
+        SceneManager.LoadScene(levelID, LoadSceneMode.Single);
     }
 
     IEnumerator TimeTransitionButton()

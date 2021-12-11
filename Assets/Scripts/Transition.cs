@@ -8,11 +8,12 @@ public class Transition : MonoBehaviour
     [Header("Optionnal particle system")] [SerializeField]
     private new ParticleSystem particleSystem;
 
+    [SerializeField] private bool timeStoppedAtStart = true;
+
     private void Start()
     {
-        Time.timeScale = 0;
         transform.localPosition = new Vector3(-(Screen.width + 500), 0, 0);
-        StartCoroutine(FadeOut(true));
+        StartCoroutine(FadeOut(timeStoppedAtStart));
     }
 
     IEnumerator AnimateTransition()
@@ -44,6 +45,6 @@ public class Transition : MonoBehaviour
         transform.localPosition = new Vector3(0, 0, 0);
         transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
         if (particleSystem != null) particleSystem.gameObject.SetActive(false);
-        if (timescale) Time.timeScale = 1;
+        if (!timescale) Time.timeScale = 1;
     }
 }

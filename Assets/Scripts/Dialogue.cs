@@ -28,6 +28,7 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator PlayDialogue(DialoguePart[] dialogue)
     {
+        yield return new WaitForSecondsRealtime(0.05f);
         playerLocomotion = FindObjectOfType<PlayerLocomotion>();
         bool normalPlayerCanMove = playerLocomotion.canMove;
         playerLocomotion.canMove = false;
@@ -39,7 +40,7 @@ public class Dialogue : MonoBehaviour
             sensei.SetActive(dialogue[dialogueIndex].isSenseiTalking);
             player.SetActive(!dialogue[dialogueIndex].isSenseiTalking);
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         while (true)
         {
             if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
@@ -52,11 +53,12 @@ public class Dialogue : MonoBehaviour
                 sensei.SetActive(dialogue[dialogueIndex].isSenseiTalking);
                 player.SetActive(!dialogue[dialogueIndex].isSenseiTalking);
                 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSecondsRealtime(0.5f);
             }
             yield return null;
         }
-        playerLocomotion.canMove = normalPlayerCanMove;
+        playerLocomotion.canMove = true;
         canvas.SetActive(false);
+        Time.timeScale = 1;
     }
 }
