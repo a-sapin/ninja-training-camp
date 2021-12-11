@@ -131,9 +131,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5409001243050288736, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409001243050288736, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
       propertyPath: keyText
       value: 
-      objectReference: {fileID: 1240640996}
+      objectReference: {fileID: 0}
     - target: {fileID: 5409001243050288737, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -14243,17 +14247,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1240640996 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9181018900402230627, guid: 688c0089137bd4d449df18c91542c612, type: 3}
-  m_PrefabInstance: {fileID: 593942247}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1278018478
 GameObject:
   m_ObjectHideFlags: 0

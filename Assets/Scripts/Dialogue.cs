@@ -28,6 +28,7 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator PlayDialogue(DialoguePart[] dialogue)
     {
+        yield return new WaitForSecondsRealtime(0.05f);
         playerLocomotion = FindObjectOfType<PlayerLocomotion>();
         bool normalPlayerCanMove = playerLocomotion.canMove;
         playerLocomotion.canMove = false;
@@ -56,7 +57,7 @@ public class Dialogue : MonoBehaviour
             }
             yield return null;
         }
-        playerLocomotion.canMove = normalPlayerCanMove;
+        playerLocomotion.canMove = true;
         canvas.SetActive(false);
         Time.timeScale = 1;
     }
