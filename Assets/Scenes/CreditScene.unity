@@ -977,8 +977,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -326.3711, y: 34.13954}
-  m_SizeDelta: {x: 274.1, y: 135.14}
+  m_AnchoredPosition: {x: -315.31, y: -7.35}
+  m_SizeDelta: {x: 296.23, y: 218.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1006973647
 MonoBehaviour:
@@ -1017,6 +1017,9 @@ MonoBehaviour:
 
 
     sound-fishing.net
+
+
+    fesliyanstudios.com
 
 '
 --- !u!222 &1006973648
