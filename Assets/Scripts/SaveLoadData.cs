@@ -72,7 +72,7 @@ public class SaveLoadData : MonoBehaviour
             playerTime2 = data.playerTime2;
             playerTime3 = data.playerTime3;
 
-            //debugData();
+            debugData();
 
             //Debug.Log("Player time loaded!");
         }
@@ -143,19 +143,19 @@ public class SaveLoadData : MonoBehaviour
         TimeSpan worseTime = time;
         int worseNumber = 0;
 
-        if (worseTime < playerTime1 || playerTime1 == TimeSpan.FromSeconds(-1) || playerTime1 == TimeSpan.Zero)
+        if (worseTime != TimeSpan.Zero && (worseTime < playerTime1 || playerTime1 == TimeSpan.FromSeconds(-1) || playerTime1 == TimeSpan.Zero))
         {
             worseNumber = 1;
             worseTime = playerTime1;
         }
 
-        if (worseTime < playerTime2 || playerTime2 == TimeSpan.FromSeconds(-1) || playerTime1 == TimeSpan.Zero)
+        if (worseTime != TimeSpan.Zero && (worseTime < playerTime2 || playerTime2 == TimeSpan.FromSeconds(-1) || playerTime3 == TimeSpan.Zero))
         {
             worseNumber = 2;
             worseTime = playerTime2;
         }
 
-        if (worseTime < playerTime3 || playerTime3 == TimeSpan.FromSeconds(-1) || playerTime1 == TimeSpan.Zero)
+        if (worseTime != TimeSpan.Zero && (worseTime < playerTime3 || playerTime3 == TimeSpan.FromSeconds(-1) || playerTime3 == TimeSpan.Zero))
         {
             worseNumber = 3;
             worseTime = playerTime3;
@@ -181,9 +181,9 @@ public class SaveLoadData : MonoBehaviour
         
 
         //Debug.Log("-----------------------------------");
-        //debugData();
+        debugData();
         SavePlayerTimes();
-        //debugData();
+        debugData();
         //Debug.Log("-----------------------------------");
     }
 
