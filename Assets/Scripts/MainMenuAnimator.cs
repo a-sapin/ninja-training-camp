@@ -45,7 +45,7 @@ public class MainMenuAnimator : MonoBehaviour
         int i = 5;
         while (true)
         {
-            if (i <= 10)
+            if (i < 10)
             {
                 title.transform.localPosition += Vector3.up;
                 i++;
@@ -57,9 +57,10 @@ public class MainMenuAnimator : MonoBehaviour
             }
             else
             {
-                i = 0;
+                title.transform.localPosition += Vector3.up;
+                i = 1;
             }
-
+            
             yield return new WaitForSecondsRealtime(0.2f);
         }
     }
