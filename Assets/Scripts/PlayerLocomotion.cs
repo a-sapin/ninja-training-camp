@@ -3,7 +3,7 @@
 public class PlayerLocomotion : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayerMask;
-    [SerializeField] private Grapple myGrapple;
+    [SerializeField] private GrappleTest myGrapple;
     [SerializeReference] private Animator myAnimator;
 
     Rigidbody2D rb;
@@ -196,7 +196,7 @@ public class PlayerLocomotion : MonoBehaviour
             isGrounded = true;
             doubleJumpAvailable = true; //Recover ability to double jump when player is grounded
             groundNormal = hit.normal;
-            myGrapple.TryRefreshOnLand();
+            //myGrapple.TryRefreshOnLand();
         }
         else
         {
@@ -262,7 +262,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void ResetPlayerAndPosition(Vector2 position)
     {
-        myGrapple.ForceDetachGrapple();
+       // myGrapple.ForceDetachGrapple();
         rb.velocity = Vector3.zero;
 
         wantsToJump = false;
@@ -314,7 +314,7 @@ public class PlayerLocomotion : MonoBehaviour
                 }
                 if (refreshGrappleOnLadder)
                 {
-                    myGrapple.TryRefreshOnLand();
+                    //myGrapple.TryRefreshOnLand();
                 }
                 transform.position = transform.position + (inputDirection.y * ladderClimbSpeed * Vector3.up); // climb
             }
@@ -329,7 +329,7 @@ public class PlayerLocomotion : MonoBehaviour
                 }
                 if (refreshGrappleOnLadder)
                 {
-                    myGrapple.TryRefreshOnLand(); // Refresh grapple when on ladder
+                    //myGrapple.TryRefreshOnLand(); // Refresh grapple when on ladder
                 }
             }
 
