@@ -18,18 +18,12 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject transition;
 
     private float exMenuKeyValue=0;
-    private PlayerLocomotion player;
-    private void Start()
-    {
-        player = FindObjectOfType<PlayerLocomotion>();
-    }
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("EXXX:" + exMenuKeyValue);
-        if (Input.GetAxis("Menu")>0 && exMenuKeyValue == 0)
+       
+        if (Input.GetAxisRaw("Menu")>0 && exMenuKeyValue == 0)
         {
-            
             if (GameIsPaused)
             {
                 animator.SetTrigger("FadeOut");
@@ -42,7 +36,7 @@ public class PauseMenu : MonoBehaviour
             }
 
         }
-        exMenuKeyValue = Input.GetAxis("Menu");
+        exMenuKeyValue = Input.GetAxisRaw("Menu");
     }
     public void Resume2Button()
     {
@@ -50,13 +44,13 @@ public class PauseMenu : MonoBehaviour
     }
     public void ResumeEchapKey()
     {
-        player.canMove = true;
+        Time.timeScale = 1;
         GameIsPaused = false;
         audioSourceInScene.Play();
     }
     void Paused()
     {
-        player.canMove = false;
+        Time.timeScale = 0;
         pauseMenuUI.SetActive(true);
         GameIsPaused = true;
         audioSourceInScene.Pause();

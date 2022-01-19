@@ -15,7 +15,7 @@ public class ControllerInMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetAxis("Jump") > 0)
+        if (Input.GetAxisRaw("Jump") > 0)
         {
             linkedButton[currentPos].onClick.Invoke();
         }
@@ -24,19 +24,21 @@ public class ControllerInMenu : MonoBehaviour
     {
         while (true)
         {
-            if (Input.GetAxis("Vertical") > 0.3)
+            if (Input.GetAxisRaw("Vertical") > 0.3)
             {
                 currentPos = (currentPos - 1);
                 currentPos = (currentPos >= 0 ? currentPos : arrowPos.Length - 1);
                 arrow.transform.position = arrowPos[currentPos].transform.position;
-                yield return new WaitForSeconds(0.2f);
+                if(Time.timeScale>0)
+                    yield return new WaitForSeconds(0.2f);
             }
-            else if(Input.GetAxis("Vertical") < -0.3)
+            else if(Input.GetAxisRaw("Vertical") < -0.3)
             {
                 currentPos = (currentPos + 1) % arrowPos.Length;
                 Debug.Log(currentPos);
                 arrow.transform.position = arrowPos[currentPos].transform.position;
-                yield return new WaitForSeconds(0.2f);
+                if (Time.timeScale > 0)
+                    yield return new WaitForSeconds(0.2f);
 
             }
             yield return null;
