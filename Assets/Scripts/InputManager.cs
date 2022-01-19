@@ -6,11 +6,11 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] private float maxGrappleDistance;
     private Transform playerTransform;
-    private Grapple grapple;
+    private GrapplingGun grapple;
 
     private void Start()
     {
-        grapple = FindObjectOfType<Grapple>();
+        grapple = FindObjectOfType<GrapplingGun>();
         playerTransform = grapple.transform;
     }
     private void Update()
@@ -18,14 +18,18 @@ public class InputManager : MonoBehaviour
         if (Input.GetAxis("Grapple") > 0 && !grapple.isGrapplingWithPad)
         {
             Vector2 nearestTarget = grapple.GetNearestTargetPos(playerTransform.position);
+
             if (Vector2.Distance(nearestTarget,playerTransform.position) < maxGrappleDistance)
             {
-                grapple.ThrowGrapple(nearestTarget,true);
+                //LANCER LE GRAPPIN
+                Debug.Log("Grapplinnnnnnnnnnng");
+               grapple.SetGrapplePoint(nearestTarget, true);
             }
         }
         else if (Input.GetAxis("Grapple") <= 0 && grapple.isGrapplingWithPad)
         {
-            grapple.ForceDetachGrapple();
+              grapple.StopGrappling();
+
         }
     }
 }
