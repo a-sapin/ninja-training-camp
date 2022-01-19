@@ -15,15 +15,15 @@ public class InputManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetAxis("Grapple") > 0 && !grapple.isGrappling)
+        if (Input.GetAxis("Grapple") > 0 && !grapple.isGrapplingWithPad)
         {
             Vector2 nearestTarget = grapple.GetNearestTargetPos(playerTransform.position);
             if (Vector2.Distance(nearestTarget,playerTransform.position) < maxGrappleDistance)
             {
-                grapple.ThrowGrapple(nearestTarget);
+                grapple.ThrowGrapple(nearestTarget,true);
             }
         }
-        else if (Input.GetAxis("Grapple") <= 0 && grapple.isGrappling)
+        else if (Input.GetAxis("Grapple") <= 0 && grapple.isGrapplingWithPad)
         {
             grapple.ForceDetachGrapple();
         }
