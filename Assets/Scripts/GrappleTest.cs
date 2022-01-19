@@ -7,8 +7,8 @@ public class GrappleTest : MonoBehaviour
     public LineRenderer m_lineRenderer;
 
     [Header("General Settings:")]
-    [SerializeField] private int percision = 40;
-    [Range(0, 20)] [SerializeField] private float straightenLineSpeed = 5;
+    [SerializeField] [Range(5,100)] [Tooltip("Precision pour le rendering du grapple.")] private int precision = 40;
+    [Range(0, 20)] [SerializeField] [Tooltip("Vitesse de realignement du wiggle.")]private float straightenLineSpeed = 5;
 
     [Header("Rope Animation Settings:")]
     public AnimationCurve ropeAnimationCurve;
@@ -28,7 +28,7 @@ public class GrappleTest : MonoBehaviour
     private void OnEnable()
     {
         moveTime = 0;
-        m_lineRenderer.positionCount = percision;
+        m_lineRenderer.positionCount = precision;
         waveSize = StartWaveSize;
         strightLine = false;
 
@@ -43,9 +43,10 @@ public class GrappleTest : MonoBehaviour
         isGrappling = false;
     }
 
+    //precision pour le rendering du grapple. plus petit veut dire laid
     private void LinePointsToFirePoint()
     {
-        for (int i = 0; i < percision; i++)
+        for (int i = 0; i < precision; i++)
         {
             m_lineRenderer.SetPosition(i, grapplingGun.firePoint.position);
         }
@@ -57,11 +58,12 @@ public class GrappleTest : MonoBehaviour
         DrawRope();
     }
 
+    //appeler pour le rending du grapple. Est appeler a chaquer frames
     void DrawRope()
     {
         if (!strightLine)
         {
-            if (m_lineRenderer.GetPosition(percision - 1).x == grapplingGun.grapplePoint.x)
+            if (m_lineRenderer.GetPosition(precision - 1).x == grapplingGun.grapplePoint.x)
             {
                 strightLine = true;
             }
@@ -93,11 +95,12 @@ public class GrappleTest : MonoBehaviour
         }
     }
 
+    //fait une corde pour le montant de precision. utilise le ropeAnimationCurve pour gerer le wiggle
     void DrawRopeWaves()
     {
-        for (int i = 0; i < percision; i++)
+        for (int i = 0; i < precision; i++)
         {
-            float delta = (float)i / ((float)percision - 1f);
+            float delta = (float)i / ((float)precision - 1f);
             Vector2 offset = Vector2.Perpendicular(grapplingGun.grappleDistanceVector).normalized * ropeAnimationCurve.Evaluate(delta) * waveSize;
             Vector2 targetPosition = Vector2.Lerp(grapplingGun.firePoint.position, grapplingGun.grapplePoint, delta) + offset;
             Vector2 currentPosition = Vector2.Lerp(grapplingGun.firePoint.position, targetPosition, ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);

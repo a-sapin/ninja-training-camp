@@ -8,7 +8,7 @@ public class GrapplingGun : MonoBehaviour
     [Header("Layers Settings:")]
     [SerializeField] private bool grappleToAll = false;
     [SerializeField] private int grappableLayerNumber = 9;
-    [SerializeField] private LayerMask IgnoredLayer;
+   
     [Header("Main Camera:")]
     public Camera m_camera;
 
@@ -22,8 +22,8 @@ public class GrapplingGun : MonoBehaviour
     public Rigidbody2D m_rigidbody;
 
     [Header("Rotation:")]
-    [SerializeField] private bool rotateOverTime = true;
-    [Range(0, 60)] [SerializeField] private float rotationSpeed = 4;
+     private bool rotateOverTime = true;
+     private float rotationSpeed = 4;
 
     [Header("Distance:")]
     [SerializeField] private bool hasMaxDistance = false;
@@ -57,22 +57,17 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
+        //event appeler lorsque le joueur utilise clic gauche pour la grapple
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             SetGrapplePoint();
         }
-        else if (Input.GetKey(KeyCode.Mouse0))
+        else if (Input.GetKey(KeyCode.Mouse0))  //appeler lorsque le joueur maintien le clic gauche
         {
-            if (grappleRope.enabled)
-            {
-                RotateGun(grapplePoint, false);
-            }
-            else
-            {
-                Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-                RotateGun(mousePos, true);
-            }
-
+         
+            Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
+            RotateGun(mousePos, true);  //utiliser pour avoir le vecteur joueur-clic
+            
             if (launchToPoint && grappleRope.isGrappling)
             {
                 if (launchType == LaunchType.Transform_Launch)
@@ -83,7 +78,7 @@ public class GrapplingGun : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        else if (Input.GetKeyUp(KeyCode.Mouse0)) //appeler lorsque le joueur relache le clic gauche
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
@@ -96,6 +91,7 @@ public class GrapplingGun : MonoBehaviour
         }
     }
 
+    //fait une rotation a l'objet. pourrait utiliser une fleche pour indiquer la direction
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
     {
         Vector3 distanceVector = lookPoint - gunPivot.position;
@@ -111,6 +107,7 @@ public class GrapplingGun : MonoBehaviour
         }
     }
 
+    //utiliser pour voir si le clic a toucher une cible a grapple (si negatif alors aucun grapple, si positif alors un grapple)
     void SetGrapplePoint()
     {
         Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
@@ -129,7 +126,7 @@ public class GrapplingGun : MonoBehaviour
             }
         }
     }
-
+//physique du grapple. utilisation du sprint joint pour le mouvement. Unity gere le mouvement et la collision avec le spring joint
     public void Grapple()
     {
         m_springJoint2D.autoConfigureDistance = false;
@@ -169,7 +166,7 @@ public class GrapplingGun : MonoBehaviour
             }
         }
     }
-
+//gizmo pour voir le range du grapple
     private void OnDrawGizmosSelected()
     {
         if (firePoint != null && hasMaxDistance)
