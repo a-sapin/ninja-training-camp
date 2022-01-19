@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grapple : MonoBehaviour
 {
-
+    [HideInInspector] public bool isGrapplingWithPad = false;
     public Camera mainCamera;
     public LineRenderer _lineRenderer;
     public SpringJoint2D _springJoint;
@@ -78,6 +78,35 @@ public class Grapple : MonoBehaviour
             currentCooldownLeft = cooldownTime;
         }
     }
+    public Vector2 GetNearestTargetPos(Vector2 origin)
+    {
+        float minDistance = float.PositiveInfinity;
+        Vector2 nearest = Vector2.zero;
+        foreach(GameObject target in GameObject.FindGameObjectsWithTag("GrappleTarget"))
+        {
+            float newDist = Vector2.Distance(origin, target.transform.position);
+            if (newDist < minDistance)
+            {
+                minDistance = newDist;
+                nearest = target.transform.position;
+            }
+        }
+        return nearest;
+    }
+    public void ThrowGrapple(Vector2 targetPos,bool usingPad=false)
+    {
+        isGrapplingWithPad = usingPad;
+        FindObjectOfType<VFXManager>().Play("Grapple");
+        // keep target location for later use
+        targetLocation = targetPos;
+
+        // Activate grapple and its visuals
+        DrawRope(targetLocation);
+        myPlayerLocomotion.isUsingLadder = false; // make player let go of ladder upon grappling
+        _springJoint.connectedAnchor = targetLocation;
+        _springJoint.enabled = true;
+        _lineRenderer.enabled = true;
+    }
 
     private void HandleGrapple()
     {
@@ -88,16 +117,7 @@ public class Grapple : MonoBehaviour
 
             if (DetectGrapplePoint(transform.position, ref evaluateTargetPos))
             {
-                FindObjectOfType<VFXManager>().Play("Grapple");
-                // keep target location for later use
-                targetLocation = evaluateTargetPos;
-
-                // Activate grapple and its visuals
-                DrawRope(targetLocation);
-                myPlayerLocomotion.isUsingLadder = false; // make player let go of ladder upon grappling
-                _springJoint.connectedAnchor = targetLocation;
-                _springJoint.enabled = true;
-                _lineRenderer.enabled = true;
+                ThrowGrapple(evaluateTargetPos);
             }
 
         }
@@ -115,7 +135,6 @@ public class Grapple : MonoBehaviour
             visualRopeEnd = transform.position; // reset rope end to player origin when not grappling
         }
     }
-
     // Casts a ray going from origin towards target and changes target to the location of the first
     // collision detected. The raycast goes beyond the target, until/unless maxDistance is reached
     private bool DetectGrapplePoint(Vector2 origin, ref Vector2 target)
@@ -137,6 +156,7 @@ public class Grapple : MonoBehaviour
 
     public void ForceDetachGrapple()
     {
+        isGrapplingWithPad = false;
         myPlayerLocomotion.SetCantGrapple(); // disable grapple until another script enables it again
         _springJoint.enabled = false; // disable joint
         _lineRenderer.enabled = false;
