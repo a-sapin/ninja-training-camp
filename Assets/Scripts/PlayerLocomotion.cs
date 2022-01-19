@@ -233,13 +233,13 @@ public class PlayerLocomotion : MonoBehaviour
         // the velocity gained while dashing, as a vector
         Vector2 boost = moveDirection.normalized * dashSpeedGain;
 
-        if (hasDashPower && Input.GetAxis("Fire3") > 0 && dashCooldownTimer <= 0.0f && rb.velocity.magnitude < dashSpeedGain)
+        if (hasDashPower && Input.GetAxis("Dash") > 0 && dashCooldownTimer <= 0.0f && rb.velocity.magnitude < dashSpeedGain)
         {
             isDashing = true;
             myAnimator.SetBool("dash", true);
             FindObjectOfType<VFXManager>().Play("Dash");
             Invoke(nameof(StopDashAnim), 0.5f);
-
+           
             isUsingLadder = false;
             rb.velocity += boost;
             dashCooldownTimer = dashCooldown; // reset cooldown timer
