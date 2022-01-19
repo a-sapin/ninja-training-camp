@@ -26,17 +26,18 @@ public class ControllerInMenu : MonoBehaviour
         {
             if (Input.GetAxis("Vertical") > 0.3)
             {
-                currentPos = (currentPos + 1) % arrowPos.Length;
-                Debug.Log(currentPos);
+                currentPos = (currentPos - 1);
+                currentPos = (currentPos >= 0 ? currentPos : arrowPos.Length - 1);
                 arrow.transform.position = arrowPos[currentPos].transform.position;
                 yield return new WaitForSeconds(0.2f);
             }
             else if(Input.GetAxis("Vertical") < -0.3)
             {
-                currentPos = (currentPos - 1);
-                currentPos = (currentPos >= 0 ? currentPos : arrowPos.Length - 1);
+                currentPos = (currentPos + 1) % arrowPos.Length;
+                Debug.Log(currentPos);
                 arrow.transform.position = arrowPos[currentPos].transform.position;
                 yield return new WaitForSeconds(0.2f);
+
             }
             yield return null;
         }

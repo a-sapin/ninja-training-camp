@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 5409001243050288736}
   - component: {fileID: 5409001243050288760}
   - component: {fileID: 8223631209164994103}
+  - component: {fileID: 6551430264030819112}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -405,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818542e7c0f17ec46a4f74986465fa62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrappling: 0
   mainCamera: {fileID: 5409001241448039124}
   _lineRenderer: {fileID: 5409001243050288762}
   _springJoint: {fileID: 5409001243050288767}
@@ -463,6 +465,19 @@ MonoBehaviour:
   respawnLocation: {fileID: 0}
   currentDeathCount: 0
   transition: {fileID: 0}
+--- !u!114 &6551430264030819112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409001243050288737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b03a168794e9a1b40bdd1801a44a977c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxGrappleDistance: 10
 --- !u!1 &8960904663732521468
 GameObject:
   m_ObjectHideFlags: 0
