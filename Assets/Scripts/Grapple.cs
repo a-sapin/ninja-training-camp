@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grapple : MonoBehaviour
 {
-    [HideInInspector] public bool isGrappling = false;
+    [HideInInspector] public bool isGrapplingWithPad = false;
     public Camera mainCamera;
     public LineRenderer _lineRenderer;
     public SpringJoint2D _springJoint;
@@ -93,9 +93,9 @@ public class Grapple : MonoBehaviour
         }
         return nearest;
     }
-    public void ThrowGrapple(Vector2 targetPos)
+    public void ThrowGrapple(Vector2 targetPos,bool usingPad=false)
     {
-        isGrappling = true;
+        isGrapplingWithPad = usingPad;
         FindObjectOfType<VFXManager>().Play("Grapple");
         // keep target location for later use
         targetLocation = targetPos;
@@ -156,7 +156,7 @@ public class Grapple : MonoBehaviour
 
     public void ForceDetachGrapple()
     {
-        isGrappling = false;
+        isGrapplingWithPad = false;
         myPlayerLocomotion.SetCantGrapple(); // disable grapple until another script enables it again
         _springJoint.enabled = false; // disable joint
         _lineRenderer.enabled = false;
