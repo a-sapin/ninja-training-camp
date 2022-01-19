@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public Animator animator;
@@ -14,14 +15,21 @@ public class PauseMenu : MonoBehaviour
     float transitionTime2 = 0.6f;
 
     int sceneID;
-    
     [SerializeField] private GameObject transition;
 
+    private float exMenuKeyValue=0;
+    private PlayerLocomotion player;
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerLocomotion>();
+    }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Menu")>0)
+        Debug.Log("EXXX:" + exMenuKeyValue);
+        if (Input.GetAxis("Menu")>0 && exMenuKeyValue == 0)
         {
+            
             if (GameIsPaused)
             {
                 animator.SetTrigger("FadeOut");
@@ -32,23 +40,24 @@ public class PauseMenu : MonoBehaviour
             {
                 Paused();
             }
-        }
-    }
 
+        }
+        exMenuKeyValue = Input.GetAxis("Menu");
+    }
     public void Resume2Button()
     {
         StartCoroutine(TimeTransitionButton());
     }
     public void ResumeEchapKey()
     {
-        Time.timeScale = 1;
+        player.canMove = true;
         GameIsPaused = false;
         audioSourceInScene.Play();
     }
     void Paused()
     {
+        player.canMove = false;
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0;
         GameIsPaused = true;
         audioSourceInScene.Pause();
         FindObjectOfType<VFXManager>().Pause("Movement");
