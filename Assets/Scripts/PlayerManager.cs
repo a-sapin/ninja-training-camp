@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
     private PlayerLocomotion myPlayerLocomotion;
 
 
+    public PlayerLocomotion GetLocomotion() { return myPlayerLocomotion; }
+
     // Start is called before the first frame update
     void Start()
     {
