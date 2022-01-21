@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LevelSelection : MonoBehaviour
 {
-    [SerializeField] private SaveLoadData saveLoadData;
+    //[SerializeField] private SaveLoadData saveLoadData;
     [SerializeField] private GameObject transition;
 
     [Header("Medals image")] [SerializeField]

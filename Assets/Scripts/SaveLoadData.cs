@@ -9,9 +9,9 @@ public class SaveLoadData : MonoBehaviour
     public static TimeSpan bronzeTime;
     public static TimeSpan silverTime;
     public static TimeSpan goldTime;
-    private static TimeSpan playerTime1 = TimeSpan.FromSeconds(-1);
-    private static TimeSpan playerTime2 = TimeSpan.FromSeconds(-1);
-    private static TimeSpan playerTime3 = TimeSpan.FromSeconds(-1);
+    private static TimeSpan _playerTime1 = TimeSpan.FromSeconds(-1);
+    private static TimeSpan _playerTime2 = TimeSpan.FromSeconds(-1);
+    private static TimeSpan _playerTime3 = TimeSpan.FromSeconds(-1);
 
     public void Start()
     {
@@ -26,10 +26,12 @@ public class SaveLoadData : MonoBehaviour
         FileStream file =
             File.Create(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "_Player.dat");
 
-        LevelData data = new LevelData();
-        data.playerTime1 = playerTime1;
-        data.playerTime2 = playerTime2;
-        data.playerTime3 = playerTime3;
+        PlayerData data = new PlayerData
+        {
+            playerTime1 = _playerTime1,
+            playerTime2 = _playerTime2,
+            playerTime3 = _playerTime3
+        };
 
         bf.Serialize(file, data);
         file.Close();
@@ -46,10 +48,12 @@ public class SaveLoadData : MonoBehaviour
         FileStream file =
             File.Create(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "_Times.dat");
 
-        LevelData data = new LevelData();
-        data.bronzeTime = bronzeTime;
-        data.silverTime = silverTime;
-        data.goldTime = goldTime;
+        LevelData data = new LevelData
+        {
+            bronzeTime = bronzeTime,
+            silverTime = silverTime,
+            goldTime = goldTime
+        };
 
         bf.Serialize(file, data);
         file.Close();
@@ -66,11 +70,11 @@ public class SaveLoadData : MonoBehaviour
                 File.Open(Application.persistentDataPath + "/" + levelName + "_Player.dat",
                     FileMode.Open);
 
-            LevelData data = (LevelData) bf.Deserialize(file);
+            PlayerData data = (PlayerData) bf.Deserialize(file);
             file.Close();
-            playerTime1 = data.playerTime1;
-            playerTime2 = data.playerTime2;
-            playerTime3 = data.playerTime3;
+            _playerTime1 = data.playerTime1;
+            _playerTime2 = data.playerTime2;
+            _playerTime3 = data.playerTime3;
 
             //debugData();
 
@@ -78,9 +82,9 @@ public class SaveLoadData : MonoBehaviour
         }
         else
         {
-            playerTime1 = TimeSpan.Zero;
-            playerTime2 = TimeSpan.Zero;
-            playerTime3 = TimeSpan.Zero;
+            _playerTime1 = TimeSpan.Zero;
+            _playerTime2 = TimeSpan.Zero;
+            _playerTime3 = TimeSpan.Zero;
             //Debug.Log("No Player time !");
         }
     }
@@ -114,28 +118,33 @@ public class SaveLoadData : MonoBehaviour
 
     public static void LoadGame()
     {
-        if (File.Exists(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + ".dat"))
+        if (File.Exists(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "_Times.dat"))
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file =
-                File.Open(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + ".dat",
+            BinaryFormatter bfTime = new BinaryFormatter();
+            FileStream fileTime =
+                File.Open(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "_Times.dat",
                     FileMode.Open);
 
-            LevelData data = (LevelData) bf.Deserialize(file);
-            file.Close();
-            bronzeTime = data.bronzeTime;
-            silverTime = data.silverTime;
-            goldTime = data.goldTime;
-            playerTime1 = data.playerTime1;
-            playerTime2 = data.playerTime2;
-            playerTime3 = data.playerTime3;
+            LevelData dataTime = (LevelData) bfTime.Deserialize(fileTime);
+            fileTime.Close();
+            bronzeTime = dataTime.bronzeTime;
+            silverTime = dataTime.silverTime;
+            goldTime = dataTime.goldTime; 
+            
+        }
+        if (File.Exists(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "_Player.dat")){
+            BinaryFormatter bfPlayer = new BinaryFormatter();
+            FileStream filePlayer =
+                File.Open(Application.persistentDataPath + "/" + SceneManager.GetActiveScene().name + "_Player.dat",
+                    FileMode.Open);
 
-            //Debug.Log("Game data loaded!");
+            PlayerData dataPlayer = (PlayerData) bfPlayer.Deserialize(filePlayer);
+            filePlayer.Close();
+            _playerTime1 = dataPlayer.playerTime1;
+            _playerTime2 = dataPlayer.playerTime2;
+            _playerTime3 = dataPlayer.playerTime3;
         }
-        else
-        {
-            //Debug.Log("No game data !");
-        }
+        //Debug.Log("Game data loaded!");
     }
 
     public static void saveNewTime(TimeSpan time)
@@ -143,22 +152,21 @@ public class SaveLoadData : MonoBehaviour
         TimeSpan worseTime = time;
         int worseNumber = 0;
 
-        if (worseTime < playerTime1 || playerTime1 == TimeSpan.FromSeconds(-1) || playerTime1 == TimeSpan.Zero)
+        if (worseTime != TimeSpan.Zero && (worseTime < _playerTime1 || _playerTime1 == TimeSpan.FromSeconds(-1) || _playerTime1 == TimeSpan.Zero))
         {
             worseNumber = 1;
-            worseTime = playerTime1;
+            worseTime = _playerTime1;
         }
 
-        if (worseTime < playerTime2 || playerTime2 == TimeSpan.FromSeconds(-1) || playerTime1 == TimeSpan.Zero)
+        if (worseTime != TimeSpan.Zero && (worseTime < _playerTime2 || _playerTime2 == TimeSpan.FromSeconds(-1) || _playerTime3 == TimeSpan.Zero))
         {
             worseNumber = 2;
-            worseTime = playerTime2;
+            worseTime = _playerTime2;
         }
 
-        if (worseTime < playerTime3 || playerTime3 == TimeSpan.FromSeconds(-1) || playerTime1 == TimeSpan.Zero)
+        if (worseTime != TimeSpan.Zero && (worseTime < _playerTime3 || _playerTime3 == TimeSpan.FromSeconds(-1) || _playerTime3 == TimeSpan.Zero))
         {
             worseNumber = 3;
-            worseTime = playerTime3;
         }
 
         //Debug.Log("---------Worse time---------");
@@ -169,17 +177,16 @@ public class SaveLoadData : MonoBehaviour
         switch (worseNumber)
         {
             case 1:
-                playerTime1 = time;
+                _playerTime1 = time;
                 break;
             case 2:
-                playerTime2 = time;
+                _playerTime2 = time;
                 break;
             case 3:
-                playerTime3 = time;
+                _playerTime3 = time;
                 break;
         }
         
-
         //Debug.Log("-----------------------------------");
         //debugData();
         SavePlayerTimes();
@@ -193,16 +200,16 @@ public class SaveLoadData : MonoBehaviour
         //Debug.Log("--------Best time--------");
         //debugData();
         //Debug.Log("-----------------------------------");
-        TimeSpan bestTime = playerTime1;
+        TimeSpan bestTime = _playerTime1;
 
-        if (playerTime2 < bestTime)
+        if (_playerTime2 < bestTime)
         {
-            bestTime = playerTime2;
+            bestTime = _playerTime2;
         }
 
-        if (playerTime3 < bestTime)
+        if (_playerTime3 < bestTime)
         {
-            bestTime = playerTime3;
+            bestTime = _playerTime3;
         }
 
         //Debug.Log("best time :" + bestTime);
@@ -213,7 +220,7 @@ public class SaveLoadData : MonoBehaviour
     public static TimeSpan[] getTimes(String levelName)
     {
         LoadPlayerTime(levelName);
-        return new[] {playerTime1, playerTime2, playerTime3};
+        return new[] {_playerTime1, _playerTime2, _playerTime3};
     }
 
     public static TimeSpan[] getMedalTimes(String levelName)
@@ -227,9 +234,9 @@ public class SaveLoadData : MonoBehaviour
         Debug.Log("Bronze time: " + bronzeTime);
         Debug.Log("Silver time: " + silverTime);
         Debug.Log("Gold time: " + goldTime);
-        Debug.Log("Player time 1: " + playerTime1);
-        Debug.Log("Player time 2: " + playerTime2);
-        Debug.Log("Player time 3: " + playerTime3);
+        Debug.Log("Player time 1: " + _playerTime1);
+        Debug.Log("Player time 2: " + _playerTime2);
+        Debug.Log("Player time 3: " + _playerTime3);
     }
 }
 
@@ -239,6 +246,11 @@ class LevelData
     public TimeSpan bronzeTime;
     public TimeSpan silverTime;
     public TimeSpan goldTime;
+}
+
+[Serializable]
+class PlayerData
+{
     public TimeSpan playerTime1;
     public TimeSpan playerTime2;
     public TimeSpan playerTime3;
