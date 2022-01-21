@@ -9,9 +9,9 @@ InputManager:
     m_Name: Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: a
+    negativeButton: a
+    positiveButton: 
+    altNegativeButton: q
     altPositiveButton: d
     gravity: 100
     dead: 0.001
@@ -156,7 +156,7 @@ InputManager:
     negativeButton: 
     positiveButton: joystick button 2
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: tab
     gravity: 100
     dead: 0.14
     sensitivity: 100
