@@ -9,6 +9,14 @@ public abstract class State : ScriptableObject
 {
     protected float startTime = 0f;
 
+    // All state instances, used when changing state
+    public static GroundedState grounded = CreateInstance<GroundedState>();
+    protected static RunState running = CreateInstance<RunState>();
+    protected static JumpState jumping = CreateInstance<JumpState>();
+    protected static AirbornState airborn = CreateInstance<AirbornState>();
+    protected static AirDriftState airdrift = CreateInstance<AirDriftState>();
+    protected static DashState dashing = CreateInstance<DashState>();
+
     public virtual void Enter()
     {
         startTime = Time.time;

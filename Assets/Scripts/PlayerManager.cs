@@ -31,6 +31,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
+        currentState = State.grounded;
     }
 
     void Update()
