@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     private PlayerLocomotion myPlayerLocomotion;
     [SerializeField] State currentState;
+    InputManager inputManager;
     [SerializeReference] Animator myAnimator;
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
@@ -26,6 +27,7 @@ public class PlayerManager : MonoBehaviour
     public float DashDuration { get { return dashDuration; } }
 
     public PlayerLocomotion GetLocomotion() { return myPlayerLocomotion; }
+    public InputManager GetInput() { return inputManager; }
 
     /// <summary>
     /// Properly changes the state of the player by calling Exit() function 
@@ -49,6 +51,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
+        inputManager = GetComponent<InputManager>();
         currentState = State.grounded; // set a default state at the start
     }
 
