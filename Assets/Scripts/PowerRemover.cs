@@ -34,7 +34,7 @@ public class PowerRemover : MonoBehaviour
         playerLocomotion = playerObject.GetComponent<PlayerLocomotion>();
 
         // just to make sure the level doesn't end immediately
-        if(maxLoopCount <= currentLoopCount)
+        if (maxLoopCount <= currentLoopCount)
         {
             maxLoopCount = currentLoopCount + 1;
         }
@@ -47,6 +47,7 @@ public class PowerRemover : MonoBehaviour
     {
         if(maxLoopCount <= currentLoopCount && !ended)
         {
+            FindObjectOfType<VFXManager>().StopAll(); // Stops all Animation Sound Effect 
             ended = true;
             Time.timeScale = 0;
             transition.SendMessage("DisplayScore");
@@ -101,6 +102,7 @@ public class PowerRemover : MonoBehaviour
 
     IEnumerator Waiter()
     {
+        FindObjectOfType<VFXManager>().StopAll(); // Stops all Animation Sound Effect 
         yield return new WaitForSecondsRealtime(0.55f);
         HandleRemoveDash();
         HandleRemoveDoubleJump();
