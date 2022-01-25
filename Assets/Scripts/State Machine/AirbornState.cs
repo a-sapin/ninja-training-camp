@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AirbornState : State
 {
+    protected bool doubleJumpAvailable = true; // keeps track of the player's double jump
+
     public override void HandleSurroundings(PlayerManager player)
     {
 
