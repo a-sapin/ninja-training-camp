@@ -6,6 +6,24 @@ public class PlayerManager : MonoBehaviour
 {
     private PlayerLocomotion myPlayerLocomotion;
     [SerializeField] State currentState;
+    [SerializeReference] Animator myAnimator;
+
+    [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
+    [SerializeField] bool hasDashPower = false;
+    [SerializeField] bool hasDoubleJumpPower = false;
+    [SerializeField] bool hasGrapplePower = false;
+
+    // Used by other scripts to take away powers
+    public void RemoveDash() { hasDashPower = false; }
+    public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
+    public void RemoveGrapple() { hasGrapplePower = false; }
+
+    [Header("Power Logic Variables")]
+    [SerializeField] float dashCooldown = 1.0f;
+    public float DashCooldown { get { return dashCooldown; } }
+
+    [SerializeField] float dashDuration = 0.2f;
+    public float DashDuration { get { return dashDuration; } }
 
     public PlayerLocomotion GetLocomotion() { return myPlayerLocomotion; }
 
@@ -18,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(currentState.GetType() == nextState.GetType())
         {
-            return;
+            return; // Don't change the state if we are already in that state
         }
         else
         {
@@ -31,7 +49,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
-        currentState = State.grounded;
+        currentState = State.grounded; // set a default state at the start
     }
 
     void Update()
