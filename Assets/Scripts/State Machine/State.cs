@@ -17,13 +17,13 @@ public abstract class State : ScriptableObject
     protected static AirDriftState airdrift = CreateInstance<AirDriftState>();
     protected static DashState dashing = CreateInstance<DashState>();
 
-    public virtual void Enter()
+    public virtual void Enter(PlayerManager player)
     {
         startTime = Time.time;
         Debug.Log("Entering " + ToString());
     }
 
-    public virtual void Exit()
+    public virtual void Exit(PlayerManager player)
     {
 
     }

@@ -48,9 +48,9 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            currentState.Exit();
+            currentState.Exit(this);
             currentState = nextState;
-            currentState.Enter();
+            currentState.Enter(this);
         }
     }
 
