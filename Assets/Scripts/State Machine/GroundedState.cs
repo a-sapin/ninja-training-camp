@@ -9,7 +9,14 @@ public class GroundedState : State
 {
     public override void HandleSurroundings(PlayerManager player)
     {
-        // TODO: detect ground
+        if (player.GetLocomotion().IsGrounded())
+        {
+            // if ground is detected, stay grounded
+        }
+        else
+        {
+            player.ChangeState(airborn);
+        }
     }
 
     public override void HandleInputs(PlayerManager player)
@@ -34,6 +41,6 @@ public class GroundedState : State
 
     public override void PhysicsUpdate(PlayerManager player)
     {
-        
+        player.GetLocomotion().SlowDown();
     }
 }
