@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerLocomotion : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayerMask;
-    [SerializeField] private GrappleTest myGrapple;
     [SerializeReference] private Animator myAnimator;
+    [SerializeField] private GrapplingGun grapple;
 
     Rigidbody2D rb;
     Vector2 moveDirection;
@@ -70,7 +70,7 @@ public class PlayerLocomotion : MonoBehaviour
         hasDashPower = true;
         hasDoubleJumpPower = true;
         hasGrapplePower = true;
-
+        canGrapple = true;
         dashCooldownTimer = 0.0f;
         isDashing = false;
     }
@@ -351,12 +351,15 @@ public class PlayerLocomotion : MonoBehaviour
     public IEnumerator PlayerKnockback(float knockbackDuration, float knockbackPower, Vector2 knockbackDirection)
     {
         float timer = 0f;
+        grapple.StopGrappling();
         while (knockbackDuration > timer)
         {
+            canGrapple = false;
             timer += Time.deltaTime;
-            rb.AddForce(new Vector2(knockbackDirection.x * knockbackPower, knockbackDirection.y *knockbackPower ));
+            rb.AddForce(new Vector2(knockbackDirection.x * -knockbackPower, knockbackDirection.y * -knockbackPower ));
         }
 
+        canGrapple = true;
         yield return 0;
     }
 

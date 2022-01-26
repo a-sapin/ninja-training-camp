@@ -7,13 +7,13 @@ public class FallingRock : MonoBehaviour
 {
     [SerializeField] private int blastZoneYLevel = -50;
     [SerializeField] [Range(0.01f, 5)] private float knockbackDuration = 1.0f;
-    [SerializeField] [Range(0.01f, 5)] private float knockbackForce = 1.0f;
+    [SerializeField] [Range(0.01f, 100)] private float knockbackForce = 1.0f;
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
-            StartCoroutine(col.GetComponent<PlayerLocomotion>().PlayerKnockback(knockbackDuration,knockbackForce,col.transform.position));
-            
+            Vector2 pushingDirection = (gameObject.transform.position - col.transform.position).normalized;
+            StartCoroutine(col.GetComponent<PlayerLocomotion>().PlayerKnockback(knockbackDuration,knockbackForce,pushingDirection));
         }
     }
 
