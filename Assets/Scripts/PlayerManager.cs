@@ -14,11 +14,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] bool hasDoubleJumpPower = false;
     [SerializeField] bool hasGrapplePower = false;
 
-    // Used by other scripts to take away powers
-    public void RemoveDash() { hasDashPower = false; }
-    public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
-    public void RemoveGrapple() { hasGrapplePower = false; }
-
     [Header("Power Logic Variables")]
     [SerializeField] float dashCooldown = 1.0f;
     public float DashCooldown { get { return dashCooldown; } }
@@ -26,8 +21,19 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float dashDuration = 0.2f;
     public float DashDuration { get { return dashDuration; } }
 
+    // getters
     public PlayerLocomotion GetLocomotion() { return myPlayerLocomotion; }
     public InputManager GetInput() { return inputManager; }
+
+    public bool HasDash() { return hasDashPower; }
+    public bool HasDoubleJump() { return hasDoubleJumpPower; }
+    public bool HasGrapple() { return hasGrapplePower; }
+
+
+    // Used by other scripts to take away powers
+    public void RemoveDash() { hasDashPower = false; }
+    public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
+    public void RemoveGrapple() { hasGrapplePower = false; }
 
     /// <summary>
     /// Properly changes the state of the player by calling Exit() function 
