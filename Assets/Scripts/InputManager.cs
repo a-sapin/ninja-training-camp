@@ -21,6 +21,14 @@ public class InputManager : MonoBehaviour
         HandleGrapple();
     }
 
+    /// <summary>
+    /// Detects a jump button press, but not a hold.
+    /// </summary>
+    /// <returns> True if the button is pressed, false if it is held or released.</returns>
+    public bool JumpButtonDown() 
+    { 
+        return  0f < Input.GetAxis("Jump") && Input.GetAxis("Jump") < 1f; // input is rising
+    }
     public bool Jump() { return ReadButton("Jump"); }
     public bool Dash() { return ReadButton("Dash"); }
     public Vector2 Move() { return moveInput; }
@@ -38,17 +46,13 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Used locally. Read value of a button.
+    /// Used locally. Read value of a generic button.
     /// </summary>
     /// <param name="inputName">The name of the button axis.</param>
-    /// <returns>True if the button is pressed, False otherwise.</returns>
+    /// <returns>True if the button is pressed or held, False otherwise.</returns>
     private bool ReadButton(string inputName)
     {
-        if(Input.GetAxisRaw(inputName) > 0f)
-        {
-            return true;
-        }
-        return false;
+        return Input.GetAxisRaw(inputName) > 0f;
     }
 
     /// <summary>
