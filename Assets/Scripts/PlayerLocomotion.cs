@@ -345,4 +345,83 @@ public class PlayerLocomotion : MonoBehaviour
             isCloseToLadder = false;
         }
     }
+
+    #region State Machine
+
+    [SerializeField] float groundDetectCircleRadius = 0.35f;
+    public bool IsGrounded()
+    {
+        // Cast a ray straight down.
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, groundDetectCircleRadius, Vector2.down,
+            groundDetectionDistance - groundDetectCircleRadius, groundLayerMask);
+        // subtract circle radius so the max distance to detect ground is still equal to groundDetectionDistance
+
+
+        if (hit.collider != null)
+        {
+            groundNormal = hit.normal;
+            return true;
+        }
+        else
+        {
+            groundNormal = Vector2.up;
+            return false;
+        }
+
+    }
+
+    public void ApplyFallAccel()
+    {
+        rb.AddForce(Vector2.down * 9.8f * gravityMultiplier);
+    }
+
+    public void RunTowards(Vector2 input)
+    {
+        Vector2 horizInput = new Vector2(input.x, 0f); // ignore up & down inputs
+
+        // if player is on a slope, make the angled move direction parallel to the slope
+        Vector2 angledMoveDir = Vector3.ProjectOnPlane(horizInput, groundNormal).normalized;
+
+        // if velocity is less than max speed or opposite to the move direction
+        if (Mathf.Abs(rb.velocity.x) < maxVelocity || Mathf.Clamp(rb.velocity.x, -1f, 1f) == -moveDirection.x)
+        {
+            rb.AddForce(angledMoveDir * accelerationMultiplier);
+        }
+    }
+
+    public void SlowDown()
+    {
+        if (rb.velocity.magnitude > 0.05f)
+        {
+            rb.AddForce(-rb.velocity * counterForceMult); // slow down
+        }
+        else
+        {
+            rb.velocity = Vector2.zero; // if speed is low enough, stop
+        }
+    }
+
+    public void ApplyJumpForce()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+        rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode2D.Impulse);
+    }
+
+    public void DoubleJump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+        rb.AddForce(Vector2.up * jumpForceMultiplier * relativeDoubleJumpForceMultiplier, ForceMode2D.Impulse);
+    }
+
+    public void StartDash()
+    {
+
+    }
+
+    public void EndDash()
+    {
+
+    }
+
+    #endregion
 }
