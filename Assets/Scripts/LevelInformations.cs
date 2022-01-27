@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class LevelInformations : MonoBehaviour
 {
-    [SerializeField] private Button level1Btn, level2Btn;
     [SerializeField] private GameObject score;
     [SerializeField] private Text levelName,highScore;
     [SerializeField] private GameObject goldMedal, silverMedal, bronzeMedal;
@@ -15,6 +14,17 @@ public class LevelInformations : MonoBehaviour
     private void Start()
     {
         score.SetActive(false);
+        SetHighScoreValue();
+    }
+    public void SetHighScoreValue()
+    {
+        PlayerPrefs.SetInt("Level1Gold", 4500);
+        PlayerPrefs.SetInt("Level1Silver", 7000);
+        PlayerPrefs.SetInt("Level1Bronze",12000);
+
+        PlayerPrefs.SetInt("Level2Gold", 4500);
+        PlayerPrefs.SetInt("Level2Silver", 7000);
+        PlayerPrefs.SetInt("Level2Bronze", 12000);
     }
     public void OpenLevelInfo(string level)
     {

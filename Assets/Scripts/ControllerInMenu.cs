@@ -8,10 +8,11 @@ public class ControllerInMenu : MonoBehaviour
     [SerializeField] GameObject arrow;
     [SerializeField] GameObject[] arrowPos;
     [SerializeField] Button[] linkedButton;
+    private IEnumerator move;
     int currentPos = 0;
     private void Start()
     {
-        StartCoroutine(nameof(ArrowMove));
+        StartMove();
     }
     void Update()
     {
@@ -19,6 +20,12 @@ public class ControllerInMenu : MonoBehaviour
         {
             linkedButton[currentPos].onClick.Invoke();
         }
+    }
+    public void StartMove()
+    {
+        if (move != null) StopCoroutine(move);
+        move = ArrowMove();
+        StartCoroutine(move);
     }
     IEnumerator ArrowMove()
     {

@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class LevelButton : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPointerExitHandler
+public class LevelButton : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     [SerializeField] private string level;
     private LevelInformations info;
-    private ScenesTransitionManager transition;
 
     void Start()
     {
@@ -16,11 +15,6 @@ public class LevelButton : MonoBehaviour,IPointerClickHandler,IPointerEnterHandl
             gameObject.SetActive(PlayerPrefs.GetInt(level + "Finished", 0) > 0);
 
         info = FindObjectOfType<LevelInformations>();
-        transition = FindObjectOfType<ScenesTransitionManager>();
-    }
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        transition.GoToLevel(level);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

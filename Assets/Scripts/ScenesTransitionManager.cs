@@ -23,6 +23,7 @@ public class ScenesTransitionManager : MonoBehaviour
     public void GoToOptions()
     {
         Time.timeScale = 1;
+        
         transition.TransitToScene(option);
     }
     public void GoToCredits()

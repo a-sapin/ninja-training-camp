@@ -10,9 +10,15 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public Animator animator;
     public AudioSource audioSourceInScene;
+    public ControllerInMenu controller;
     float transitionTime2 = 0.6f;
     private float exMenuKeyValue=0;
+    private PlayerLocomotion player;
     // Update is called once per frame
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerLocomotion>();
+    }
     void Update()
     {
        
@@ -34,6 +40,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume2Button()
     {
+        
         StartCoroutine(TimeTransitionButton());
     }
     public void ResumeEchapKey()
@@ -41,11 +48,15 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         GameIsPaused = false;
         audioSourceInScene.Play();
+        
     }
     void Paused()
     {
+        
         Time.timeScale = 0;
+        player.canMove = false;
         pauseMenuUI.SetActive(true);
+        controller.StartMove();
         GameIsPaused = true;
         audioSourceInScene.Pause();
         FindObjectOfType<VFXManager>().Pause("Movement");
@@ -58,6 +69,7 @@ public class PauseMenu : MonoBehaviour
         yield return new WaitForSecondsRealtime(transitionTime2);
         animator.SetTrigger("FadeOut");
         Time.timeScale = 1f;
+        player.canMove = true;
         GameIsPaused = false;
         audioSourceInScene.Play();
         yield return new WaitForSecondsRealtime(0.30f);
