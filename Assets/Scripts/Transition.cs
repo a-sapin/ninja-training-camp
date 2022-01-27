@@ -1,50 +1,42 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Transition : MonoBehaviour
 {
-    [Header("Optionnal particle system")] [SerializeField]
-    private new ParticleSystem particleSystem;
-
-    [SerializeField] private bool timeStoppedAtStart = true;
+    [SerializeField] private GameObject shurikenTransition;
+    public float TransitionTime { get; private set; }
 
     private void Start()
     {
-        transform.localPosition = new Vector3(-(Screen.width + 500), 0, 0);
-        StartCoroutine(FadeOut(timeStoppedAtStart));
+        TransitionTime = 1.2f;
+        shurikenTransition.SetActive(false);
+    }
+    public void TransitToScene(string sceneName)
+    {
+        IEnumerator loadScene = LoadScene(sceneName, TransitionTime);
+        StartCoroutine(loadScene);
+    }
+    public void TransitToCanvas(GameObject newCanvas,GameObject oldCanvas)
+    {
+        IEnumerator loadCanvas = LoadCanvas(newCanvas, oldCanvas, TransitionTime);
+        StartCoroutine(loadCanvas);
+    }
+    IEnumerator LoadCanvas(GameObject newCanvas, GameObject oldCanvas,float time)
+    {
+        shurikenTransition.SetActive(true);
+        yield return new WaitForSecondsRealtime(time);
+        newCanvas.SetActive(true);
+        oldCanvas.SetActive(false);
+        shurikenTransition.SetActive(false);
+    }
+    IEnumerator LoadScene(string sceneName,float time)
+    {
+        shurikenTransition.SetActive(true);
+        yield return new WaitForSecondsRealtime(time);
+        if(sceneName !=null)SceneManager.LoadScene(sceneName);
     }
 
-    IEnumerator AnimateTransition()
-    {
-        Time.timeScale = 0;
-        //Vector3 currentPos = transform.localPosition;
-        float t = 0f;
-        float posDiff = -(Screen.width + 500)/50;
-        while (t < 1)
-        {
-            t += 0.02f;
-            transform.localPosition += new Vector3(posDiff, 0, 0); //Vector3.Lerp(currentPos, new Vector3(-(Screen.width + 500), 0, 0), t);
-            //Debug.Log(transform.localPosition);
-            yield return new WaitForSecondsRealtime(0.01f);
-        }
-        
-    }
-    
-    IEnumerator FadeOut(Boolean timescale)
-    {
-        float t = 0f;
-        while (t < 1)
-        {
-            t += 0.02f;
-            transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1 - t);
-            yield return new WaitForSecondsRealtime(0.01f);
-        }
-        
-        transform.localPosition = new Vector3(0, 0, 0);
-        transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 1);
-        if (particleSystem != null) particleSystem.gameObject.SetActive(false);
-        if (!timescale) Time.timeScale = 1;
-    }
 }
