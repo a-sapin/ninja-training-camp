@@ -28,8 +28,9 @@ public class Transition : MonoBehaviour
     {
         shurikenTransition.SetActive(true);
         yield return new WaitForSecondsRealtime(time);
-        newCanvas.SetActive(true);
+        
         oldCanvas.SetActive(false);
+        newCanvas.SetActive(true);
         shurikenTransition.SetActive(false);
     }
     IEnumerator LoadScene(string sceneName,float time)

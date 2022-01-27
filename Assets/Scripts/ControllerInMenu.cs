@@ -29,16 +29,16 @@ public class ControllerInMenu : MonoBehaviour
                 currentPos = (currentPos - 1);
                 currentPos = (currentPos >= 0 ? currentPos : arrowPos.Length - 1);
                 arrow.transform.position = arrowPos[currentPos].transform.position;
-                if(Time.timeScale>0)
-                    yield return new WaitForSeconds(0.2f);
+                
+                yield return new WaitForSecondsRealtime(0.2f);
             }
             else if(Input.GetAxisRaw("Vertical") < -0.3)
             {
                 currentPos = (currentPos + 1) % arrowPos.Length;
                 Debug.Log(currentPos);
                 arrow.transform.position = arrowPos[currentPos].transform.position;
-                if (Time.timeScale > 0)
-                    yield return new WaitForSeconds(0.2f);
+      
+                yield return new WaitForSecondsRealtime(0.2f);
 
             }
             yield return null;

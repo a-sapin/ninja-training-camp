@@ -10,13 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public Animator animator;
     public AudioSource audioSourceInScene;
-
-    float transitionTime = 0.43f;
     float transitionTime2 = 0.6f;
-
-    int sceneID;
-    [SerializeField] private GameObject transition;
-
     private float exMenuKeyValue=0;
     // Update is called once per frame
     void Update()
@@ -59,24 +53,6 @@ public class PauseMenu : MonoBehaviour
         FindObjectOfType<VFXManager>().Pause("Dash");
         FindObjectOfType<VFXManager>().Pause("Grapple");
     }
-    public void LoadMenu()
-    {
-        sceneID = 1;
-        StartCoroutine(LoadLevel(sceneID));
-    }
-    public void QuitMenu()
-    {
-        Debug.Log("Quitting menu...");
-        Application.Quit();
-    }
-    IEnumerator LoadLevel(int levelID)
-    {
-        yield return new WaitForSecondsRealtime(transitionTime);
-        transition.SendMessage("AnimateTransition");
-        yield return new WaitForSecondsRealtime(0.75f);
-        SceneManager.LoadScene(levelID, LoadSceneMode.Single);
-    }
-
     IEnumerator TimeTransitionButton()
     {
         yield return new WaitForSecondsRealtime(transitionTime2);
