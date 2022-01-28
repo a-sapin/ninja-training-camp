@@ -8,10 +8,11 @@ public class ControllerInMenu : MonoBehaviour
     [SerializeField] GameObject arrow;
     [SerializeField] GameObject[] arrowPos;
     [SerializeField] Button[] linkedButton;
+    private IEnumerator move;
     int currentPos = 0;
     private void Start()
     {
-        StartCoroutine(nameof(ArrowMove));
+        StartMove();
     }
     void Update()
     {
@@ -19,6 +20,12 @@ public class ControllerInMenu : MonoBehaviour
         {
             linkedButton[currentPos].onClick.Invoke();
         }
+    }
+    public void StartMove()
+    {
+        if (move != null) StopCoroutine(move);
+        move = ArrowMove();
+        StartCoroutine(move);
     }
     IEnumerator ArrowMove()
     {
@@ -29,16 +36,16 @@ public class ControllerInMenu : MonoBehaviour
                 currentPos = (currentPos - 1);
                 currentPos = (currentPos >= 0 ? currentPos : arrowPos.Length - 1);
                 arrow.transform.position = arrowPos[currentPos].transform.position;
-                if(Time.timeScale>0)
-                    yield return new WaitForSeconds(0.2f);
+                
+                yield return new WaitForSecondsRealtime(0.2f);
             }
             else if(Input.GetAxisRaw("Vertical") < -0.3)
             {
                 currentPos = (currentPos + 1) % arrowPos.Length;
                 Debug.Log(currentPos);
                 arrow.transform.position = arrowPos[currentPos].transform.position;
-                if (Time.timeScale > 0)
-                    yield return new WaitForSeconds(0.2f);
+      
+                yield return new WaitForSecondsRealtime(0.2f);
 
             }
             yield return null;
