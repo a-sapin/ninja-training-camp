@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public Animator animator;
@@ -14,14 +13,14 @@ public class PauseMenu : MonoBehaviour
     float transitionTime2 = 0.6f;
     private float exMenuKeyValue=0;
     private PlayerLocomotion player;
-    // Update is called once per frame
+    
     private void Start()
     {
         player = FindObjectOfType<PlayerLocomotion>();
     }
+    
     void Update()
     {
-       
         if (Input.GetAxisRaw("Menu")>0 && exMenuKeyValue == 0)
         {
             if (GameIsPaused)
@@ -34,25 +33,22 @@ public class PauseMenu : MonoBehaviour
             {
                 Paused();
             }
-
         }
         exMenuKeyValue = Input.GetAxisRaw("Menu");
     }
+    
     public void Resume2Button()
     {
-        
         StartCoroutine(TimeTransitionButton());
     }
+    
     public void ResumeEchapKey()
     {
-        Time.timeScale = 1;
-        GameIsPaused = false;
-        audioSourceInScene.Play();
-        
+        StartCoroutine(RemovePauseCanvas());
     }
+    
     void Paused()
     {
-        
         Time.timeScale = 0;
         player.canMove = false;
         pauseMenuUI.SetActive(true);
@@ -64,17 +60,24 @@ public class PauseMenu : MonoBehaviour
         FindObjectOfType<VFXManager>().Pause("Dash");
         FindObjectOfType<VFXManager>().Pause("Grapple");
     }
+    
     IEnumerator TimeTransitionButton()
     {
         yield return new WaitForSecondsRealtime(transitionTime2);
         animator.SetTrigger("FadeOut");
-        Time.timeScale = 1f;
+        StartCoroutine(RemovePauseCanvas());
+    }
+
+    IEnumerator RemovePauseCanvas()
+    {
+        yield return new WaitForSecondsRealtime(0.30f);
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1;
         player.canMove = true;
         GameIsPaused = false;
         audioSourceInScene.Play();
-        yield return new WaitForSecondsRealtime(0.30f);
-        pauseMenuUI.SetActive(false);
     }
+    
     IEnumerator AnimationTimeWaitTransition()
     {
         yield return new WaitForSecondsRealtime(0.20f);

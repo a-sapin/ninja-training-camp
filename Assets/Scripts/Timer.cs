@@ -18,7 +18,8 @@ public class Timer : MonoBehaviour
     }
     internal static string IntToStringTime(int value)
     {
-        return (int)(value/100) + ":" + (value % 100);
+        TimeSpan time = TimeSpan.FromMilliseconds(value);
+        return time.ToString(@"mm\:ss\:fff");
     }
     public void StartTimer()
     {
@@ -42,7 +43,7 @@ public class Timer : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.001f);
             timerText.text = IntToStringTime(Time);
             Time++;
         }

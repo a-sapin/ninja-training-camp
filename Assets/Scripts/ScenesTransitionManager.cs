@@ -17,34 +17,27 @@ public class ScenesTransitionManager : MonoBehaviour
     }
     public void GoToMenu()
     {
-        Time.timeScale = 1;
         transition.TransitToScene(menu);
     }
     public void GoToOptions()
     {
-        Time.timeScale = 1;
-        
         transition.TransitToScene(option);
     }
     public void GoToCredits()
     {
-        Time.timeScale = 1;
         transition.TransitToScene(credits);
     }
     public void GoToLevelSelection()
     {
-        Time.timeScale = 1;
         transition.TransitToScene(selection);
     }
     public void GoToLevel(string level)
     {
-        Time.timeScale = 1;
         transition.TransitToScene(level);
     }
 
     public void Quit()
     {
-        Time.timeScale = 1;
         transition.TransitToScene(null);
         Invoke(nameof(DelayedQuit), transition.TransitionTime);
     }

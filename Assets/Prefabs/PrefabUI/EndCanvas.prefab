@@ -1546,6 +1546,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShurikenTransition
       objectReference: {fileID: 0}
+    - target: {fileID: 5907815944809897717, guid: f048d439335e5a6469ec5e7b02077aaa, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f048d439335e5a6469ec5e7b02077aaa, type: 3}
 --- !u!224 &5564216883550214266 stripped

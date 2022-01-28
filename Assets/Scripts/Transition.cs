@@ -38,6 +38,7 @@ public class Transition : MonoBehaviour
         shurikenTransition.SetActive(true);
         yield return new WaitForSecondsRealtime(time);
         if(sceneName !=null)SceneManager.LoadScene(sceneName);
+        Time.timeScale = 1;
     }
 
 }

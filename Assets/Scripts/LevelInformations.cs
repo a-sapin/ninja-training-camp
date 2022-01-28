@@ -46,7 +46,6 @@ public class LevelInformations : MonoBehaviour
     }
     public void CloseLevelInfo() {
         score.SetActive(false);
-
     }
 
 }
