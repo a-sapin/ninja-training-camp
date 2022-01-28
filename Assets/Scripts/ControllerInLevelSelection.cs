@@ -29,7 +29,7 @@ public class ControllerInLevelSelection : MonoBehaviour
             if ((Input.GetAxisRaw("Vertical") > 0.3 || Input.GetAxisRaw("Horizontal") > 0.3))
             {
                 if(currentPos == 0||
-                   (currentPos == 1 && PlayerPrefs.GetInt("Level2Finished", 0) > 0)
+                   (currentPos == 1 && PlayerPrefs.GetInt("Level1Finished", 0) > 0)
                    )
                 {
                     if (currentPos > 0) info.CloseLevelInfo();

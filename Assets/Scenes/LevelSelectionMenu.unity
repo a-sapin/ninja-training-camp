@@ -1811,6 +1811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a04726015a3723428ec75890b72e8e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelPrerequis: Level1
   level: Level2
 --- !u!1001 &1591427886
 PrefabInstance:
@@ -2192,6 +2193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a04726015a3723428ec75890b72e8e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelPrerequis: ' '
   level: Level1
 --- !u!1 &1842608639
 GameObject:

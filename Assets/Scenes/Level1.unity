@@ -284,7 +284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7507582941812319434, guid: 76957e45ba32e384e85f6ff010e4c703, type: 3}
       propertyPath: powerToRemove.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7507582941812319434, guid: 76957e45ba32e384e85f6ff010e4c703, type: 3}
       propertyPath: powerToRemove.Array.data[1]
