@@ -49,4 +49,31 @@ public abstract class State : ScriptableObject
     /// </summary>
     /// <param name="player">The player that is in this state.</param>
     public virtual void PhysicsUpdate(PlayerManager player) { }
+
+    /// <summary>
+    /// Determines the state to switch to depending on movement and dash input.
+    /// DOES NOT CHANGE THE STATE.
+    /// </summary>
+    /// <param name="player">The playerManager context.</param>
+    /// <param name="noDashInputNextState">State to return when trying to move, but not dashing.</param>
+    /// <param name="noMoveInputNextState">State to return when no move input is detected.</param>
+    /// <returns>The next state, either dashing, noDashInputNextState, or noMoveInputNextState</returns>
+    protected State CheckDashInput(PlayerManager player, State noDashInputNextState, State noMoveInputNextState)
+    {
+        if (player.GetInput().IsMoveInput())
+        {
+            if (player.GetInput().Dash() && player.HasDash())
+            {
+                return dashing; // dash state is higher priority, so return is called
+            }
+            else
+            {
+                return noDashInputNextState;
+            }
+        }
+        else
+        {
+            return noMoveInputNextState;
+        }
+    }
 }
