@@ -383,7 +383,8 @@ public class PlayerLocomotion : MonoBehaviour
         Vector2 angledMoveDir = Vector3.ProjectOnPlane(horizInput, groundNormal).normalized;
 
         // if velocity is less than max speed or opposite to the move direction
-        if (Mathf.Abs(rb.velocity.x) < maxVelocity || Mathf.Clamp(rb.velocity.x, -1f, 1f) == -moveDirection.x)
+        //TODO: slope movement can go over maxVelocity, fix it after testing
+        if (Mathf.Abs(rb.velocity.x) < maxVelocity || Mathf.Clamp(rb.velocity.x, -1f, 1f) == -horizInput.x)
         {
             rb.AddForce(angledMoveDir * accelerationMultiplier);
         }
