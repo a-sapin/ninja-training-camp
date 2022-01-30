@@ -21,13 +21,28 @@ public class InputManager : MonoBehaviour
         HandleGrapple();
     }
 
+    private bool jumpButtonHeld = false;
     /// <summary>
     /// Detects a jump button press, but not a hold.
     /// </summary>
     /// <returns> True if the button is pressed, false if it is held or released.</returns>
     public bool JumpButtonDown() 
     { 
-        return  0f < Input.GetAxis("Jump") && Input.GetAxis("Jump") < 1f; // input is rising
+        if(Input.GetAxisRaw("Jump") > 0f)
+        {
+            if (jumpButtonHeld)
+            {
+                return false;
+            }
+            else
+            {
+                jumpButtonHeld = true;
+                return true;
+            }
+        }
+        jumpButtonHeld = false;
+
+        return false;
     }
     public bool Jump() { return ReadButton("Jump"); }
     public bool Dash() { return ReadButton("Dash"); }
