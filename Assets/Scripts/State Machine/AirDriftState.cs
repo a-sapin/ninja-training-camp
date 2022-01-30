@@ -14,6 +14,10 @@ public class AirDriftState : AirbornState
             doubleJumpAvailable = true; // refresh DJ on land
             player.ChangeState(running);
         }
+        else
+        {
+            player.ChangeState(airdrift);
+        }
     }
 
     public override void LogicUpdate(PlayerManager player)
