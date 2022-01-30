@@ -27,11 +27,7 @@ public class GroundedState : State
             return;
         }
 
-        if (player.GetInput().IsMoveInput())
-        {
-            player.ChangeState(running);
-            return;
-        }
+        player.ChangeState(CheckDashInput(player, running, grounded));
     }
 
     public override void LogicUpdate(PlayerManager player)

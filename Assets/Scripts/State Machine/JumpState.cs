@@ -22,20 +22,8 @@ public class JumpState : AirDriftState
 
     public override void HandleInputs(PlayerManager player)
     {
-        if (player.GetInput().IsMoveInput())
-        {
-            if (player.GetInput().Dash() && player.HasDash())
-            {
-                player.ChangeState(dashing);
-                return; // dash state is higher priority, so return is called
-            }
-        }
-        else
-        {
-            player.ChangeState(airborn);
-        }
-
-        // cannot double jump in this state, to avoid consuming double jump 
+        // cannot double jump in this state, to avoid consuming double jump
+        player.ChangeState(CheckDashInput(player, airdrift, airborn));
     }
 
     public override void LogicUpdate(PlayerManager player)

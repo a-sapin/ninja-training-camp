@@ -16,24 +16,6 @@ public class AirDriftState : AirbornState
         }
     }
 
-    public override void HandleInputs(PlayerManager player)
-    {
-        if (player.GetInput().IsMoveInput())
-        {
-            if (player.GetInput().Dash() && player.HasDash())
-            {
-                player.ChangeState(dashing);
-                return; // dash state is higher priority, so return is called
-            }
-        }
-        else
-        {
-            player.ChangeState(airborn);
-        }
-
-        DoubleJumpLogic(player);
-    }
-
     public override void LogicUpdate(PlayerManager player)
     {
 

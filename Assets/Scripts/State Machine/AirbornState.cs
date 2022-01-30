@@ -19,11 +19,8 @@ public class AirbornState : State
     {
         DoubleJumpLogic(player);
 
-        if (player.GetInput().IsMoveInput())
-        {
-            player.ChangeState(airdrift);
-            return;
-        }
+        player.ChangeState(CheckDashInput(player, airdrift, airborn));
+
     }
 
     public override void LogicUpdate(PlayerManager player)
