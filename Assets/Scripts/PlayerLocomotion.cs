@@ -79,7 +79,7 @@ public class PlayerLocomotion : MonoBehaviour
     void Update()
     {
         SetAnimation(inputDirection);
-        DetectGround();
+        /*DetectGround();
 
         isInputingMove = !moveDirection.Equals(Vector2.zero); 
 
@@ -91,19 +91,19 @@ public class PlayerLocomotion : MonoBehaviour
         {
             holdingJump = false;
             wantsToJump = false;
-        }
+        }*/
            
     }
 
     private void FixedUpdate()
-    {
+    {/*
         inputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), 0);
         float delta = Time.fixedDeltaTime;
         ApplyGravity();
         ApplyMovement();
         TryToJump();
-        HandleDashing(delta);
+        HandleDashing(delta);*/
     }
 
     // TODO: ladder climb animation
