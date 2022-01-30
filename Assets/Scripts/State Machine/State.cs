@@ -62,7 +62,7 @@ public abstract class State : ScriptableObject
     {
         if (player.GetInput().IsMoveInput())
         {
-            if (player.GetInput().Dash() && player.HasDash())
+            if (player.GetInput().Dash() && player.CanDash())
             {
                 return dashing; // dash state is higher priority, so return is called
             }
