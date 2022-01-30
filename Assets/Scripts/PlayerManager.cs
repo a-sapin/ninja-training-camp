@@ -54,6 +54,27 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private bool canDash = true;
+    public bool CanDash()
+    {
+        if (!hasDashPower)
+            return false; // no dash power, no need to calculate cooldown
+
+        if (canDash)
+        {
+            StartCoroutine(StartDashCooldown());
+            return true;
+        }
+        return false;
+    }
+
+    private IEnumerator StartDashCooldown()
+    {
+        canDash = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
+
     void Start()
     {
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
