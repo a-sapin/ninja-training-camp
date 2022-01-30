@@ -44,7 +44,7 @@ public class InputManager : MonoBehaviour
 
         return false;
     }
-    public bool Jump() { return ReadButton("Jump"); }
+    public bool Jump() { jumpButtonHeld = true;  return ReadButton("Jump"); }
     public bool Dash() { return ReadButton("Dash"); }
     public Vector2 Move() { return moveInput; }
 
