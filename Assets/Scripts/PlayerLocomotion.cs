@@ -413,14 +413,22 @@ public class PlayerLocomotion : MonoBehaviour
         rb.AddForce(Vector2.up * jumpForceMultiplier * relativeDoubleJumpForceMultiplier, ForceMode2D.Impulse);
     }
 
-    public void StartDash()
-    {
+    public Vector2 GetVelocity() { return rb.velocity; }
+    public void SetVelocity(Vector2 vel) { rb.velocity = vel; }
 
+    public void StartDash(Vector2 dashDir)
+    {
+        rb.AddForce(dashDir * dashSpeedGain, ForceMode2D.Impulse);
     }
 
     public void EndDash()
     {
+        float subtractedVelMagnitude = rb.velocity.magnitude - dashSpeedGain;
+        if (subtractedVelMagnitude < maxVelocity)
+            subtractedVelMagnitude = maxVelocity;
 
+        // reduce velocity by the speed gained during the dash (but keep a minimum speed of maxVelocity)
+        rb.velocity = rb.velocity.normalized * subtractedVelMagnitude;
     }
 
     #endregion
