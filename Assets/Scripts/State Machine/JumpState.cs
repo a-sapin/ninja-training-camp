@@ -23,7 +23,7 @@ public class JumpState : AirDriftState
     public override void HandleInputs(PlayerManager player)
     {
         // cannot double jump in this state, to avoid consuming double jump
-        player.ChangeState(CheckDashInput(player, airdrift, airborn));
+        player.ChangeState(CheckDashInput(player, jumping, jumping));
     }
 
     public override void LogicUpdate(PlayerManager player)
