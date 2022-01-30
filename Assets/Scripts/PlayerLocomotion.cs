@@ -390,6 +390,14 @@ public class PlayerLocomotion : MonoBehaviour
         }
     }
 
+    public void ApplySlideFriction()
+    {
+        if (rb.velocity.x > maxVelocity * 1.08f)
+        {
+            rb.AddForce(-rb.velocity * counterForceMult); // slow down
+        }
+    }
+
     public void SlowDown()
     {
         if (rb.velocity.magnitude > 0.05f)

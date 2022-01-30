@@ -28,5 +28,6 @@ public class RunState : GroundedState
     public override void PhysicsUpdate(PlayerManager player)
     {
         player.GetLocomotion().RunTowards(player.GetInput().Move());
+        player.GetLocomotion().ApplySlideFriction();
     }
 }
