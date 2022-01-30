@@ -40,6 +40,7 @@ public class AirbornState : State
         {
             doubleJumpAvailable = false;
             player.GetLocomotion().DoubleJump();
+            Debug.Log("DJ **********");
         }
     }
 }
