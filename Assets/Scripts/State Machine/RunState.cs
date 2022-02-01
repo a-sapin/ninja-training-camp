@@ -22,7 +22,7 @@ public class RunState : GroundedState
 
     public override void LogicUpdate(PlayerManager player)
     {
-
+        player.SetAnimRun(IsInputingRight(player));
     }
 
     public override void PhysicsUpdate(PlayerManager player)
