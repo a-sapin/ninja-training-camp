@@ -76,4 +76,16 @@ public abstract class State : ScriptableObject
             return noMoveInputNextState;
         }
     }
+
+    protected bool IsInputingRight(PlayerManager player)
+    {
+        if(player.GetInput().Move().x > 0f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
