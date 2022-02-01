@@ -32,7 +32,7 @@ public class GroundedState : State
 
     public override void LogicUpdate(PlayerManager player)
     {
-        
+        player.SetAnimIdle();
     }
 
     public override void PhysicsUpdate(PlayerManager player)
