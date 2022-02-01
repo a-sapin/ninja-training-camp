@@ -22,7 +22,7 @@ public class AirDriftState : AirbornState
 
     public override void LogicUpdate(PlayerManager player)
     {
-
+        player.SetAnimRun(IsInputingRight(player)); // TODO: add falling anim
     }
 
     public override void PhysicsUpdate(PlayerManager player)
