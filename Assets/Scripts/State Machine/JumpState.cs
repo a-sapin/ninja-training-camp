@@ -28,6 +28,6 @@ public class JumpState : AirDriftState
 
     public override void LogicUpdate(PlayerManager player)
     {
-
+        // TODO: add jump anim (jumpsquat?)
     }
 }
