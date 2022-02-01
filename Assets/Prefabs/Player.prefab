@@ -682,6 +682,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362164b6ac6e99643a71a18cf412161e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: {fileID: 0}
+  myAnimator: {fileID: 347208655329130541}
+  hasDashPower: 1
+  hasDoubleJumpPower: 1
+  hasGrapplePower: 1
+  dashCooldown: 1
+  dashDuration: 0.2
 --- !u!114 &5409001243050288736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,6 +723,7 @@ MonoBehaviour:
   groundDetectionDistance: 1.1
   refreshDoubleJumpOnLadder: 1
   refreshGrappleOnLadder: 1
+  groundDetectCircleRadius: 0.35
 --- !u!114 &8223631209164994103
 MonoBehaviour:
   m_ObjectHideFlags: 0
