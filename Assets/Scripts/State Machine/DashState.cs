@@ -15,17 +15,24 @@ public class DashState : AirDriftState
         base.Enter(player);
         dashDirection = new Vector2(player.GetInput().Move().x, 0f); // save horizontal player input
         dashDirection.Normalize();
+
+        player.SetAnimIdle();
+        player.SetAnimDashTo(true); // start dash animation
+
+        // TODO: do we really need this?
+        /*
         horizontalVelocity = player.GetLocomotion().GetVelocity().x; // save player horizontal velocity as they start dashing
         if(horizontalVelocity > player.GetLocomotion().maxVelocity)
         {
             horizontalVelocity = player.GetLocomotion().maxVelocity; // clamp velocity to max
-        }
+        }*/
         player.GetLocomotion().StartDash(dashDirection);
     }
 
     public override void Exit(PlayerManager player)
     {
         player.GetLocomotion().EndDash();
+        player.SetAnimDashTo(false); // end dashing animation
     }
 
     public override void HandleSurroundings(PlayerManager player)
