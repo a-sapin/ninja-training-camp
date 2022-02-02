@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -13,10 +11,13 @@ public class PauseMenu : MonoBehaviour
     float transitionTime2 = 0.6f;
     private float exMenuKeyValue=0;
     private PlayerLocomotion player;
+
+    private Timer timer;
     
     private void Start()
     {
         player = FindObjectOfType<PlayerLocomotion>();
+        timer = FindObjectOfType<Timer>();
     }
     
     void Update()
@@ -55,10 +56,13 @@ public class PauseMenu : MonoBehaviour
         controller.StartMove();
         GameIsPaused = true;
         audioSourceInScene.Pause();
-        FindObjectOfType<VFXManager>().Pause("Movement");
-        FindObjectOfType<VFXManager>().Pause("Jump");
-        FindObjectOfType<VFXManager>().Pause("Dash");
-        FindObjectOfType<VFXManager>().Pause("Grapple");
+        VFXManager vfxManager = FindObjectOfType<VFXManager>();
+        vfxManager.Pause("Movement");
+        vfxManager.Pause("Jump");
+        vfxManager.Pause("Dash");
+        vfxManager.Pause("Grapple");
+        
+        timer.SendMessage("displayPowerDesc");
     }
     
     IEnumerator TimeTransitionButton()
@@ -70,6 +74,7 @@ public class PauseMenu : MonoBehaviour
 
     IEnumerator RemovePauseCanvas()
     {
+        timer.SendMessage("hidePowerDesc");
         yield return new WaitForSecondsRealtime(0.30f);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;

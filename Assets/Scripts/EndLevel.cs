@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +37,7 @@ public class EndLevel : MonoBehaviour
     }
     public void DisplayEnd()
     {
+        timer.PauseTimer();
         player.canMove = false;
         transition.TransitToCanvas(endUI, competencesCanvas);
         PlayerPrefs.SetInt(currentLevel + "Finished", 1);
@@ -50,9 +49,6 @@ public class EndLevel : MonoBehaviour
         silver.SetActive(timer.Time < PlayerPrefs.GetInt(currentLevel + "Silver", 6000));
         bronze.SetActive(timer.Time < PlayerPrefs.GetInt(currentLevel + "Bronze", 12000));
        
-        
-        timer.PauseTimer();
-        
         score.text = Timer.IntToStringTime(timer.Time);
     }
     public void DisplayDashLost()

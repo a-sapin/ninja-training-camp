@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using UnityEngine;
-
 
 [Serializable]public enum Power {Dash,DoubleJump,Grapple}
 
@@ -44,8 +42,6 @@ public class PowerRemover : MonoBehaviour
             case Power.Grapple:
                 endLevel.DisplayGrappleLost();
                 player.RemoveGrapple();
-                break;
-            default:
                 break;
         }
         Invoke(nameof(ResetPlayerPos), 1f);

@@ -1,16 +1,16 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
     
-    [Header("Timer")] 
     [SerializeField] private Text timerText;
     public int Time { get; private set; }
     IEnumerator timer;
+
+    [SerializeField] private GameObject powerText1, powerText2, powerText3; 
 
     private void Start()
     {
@@ -39,7 +39,7 @@ public class Timer : MonoBehaviour
         StartCoroutine(timer);
     }
 
-    IEnumerator calculTime()
+    private IEnumerator calculTime()
     {
         while (true)
         {
@@ -47,6 +47,25 @@ public class Timer : MonoBehaviour
             timerText.text = IntToStringTime(Time);
             Time++;
         }
+    }
+
+    public void displayPowerDesc()
+    {
+        powerText1.SetActive(true);
+        powerText2.SetActive(true);
+        powerText3.SetActive(true);
+    }
+
+    public IEnumerator hidePowerDesc()
+    {
+        powerText1.GetComponent<Animator>().SetTrigger("FadeOut");
+        powerText2.GetComponent<Animator>().SetTrigger("FadeOut");
+        powerText3.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSecondsRealtime(0.2f);
+        
+        powerText1.SetActive(false);
+        powerText2.SetActive(false);
+        powerText3.SetActive(false);
     }
     
 }
