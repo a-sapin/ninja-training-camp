@@ -86,6 +86,7 @@ public class GrappleTest : MonoBehaviour
         {
             if (!isGrappling)
             {
+                FindObjectOfType<VFXManager>().Play("Grapple");
                 grapplingGun.Grapple();
                 isGrappling = true;
             }

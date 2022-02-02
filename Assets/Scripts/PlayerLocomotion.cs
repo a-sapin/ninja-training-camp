@@ -175,6 +175,7 @@ public class PlayerLocomotion : MonoBehaviour
             holdingJump = true;
             isUsingLadder = false; // stop climbing ladder when jump is input
             isCloseToLadder = false; // allow a single jump when close to ladder
+            FindObjectOfType<VFXManager>().Stop("Movement");
             FindObjectOfType<VFXManager>().Play("Jump");
         }
 
