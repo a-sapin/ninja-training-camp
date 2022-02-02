@@ -77,7 +77,7 @@ public class PlayerLocomotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetAnimation(inputDirection);
+        //SetAnimation(inputDirection);
         /*DetectGround();
 
         isInputingMove = !moveDirection.Equals(Vector2.zero); 
