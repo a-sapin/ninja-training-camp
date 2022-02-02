@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: FallingRockSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 6cec49b8cf82b834796bd3479d5f6250, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41de7339f181b2a4c860a9d26b750120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rockGameObject: {fileID: 4373904304794307905, guid: b6d81519ed2ef004188880126bb70af3, type: 3}
+  timeBetweenSpawns: 5

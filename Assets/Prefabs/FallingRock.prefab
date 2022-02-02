@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4283997456654441177}
   - component: {fileID: 2582059344156015362}
   - component: {fileID: 3316902073938509988}
-  - component: {fileID: 330605611}
-  - component: {fileID: -650629237787016292}
+  - component: {fileID: 6537741647844487175}
+  - component: {fileID: 7074306843017350568}
   m_Layer: 0
   m_Name: FallingRock
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4373904304794307905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7eebcf55cc31c114683c1c440d842b1e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4169d9a094f68d1438c1f9fe03aef3bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   blastZoneYLevel: -50
   knockbackDuration: 1
   knockbackForce: 0.01
---- !u!50 &330605611
+--- !u!50 &6537741647844487175
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -114,15 +114,15 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 9999
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &-650629237787016292
-BoxCollider2D:
+--- !u!58 &7074306843017350568
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -135,15 +135,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.22, y: 0.72}
-    newSize: {x: 1.22, y: 0.72}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.22, y: 0.72}
-  m_EdgeRadius: 0
+  m_Radius: 0.12
