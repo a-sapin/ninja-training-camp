@@ -16,7 +16,7 @@ public class DashState : AirDriftState
         dashDirection = new Vector2(player.GetInput().Move().x, 0f); // save horizontal player input
         dashDirection.Normalize();
 
-        player.SetAnimIdle();
+        player.SetAnimRun(IsInputingRight(player)); // dashL anim is played if runLeft bool is true
         player.SetAnimDashTo(true); // start dash animation
 
         // TODO: do we really need this?
