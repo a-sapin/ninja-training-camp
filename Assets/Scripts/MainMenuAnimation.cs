@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class MainMenuAnimator : MonoBehaviour
+public class MainMenuAnimation : MonoBehaviour
 {
     [Header("Torii")] [SerializeField] private RawImage torii;
     [SerializeField] private Texture2D torii_flat;
@@ -22,10 +20,9 @@ public class MainMenuAnimator : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        torii.color = new Color(1, 1, 1, 0);
         title.color = new Color(1, 1, 1, 0);
-        player.transform.localPosition = new Vector3(1100,-400,0);
-        player.texture = dash;
+        player.transform.localPosition = new Vector3(550,-178,0);
+        player.GetComponent<RawImage>().texture = dash;
         StartCoroutine(TitleAnimator());
         StartCoroutine(ToriiAnimator());
         StartCoroutine(PlayerAnimator());
@@ -33,7 +30,6 @@ public class MainMenuAnimator : MonoBehaviour
 
     IEnumerator TitleAnimator()
     {
-        yield return new WaitForSecondsRealtime(1.5f);
         byte t = 0;
         while (t < 255)
         {
@@ -67,14 +63,6 @@ public class MainMenuAnimator : MonoBehaviour
 
     IEnumerator ToriiAnimator()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
-        byte t = 0;
-        while (t < 255)
-        {
-            torii.color = new Color32(255, 255, 255, t);
-            t ++;
-            yield return new WaitForSecondsRealtime(0.0001f);
-        }
         int i = 1;
         while (true)
         {
@@ -105,13 +93,13 @@ public class MainMenuAnimator : MonoBehaviour
     IEnumerator PlayerAnimator()
     {
         int t = 0;
-        while (t<64)
+        while (t<150)
         {
-            player.transform.localPosition -= Vector3.right * 8;
+            player.transform.localPosition -= Vector3.right * 2;
             t++;
-            yield return new WaitForSecondsRealtime(0.00025f);
+            yield return new WaitForSecondsRealtime(0.001f);
         }
-        player.transform.localPosition = new Vector3(386,-400,0);
+        player.transform.localPosition = new Vector3(191,-178,0);
         player.GetComponent<RawImage>().texture = defaultPlayer;
     }
 }

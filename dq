@@ -1,0 +1,224 @@
+warning: LF will be replaced by CRLF in Assets/Scenes/Level1.unity.
+The file will have its original line endings in your working directory
+[1mdiff --git a/Assets/Scenes/Level1.unity b/Assets/Scenes/Level1.unity[m
+[1mindex 46a40a6..cbbeb4e 100644[m
+[1m--- a/Assets/Scenes/Level1.unity[m
+[1m+++ b/Assets/Scenes/Level1.unity[m
+[36m@@ -196,7 +196,7 @@[m [mPrefabInstance:[m
+       objectReference: {fileID: 0}[m
+     - target: {fileID: 8223631209164994103, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}[m
+       propertyPath: blastZoneYLevel[m
+[31m-      value: -30[m
+[32m+[m[32m      value: -26[m
+       objectReference: {fileID: 0}[m
+     - target: {fileID: 8223631209164994103, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}[m
+       propertyPath: respawnLocation[m
+[36m@@ -451,7 +451,7 @@[m [mTilemap:[m
+   m_GameObject: {fileID: 95498301}[m
+   m_Enabled: 1[m
+   m_Tiles:[m
+[31m-  - first: {x: -11, y: -20, z: 0}[m
+[32m+[m[32m  - first: {x: -11, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 3[m
+[36m@@ -461,7 +461,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -10, y: -20, z: 0}[m
+[32m+[m[32m  - first: {x: -10, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 3[m
+[36m@@ -471,7 +471,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -9, y: -20, z: 0}[m
+[32m+[m[32m  - first: {x: -9, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 3[m
+[36m@@ -481,7 +481,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -8, y: -20, z: 0}[m
+[32m+[m[32m  - first: {x: -8, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 3[m
+[36m@@ -491,7 +491,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -7, y: -20, z: 0}[m
+[32m+[m[32m  - first: {x: -7, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 3[m
+[36m@@ -501,7 +501,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -6, y: -20, z: 0}[m
+[32m+[m[32m  - first: {x: -6, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 3[m
+[36m@@ -511,7 +511,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -5, y: -20, z: 0}[m
+[32m+[m[32m  - first: {x: -5, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 3[m
+[36m@@ -521,7 +521,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -11, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 14, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 2[m
+[36m@@ -531,7 +531,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -10, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 15, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 2[m
+[36m@@ -541,7 +541,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -9, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 16, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 2[m
+[36m@@ -551,7 +551,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -8, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 17, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 2[m
+[36m@@ -561,7 +561,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -7, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 18, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 2[m
+[36m@@ -571,7 +571,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -6, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 19, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 2[m
+[36m@@ -581,7 +581,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: -5, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 27, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 2[m
+[36m@@ -591,17 +591,17 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: 14, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 28, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+[31m-      m_TileIndex: 2[m
+[31m-      m_TileSpriteIndex: 2[m
+[32m+[m[32m      m_TileIndex: 3[m
+[32m+[m[32m      m_TileSpriteIndex: 3[m
+       m_TileMatrixIndex: 0[m
+       m_TileColorIndex: 0[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: 15, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 29, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 2[m
+[36m@@ -611,17 +611,17 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: 16, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 30, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+[31m-      m_TileIndex: 2[m
+[31m-      m_TileSpriteIndex: 2[m
+[32m+[m[32m      m_TileIndex: 3[m
+[32m+[m[32m      m_TileSpriteIndex: 3[m
+       m_TileMatrixIndex: 0[m
+       m_TileColorIndex: 0[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: 17, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 31, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 2[m
+[36m@@ -631,17 +631,17 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: 18, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 32, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+[31m-      m_TileIndex: 2[m
+[31m-      m_TileSpriteIndex: 2[m
+[32m+[m[32m      m_TileIndex: 3[m
+[32m+[m[32m      m_TileSpriteIndex: 3[m
+       m_TileMatrixIndex: 0[m
+       m_TileColorIndex: 0[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: 19, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: 33, y: -33, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 2[m
+[36m@@ -651,7 +651,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: 27, y: -19, z: 0}[m
+[32m+[m[32m  - first: {x: -11, y: -32, z: 0}[m
+     second:[m
+       serializedVersion: 2[m
+       m_TileIndex: 2[m
+[36m@@ -661,17 +661,7 @@[m [mTilemap:[m
+       m_TileObjectToInstantiateIndex: 65535[m
+       dummyAlignment: 0[m
+       m_AllTileFlags: 1073741825[m
+[31m-  - first: {x: 28, y: -19, z: 0}[m
+[31m-    second:[m
+[31m-      serializedVersion: 2[m
+[31m-      m_TileIndex: 3

@@ -3,7 +3,6 @@
 public class PlayerLocomotion : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayerMask;
-    [SerializeField] private GrappleTest myGrapple;
     [SerializeReference] private Animator myAnimator;
 
     Rigidbody2D rb;
