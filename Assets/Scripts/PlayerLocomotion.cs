@@ -144,15 +144,18 @@ public class PlayerLocomotion : MonoBehaviour
                 rb.AddForce(angledMoveDir * accelerationMultiplier);
             }
         }
-        ApplyExternForce();
+        //ApplyExternForce();
         ApplyCounterForce();
     }
 
-    private void ApplyExternForce()
+    /// <summary>
+    /// Used when external actor or component applies an impulse force to the player.
+    /// </summary>
+    public void ApplyExternForce(Vector2 impulseForce)
     {
-        rb.AddForce(ExternForce, ForceMode2D.Impulse);
-        ExternForce = Vector2.zero;
+        rb.AddForce(impulseForce, ForceMode2D.Impulse);
     }
+
     private void TryToJump()
     {
         if (!canMove) return;
