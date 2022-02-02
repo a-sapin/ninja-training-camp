@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] State currentState;
     InputManager inputManager;
     [SerializeReference] Animator myAnimator;
+    VFXManager mySoundManager;
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
     [SerializeField] bool hasDashPower = false;
@@ -77,6 +78,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        mySoundManager = FindObjectOfType<VFXManager>();
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
         inputManager = GetComponent<InputManager>();
         currentState = State.grounded; // set a default state at the start
