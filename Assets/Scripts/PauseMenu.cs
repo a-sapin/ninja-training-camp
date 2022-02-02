@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
         timer = FindObjectOfType<Timer>();
     }
     
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetAxisRaw("Menu")>0 && exMenuKeyValue == 0)
         {
@@ -74,13 +74,13 @@ public class PauseMenu : MonoBehaviour
 
     IEnumerator RemovePauseCanvas()
     {
+        timer.SendMessage("hidePowerDesc");
         yield return new WaitForSecondsRealtime(0.30f);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
         player.canMove = true;
         GameIsPaused = false;
         audioSourceInScene.Play();
-        timer.SendMessage("hidePowerDesc");
     }
     
     IEnumerator AnimationTimeWaitTransition()

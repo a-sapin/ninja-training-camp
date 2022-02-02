@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     public int Time { get; private set; }
     IEnumerator timer;
 
-    [SerializeField] private Text powerText1, powerText2, powerText3; 
+    [SerializeField] private GameObject powerText1, powerText2, powerText3; 
 
     private void Start()
     {
@@ -51,16 +51,21 @@ public class Timer : MonoBehaviour
 
     public void displayPowerDesc()
     {
-        powerText1.enabled = true;
-        powerText2.enabled = true;
-        powerText3.enabled = true;
+        powerText1.SetActive(true);
+        powerText2.SetActive(true);
+        powerText3.SetActive(true);
     }
 
-    public void hidePowerDesc()
+    public IEnumerator hidePowerDesc()
     {
-        powerText1.enabled = false;
-        powerText2.enabled = false;
-        powerText3.enabled = false;
+        powerText1.GetComponent<Animator>().SetTrigger("FadeOut");
+        powerText2.GetComponent<Animator>().SetTrigger("FadeOut");
+        powerText3.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSecondsRealtime(0.2f);
+        
+        powerText1.SetActive(false);
+        powerText2.SetActive(false);
+        powerText3.SetActive(false);
     }
     
 }
