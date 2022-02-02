@@ -720,10 +720,10 @@ MonoBehaviour:
   counterForceMult: 10
   dashSpeedGain: 30
   ladderClimbSpeed: 0.15
-  groundDetectionDistance: 1.1
+  groundDetectionDistance: 1.3
   refreshDoubleJumpOnLadder: 1
   refreshGrappleOnLadder: 1
-  groundDetectCircleRadius: 0.35
+  groundDetectCircleRadius: 0.45
 --- !u!114 &8223631209164994103
 MonoBehaviour:
   m_ObjectHideFlags: 0
