@@ -66,7 +66,6 @@ public class GrapplingGun : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Mouse0) || isGrapplingWithPad)  //appeler lorsque le joueur maintien le clic gauche
         {
-         
             Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
             RotateGun(mousePos, true);  //utiliser pour avoir le vecteur joueur-clic
             

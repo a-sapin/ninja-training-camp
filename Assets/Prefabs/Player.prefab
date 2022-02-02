@@ -473,6 +473,7 @@ GameObject:
   - component: {fileID: 5409001243050288763}
   - component: {fileID: 5409001243050288767}
   - component: {fileID: 5409001243050288762}
+  - component: {fileID: 4181588388592163803}
   - component: {fileID: 5409001243050288736}
   - component: {fileID: 8223631209164994103}
   - component: {fileID: 7949534742956591096}
@@ -705,6 +706,25 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &4181588388592163803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409001243050288737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362164b6ac6e99643a71a18cf412161e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: {fileID: 0}
+  myAnimator: {fileID: 347208655329130541}
+  hasDashPower: 1
+  hasDoubleJumpPower: 1
+  hasGrapplePower: 1
+  dashCooldown: 1
+  dashDuration: 0.2
 --- !u!114 &5409001243050288736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,9 +756,10 @@ MonoBehaviour:
   counterForceMult: 10
   dashSpeedGain: 30
   ladderClimbSpeed: 0.15
-  groundDetectionDistance: 1.1
+  groundDetectionDistance: 1.3
   refreshDoubleJumpOnLadder: 1
   refreshGrappleOnLadder: 1
+  groundDetectCircleRadius: 0.45
 --- !u!114 &8223631209164994103
 MonoBehaviour:
   m_ObjectHideFlags: 0

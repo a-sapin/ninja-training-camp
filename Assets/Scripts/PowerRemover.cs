@@ -49,6 +49,7 @@ public class PowerRemover : MonoBehaviour
     }
     private void ResetPlayerPos()
     {
+    	FindObjectOfType<VFXManager>().StopAll(); // Stops all Animation Sound Effect
         player.ResetPlayerAndPosition(FindObjectOfType<BlastZone>().respawnLocation.transform.position);
     }
 }
