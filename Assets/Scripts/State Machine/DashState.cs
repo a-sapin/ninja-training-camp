@@ -18,7 +18,7 @@ public class DashState : AirDriftState
 
         player.SetAnimRun(IsInputingRight(player)); // dashL anim is played if runLeft bool is true
         player.SetAnimDashTo(true); // start dash animation
-
+        player.PlayDashSound();
         // TODO: do we really need this?
         /*
         horizontalVelocity = player.GetLocomotion().GetVelocity().x; // save player horizontal velocity as they start dashing

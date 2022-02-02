@@ -127,4 +127,18 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
+    #region Sound Effects
+
+    public void PlayJumpSound()
+    {
+        mySoundManager.Play("Jump");
+    }
+
+    public void PlayDashSound()
+    {
+        mySoundManager.Play("Dash");
+    }
+
+    #endregion
+
 }
