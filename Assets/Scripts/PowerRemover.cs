@@ -43,8 +43,6 @@ public class PowerRemover : MonoBehaviour
                 endLevel.DisplayGrappleLost();
                 player.RemoveGrapple();
                 break;
-            default:
-                break;
         }
         Invoke(nameof(ResetPlayerPos), 1f);
         currentIndex++;
