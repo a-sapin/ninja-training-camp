@@ -11,13 +11,16 @@ public class PauseMenu : MonoBehaviour
     float transitionTime2 = 0.6f;
     private float exMenuKeyValue=0;
     private PlayerLocomotion player;
+
+    private Timer timer;
     
     private void Start()
     {
         player = FindObjectOfType<PlayerLocomotion>();
+        timer = FindObjectOfType<Timer>();
     }
     
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetAxisRaw("Menu")>0 && exMenuKeyValue == 0)
         {
@@ -53,10 +56,13 @@ public class PauseMenu : MonoBehaviour
         controller.StartMove();
         GameIsPaused = true;
         audioSourceInScene.Pause();
-        FindObjectOfType<VFXManager>().Pause("Movement");
-        FindObjectOfType<VFXManager>().Pause("Jump");
-        FindObjectOfType<VFXManager>().Pause("Dash");
-        FindObjectOfType<VFXManager>().Pause("Grapple");
+        VFXManager vfxManager = FindObjectOfType<VFXManager>();
+        vfxManager.Pause("Movement");
+        vfxManager.Pause("Jump");
+        vfxManager.Pause("Dash");
+        vfxManager.Pause("Grapple");
+        
+        timer.SendMessage("displayPowerDesc");
     }
     
     IEnumerator TimeTransitionButton()
@@ -74,6 +80,7 @@ public class PauseMenu : MonoBehaviour
         player.canMove = true;
         GameIsPaused = false;
         audioSourceInScene.Play();
+        timer.SendMessage("hidePowerDesc");
     }
     
     IEnumerator AnimationTimeWaitTransition()

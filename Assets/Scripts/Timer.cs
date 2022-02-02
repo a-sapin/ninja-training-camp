@@ -6,10 +6,11 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     
-    [Header("Timer")] 
     [SerializeField] private Text timerText;
     public int Time { get; private set; }
     IEnumerator timer;
+
+    [SerializeField] private Text powerText1, powerText2, powerText3; 
 
     private void Start()
     {
@@ -38,7 +39,7 @@ public class Timer : MonoBehaviour
         StartCoroutine(timer);
     }
 
-    IEnumerator calculTime()
+    private IEnumerator calculTime()
     {
         while (true)
         {
@@ -46,6 +47,20 @@ public class Timer : MonoBehaviour
             timerText.text = IntToStringTime(Time);
             Time++;
         }
+    }
+
+    public void displayPowerDesc()
+    {
+        powerText1.enabled = true;
+        powerText2.enabled = true;
+        powerText3.enabled = true;
+    }
+
+    public void hidePowerDesc()
+    {
+        powerText1.enabled = false;
+        powerText2.enabled = false;
+        powerText3.enabled = false;
     }
     
 }
