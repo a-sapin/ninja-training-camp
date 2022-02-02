@@ -358,19 +358,20 @@ public class PlayerLocomotion : MonoBehaviour
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, groundDetectCircleRadius, Vector2.down,
             groundDetectionDistance - groundDetectCircleRadius, groundLayerMask);
         // subtract circle radius so the max distance to detect ground is still equal to groundDetectionDistance
-
+        Debug.DrawRay(transform.position, Vector2.down * groundDetectionDistance, Color.red, 0.02f);
 
         if (hit.collider != null)
         {
             groundNormal = hit.normal;
+            Debug.DrawRay(hit.point, groundNormal, Color.green, 0.02f);
             return true;
         }
         else
         {
             groundNormal = Vector2.up;
+            Debug.DrawRay(hit.point, groundNormal, Color.green, 0.02f);
             return false;
         }
-
     }
 
     public void ApplyFallAccel()
@@ -390,12 +391,13 @@ public class PlayerLocomotion : MonoBehaviour
         if (Mathf.Abs(rb.velocity.x) < maxVelocity || Mathf.Clamp(rb.velocity.x, -1f, 1f) == -horizInput.x)
         {
             rb.AddForce(angledMoveDir * accelerationMultiplier);
+            Debug.DrawRay(transform.position, angledMoveDir * accelerationMultiplier, Color.blue, 0.1f);
         }
     }
 
     public void ApplySlideFriction()
     {
-        if (rb.velocity.x > maxVelocity * 1.08f)
+        if (Mathf.Abs(rb.velocity.x) > maxVelocity * 1.08f) // TODO: remove magic number
         {
             rb.AddForce(-rb.velocity * counterForceMult); // slow down
         }
