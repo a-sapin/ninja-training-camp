@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeReference] private Animator myAnimator;
+    [SerializeField] private GrapplingGun grapple;
 
     Rigidbody2D rb;
     Vector2 moveDirection;
@@ -67,7 +70,7 @@ public class PlayerLocomotion : MonoBehaviour
         hasDashPower = true;
         hasDoubleJumpPower = true;
         hasGrapplePower = true;
-
+        canGrapple = true;
         dashCooldownTimer = 0.0f;
         isDashing = false;
     }
@@ -348,7 +351,6 @@ public class PlayerLocomotion : MonoBehaviour
             isCloseToLadder = false;
         }
     }
-
     #region State Machine
 
     [SerializeField] float groundDetectCircleRadius = 0.35f;
