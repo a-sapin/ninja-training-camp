@@ -42,7 +42,7 @@ public class BlastZone : MonoBehaviour
     public void RespawnPlayer()
     {
         isTransition = true;
-        StartCoroutine(Waiter());
+        Waiter();
         currentDeathCount++;
     }
 }

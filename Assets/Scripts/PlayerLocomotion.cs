@@ -448,4 +448,21 @@ public class PlayerLocomotion : MonoBehaviour
     }
 
     #endregion
+    
+    
+        public IEnumerator PlayerKnockback(float knockbackDuration, float knockbackPower, Vector2 knockbackDirection)
+        {
+            float timer = 0f;
+            grapple.StopGrappling();
+            while (knockbackDuration > timer)
+            {
+                canGrapple = false;
+                timer += Time.deltaTime;
+                rb.AddForce(new Vector2(knockbackDirection.x * -knockbackPower, knockbackDirection.y * -knockbackPower ));
+            }
+    
+            canGrapple = true;
+            yield return 0;
+        }
+
 }
