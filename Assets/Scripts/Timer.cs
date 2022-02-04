@@ -16,22 +16,26 @@ public class Timer : MonoBehaviour
     {
         RestartTimer();
     }
+    
     internal static string IntToStringTime(int value)
     {
         TimeSpan time = TimeSpan.FromMilliseconds(value);
-        return time.ToString(@"mm\:ss\:fff");
+        return time.ToString(@"mm\:ss\:ff");
     }
+    
     public void StartTimer()
     {
         Time = 0;
         timer = calculTime();
         StartCoroutine(timer);
     }
+    
     public float PauseTimer()
     {
         if (timer != null) StopCoroutine(timer);
         return Time;
     }
+    
     public void RestartTimer()
     {
         if (timer != null) StopCoroutine(timer);
@@ -62,7 +66,6 @@ public class Timer : MonoBehaviour
         powerText2.GetComponent<Animator>().SetTrigger("FadeOut");
         powerText3.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSecondsRealtime(0.2f);
-        
         powerText1.SetActive(false);
         powerText2.SetActive(false);
         powerText3.SetActive(false);
