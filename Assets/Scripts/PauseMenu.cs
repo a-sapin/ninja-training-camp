@@ -1,27 +1,27 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public Animator animator;
     public AudioSource audioSourceInScene;
-
-    float transitionTime = 0.43f;
+    public ControllerInMenu controller;
     float transitionTime2 = 0.6f;
-
-    int sceneID;
-    [SerializeField] private GameObject transition;
-
     private float exMenuKeyValue=0;
-    // Update is called once per frame
+    private PlayerLocomotion player;
+
+    private Timer timer;
+    
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerLocomotion>();
+        timer = FindObjectOfType<Timer>();
+    }
+    
     void Update()
     {
-       
         if (Input.GetAxisRaw("Menu")>0 && exMenuKeyValue == 0)
         {
             if (GameIsPaused)
@@ -34,59 +34,55 @@ public class PauseMenu : MonoBehaviour
             {
                 Paused();
             }
-
         }
         exMenuKeyValue = Input.GetAxisRaw("Menu");
     }
+    
     public void Resume2Button()
     {
         StartCoroutine(TimeTransitionButton());
     }
+    
     public void ResumeEchapKey()
     {
-        Time.timeScale = 1;
-        GameIsPaused = false;
-        audioSourceInScene.Play();
+        StartCoroutine(RemovePauseCanvas());
     }
+    
     void Paused()
     {
         Time.timeScale = 0;
+        player.canMove = false;
         pauseMenuUI.SetActive(true);
+        controller.StartMove();
         GameIsPaused = true;
         audioSourceInScene.Pause();
-        FindObjectOfType<VFXManager>().Pause("Movement");
-        FindObjectOfType<VFXManager>().Pause("Jump");
-        FindObjectOfType<VFXManager>().Pause("Dash");
-        FindObjectOfType<VFXManager>().Pause("Grapple");
+        VFXManager vfxManager = FindObjectOfType<VFXManager>();
+        vfxManager.Pause("Movement");
+        vfxManager.Pause("Jump");
+        vfxManager.Pause("Dash");
+        vfxManager.Pause("Grapple");
+        
+        timer.SendMessage("displayPowerDesc");
     }
-    public void LoadMenu()
-    {
-        sceneID = 1;
-        StartCoroutine(LoadLevel(sceneID));
-    }
-    public void QuitMenu()
-    {
-        Debug.Log("Quitting menu...");
-        Application.Quit();
-    }
-    IEnumerator LoadLevel(int levelID)
-    {
-        yield return new WaitForSecondsRealtime(transitionTime);
-        transition.SendMessage("AnimateTransition");
-        yield return new WaitForSecondsRealtime(0.75f);
-        SceneManager.LoadScene(levelID, LoadSceneMode.Single);
-    }
-
+    
     IEnumerator TimeTransitionButton()
     {
         yield return new WaitForSecondsRealtime(transitionTime2);
         animator.SetTrigger("FadeOut");
-        Time.timeScale = 1f;
-        GameIsPaused = false;
-        audioSourceInScene.Play();
+        StartCoroutine(RemovePauseCanvas());
+    }
+
+    IEnumerator RemovePauseCanvas()
+    {
+        timer.SendMessage("hidePowerDesc");
         yield return new WaitForSecondsRealtime(0.30f);
         pauseMenuUI.SetActive(false);
+        Time.timeScale = 1;
+        player.canMove = true;
+        GameIsPaused = false;
+        audioSourceInScene.Play();
     }
+    
     IEnumerator AnimationTimeWaitTransition()
     {
         yield return new WaitForSecondsRealtime(0.20f);

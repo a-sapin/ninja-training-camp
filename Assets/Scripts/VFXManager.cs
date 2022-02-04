@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class VFXManager : MonoBehaviour
 {
@@ -72,5 +71,14 @@ public class VFXManager : MonoBehaviour
             return;
         }
         s.source.Pause();
+    }
+
+    public void StopAll()
+    {
+        for(int i = 0; i < sounds.Length; i++)
+        {
+            SoundEffect s = sounds[i];
+            s.source.Stop();
+        }
     }
 }
