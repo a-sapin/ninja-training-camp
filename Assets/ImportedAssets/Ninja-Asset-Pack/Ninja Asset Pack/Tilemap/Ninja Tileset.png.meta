@@ -3731,27 +3731,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ninja Tileset_133
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 304
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 400bbe3dcf59ca910800000000000000
-      internalID: 1850018460062167044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Ninja Tileset_134
       rect:
         serializedVersion: 2
@@ -3794,31 +3773,6 @@ TextureImporter:
       bones: []
       spriteID: 5079edcd53a0a6fa0800000000000000
       internalID: -5806817543085713659
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ninja Tileset_136
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 272
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -3, y: -8}
-        - {x: -3, y: 8}
-        - {x: 4, y: 8}
-        - {x: 4, y: -8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: cfc30863ef9585e70800000000000000
-      internalID: 9104125595100396796
       vertices: []
       indices: 
       edges: []
