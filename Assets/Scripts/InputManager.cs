@@ -47,12 +47,12 @@ public class InputManager : MonoBehaviour
     public Vector2 Move() { return moveInput; }
 
     /// <summary>
-    /// Checks if the player is holding a move input.
+    /// Checks if the player is holding a horizontal move input.
     /// </summary>
     /// <returns>True when th input is held, False otherwise.</returns>
     public bool IsMoveInput()
     {
-        if (moveInput.sqrMagnitude > 0.001f) // sqrMagnitude is faster than .magnitude
+        if (Mathf.Abs(moveInput.x) > 0.01f)
             return true;
         else
             return false;
