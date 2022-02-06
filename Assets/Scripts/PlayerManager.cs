@@ -101,7 +101,6 @@ public class PlayerManager : MonoBehaviour
     public void Respawn()
     {
         myBlastZone.Respawn();
-        isActionable = true;
     }
 
     void Start()
