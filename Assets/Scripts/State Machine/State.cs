@@ -88,4 +88,19 @@ public abstract class State : ScriptableObject
             return false;
         }
     }
+
+    /// <summary>
+    /// Check if the player is holding the button / joystick
+    /// to point up.
+    /// </summary>
+    /// <param name="player"></param>
+    /// <returns>True if player is holding up, False otherwise.</returns>
+    protected bool IsInputLadder(PlayerManager player)
+    {
+        Vector2 input = player.GetInput().Move();
+        
+        // if holding diagonal, accept only diagonal close enough to y-axis than x axis.
+        // Also with minimum y input
+        return Mathf.Abs(input.y) >= Mathf.Abs(input.x) && Mathf.Abs(input.y) >= 0.2f; // TODO: magic numberrrrrrr
+    }
 }
