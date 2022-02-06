@@ -35,7 +35,15 @@ public class BlastZone : MonoBehaviour
     
     private void Waiter()
     {
-        playerLocomotion.ResetPlayerAndPosition(respawnLocation.transform.position);
+        Respawn();
         isTransition = false;
+    }
+
+    /// <summary>
+    /// Resets the player position to the respawnLocation
+    /// </summary>
+    public void Respawn()
+    {
+        playerLocomotion.ResetPlayerAndPosition(respawnLocation.transform.position);
     }
 }

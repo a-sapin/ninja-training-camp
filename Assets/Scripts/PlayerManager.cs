@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     InputManager inputManager;
     [SerializeReference] Animator myAnimator;
     VFXManager mySoundManager;
+    BlastZone myBlastZone; // handles the player respawning
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
     [SerializeField] bool hasDashPower = false;
@@ -76,10 +77,19 @@ public class PlayerManager : MonoBehaviour
         canDash = true;
     }
 
+    /// <summary>
+    /// Respawns the player to the current level's spawn point
+    /// </summary>
+    public void Respawn()
+    {
+        myBlastZone.Respawn();
+    }
+
     void Start()
     {
         mySoundManager = FindObjectOfType<VFXManager>();
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
+        myBlastZone = GetComponent<BlastZone>();
         inputManager = GetComponent<InputManager>();
         currentState = State.grounded; // set a default state at the start
     }
