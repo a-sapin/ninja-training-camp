@@ -7,7 +7,7 @@ public class PlayerLocomotion : MonoBehaviour
     Rigidbody2D rb;
     Vector3 groundNormal; // indicates the slope the player is on (equal to Vector2.up when airborn)
 
-    public bool isTouchingLadder;
+    [SerializeField] bool isTouchingLadder;
 
     public float gravityMultiplier = 1.0f;
     public float maxVelocity = 5.0f;
@@ -23,6 +23,7 @@ public class PlayerLocomotion : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        isTouchingLadder = false;
     }
 
     // Update is called once per frame
@@ -35,6 +36,8 @@ public class PlayerLocomotion : MonoBehaviour
     {
 
     }
+
+    public bool IsTouchingLadder() { return isTouchingLadder; }
 
     /// <summary>
     /// Used when external actor or component applies an impulse force to the player.
