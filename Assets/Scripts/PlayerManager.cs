@@ -90,6 +90,11 @@ public class PlayerManager : MonoBehaviour
         ChangeState(State.grounded); // force the grounded state to stop moving
     }
 
+    public void UnlockGameplayInput()
+    {
+        isActionable = true;
+    }
+
     /// <summary>
     /// Respawns the player to the current level's spawn point
     /// </summary>
