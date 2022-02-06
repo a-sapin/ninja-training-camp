@@ -26,6 +26,8 @@ public class PowerRemover : MonoBehaviour
 
     private void RemovePower()
     {
+        player.LockGameplayInput(); // disable player movement
+
         if (currentIndex >= powerToRemove.Length)
         {
             endLevel.DisplayEnd();
