@@ -7,7 +7,7 @@ public class PlayerLocomotion : MonoBehaviour
     Rigidbody2D rb;
     Vector3 groundNormal; // indicates the slope the player is on (equal to Vector2.up when airborn)
 
-    [SerializeField] bool isTouchingLadder;
+    GameObject currentLadderObject;
 
     public float gravityMultiplier = 1.0f;
     public float maxVelocity = 5.0f;
@@ -23,21 +23,9 @@ public class PlayerLocomotion : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        isTouchingLadder = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-            
-    }
-
-    private void FixedUpdate()
-    {
-
-    }
-
-    public bool IsTouchingLadder() { return isTouchingLadder; }
+    public bool IsTouchingLadder() { return currentLadderObject != null; }
 
     /// <summary>
     /// Used when external actor or component applies an impulse force to the player.
@@ -61,7 +49,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if (collision.gameObject.layer == ladderLayer)
         {
-            isTouchingLadder = true;
+            currentLadderObject = collision.gameObject;
         }
     }
 
@@ -70,7 +58,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if (collision.gameObject.layer == ladderLayer)
         {
-            isTouchingLadder = false;
+            currentLadderObject = null;
         }
     }
 
@@ -168,6 +156,19 @@ public class PlayerLocomotion : MonoBehaviour
 
         // reduce velocity by the speed gained during the dash (but keep a minimum speed of maxVelocity)
         rb.velocity = rb.velocity.normalized * subtractedVelMagnitude;
+    }
+
+    public float DistanceToLadder()
+    {
+        if (currentLadderObject != null)
+            return Vector2.Distance(currentLadderObject.transform.position, transform.position);
+        else
+            return 0f;
+    }
+
+    public void StopPlayer()
+    {
+        rb.velocity = Vector2.zero;
     }
 
     #endregion
