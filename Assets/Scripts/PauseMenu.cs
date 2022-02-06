@@ -10,13 +10,11 @@ public class PauseMenu : MonoBehaviour
     public ControllerInMenu controller;
     float transitionTime2 = 0.6f;
     private float exMenuKeyValue=0;
-    private PlayerLocomotion player;
 
     private Timer timer;
     
     private void Start()
     {
-        player = FindObjectOfType<PlayerLocomotion>();
         timer = FindObjectOfType<Timer>();
     }
     
@@ -51,7 +49,6 @@ public class PauseMenu : MonoBehaviour
     void Paused()
     {
         Time.timeScale = 0;
-        player.canMove = false;
         pauseMenuUI.SetActive(true);
         controller.StartMove();
         GameIsPaused = true;
@@ -78,7 +75,6 @@ public class PauseMenu : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.30f);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
-        player.canMove = true;
         GameIsPaused = false;
         audioSourceInScene.Play();
     }
