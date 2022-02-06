@@ -5,14 +5,9 @@ public class PlayerLocomotion : MonoBehaviour
     [SerializeField] private LayerMask groundLayerMask;
 
     Rigidbody2D rb;
-    Vector3 groundNormal;
-    public bool canMove;
-    public bool isTouchingLadder;
+    Vector3 groundNormal; // indicates the slope the player is on (equal to Vector2.up when airborn)
 
-    //POWERS BOOLEANS : Those booleans are used to let the code know whether the player is allowed to use some powers or not
-    bool hasDashPower;
-    bool hasDoubleJumpPower;
-    bool hasGrapplePower;
+    public bool isTouchingLadder;
 
     public float gravityMultiplier = 1.0f;
     public float maxVelocity = 5.0f;
@@ -22,21 +17,12 @@ public class PlayerLocomotion : MonoBehaviour
     public float counterForceMult = 1.0f;
     public float dashSpeedGain = 40.0f;
     public float ladderClimbSpeed = 1.0f;
-
     public float groundDetectionDistance = 1.0f;
-
-    public void RemoveDash() { hasDashPower = false; }
-    public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
-    public void RemoveGrapple() { hasGrapplePower = false; }
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        canMove = true;
-        hasDashPower = true;
-        hasDoubleJumpPower = true;
-        hasGrapplePower = true;
     }
 
     // Update is called once per frame
