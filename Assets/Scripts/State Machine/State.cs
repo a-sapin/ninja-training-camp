@@ -17,6 +17,7 @@ public abstract class State : ScriptableObject
     protected static AirDriftState airdrift = CreateInstance<AirDriftState>();
     protected static DashState dashing = CreateInstance<DashState>();
     protected static LadderClimbState ladderClimb = CreateInstance<LadderClimbState>();
+    protected static LadderGrabState ladderGrab = CreateInstance<LadderGrabState>();
 
     public virtual void Enter(PlayerManager player)
     {
