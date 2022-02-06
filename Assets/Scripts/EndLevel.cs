@@ -24,10 +24,10 @@ public class EndLevel : MonoBehaviour
 
     private Timer timer;
     private Transition transition;
-    private PlayerLocomotion player;
+    private PlayerManager playerManager;
     private void Start()
     {
-        player = FindObjectOfType<PlayerLocomotion>();
+        playerManager = FindObjectOfType<PlayerManager>();
         transition = FindObjectOfType<Transition>();
         timer = FindObjectOfType<Timer>();
         dashLost.SetActive(false);
@@ -38,7 +38,7 @@ public class EndLevel : MonoBehaviour
     public void DisplayEnd()
     {
         timer.PauseTimer();
-        player.canMove = false;
+        playerManager.LockGameplayInput(); // lock player when transition is playing
         transition.TransitToCanvas(endUI, competencesCanvas);
         PlayerPrefs.SetInt(currentLevel + "Finished", 1);
         if(PlayerPrefs.GetInt(currentLevel + "HighScore", 999999) > timer.Time)
@@ -53,7 +53,7 @@ public class EndLevel : MonoBehaviour
     }
     public void DisplayDashLost()
     {
-        player.canMove = false;
+        playerManager.LockGameplayInput();
         transition.TransitToCanvas(dashLost, competencesCanvas);
         dashUI.SetActive(false);
 
@@ -61,33 +61,30 @@ public class EndLevel : MonoBehaviour
     }
     private void HideDashLost()
     {
-        player.canMove = true;
         transition.TransitToCanvas(competencesCanvas, dashLost);
         Invoke(nameof(RestartTimer), 1.3f);
     }
     public void DisplayDoubleJumpLost()
     {
-        player.canMove = false;
+        playerManager.LockGameplayInput();
         transition.TransitToCanvas(doubleJumpLost, competencesCanvas);
         doubleJumpUI.SetActive(false);
         Invoke(nameof(HideDoubleJumpLost), lostTime);
     }
     private void HideDoubleJumpLost()
     {
-        player.canMove = true;
         transition.TransitToCanvas(competencesCanvas, doubleJumpLost);
         Invoke(nameof(RestartTimer), 1.3f);
     }
     public void DisplayGrappleLost()
     {
-        player.canMove = false;
+        playerManager.LockGameplayInput();
         transition.TransitToCanvas(grappleLost, competencesCanvas);
         grappleUI.SetActive(false);
         Invoke(nameof(HideGrappleLost), lostTime);
     }
     private void HideGrappleLost()
     {
-        player.canMove = true;
         transition.TransitToCanvas(competencesCanvas, grappleLost);
         Invoke(nameof(RestartTimer), 1.3f);
 
@@ -95,6 +92,7 @@ public class EndLevel : MonoBehaviour
     private void RestartTimer()
     {
         timer.RestartTimer();
+        playerManager.UnlockGameplayInput(); // player actionable when timer restarts
     }
 }
 
