@@ -103,6 +103,6 @@ public abstract class State : ScriptableObject
         
         // if holding diagonal, accept only diagonal close enough to y-axis than x axis.
         // Also with minimum y input
-        return Mathf.Abs(input.y) >= Mathf.Abs(input.x) && Mathf.Abs(input.y) >= 0.2f; // TODO: magic numberrrrrrr
+        return Mathf.Abs(input.y) > Mathf.Abs(input.x) && Mathf.Abs(input.y) >= 0.2f; // TODO: magic numberrrrrrr
     }
 }
