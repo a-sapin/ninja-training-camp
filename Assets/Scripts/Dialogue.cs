@@ -13,7 +13,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private Text textZone;
     [SerializeField] private GameObject sensei, player, canvas;
     [SerializeField] private DialoguePart[] dialogue;
-    private PlayerLocomotion playerLocomotion;
+    private PlayerManager playerManager;
 
     void Start()
     {
@@ -29,9 +29,9 @@ public class Dialogue : MonoBehaviour
     IEnumerator PlayDialogue(DialoguePart[] dialogue)
     {
         yield return new WaitForSecondsRealtime(0.05f);
-        playerLocomotion = FindObjectOfType<PlayerLocomotion>();
-        bool normalPlayerCanMove = playerLocomotion.canMove;
-        playerLocomotion.canMove = false;
+        playerManager = FindObjectOfType<PlayerManager>();
+        playerManager.LockGameplayInput(); // freeze player during dialogue
+        //lock
         int dialogueIndex = 0;
         canvas.SetActive(true);
         if(dialogue.Length > 0)
@@ -57,7 +57,7 @@ public class Dialogue : MonoBehaviour
             }
             yield return null;
         }
-        playerLocomotion.canMove = true;
+        playerManager.UnlockGameplayInput(); // once dialogue is done, let player move
         canvas.SetActive(false);
         Time.timeScale = 1;
     }
