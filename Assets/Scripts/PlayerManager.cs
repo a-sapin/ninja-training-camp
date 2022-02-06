@@ -37,6 +37,9 @@ public class PlayerManager : MonoBehaviour
     public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
     public void RemoveGrapple() { hasGrapplePower = false; }
 
+    // when false, the player is locked and cannot act
+    bool isActionable = true;
+
     /// <summary>
     /// Properly changes the state of the player by calling Exit() function 
     /// of the current state and Enter() function of the next state.
@@ -78,11 +81,22 @@ public class PlayerManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Careful using this, player must eventually be set
+    /// to actionable after this function is called.
+    /// </summary>
+    public void LockGameplayInput()
+    {
+        isActionable = false;
+        ChangeState(State.grounded); // force the grounded state to stop moving
+    }
+
+    /// <summary>
     /// Respawns the player to the current level's spawn point
     /// </summary>
     public void Respawn()
     {
         myBlastZone.Respawn();
+        isActionable = true;
     }
 
     void Start()
@@ -92,13 +106,17 @@ public class PlayerManager : MonoBehaviour
         myBlastZone = GetComponent<BlastZone>();
         inputManager = GetComponent<InputManager>();
         currentState = State.grounded; // set a default state at the start
+        isActionable = true;
     }
 
     void Update()
     {
-        currentState.HandleSurroundings(this);
-        currentState.HandleInputs(this);
-        currentState.LogicUpdate(this);
+        if (isActionable)
+        {
+            currentState.HandleSurroundings(this);
+            currentState.HandleInputs(this);
+            currentState.LogicUpdate(this);
+        }
     }
 
     void FixedUpdate()
