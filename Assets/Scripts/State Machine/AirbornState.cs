@@ -19,6 +19,12 @@ public class AirbornState : State
     {
         DoubleJumpLogic(player);
 
+        if (player.GetLocomotion().IsTouchingLadder() && IsInputLadder(player))
+        {
+            player.ChangeState(ladderGrab);
+            return;
+        }
+
         player.ChangeState(CheckDashInput(player, airdrift, airborn));
 
     }

@@ -27,6 +27,12 @@ public class GroundedState : State
             return;
         }
 
+        if (player.GetLocomotion().IsTouchingLadder() && IsInputLadder(player))
+        {
+            player.ChangeState(ladderGrab);
+            return;
+        }
+
         player.ChangeState(CheckDashInput(player, running, grounded));
     }
 
