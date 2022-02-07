@@ -43,7 +43,7 @@ public class PlayerLocomotion : MonoBehaviour
     public float accelerationMultiplier = 1.0f;
     public float jumpForceMultiplier = 10.0f;
     public float relativeDoubleJumpForceMultiplier = 0.75f; // is relative to jumpForceMultiplier
-    public float counterForceMult = 1.0f;
+    public float counterForceMult = 10000.0f;
     public float dashSpeedGain = 40.0f;
     public float ladderClimbSpeed = 1.0f;
 
@@ -407,7 +407,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void SlowDown()
     {
-        if (rb.velocity.magnitude > 0.05f)
+        if (rb.velocity.magnitude > 0.4f)
         {
             rb.AddForce(-rb.velocity * counterForceMult); // slow down
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PendulumSwing : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rigidbody2D;
+    //[SerializeField] private Rigidbody2D rigidbody2D;
     [SerializeField] [Range(-1,-0f)] [Tooltip("Angle Gauche maximal qui le swing peu aller")] float leftSwingRange;
     [SerializeField] [Range(0f,1)] [Tooltip("Angle Droit maximal qui le swing peu aller")]private float rightSwingRange;
     [SerializeField] [Range(0,1)] private float velocityMax;
