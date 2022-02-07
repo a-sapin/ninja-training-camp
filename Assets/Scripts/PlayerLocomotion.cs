@@ -7,7 +7,7 @@ public class PlayerLocomotion : MonoBehaviour
     Rigidbody2D rb;
     Vector3 groundNormal; // indicates the slope the player is on (equal to Vector2.up when airborn)
 
-    GameObject currentLadderObject;
+    Ladder currentLadderObject;
 
     public float gravityMultiplier = 1.0f;
     public float maxVelocity = 5.0f;
@@ -49,7 +49,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if (collision.gameObject.layer == ladderLayer)
         {
-            currentLadderObject = collision.gameObject;
+            currentLadderObject = collision.gameObject.GetComponent<Ladder>();
         }
     }
 
@@ -58,6 +58,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if (collision.gameObject.layer == ladderLayer)
         {
+            currentLadderObject.EnableTopPlatform();
             currentLadderObject = null;
         }
     }
