@@ -21,6 +21,7 @@ public class AirbornState : State
 
         if (player.GetLocomotion().IsTouchingLadder() && IsInputLadder(player))
         {
+            doubleJumpAvailable = true; // refresh DJ on ladder
             player.ChangeState(ladderGrab);
             return;
         }
@@ -42,11 +43,21 @@ public class AirbornState : State
 
     protected void DoubleJumpLogic(PlayerManager player)
     {
-        if (player.GetInput().JumpButtonDown() && doubleJumpAvailable && player.HasDoubleJump())
+        if (player.GetInput().JumpButtonDown())
         {
-            doubleJumpAvailable = false;
-            player.GetLocomotion().DoubleJump();
-            Debug.Log("DJ **********");
+            if (player.GetLocomotion().IsTouchingLadder())
+            {
+                doubleJumpAvailable = true;
+                player.ChangeState(jumping);
+                return;
+            }
+            else if (doubleJumpAvailable && player.HasDoubleJump())
+            {
+                doubleJumpAvailable = false;
+                player.GetLocomotion().DoubleJump();
+                Debug.Log("DJ **********");
+            }
         }
+        
     }
 }
