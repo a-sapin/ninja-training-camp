@@ -4,48 +4,67 @@ using UnityEngine;
 
 public class LadderGrabState : State
 {
-    float startDistance = 0f;
-
     public override void Enter(PlayerManager player)
     {
         base.Enter(player);
 
         // TODO: start of idle ladder animation
 
-        player.GetLocomotion().StopPlayer();
-        startDistance = player.GetLocomotion().DistanceToLadder();
     }
 
     public override void HandleSurroundings(PlayerManager player)
     {
-        if (player.GetLocomotion().TouchingLadder() == null)
+        if (!player.GetLocomotion().IsTouchingLadder()) // not touching ladder
         {
-            if (player.GetLocomotion().IsGrounded())
-            {
-                player.ChangeState(running);
-                return;
-            }
-            else
-            {
-                player.ChangeState(airdrift);
-                return;
-            }
+            player.ChangeState(MovementState(player));
+        }
+        else if (player.GetLocomotion().HorizDistanceToLadder() < 0.01f) // touching ladder and close enough
+        {
+            player.ChangeState(ladderClimb);
         }
     }
 
     public override void HandleInputs(PlayerManager player)
     {
-        // if holding up or down, climb ladder
+        if (player.GetInput().JumpButtonDown())
+        {
+            player.ChangeState(jumping);
+            return;
+        }
+
+        if (player.GetInput().IsMoveInput())
+        { // if holding left or right, release from ladder
+            player.ChangeState(MovementState(player));
+            return;
+        }
     }
 
     public override void LogicUpdate(PlayerManager player)
     {
-        // if is lerping, lerp
-        // otherwise move up, down or not at all
+        player.GetLocomotion().MoveToLadder(Time.deltaTime);
     }
 
     public override void PhysicsUpdate(PlayerManager player)
     {
-        // do we need this function?
+        player.GetLocomotion().StopPlayer();
     }
+
+    /// <summary>
+    /// Checks if the player is moving grounded or airborn for proper 
+    /// state transition.
+    /// </summary>
+    /// <param name="player"></param>
+    /// <returns>The state running or airdrift</returns>
+    protected State MovementState(PlayerManager player)
+    {
+        if (player.GetLocomotion().IsGrounded())
+        {
+            return running;
+        }
+        else
+        {
+            return airdrift;
+        }
+    }
+
 }
