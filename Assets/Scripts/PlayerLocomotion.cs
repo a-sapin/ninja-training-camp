@@ -188,11 +188,31 @@ public class PlayerLocomotion : MonoBehaviour
         }
     }
 
+    public void DisablePlatform()
+    {
+        // Cast a circle straight down.
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, groundDetectCircleRadius, Vector2.down,
+            groundDetectionDistance - groundDetectCircleRadius, groundLayerMask);
+        // subtract circle radius so the max distance to detect ground is still equal to groundDetectionDistance
+
+        if (hit.collider != null)
+        {
+            if(hit.collider.gameObject.TryGetComponent(out PlatformEffector2D effector))
+            {
+                effector.gameObject.GetComponentInParent<Ladder>().DisableTopPlatform();
+            }
+            
+        }
+    }
+
     public void ClimbLadder(Vector2 input, float delta)
     {
-        if (input.y < 0 && IsGrounded())
-            return; // dont let player climb down when too close to ground
-
+        if(IsGrounded())
+        {
+            ApplyFallAccel(); // make sure player doesn't float above ground
+            if(input.y < 0f)
+                return; // dont let player clip through ground
+        }
         Vector2 climbOffset = transform.position + (input.y * 10f * Vector3.up); 
         // 10f just to make sure the target is not reachable in a single update
         
