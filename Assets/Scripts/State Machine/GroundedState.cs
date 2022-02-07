@@ -21,6 +21,11 @@ public class GroundedState : State
 
     public override void HandleInputs(PlayerManager player)
     {
+        if (IsInputLadder(player) && player.GetInput().Move().y < 0) // if holding down
+        {
+            player.GetLocomotion().DisablePlatform(); // let player fall through platform is standing on one
+        }
+
         if (player.GetInput().Jump())
         {
             player.ChangeState(jumping);

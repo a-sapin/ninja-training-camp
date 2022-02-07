@@ -93,10 +93,10 @@ public abstract class State : ScriptableObject
 
     /// <summary>
     /// Check if the player is holding the button / joystick
-    /// to point up.
+    /// to point up or down.
     /// </summary>
     /// <param name="player"></param>
-    /// <returns>True if player is holding up, False otherwise.</returns>
+    /// <returns>True if player is holding up or down, False otherwise.</returns>
     protected bool IsInputLadder(PlayerManager player)
     {
         Vector2 input = player.GetInput().Move();
