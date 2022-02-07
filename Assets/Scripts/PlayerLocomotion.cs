@@ -190,6 +190,9 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void ClimbLadder(Vector2 input, float delta)
     {
+        if (input.y < 0 && IsGrounded())
+            return; // dont let player climb down when too close to ground
+
         Vector2 climbOffset = transform.position + (input.y * 10f * Vector3.up); 
         // 10f just to make sure the target is not reachable in a single update
         
