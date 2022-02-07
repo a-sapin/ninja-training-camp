@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,8 +26,11 @@ public class EndLevel : MonoBehaviour
     private Timer timer;
     private Transition transition;
     private PlayerLocomotion player;
+    private GameObject musicPlayer;
+    public AudioSource endMusicVictory;
     private void Start()
     {
+        musicPlayer = GameObject.Find("MusicPlayer");
         player = FindObjectOfType<PlayerLocomotion>();
         transition = FindObjectOfType<Transition>();
         timer = FindObjectOfType<Timer>();
@@ -39,6 +43,7 @@ public class EndLevel : MonoBehaviour
     {
         timer.PauseTimer();
         player.canMove = false;
+        musicPlayer.GetComponent<AudioSource>().Stop(); //Stop MusicPlayer in scene
         transition.TransitToCanvas(endUI, competencesCanvas);
         PlayerPrefs.SetInt(currentLevel + "Finished", 1);
         if(PlayerPrefs.GetInt(currentLevel + "HighScore", 999999) > timer.Time)
@@ -50,6 +55,7 @@ public class EndLevel : MonoBehaviour
         bronze.SetActive(timer.Time < PlayerPrefs.GetInt(currentLevel + "Bronze", 12000));
        
         score.text = Timer.IntToStringTime(timer.Time);
+        StartCoroutine(waitForMusicVictory());
     }
     public void DisplayDashLost()
     {
@@ -95,6 +101,11 @@ public class EndLevel : MonoBehaviour
     private void RestartTimer()
     {
         timer.RestartTimer();
+    }
+    IEnumerator waitForMusicVictory()
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
+        endMusicVictory.Play();
     }
 }
 
