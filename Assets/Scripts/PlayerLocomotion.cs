@@ -158,17 +158,42 @@ public class PlayerLocomotion : MonoBehaviour
         rb.velocity = rb.velocity.normalized * subtractedVelMagnitude;
     }
 
-    public float DistanceToLadder()
+    public float HorizDistanceToLadder()
     {
-        if (currentLadderObject != null)
-            return Vector2.Distance(currentLadderObject.transform.position, transform.position);
+        if (IsTouchingLadder())
+        {
+            // the position horizontally aligned with the ladder that is closest to player
+            Vector2 closestLadderMid = new Vector2(currentLadderObject.transform.position.x, transform.position.y);
+
+            return Vector2.Distance(closestLadderMid, transform.position);
+        }
         else
+        {
             return 0f;
+        }
     }
 
     public void StopPlayer()
     {
         rb.velocity = Vector2.zero;
+    }
+
+    [SerializeField] float ladderGrabSpeed = 1.0f;
+    public void MoveToLadder(float delta)
+    {
+        if (IsTouchingLadder())
+        {
+            Vector2 closestLadderMid = new Vector2(currentLadderObject.transform.position.x, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, closestLadderMid, ladderGrabSpeed * delta);
+        }
+    }
+
+    public void ClimbLadder(Vector2 input, float delta)
+    {
+        Vector2 climbOffset = transform.position + (input.y * 10f * Vector3.up); 
+        // 10f just to make sure the target is not reachable in a single update
+        
+        transform.position = Vector2.MoveTowards(transform.position, climbOffset, ladderClimbSpeed * delta);
     }
 
     #endregion
