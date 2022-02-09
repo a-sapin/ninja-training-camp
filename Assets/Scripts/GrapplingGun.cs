@@ -3,7 +3,7 @@ using UnityEngine;
 public class GrapplingGun : MonoBehaviour
 {
     [Header("Scripts Ref:")]
-    public GrappleTest grappleRope;
+    public GrappleBase grappleRope;
     public PlayerLocomotion playerRef;
 
     [Header("Layers Settings:")]
