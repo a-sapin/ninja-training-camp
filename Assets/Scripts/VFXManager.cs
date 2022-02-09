@@ -81,4 +81,13 @@ public class VFXManager : MonoBehaviour
             s.source.Stop();
         }
     }
+    
+    public void PauseAll()
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            SoundEffect s = sounds[i];
+            s.source.Pause();
+        }
+    } 
 }

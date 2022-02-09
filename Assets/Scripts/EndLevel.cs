@@ -55,7 +55,7 @@ public class EndLevel : MonoBehaviour
         bronze.SetActive(timer.Time < PlayerPrefs.GetInt(currentLevel + "Bronze", 12000));
        
         score.text = Timer.IntToStringTime(timer.Time);
-        StartCoroutine(waitForMusicVictory());
+        Invoke(nameof(waitForMusicVictory), 0.3f);
     }
     public void DisplayDashLost()
     {
@@ -102,9 +102,8 @@ public class EndLevel : MonoBehaviour
     {
         timer.RestartTimer();
     }
-    IEnumerator waitForMusicVictory()
+    private void waitForMusicVictory()
     {
-        yield return new WaitForSecondsRealtime(0.3f);
         endMusicVictory.Play();
     }
 }

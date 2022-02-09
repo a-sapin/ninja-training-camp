@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class PauseMenu : MonoBehaviour
     float transitionTime2 = 0.6f;
     private float exMenuKeyValue=0;
     private PlayerLocomotion player;
+    private VFXManager vfxManager;
+
+    private Transition transition;
 
     private Timer timer;
     
@@ -18,6 +22,8 @@ public class PauseMenu : MonoBehaviour
     {
         player = FindObjectOfType<PlayerLocomotion>();
         timer = FindObjectOfType<Timer>();
+        transition = FindObjectOfType<Transition>();
+        vfxManager = FindObjectOfType<VFXManager>();
     }
     
     void Update()
@@ -42,7 +48,12 @@ public class PauseMenu : MonoBehaviour
     {
         StartCoroutine(TimeTransitionButton());
     }
-    
+
+    public void RestartButton()
+    {
+        StartCoroutine(TimeTransitionButtonRestart());
+    }
+
     public void ResumeEchapKey()
     {
         StartCoroutine(RemovePauseCanvas());
@@ -56,12 +67,7 @@ public class PauseMenu : MonoBehaviour
         controller.StartMove();
         GameIsPaused = true;
         audioSourceInScene.Pause();
-        VFXManager vfxManager = FindObjectOfType<VFXManager>();
-        vfxManager.Pause("Movement");
-        vfxManager.Pause("Jump");
-        vfxManager.Pause("Dash");
-        vfxManager.Pause("Grapple");
-        
+        vfxManager.PauseAll(); //pause all vfxmanager SoundEffect
         timer.SendMessage("displayPowerDesc");
     }
     
@@ -87,5 +93,12 @@ public class PauseMenu : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.20f);
         pauseMenuUI.SetActive(false);
+    }
+
+    IEnumerator TimeTransitionButtonRestart()
+    {
+        yield return new WaitForSecondsRealtime(transitionTime2);
+        animator.SetTrigger("FadeOut");
+        transition.TransitToScene(SceneManager.GetActiveScene().name);
     }
 }
