@@ -59,7 +59,23 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private bool canGrapple = true;
+    public bool CanGrapple()
+    {
+        if (!hasGrapplePower)
+            return false;
+        else
+            return canGrapple;
+    }
+
+    public void SetCanGrapple(bool value) { canGrapple = value; }
+
     private bool canDash = true;
+    /// <summary>
+    /// Upon reading value to check if player is able to dash,
+    /// disable dash for the duration of cooldown.
+    /// </summary>
+    /// <returns>TRUE if player can dash, or FALSE if unable or cooling down.</returns>
     public bool CanDash()
     {
         if (!hasDashPower)
