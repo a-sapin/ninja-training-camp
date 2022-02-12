@@ -223,20 +223,27 @@ public class PlayerLocomotion : MonoBehaviour
 
     #endregion
     
-    
-        public IEnumerator PlayerKnockback(float knockbackDuration, float knockbackPower, Vector2 knockbackDirection)
+    // DONT USE THIS, IT WILL BE REMOVED
+    public IEnumerator PlayerKnockback(float knockbackDuration, float knockbackPower, Vector2 knockbackDirection)
+    {
+        float timer = 0f;
+        //grapple.StopGrappling();
+        while (knockbackDuration > timer) // BRO WHAT IS THIIIIIIIIIIIIIS
         {
-            float timer = 0f;
-            grapple.StopGrappling();
-            while (knockbackDuration > timer)
-            {
-                canGrapple = false;
-                timer += Time.deltaTime;
-                rb.AddForce(new Vector2(knockbackDirection.x * -knockbackPower, knockbackDirection.y * -knockbackPower ));
-            }
-    
-            canGrapple = true;
-            yield return 0;
+            // currently, what this does is apply a force over a single frame. This loop is never paused until the next frame
+            // so all the force is applied at once. Also, multiplying x and y components by a scalar is kinda strange, 
+            // since you can simply multiply a vector by a scalar and get the same result.
+
+            //canGrapple = false;
+            timer += Time.deltaTime; // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            rb.AddForce(new Vector2(knockbackDirection.x * -knockbackPower, knockbackDirection.y * -knockbackPower ));
+            // unless it is an impulse, you want to apply forces inside the FixedUpdate() function
+            // all coroutines are technically inside the Update() function 
+            // also why is the a minus sign? shouldn't the knockbackDirection argument already be in the right direction?
         }
+
+        //canGrapple = true;
+        yield return 0;
+    }
 
 }
