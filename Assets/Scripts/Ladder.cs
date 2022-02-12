@@ -7,6 +7,7 @@ public class Ladder : MonoBehaviour
     private BoxCollider2D myBox;
     [SerializeField] Transform top;
     [SerializeField] Transform bottom;
+    [SerializeField] Collider2D topPlat;
 
     // Start is called before the first frame update
     void Start()
@@ -30,5 +31,15 @@ public class Ladder : MonoBehaviour
 
         myBox.size = new Vector2(1, size_y);
         myBox.offset = new Vector2(0, offset_y);
+    }
+
+    public void DisableTopPlatform()
+    {
+        topPlat.enabled = false;
+    }
+
+    public void EnableTopPlatform()
+    {
+        topPlat.enabled = true;
     }
 }

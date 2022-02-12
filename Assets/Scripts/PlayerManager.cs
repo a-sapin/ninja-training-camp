@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
     InputManager inputManager;
     [SerializeReference] Animator myAnimator;
     VFXManager mySoundManager;
+    BlastZone myBlastZone; // handles the player respawning
+    GrapplingGun myGrapplingGun;
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
     [SerializeField] bool hasDashPower = false;
@@ -25,6 +27,7 @@ public class PlayerManager : MonoBehaviour
     // getters
     public PlayerLocomotion GetLocomotion() { return myPlayerLocomotion; }
     public InputManager GetInput() { return inputManager; }
+    public GrapplingGun GetGrapplingGun() { return myGrapplingGun; }
 
     public bool HasDash() { return hasDashPower; }
     public bool HasDoubleJump() { return hasDoubleJumpPower; }
@@ -35,6 +38,9 @@ public class PlayerManager : MonoBehaviour
     public void RemoveDash() { hasDashPower = false; }
     public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
     public void RemoveGrapple() { hasGrapplePower = false; }
+
+    // when false, the player is locked and cannot act
+    bool isActionable = true;
 
     /// <summary>
     /// Properly changes the state of the player by calling Exit() function 
@@ -55,7 +61,23 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private bool canGrapple = true;
+    public bool CanGrapple()
+    {
+        if (!hasGrapplePower)
+            return false;
+        else
+            return canGrapple;
+    }
+
+    public void SetCanGrapple(bool value) { canGrapple = value; }
+
     private bool canDash = true;
+    /// <summary>
+    /// Upon reading value to check if player is able to dash,
+    /// disable dash for the duration of cooldown.
+    /// </summary>
+    /// <returns>TRUE if player can dash, or FALSE if unable or cooling down.</returns>
     public bool CanDash()
     {
         if (!hasDashPower)
@@ -76,19 +98,49 @@ public class PlayerManager : MonoBehaviour
         canDash = true;
     }
 
+    /// <summary>
+    /// Careful using this, player must eventually be set
+    /// to actionable after this function is called.
+    /// </summary>
+    public void LockGameplayInput()
+    {
+        isActionable = false;
+        ChangeState(State.grounded); // force the grounded state to stop moving
+    }
+
+    public void UnlockGameplayInput()
+    {
+        isActionable = true;
+    }
+
+    /// <summary>
+    /// Respawns the player to the current level's spawn point
+    /// </summary>
+    public void Respawn()
+    {
+        myBlastZone.Respawn();
+    }
+
     void Start()
     {
         mySoundManager = FindObjectOfType<VFXManager>();
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
+        myBlastZone = GetComponent<BlastZone>();
         inputManager = GetComponent<InputManager>();
+        myGrapplingGun = GetComponentInChildren<GrapplingGun>();
+        canGrapple = true;
         currentState = State.grounded; // set a default state at the start
+        isActionable = true;
     }
 
     void Update()
     {
-        currentState.HandleSurroundings(this);
-        currentState.HandleInputs(this);
-        currentState.LogicUpdate(this);
+        if (isActionable)
+        {
+            currentState.HandleSurroundings(this);
+            currentState.HandleInputs(this);
+            currentState.LogicUpdate(this);
+        }
     }
 
     void FixedUpdate()

@@ -8,12 +8,14 @@ public class PowerRemover : MonoBehaviour
     [SerializeField] Power[] powerToRemove;
     int currentIndex = 0;
     EndLevel endLevel;
-    PlayerLocomotion player;
+    PlayerManager player;
+
     private void Start()
     {
-        player = FindObjectOfType<PlayerLocomotion>();
+        player = FindObjectOfType<PlayerManager>();
         endLevel = FindObjectOfType<EndLevel>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
@@ -24,6 +26,8 @@ public class PowerRemover : MonoBehaviour
 
     private void RemovePower()
     {
+        player.LockGameplayInput(); // disable player movement
+
         if (currentIndex >= powerToRemove.Length)
         {
             endLevel.DisplayEnd();
@@ -47,9 +51,10 @@ public class PowerRemover : MonoBehaviour
         Invoke(nameof(ResetPlayerPos), 1f);
         currentIndex++;
     }
+
     private void ResetPlayerPos()
     {
     	FindObjectOfType<VFXManager>().StopAll(); // Stops all Animation Sound Effect
-        player.ResetPlayerAndPosition(FindObjectOfType<BlastZone>().respawnLocation.transform.position);
+        player.Respawn();
     }
 }

@@ -12,8 +12,11 @@ public class FallingRock : MonoBehaviour
     {
         if (col.collider.CompareTag("Player"))
         {
-            Vector2 pushingDirection = (gameObject.transform.position - col.transform.position).normalized;
-            StartCoroutine(col.collider.GetComponent<PlayerLocomotion>().PlayerKnockback(knockbackDuration,knockbackForce,pushingDirection));
+            //we get a vector pointing from rock towards player
+            Vector2 pushingDirection = (col.transform.position - gameObject.transform.position).normalized;
+            PlayerManager thePlayer = col.gameObject.GetComponentInChildren<PlayerManager>();
+
+            StartCoroutine(KnockbackPlayer(pushingDirection, thePlayer));
         }
     }
 
@@ -23,6 +26,24 @@ public class FallingRock : MonoBehaviour
         if (gameObject.transform.position.y < blastZoneYLevel)
             Destroy(gameObject);
     }
-    
-    
+
+    /// <summary>
+    /// Knocks the player using an impulse and disables grapple
+    /// for knockbackDuration second(s).
+    /// </summary>
+    /// <param name="knockbackDirection">Impulse sends player towards this direction.</param>
+    /// <param name="player">The player we are knocking back.</param>
+    /// <returns>Yields for knockbackDuration second(s) before returning 0.</returns>
+    IEnumerator KnockbackPlayer(Vector2 knockbackDirection, PlayerManager player)
+    {
+        player.GetGrapplingGun().StopGrappling(); // disconnects grapple
+        player.SetCanGrapple(false); // stops player from grapling
+        player.GetLocomotion().ApplyExternForce(knockbackDirection * knockbackForce);
+        
+        yield return new WaitForSeconds(knockbackDuration); // keep grapple disabled for this amount of time
+
+        player.SetCanGrapple(true); // until we enable grapple again
+        yield return 0;
+    }
+
 }

@@ -13,11 +13,11 @@ public class SoundAnimation : MonoBehaviour
         FindObjectOfType<VFXManager>().Stop("Movement");
     }
     private void MovementSound()
-    {
+    {/*
         if(touchGround.isGrounded)
         {
             FindObjectOfType<VFXManager>().Play("Movement");
-        }
+        }*/
     }
     private void DashSound()
     {
