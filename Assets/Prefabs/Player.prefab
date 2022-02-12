@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grappleRope: {fileID: 4177329401065184524}
-  playerRef: {fileID: 5409001243050288736}
+  playerRef: {fileID: 4181588388592163803}
   grappleToAll: 0
   grappableLayerNumber: 7
   m_camera: {fileID: 5409001241448039124}
