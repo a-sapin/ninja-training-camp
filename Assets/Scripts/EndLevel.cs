@@ -7,7 +7,7 @@ public class EndLevel : MonoBehaviour
     [SerializeField] private GameObject dashLost;
     [SerializeField] private GameObject doubleJumpLost;
     [SerializeField] private GameObject grappleLost;
-    private float lostTime = 4f;
+    private float lostTime = 5f;
 
     [SerializeField] private GameObject dashUI;
     [SerializeField] private GameObject doubleJumpUI;
@@ -53,44 +53,46 @@ public class EndLevel : MonoBehaviour
     }
     public void DisplayDashLost()
     {
+        timer.PauseTimer();
         player.canMove = false;
         transition.TransitToCanvas(dashLost, competencesCanvas);
-        dashUI.SetActive(false);
 
         Invoke(nameof(HideDashLost), lostTime);
     }
     private void HideDashLost()
     {
+        dashUI.SetActive(false);
         player.canMove = true;
         transition.TransitToCanvas(competencesCanvas, dashLost);
-        Invoke(nameof(RestartTimer), 1.3f);
+        Invoke(nameof(RestartTimer), 1.4f);
     }
     public void DisplayDoubleJumpLost()
     {
+        timer.PauseTimer();
         player.canMove = false;
         transition.TransitToCanvas(doubleJumpLost, competencesCanvas);
-        doubleJumpUI.SetActive(false);
         Invoke(nameof(HideDoubleJumpLost), lostTime);
     }
     private void HideDoubleJumpLost()
     {
+        doubleJumpUI.SetActive(false);
         player.canMove = true;
         transition.TransitToCanvas(competencesCanvas, doubleJumpLost);
-        Invoke(nameof(RestartTimer), 1.3f);
+        Invoke(nameof(RestartTimer), 1.4f);
     }
     public void DisplayGrappleLost()
     {
+        timer.PauseTimer();
         player.canMove = false;
         transition.TransitToCanvas(grappleLost, competencesCanvas);
-        grappleUI.SetActive(false);
         Invoke(nameof(HideGrappleLost), lostTime);
     }
     private void HideGrappleLost()
     {
+        grappleUI.SetActive(false);
         player.canMove = true;
         transition.TransitToCanvas(competencesCanvas, grappleLost);
-        Invoke(nameof(RestartTimer), 1.3f);
-
+        Invoke(nameof(RestartTimer), 1.4f);
     }
     private void RestartTimer()
     {

@@ -304,11 +304,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7507582941812319435, guid: 76957e45ba32e384e85f6ff010e4c703, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.78001
+      value: -11.2
       objectReference: {fileID: 0}
     - target: {fileID: 7507582941812319435, guid: 76957e45ba32e384e85f6ff010e4c703, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.7
+      value: -31.5
       objectReference: {fileID: 0}
     - target: {fileID: 7507582941812319435, guid: 76957e45ba32e384e85f6ff010e4c703, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22218,6 +22218,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 5896040461435923956, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 600e3117b79d01f489551ffcf90b9aee, type: 3}
+    - target: {fileID: 5896040462266938613, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
+      propertyPath: m_Name
+      value: GrappleLossAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896040462602888849, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 83551a8c6be4ca84fbfa81069a02b6f5, type: 3}
     - target: {fileID: 8912074535673237641, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

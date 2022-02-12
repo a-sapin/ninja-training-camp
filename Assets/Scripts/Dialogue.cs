@@ -14,22 +14,25 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private GameObject sensei, player, canvas;
     [SerializeField] private DialoguePart[] dialogue;
     private PlayerLocomotion playerLocomotion;
+    private Timer timer;
 
     void Start()
     {
+        timer = FindObjectOfType<Timer>();
+        playerLocomotion = FindObjectOfType<PlayerLocomotion>();
         StartFirstDialogue();
     }
-
+    
     private void StartFirstDialogue()
     {
         IEnumerator firstDialogue = PlayDialogue(dialogue);
         StartCoroutine(firstDialogue);
     }
-
+    
     IEnumerator PlayDialogue(DialoguePart[] dialogue)
     {
         yield return new WaitForSecondsRealtime(0.05f);
-        playerLocomotion = FindObjectOfType<PlayerLocomotion>();
+        timer.PauseTimer();
         bool normalPlayerCanMove = playerLocomotion.canMove;
         playerLocomotion.canMove = false;
         int dialogueIndex = 0;
@@ -57,6 +60,7 @@ public class Dialogue : MonoBehaviour
             }
             yield return null;
         }
+        timer.RestartTimer();
         playerLocomotion.canMove = true;
         canvas.SetActive(false);
         Time.timeScale = 1;
