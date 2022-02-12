@@ -4,6 +4,7 @@ public class GrapplingGun : MonoBehaviour
 {
     [Header("Scripts Ref:")]
     public GrappleBase grappleRope;
+    public PlayerLocomotion playerRef;
 
     [Header("Layers Settings:")]
     [SerializeField] private bool grappleToAll = false;
@@ -60,11 +61,11 @@ public class GrapplingGun : MonoBehaviour
     private void Update()
     {
         //event appeler lorsque le joueur utilise clic gauche pour la grapple
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && playerRef.CanGrapple())
         {
             SetGrapplePoint(Input.mousePosition);
         }
-        else if (Input.GetKey(KeyCode.Mouse0) || isGrapplingWithPad)  //appeler lorsque le joueur maintien le clic gauche
+        else if ((Input.GetKey(KeyCode.Mouse0) || isGrapplingWithPad )&& playerRef.CanGrapple())  //appeler lorsque le joueur maintien le clic gauche
         {
             Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
             RotateGun(mousePos, true);  //utiliser pour avoir le vecteur joueur-clic
@@ -79,7 +80,7 @@ public class GrapplingGun : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse0)) //appeler lorsque le joueur relache le clic gauche
+        else if (Input.GetKeyUp(KeyCode.Mouse0) && playerRef.CanGrapple()) //appeler lorsque le joueur relache le clic gauche
         {
             StopGrappling();
         }

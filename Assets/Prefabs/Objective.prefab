@@ -73,14 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a56d20e5b3f884089f71f16f3afa22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UICanvas: {fileID: 0}
-  dash: 1
-  doubleJump: 1
-  grapple: 1
-  respawnLocation: {fileID: 0}
-  playerObject: {fileID: 0}
-  currentLoopCount: 0
-  maxLoopCount: 0
+  powerToRemove: 
 --- !u!1 &7507582942525723147
 GameObject:
   m_ObjectHideFlags: 0

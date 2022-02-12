@@ -14,14 +14,14 @@ public class BlastZone : MonoBehaviour
 
     private bool isTransition = false;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         transition = FindObjectOfType<Transition>();
         playerLocomotion = gameObject.GetComponent<PlayerLocomotion>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (gameObject.transform.position.y < blastZoneYLevel && !isTransition)
         {
@@ -45,5 +45,13 @@ public class BlastZone : MonoBehaviour
     public void Respawn()
     {
         playerLocomotion.ResetPlayerAndPosition(respawnLocation.transform.position);
+    }
+    
+    public void RespawnPlayer()
+    {
+        isTransition = true;
+        Waiter();
+        currentDeathCount++;
+
     }
 }

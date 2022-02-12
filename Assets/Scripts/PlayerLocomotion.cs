@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour
 {
@@ -62,7 +64,6 @@ public class PlayerLocomotion : MonoBehaviour
             currentLadderObject = null;
         }
     }
-
     #region State Machine
 
     [SerializeField] float groundDetectCircleRadius = 0.35f;
@@ -221,4 +222,21 @@ public class PlayerLocomotion : MonoBehaviour
     }
 
     #endregion
+    
+    
+        public IEnumerator PlayerKnockback(float knockbackDuration, float knockbackPower, Vector2 knockbackDirection)
+        {
+            float timer = 0f;
+            grapple.StopGrappling();
+            while (knockbackDuration > timer)
+            {
+                canGrapple = false;
+                timer += Time.deltaTime;
+                rb.AddForce(new Vector2(knockbackDirection.x * -knockbackPower, knockbackDirection.y * -knockbackPower ));
+            }
+    
+            canGrapple = true;
+            yield return 0;
+        }
+
 }

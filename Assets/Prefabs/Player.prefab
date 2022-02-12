@@ -417,7 +417,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215688, g: 0.23529413, b: 0.22352943, a: 0}
+  m_BackGroundColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -824,6 +824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grappleRope: {fileID: 4177329401065184524}
+  playerRef: {fileID: 5409001243050288736}
   grappleToAll: 0
   grappableLayerNumber: 7
   m_camera: {fileID: 5409001241448039124}
