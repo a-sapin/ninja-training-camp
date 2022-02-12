@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeReference] Animator myAnimator;
     VFXManager mySoundManager;
     BlastZone myBlastZone; // handles the player respawning
+    GrapplingGun myGrapplingGun;
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
     [SerializeField] bool hasDashPower = false;
@@ -26,6 +27,7 @@ public class PlayerManager : MonoBehaviour
     // getters
     public PlayerLocomotion GetLocomotion() { return myPlayerLocomotion; }
     public InputManager GetInput() { return inputManager; }
+    public GrapplingGun GetGrapplingGun() { return myGrapplingGun; }
 
     public bool HasDash() { return hasDashPower; }
     public bool HasDoubleJump() { return hasDoubleJumpPower; }
@@ -125,6 +127,8 @@ public class PlayerManager : MonoBehaviour
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
         myBlastZone = GetComponent<BlastZone>();
         inputManager = GetComponent<InputManager>();
+        myGrapplingGun = GetComponentInChildren<GrapplingGun>();
+        canGrapple = true;
         currentState = State.grounded; // set a default state at the start
         isActionable = true;
     }
