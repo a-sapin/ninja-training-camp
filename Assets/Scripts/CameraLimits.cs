@@ -1,19 +1,30 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraLimits : MonoBehaviour
+using UnityEngine;
+using Cinemachine;
+
+/// <summary>
+/// An add-on module for Cinemachine Virtual Camera that locks the camera's Y co-ordinate
+/// </summary>
+[SaveDuringPlay]
+[AddComponentMenu("")] // Hide in menu
+public class CameraLimits : CinemachineExtension
 {
-    [SerializeField]private float limXNeg;//Limite vertical vers le bas de la camera
-    Camera camera;
-    void Update()
+    [SerializeField] private GameObject player;
+    public float limYPosition;
+
+    protected override void PostPipelineStageCallback(
+        CinemachineVirtualCameraBase vcam,
+        CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
     {
-        if(camera.transform.position.y < limXNeg)
+        if (player.transform.position.y<limYPosition)
         {
-            camera.transform.position = new Vector3(
-                camera.transform.position.x,
-                limXNeg,
-                camera.transform.position.z);
+            Vector3 pos = state.RawPosition;
+            pos.y = limYPosition;
+            state.RawPosition = pos;
         }
     }
 }
