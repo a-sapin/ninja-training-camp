@@ -20,9 +20,10 @@ public class CameraLimits : CinemachineExtension
         CinemachineVirtualCameraBase vcam,
         CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
     {
-        if (player.transform.position.y<limYPosition)
+        Vector3 pos = state.RawPosition;
+        if (player.transform.position.y<limYPosition && pos.y< limYPosition)
         {
-            Vector3 pos = state.RawPosition;
+            
             pos.y = limYPosition;
             state.RawPosition = pos;
         }
