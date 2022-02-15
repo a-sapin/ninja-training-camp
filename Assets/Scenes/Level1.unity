@@ -6359,6 +6359,17 @@ RectTransform:
   m_AnchoredPosition: {x: 5, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &291081431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1051568151366251082, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
+  m_PrefabInstance: {fileID: 1051568151793986831}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &292456100
 GameObject:
   m_ObjectHideFlags: 0
@@ -20722,6 +20733,25 @@ MonoBehaviour:
   blastZoneYLevel: -10
   respawnLocation: {fileID: 1367652526}
   currentDeathCount: 0
+--- !u!1 &1402573107 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1051568151484783513, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
+  m_PrefabInstance: {fileID: 1051568151793986831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1402573108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402573107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2709a06cece8bd14381e5b798dad519c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShakeFrequency: 1
+  VirtualCamera: {fileID: 291081431}
 --- !u!1 &1420489342
 GameObject:
   m_ObjectHideFlags: 0
