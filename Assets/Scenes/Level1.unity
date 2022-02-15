@@ -21536,7 +21536,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1051568151777493654, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
   m_PrefabInstance: {fileID: 1051568151793986831}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1941435646
+--- !u!114 &1941435650
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21550,8 +21550,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
-  m_FrequencyGain: 1
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: 955.2219, y: 715.2445, z: 716.6138}
 --- !u!1 &1955907574
 GameObject:
