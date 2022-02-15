@@ -20631,7 +20631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1359841815
 Transform:
   m_ObjectHideFlags: 0
@@ -21531,6 +21531,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5687664088935292200, guid: 73df9d030418b4845a4972c5bf6c47fa, type: 3}
   m_PrefabInstance: {fileID: 5687664089207908679}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1941435645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1051568151777493654, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
+  m_PrefabInstance: {fileID: 1051568151793986831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1941435646
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941435645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 955.2219, y: 715.2445, z: 716.6138}
 --- !u!1 &1955907574
 GameObject:
   m_ObjectHideFlags: 0
