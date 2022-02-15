@@ -10,6 +10,7 @@ using UnityEngine.UI;
 }
 public class Dialogue : MonoBehaviour
 {
+    [SerializeField] private int currentLevel = 1;
     [SerializeField] private Text textZone;
     [SerializeField] private GameObject sensei, player, canvas;
     [SerializeField] private DialoguePart[] dialogue;
@@ -22,6 +23,11 @@ public class Dialogue : MonoBehaviour
 
     private void StartFirstDialogue()
     {
+        if (PlayerPrefs.GetInt("playDialogue" + currentLevel, 1) != 1)
+        {
+            canvas.SetActive(false);
+            return;
+        }
         IEnumerator firstDialogue = PlayDialogue(dialogue);
         StartCoroutine(firstDialogue);
     }
