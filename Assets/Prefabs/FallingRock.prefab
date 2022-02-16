@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3316902073938509988}
   - component: {fileID: 6537741647844487175}
   - component: {fileID: 7074306843017350568}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FallingRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,9 @@ MonoBehaviour:
   blastZoneYLevel: -50
   knockbackDuration: 1
   knockbackForce: 0.05
+  ignoredLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!50 &6537741647844487175
 Rigidbody2D:
   serializedVersion: 4
@@ -117,7 +120,7 @@ Rigidbody2D:
   m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
