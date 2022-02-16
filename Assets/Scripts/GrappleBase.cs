@@ -85,7 +85,7 @@ public class GrappleBase : MonoBehaviour
             {
                 straightLine = true;
                 // a grappelé 
-                grapplingGun.grappleTarget.GetComponentInChildren<ParticleSystem>().Play();
+                grapplingGun.grappleTarget.GetComponentInChildren<Animator>().Play("hit");
                 vfxManager.Stop("Anvil");
                 vfxManager.Play("Anvil");
             }
