@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] State currentState;
     InputManager inputManager;
     [SerializeReference] Animator myAnimator;
+    [SerializeReference] SpriteRenderer playerSprite;
     VFXManager mySoundManager;
     BlastZone myBlastZone; // handles the player respawning
     GrapplingGun myGrapplingGun;
@@ -49,7 +50,7 @@ public class PlayerManager : MonoBehaviour
     /// <param name="nextState">The next state to switch to.</param>
     public void ChangeState(State nextState)
     {
-        if(currentState.GetType() == nextState.GetType())
+        if (currentState.GetType() == nextState.GetType())
         {
             return; // Don't change the state if we are already in that state
         }
@@ -143,12 +144,49 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        FlipSprite();
+        SetBoolDash(currentState == State.dashing);
+        SetBoolGrounded(currentState == State.grounded || currentState == State.running);
+        SetBoolJump(currentState == State.jumping);
+        SetBoolRun(GetInput().IsMoveInput());
+    }
+
     void FixedUpdate()
     {
         currentState.PhysicsUpdate(this);
+        SetFloatYVelocity(GetLocomotion().GetVelocity().y);
+        SetBoolTouchLadder(GetLocomotion().IsTouchingLadder());
     }
 
     #region Animation
+
+    public Animator GetAnimator() { return myAnimator; }
+
+    public void SetBoolGrounded(bool value) { myAnimator.SetBool("isGrounded", value); }
+    public void SetBoolRun(bool value) { myAnimator.SetBool("Run", value); }
+    public void SetBoolDash(bool value) { myAnimator.SetBool("Dash", value); }
+    public void SetBoolJump(bool value) { myAnimator.SetBool("Jump", value); }
+    public void SetBoolTouchLadder(bool value) { myAnimator.SetBool("TouchingLadder", value); }
+    public void SetFloatYVelocity(float value) { myAnimator.SetFloat("Y_Velocity", value); }
+    public void SetIntLadderInput(int value) { myAnimator.SetInteger("LadderInput", value); }
+
+    /// <summary>
+    /// Flips sprite to make player avater face the direction
+    /// the move input is currently held.
+    /// </summary>
+    public void FlipSprite()
+    {
+        if (GetInput().Move().x < 0f) // inputting left
+        {
+            playerSprite.flipX = true;
+        }
+        else if (GetInput().Move().x > 0f) // inputting right
+        {
+            playerSprite.flipX = false;
+        }
+    }
 
     public void SetAnimIdle()
     {
