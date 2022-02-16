@@ -85,7 +85,7 @@ public class GrappleBase : MonoBehaviour
             {
                 straightLine = true;
                 // a grappelé 
-                grapplingGun.grappleTarget.GetComponentInChildren<Animator>().Play("hit");
+                grapplingGun.grappleTarget.GetComponentInChildren<Animator>().SetTrigger("hit");
                 vfxManager.Stop("Anvil");
                 vfxManager.Play("Anvil");
             }
