@@ -91,6 +91,7 @@ public class GrapplingGun : MonoBehaviour
     }
     public void StopGrappling()
     {
+        playerRef.SetBoolGrapple(false);
         isGrapplingWithPad = false;
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
@@ -143,8 +144,8 @@ public class GrapplingGun : MonoBehaviour
                 {
                     if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
                     {
+                        playerRef.SetBoolGrapple(true);
                         grapplePoint = _hit.transform.position;
-                        
                         grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
                         grappleRope.enabled = true;
                     }
@@ -153,6 +154,7 @@ public class GrapplingGun : MonoBehaviour
         }
         else
         {
+            playerRef.SetBoolGrapple(true);
             grapplePoint = point;
             grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
             grappleRope.enabled = true;
