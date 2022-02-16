@@ -15,12 +15,16 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private GameObject sensei, player, canvas;
     [SerializeField] private DialoguePart[] dialogue;
     private PlayerManager playerManager;
+    private PlayerLocomotion playerLocomotion;
+    private Timer timer;
 
     void Start()
     {
+        timer = FindObjectOfType<Timer>();
+        playerLocomotion = FindObjectOfType<PlayerLocomotion>();
         StartFirstDialogue();
     }
-
+    
     private void StartFirstDialogue()
     {
         if (PlayerPrefs.GetInt("playDialogue" + currentLevel, 1) != 1)
@@ -31,13 +35,16 @@ public class Dialogue : MonoBehaviour
         IEnumerator firstDialogue = PlayDialogue(dialogue);
         StartCoroutine(firstDialogue);
     }
-
+    
     IEnumerator PlayDialogue(DialoguePart[] dialogue)
     {
         yield return new WaitForSecondsRealtime(0.05f);
+
         playerManager = FindObjectOfType<PlayerManager>();
         playerManager.LockGameplayInput(); // freeze player during dialogue
-        //lock
+        timer.PauseTimer();
+        bool normalPlayerCanMove = playerLocomotion.canMove;
+
         int dialogueIndex = 0;
         canvas.SetActive(true);
         if(dialogue.Length > 0)
@@ -63,7 +70,10 @@ public class Dialogue : MonoBehaviour
             }
             yield return null;
         }
+
         playerManager.UnlockGameplayInput(); // once dialogue is done, let player move
+
+        timer.RestartTimer();
         canvas.SetActive(false);
         Time.timeScale = 1;
     }
