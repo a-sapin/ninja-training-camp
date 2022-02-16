@@ -16,6 +16,8 @@ public abstract class State : ScriptableObject
     protected static AirbornState airborn = CreateInstance<AirbornState>();
     protected static AirDriftState airdrift = CreateInstance<AirDriftState>();
     protected static DashState dashing = CreateInstance<DashState>();
+    protected static LadderClimbState ladderClimb = CreateInstance<LadderClimbState>();
+    protected static LadderGrabState ladderGrab = CreateInstance<LadderGrabState>();
 
     public virtual void Enter(PlayerManager player)
     {
@@ -87,5 +89,20 @@ public abstract class State : ScriptableObject
         {
             return false;
         }
+    }
+
+    /// <summary>
+    /// Check if the player is holding the button / joystick
+    /// to point up or down.
+    /// </summary>
+    /// <param name="player"></param>
+    /// <returns>True if player is holding up or down, False otherwise.</returns>
+    protected bool IsInputLadder(PlayerManager player)
+    {
+        Vector2 input = player.GetInput().Move();
+        
+        // if holding diagonal, accept only diagonal close enough to y-axis than x axis.
+        // Also with minimum y input
+        return Mathf.Abs(input.y) > Mathf.Abs(input.x) && Mathf.Abs(input.y) >= 0.2f; // TODO: magic numberrrrrrr
     }
 }

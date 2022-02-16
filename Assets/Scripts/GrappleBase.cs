@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GrappleTest : MonoBehaviour
+public class GrappleBase : MonoBehaviour
 {
     [Header("General Refernces:")]
     public GrapplingGun grapplingGun;

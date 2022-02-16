@@ -3,8 +3,8 @@ using UnityEngine;
 public class GrapplingGun : MonoBehaviour
 {
     [Header("Scripts Ref:")]
-    public GrappleTest grappleRope;
-    public PlayerLocomotion playerRef;
+    public GrappleBase grappleRope;
+    public PlayerManager playerRef;
 
     [Header("Layers Settings:")]
     [SerializeField] private bool grappleToAll = false;
@@ -55,7 +55,6 @@ public class GrapplingGun : MonoBehaviour
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
-
     }
 
     private void Update()

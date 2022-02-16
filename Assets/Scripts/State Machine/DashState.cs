@@ -45,7 +45,11 @@ public class DashState : AirDriftState
 
     public override void HandleInputs(PlayerManager player)
     {
-
+        if (player.GetLocomotion().IsTouchingLadder() && IsInputLadder(player))
+        {
+            player.ChangeState(ladderGrab);
+            return;
+        }
     }
 
     public override void LogicUpdate(PlayerManager player)
