@@ -11,13 +11,13 @@ public abstract class State : ScriptableObject
 
     // All state instances, used when changing state
     public static GroundedState grounded = CreateInstance<GroundedState>();
-    protected static RunState running = CreateInstance<RunState>();
-    protected static JumpState jumping = CreateInstance<JumpState>();
-    protected static AirbornState airborn = CreateInstance<AirbornState>();
-    protected static AirDriftState airdrift = CreateInstance<AirDriftState>();
-    protected static DashState dashing = CreateInstance<DashState>();
-    protected static LadderClimbState ladderClimb = CreateInstance<LadderClimbState>();
-    protected static LadderGrabState ladderGrab = CreateInstance<LadderGrabState>();
+    public static RunState running = CreateInstance<RunState>();
+    public static JumpState jumping = CreateInstance<JumpState>();
+    public static AirbornState airborn = CreateInstance<AirbornState>();
+    public static AirDriftState airdrift = CreateInstance<AirDriftState>();
+    public static DashState dashing = CreateInstance<DashState>();
+    public static LadderClimbState ladderClimb = CreateInstance<LadderClimbState>();
+    public static LadderGrabState ladderGrab = CreateInstance<LadderGrabState>();
 
     public virtual void Enter(PlayerManager player)
     {
