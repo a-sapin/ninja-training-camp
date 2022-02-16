@@ -105,23 +105,8 @@ public abstract class State : ScriptableObject
         // Also with minimum y input
         if(Mathf.Abs(input.y) > Mathf.Abs(input.x) && Mathf.Abs(input.y) >= 0.2f) // TODO: magic numberrrrrrr
         {
-            if (input.y > 0.01f)
-            {
-                player.SetIntLadderInput(1);
-            }
-            else if (input.y < -0.01f)
-            {
-                player.SetIntLadderInput(-1);
-            }
-            else
-            {
-                player.SetIntLadderInput(0);
-            }
-
             return true;
-
         }
-
         return false;
     }
 }

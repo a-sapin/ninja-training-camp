@@ -151,6 +151,10 @@ public class PlayerManager : MonoBehaviour
         SetBoolGrounded(currentState == State.grounded || currentState == State.running);
         SetBoolJump(currentState == State.jumping);
         SetBoolRun(GetInput().IsMoveInput());
+
+        if (GetInput().Move().y > 0.01) SetIntLadderInput(1);
+        else if (GetInput().Move().y < -0.01) SetIntLadderInput(-1);
+        else SetIntLadderInput(0);
     }
 
     void FixedUpdate()
