@@ -103,6 +103,25 @@ public abstract class State : ScriptableObject
         
         // if holding diagonal, accept only diagonal close enough to y-axis than x axis.
         // Also with minimum y input
-        return Mathf.Abs(input.y) > Mathf.Abs(input.x) && Mathf.Abs(input.y) >= 0.2f; // TODO: magic numberrrrrrr
+        if(Mathf.Abs(input.y) > Mathf.Abs(input.x) && Mathf.Abs(input.y) >= 0.2f) // TODO: magic numberrrrrrr
+        {
+            if (input.y > 0.01f)
+            {
+                player.SetIntLadderInput(1);
+            }
+            else if (input.y < -0.01f)
+            {
+                player.SetIntLadderInput(-1);
+            }
+            else
+            {
+                player.SetIntLadderInput(0);
+            }
+
+            return true;
+
+        }
+
+        return false;
     }
 }
