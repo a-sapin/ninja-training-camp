@@ -1,26 +1,29 @@
+using System;
 using UnityEngine;
 
 public class GrappleBase : MonoBehaviour
 {
-    [Header("General Refernces:")]
-    public GrapplingGun grapplingGun;
+    [Header("General Refernces:")] public GrapplingGun grapplingGun;
     public LineRenderer m_lineRenderer;
+    private VFXManager vfxManager;
+    public GameObject grappleParticle;
 
-    [Header("General Settings:")]
-    [SerializeField] [Range(5,100)] [Tooltip("Nombre de points qui composent la corde")] private int resolution = 40;
-    [Range(0, 20)] [SerializeField] [Tooltip("Vitesse de realignement du wiggle.")]private float straightenLineSpeed = 5;
+    [Header("General Settings:")] [SerializeField] [Range(5, 100)] [Tooltip("Nombre de points qui composent la corde")]
+    private int resolution = 40;
 
-    [Header("Rope Animation Settings:")]
-    public AnimationCurve ropeAnimationCurve;
+    [Range(0, 20)] [SerializeField] [Tooltip("Vitesse de realignement du wiggle.")]
+    private float straightenLineSpeed = 5;
+
+    [Header("Rope Animation Settings:")] public AnimationCurve ropeAnimationCurve;
     [Range(0.01f, 4)] [SerializeField] private float StartWaveSize = 2;
     float waveSize = 0;
 
-    [Header("Rope Progression:")]
-    public AnimationCurve ropeProgressionCurve;
+    [Header("Rope Progression:")] public AnimationCurve ropeProgressionCurve;
     [SerializeField] [Range(1, 50)] private float ropeProgressionSpeed = 1;
 
     [Header("Wiggle Simulation Variables")]
     public float damper = 14f;
+
     public float strength = 800f;
     public float initialWiggleVelocity = 15f;
     private float currentWiggleVelocity = 0f; // used in animating the rope wiggle
@@ -32,6 +35,11 @@ public class GrappleBase : MonoBehaviour
     [HideInInspector] public bool isGrappling = true;
 
     bool straightLine = true;
+
+    public void Start()
+    {
+        vfxManager = FindObjectOfType<VFXManager>();
+    }
 
     private void OnEnable()
     {
@@ -76,6 +84,10 @@ public class GrappleBase : MonoBehaviour
             if (m_lineRenderer.GetPosition(resolution - 1).x == grapplingGun.grapplePoint.x)
             {
                 straightLine = true;
+                // a grappelé 
+                grapplingGun.grappleTarget.GetComponentInChildren<ParticleSystem>().Play();
+                vfxManager.Stop("Anvil");
+                vfxManager.Play("Anvil");
             }
             else
             {
@@ -86,10 +98,11 @@ public class GrappleBase : MonoBehaviour
         {
             if (!isGrappling)
             {
-                FindObjectOfType<VFXManager>().Play("Grapple");
+                
                 grapplingGun.Grapple();
                 isGrappling = true;
             }
+
             if (waveSize > 0)
             {
                 waveSize -= Time.deltaTime * straightenLineSpeed;
@@ -100,11 +113,13 @@ public class GrappleBase : MonoBehaviour
             {
                 waveSize = 0;
 
-                if (m_lineRenderer.positionCount != 2) { m_lineRenderer.positionCount = 2; }
+                if (m_lineRenderer.positionCount != 2)
+                {
+                    m_lineRenderer.positionCount = 2;
+                }
 
                 DrawRopeNoWaves();
             }
-            
         }
     }
 
@@ -115,11 +130,14 @@ public class GrappleBase : MonoBehaviour
 
         for (int i = 0; i < resolution; i++)
         {
-            float delta = (float)i / ((float)resolution - 1f);
-            Vector2 offset = Vector2.Perpendicular(grapplingGun.grappleDistanceVector).normalized * ropeAnimationCurve.Evaluate(delta)
-                * waveSize * wiggleModifier * ropeWhipCurve.Evaluate(delta);
-            Vector2 targetPosition = Vector2.Lerp(grapplingGun.firePoint.position, grapplingGun.grapplePoint, delta) + offset;
-            Vector2 currentPosition = Vector2.Lerp(grapplingGun.firePoint.position, targetPosition, ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
+            float delta = (float) i / ((float) resolution - 1f);
+            Vector2 offset = Vector2.Perpendicular(grapplingGun.grappleDistanceVector).normalized *
+                             ropeAnimationCurve.Evaluate(delta)
+                             * waveSize * wiggleModifier * ropeWhipCurve.Evaluate(delta);
+            Vector2 targetPosition = Vector2.Lerp(grapplingGun.firePoint.position, grapplingGun.grapplePoint, delta) +
+                                     offset;
+            Vector2 currentPosition = Vector2.Lerp(grapplingGun.firePoint.position, targetPosition,
+                ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
 
             m_lineRenderer.SetPosition(i, currentPosition);
         }

@@ -80,3 +80,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Anvil
+    clip: {fileID: 8300000, guid: 98b03c39a55e26445ab6efcdc9bbe338, type: 3}
+    volume: 0.15
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
