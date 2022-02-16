@@ -33,7 +33,6 @@ public class EndLevel : MonoBehaviour
     {
         playerManager = FindObjectOfType<PlayerManager>();
         musicPlayer = GameObject.Find("MusicPlayer");
-        player = FindObjectOfType<PlayerLocomotion>();
         transition = FindObjectOfType<Transition>();
         timer = FindObjectOfType<Timer>();
         dashLost.SetActive(false);
