@@ -43,7 +43,6 @@ public class Dialogue : MonoBehaviour
         playerManager = FindObjectOfType<PlayerManager>();
         playerManager.LockGameplayInput(); // freeze player during dialogue
         timer.PauseTimer();
-        bool normalPlayerCanMove = playerLocomotion.canMove;
 
         int dialogueIndex = 0;
         canvas.SetActive(true);
