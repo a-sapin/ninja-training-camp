@@ -99,14 +99,6 @@ public abstract class State : ScriptableObject
     /// <returns>True if player is holding up or down, False otherwise.</returns>
     protected bool IsInputLadder(PlayerManager player)
     {
-        Vector2 input = player.GetInput().Move();
-        
-        // if holding diagonal, accept only diagonal close enough to y-axis than x axis.
-        // Also with minimum y input
-        if(Mathf.Abs(input.y) > Mathf.Abs(input.x) && Mathf.Abs(input.y) >= 0.2f) // TODO: magic numberrrrrrr
-        {
-            return true;
-        }
-        return false;
+        return player.GetInput().IsLadderInput();
     }
 }
