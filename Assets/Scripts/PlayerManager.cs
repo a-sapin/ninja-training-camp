@@ -188,33 +188,6 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void SetAnimIdle()
-    {
-        myAnimator.SetBool("runLeft", false); // not running
-        myAnimator.SetBool("runRight", false);
-
-        myAnimator.SetBool("jump", false); // not jumping (left or right)
-        myAnimator.SetBool("jumpL", false);// so grounded or on ladder
-
-        myAnimator.SetBool("dash", false); // not dashing
-    }
-
-    public void SetAnimRun(bool runRight)
-    {
-        myAnimator.SetBool("runLeft", !runRight);
-        myAnimator.SetBool("runRight", runRight);
-    }
-
-    public void SetAnimDashTo(bool setBoolToThis) 
-    {
-        myAnimator.SetBool("dash", setBoolToThis);
-    }
-
-    public void SetAnimJump(bool inputRight)
-    {
-        // empty for now
-        // TODO: add proper jump animation
-    }
     #endregion
 
     #region Sound Effects
