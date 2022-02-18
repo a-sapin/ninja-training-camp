@@ -78,6 +78,45 @@ public class InputManager : MonoBehaviour
         moveInput = Vector2.ClampMagnitude(temp, 1f);
     }
 
+    /// <summary>
+    /// Checks what direction the player is holding to climb a ladder
+    /// </summary>
+    /// <returns>1 for up, -1 for down, 0 for no direction.</returns>
+    public int LadderInputDir()
+    {
+        Vector2 input = Move();
+
+        // if holding diagonal, accept only diagonal close enough to y-axis than x axis.
+        // Also with minimum y input
+        if (Mathf.Abs(input.y) > Mathf.Abs(input.x) && Mathf.Abs(input.y) >= 0.2f) // TODO: magic numberrrrrrr
+        {
+            if (input.y > 0.01f)
+            {
+                return 1;
+            }
+            else if (input.y < -0.01f)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        return 0;
+    }
+
+    public bool IsLadderInput()
+    {
+        int dir = LadderInputDir();
+
+        if (Mathf.Abs(dir) > 0)
+            return true;
+        else
+            return false;
+    }
+
     void HandleGrapple()
     {
         if (Input.GetAxis("Grapple") > 0 && !grapple.isGrapplingWithPad)
