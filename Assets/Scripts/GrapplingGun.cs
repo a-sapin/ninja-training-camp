@@ -31,6 +31,8 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private float maxDistnace = 20;
 
     [HideInInspector] public bool isGrapplingWithPad = false;
+    [HideInInspector] public GameObject grappleTarget;
+    private VFXManager vfxManager;
 
     private enum LaunchType
     {
@@ -55,6 +57,8 @@ public class GrapplingGun : MonoBehaviour
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
+        
+        vfxManager = FindObjectOfType<VFXManager>();
     }
 
     private void Update()
@@ -106,6 +110,7 @@ public class GrapplingGun : MonoBehaviour
             float newDist = Vector2.Distance(origin, target.transform.position);
             if (newDist < minDistance)
             {
+                grappleTarget = target;
                 minDistance = newDist;
                 nearest = target.transform.position;
             }
@@ -146,8 +151,10 @@ public class GrapplingGun : MonoBehaviour
                     {
                         playerRef.SetBoolGrapple(true);
                         grapplePoint = _hit.transform.position;
+                        grappleTarget = _hit.transform.gameObject;
                         grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
                         grappleRope.enabled = true;
+                        vfxManager.Play("Grapple");
                     }
                 }
             }
@@ -158,6 +165,7 @@ public class GrapplingGun : MonoBehaviour
             grapplePoint = point;
             grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
             grappleRope.enabled = true;
+            vfxManager.Play("Grapple");
         }
         
     }
