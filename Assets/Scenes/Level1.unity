@@ -130,14 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 69598075}
     m_Modifications:
-    - target: {fileID: 1068646269473264176, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 5409001243050288736, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
-      propertyPath: maxVelocity
-      value: 11.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5409001243050288737, guid: 8d74d201db2740343920e8ed43a7a4d8, type: 3}
       propertyPath: m_Name
       value: Player
