@@ -9,6 +9,7 @@ public class BlastZone : MonoBehaviour
     [Header("Level Specific Values")]
     public int currentDeathCount = 0; // in other words, how many times the objective was touched
     private PlayerLocomotion playerLocomotion;
+    private PlayerManager player;
 
     private Transition transition;
 
@@ -17,7 +18,8 @@ public class BlastZone : MonoBehaviour
     private void Start()
     {
         transition = FindObjectOfType<Transition>();
-        playerLocomotion = gameObject.GetComponent<PlayerLocomotion>();
+        player = FindObjectOfType<PlayerManager>();
+        playerLocomotion = FindObjectOfType<PlayerLocomotion>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,8 @@ public class BlastZone : MonoBehaviour
     {
         if (gameObject.transform.position.y < blastZoneYLevel && !isTransition)
         {
+            ScreenShake.Shake(0.3f, 3f);
+            player.LockGameplayInput();
             transition.TransitToCanvas(respawnLocation, respawnLocation);
             isTransition = true;
             Invoke(nameof(Waiter), 1f);
@@ -44,6 +48,7 @@ public class BlastZone : MonoBehaviour
     /// </summary>
     public void Respawn()
     {
+        player.UnlockGameplayInput();
         playerLocomotion.ResetPlayerAndPosition(respawnLocation.transform.position);
     }
     

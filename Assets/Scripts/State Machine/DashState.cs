@@ -16,8 +16,6 @@ public class DashState : AirDriftState
         dashDirection = new Vector2(player.GetInput().Move().x, 0f); // save horizontal player input
         dashDirection.Normalize();
 
-        player.SetAnimRun(IsInputingRight(player)); // dashL anim is played if runLeft bool is true
-        player.SetAnimDashTo(true); // start dash animation
         player.PlayDashSound();
         // TODO: do we really need this?
         /*
@@ -32,7 +30,6 @@ public class DashState : AirDriftState
     public override void Exit(PlayerManager player)
     {
         player.GetLocomotion().EndDash();
-        player.SetAnimDashTo(false); // end dashing animation
     }
 
     public override void HandleSurroundings(PlayerManager player)
