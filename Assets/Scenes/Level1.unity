@@ -20247,10 +20247,26 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 171791792}
+    - target: {fileID: 1621003183, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
+      propertyPath: limYPosition
+      value: -16
+      objectReference: {fileID: 0}
     - target: {fileID: 1051568151366251082, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 944854955}
+    - target: {fileID: 1051568151366251083, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051568151366251083, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -31.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051568151366251083, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11
+      objectReference: {fileID: 0}
     - target: {fileID: 1051568151484783512, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -20298,6 +20314,18 @@ PrefabInstance:
     - target: {fileID: 1051568151484783513, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051568152994388968, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051568152994388968, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -31.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1051568152994388968, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8271c7607d7284640bca4a1aa46ea9d1, type: 3}
