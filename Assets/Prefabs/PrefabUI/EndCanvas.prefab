@@ -457,6 +457,7 @@ MonoBehaviour:
   bronze: {fileID: 5574019301625941805}
   gold: {fileID: 5574019300981299619}
   competencesCanvas: {fileID: 0}
+  endMusicVictory: {fileID: 0}
 --- !u!1 &5574019301532606167
 GameObject:
   m_ObjectHideFlags: 0
