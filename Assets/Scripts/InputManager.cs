@@ -47,12 +47,13 @@ public class InputManager : MonoBehaviour
     public Vector2 Move() { return moveInput; }
 
     /// <summary>
-    /// Checks if the player is holding a move input.
+    /// Checks if the player is holding a horizontal move input
+    /// that is closer to horizontal than vertical.
     /// </summary>
     /// <returns>True when th input is held, False otherwise.</returns>
     public bool IsMoveInput()
     {
-        if (moveInput.sqrMagnitude > 0.001f) // sqrMagnitude is faster than .magnitude
+        if (Mathf.Abs(moveInput.x) > 0.01f && Mathf.Abs(moveInput.x) >= Mathf.Abs(moveInput.y))
             return true;
         else
             return false;
@@ -75,6 +76,45 @@ public class InputManager : MonoBehaviour
     {
         var temp = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveInput = Vector2.ClampMagnitude(temp, 1f);
+    }
+
+    /// <summary>
+    /// Checks what direction the player is holding to climb a ladder
+    /// </summary>
+    /// <returns>1 for up, -1 for down, 0 for no direction.</returns>
+    public int LadderInputDir()
+    {
+        Vector2 input = Move();
+
+        // if holding diagonal, accept only diagonal close enough to y-axis than x axis.
+        // Also with minimum y input
+        if (Mathf.Abs(input.y) > Mathf.Abs(input.x) && Mathf.Abs(input.y) >= 0.2f) // TODO: magic numberrrrrrr
+        {
+            if (input.y > 0.01f)
+            {
+                return 1;
+            }
+            else if (input.y < -0.01f)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        return 0;
+    }
+
+    public bool IsLadderInput()
+    {
+        int dir = LadderInputDir();
+
+        if (Mathf.Abs(dir) > 0)
+            return true;
+        else
+            return false;
     }
 
     void HandleGrapple()

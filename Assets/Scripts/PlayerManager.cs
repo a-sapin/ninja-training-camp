@@ -8,7 +8,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] State currentState;
     InputManager inputManager;
     [SerializeReference] Animator myAnimator;
+    [SerializeReference] SpriteRenderer playerSprite;
     VFXManager mySoundManager;
+    BlastZone myBlastZone; // handles the player respawning
+    GrapplingGun myGrapplingGun;
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
     [SerializeField] bool hasDashPower = false;
@@ -25,6 +28,7 @@ public class PlayerManager : MonoBehaviour
     // getters
     public PlayerLocomotion GetLocomotion() { return myPlayerLocomotion; }
     public InputManager GetInput() { return inputManager; }
+    public GrapplingGun GetGrapplingGun() { return myGrapplingGun; }
 
     public bool HasDash() { return hasDashPower; }
     public bool HasDoubleJump() { return hasDoubleJumpPower; }
@@ -36,6 +40,9 @@ public class PlayerManager : MonoBehaviour
     public void RemoveDoubleJump() { hasDoubleJumpPower = false; }
     public void RemoveGrapple() { hasGrapplePower = false; }
 
+    // when false, the player is locked and cannot act
+    bool isActionable = true;
+
     /// <summary>
     /// Properly changes the state of the player by calling Exit() function 
     /// of the current state and Enter() function of the next state.
@@ -43,7 +50,7 @@ public class PlayerManager : MonoBehaviour
     /// <param name="nextState">The next state to switch to.</param>
     public void ChangeState(State nextState)
     {
-        if(currentState.GetType() == nextState.GetType())
+        if (currentState.GetType() == nextState.GetType())
         {
             return; // Don't change the state if we are already in that state
         }
@@ -55,7 +62,23 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private bool canGrapple = true;
+    public bool CanGrapple()
+    {
+        if (!hasGrapplePower)
+            return false;
+        else
+            return canGrapple;
+    }
+
+    public void SetCanGrapple(bool value) { canGrapple = value; }
+
     private bool canDash = true;
+    /// <summary>
+    /// Upon reading value to check if player is able to dash,
+    /// disable dash for the duration of cooldown.
+    /// </summary>
+    /// <returns>TRUE if player can dash, or FALSE if unable or cooling down.</returns>
     public bool CanDash()
     {
         if (!hasDashPower)
@@ -76,55 +99,97 @@ public class PlayerManager : MonoBehaviour
         canDash = true;
     }
 
+    /// <summary>
+    /// Careful using this, player must eventually be set
+    /// to actionable after this function is called.
+    /// </summary>
+    public void LockGameplayInput()
+    {
+        isActionable = false;
+        ChangeState(State.grounded); // force the grounded state to stop moving
+    }
+
+    public void UnlockGameplayInput()
+    {
+        isActionable = true;
+    }
+
+    /// <summary>
+    /// Respawns the player to the current level's spawn point
+    /// </summary>
+    public void Respawn()
+    {
+        myBlastZone.Respawn();
+    }
+
     void Start()
     {
         mySoundManager = FindObjectOfType<VFXManager>();
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
+        myBlastZone = GetComponent<BlastZone>();
         inputManager = GetComponent<InputManager>();
+        myGrapplingGun = GetComponentInChildren<GrapplingGun>();
+        canGrapple = true;
         currentState = State.grounded; // set a default state at the start
+        isActionable = true;
     }
 
     void Update()
     {
-        currentState.HandleSurroundings(this);
-        currentState.HandleInputs(this);
-        currentState.LogicUpdate(this);
+        if (isActionable)
+        {
+            currentState.HandleSurroundings(this);
+            currentState.HandleInputs(this);
+            currentState.LogicUpdate(this);
+        }
+    }
+
+    private void LateUpdate()
+    {
+        FlipSprite();
+        SetBoolDash(currentState == State.dashing);
+        SetBoolGrounded(currentState == State.grounded || currentState == State.running);
+        SetBoolJump(currentState == State.jumping);
+        SetBoolRun(GetInput().IsMoveInput());
+        SetIntLadderInput(GetInput().LadderInputDir());
     }
 
     void FixedUpdate()
     {
         currentState.PhysicsUpdate(this);
+        SetFloatYVelocity(GetLocomotion().GetVelocity().y);
+        SetBoolTouchLadder(GetLocomotion().IsTouchingLadder());
     }
 
     #region Animation
 
-    public void SetAnimIdle()
+    public Animator GetAnimator() { return myAnimator; }
+
+    public void SetBoolGrounded(bool value) { myAnimator.SetBool("isGrounded", value); }
+    public void SetBoolRun(bool value) { myAnimator.SetBool("Run", value); }
+    public void SetBoolDash(bool value) { myAnimator.SetBool("Dash", value); }
+    public void SetBoolJump(bool value) { myAnimator.SetBool("Jump", value); }
+    public void SetBoolGrapple(bool value) { myAnimator.SetBool("Grapple", value); myAnimator.SetTrigger("StartGrapple"); }
+    public void SetBoolTouchLadder(bool value) { myAnimator.SetBool("TouchingLadder", value); }
+    public void SetFloatYVelocity(float value) { myAnimator.SetFloat("Y_Velocity", value); }
+    public void SetIntLadderInput(int value) { myAnimator.SetInteger("LadderInput", value); }
+
+    /// <summary>
+    /// Flips sprite to make player avater face the direction
+    /// the move input is currently held.
+    /// </summary>
+    public void FlipSprite()
     {
-        myAnimator.SetBool("runLeft", false); // not running
-        myAnimator.SetBool("runRight", false);
-
-        myAnimator.SetBool("jump", false); // not jumping (left or right)
-        myAnimator.SetBool("jumpL", false);// so grounded or on ladder
-
-        myAnimator.SetBool("dash", false); // not dashing
+        if (GetInput().Move().x < 0f) // inputting left
+        {
+            playerSprite.flipX = true;
+        }
+        else if (GetInput().Move().x > 0f) // inputting right
+        {
+            playerSprite.flipX = false;
+        }
     }
 
-    public void SetAnimRun(bool runRight)
-    {
-        myAnimator.SetBool("runLeft", !runRight);
-        myAnimator.SetBool("runRight", runRight);
-    }
-
-    public void SetAnimDashTo(bool setBoolToThis) 
-    {
-        myAnimator.SetBool("dash", setBoolToThis);
-    }
-
-    public void SetAnimJump(bool inputRight)
-    {
-        // empty for now
-        // TODO: add proper jump animation
-    }
     #endregion
 
     #region Sound Effects
