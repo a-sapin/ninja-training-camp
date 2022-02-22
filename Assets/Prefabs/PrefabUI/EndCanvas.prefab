@@ -447,6 +447,7 @@ MonoBehaviour:
   dashLost: {fileID: 8657355559580676079}
   doubleJumpLost: {fileID: 1244256355940370688}
   grappleLost: {fileID: 5896040462266938613}
+  powerUI: {fileID: 0}
   dashUI: {fileID: 0}
   doubleJumpUI: {fileID: 0}
   grappleUI: {fileID: 0}
@@ -1488,6 +1489,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 83551a8c6be4ca84fbfa81069a02b6f5, type: 3}
+    - target: {fileID: 5959980384959031933, guid: d51681ce4e5048e41974cf4bdeeb39ec, type: 3}
+      propertyPath: m_Text
+      value: Grapple lost
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d51681ce4e5048e41974cf4bdeeb39ec, type: 3}
 --- !u!1 &5896040462266938613 stripped
@@ -1623,6 +1628,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f33be8c10b9bf6f4394a2b60e3363093, type: 3}
+    - target: {fileID: 5959980384959031933, guid: d51681ce4e5048e41974cf4bdeeb39ec, type: 3}
+      propertyPath: m_Text
+      value: Dash lost
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d51681ce4e5048e41974cf4bdeeb39ec, type: 3}
 --- !u!224 &8657355559580676072 stripped
@@ -2185,6 +2194,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: b3216a72c8bc1564f83b76160f25c1bd, type: 3}
+    - target: {fileID: 5959980384959031933, guid: d51681ce4e5048e41974cf4bdeeb39ec, type: 3}
+      propertyPath: m_Text
+      value: Double jump lost
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d51681ce4e5048e41974cf4bdeeb39ec, type: 3}
 --- !u!224 &1244256355940370695 stripped
