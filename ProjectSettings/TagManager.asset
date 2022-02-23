@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Button
   - GrappleTarget
+  - Rock
+  - BambooBridge
   layers:
   - Default
   - TransparentFX
