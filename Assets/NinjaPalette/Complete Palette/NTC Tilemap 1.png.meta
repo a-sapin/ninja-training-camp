@@ -3146,11 +3146,11 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -1, y: -3}
+      - - {x: -1, y: -2}
         - {x: -1, y: -4}
         - {x: 4, y: -4}
         - {x: 4, y: 0}
-        - {x: 1, y: -1}
+        - {x: 1, y: 0}
       tessellationDetail: 0
       bones: []
       spriteID: ec06d5968f14047b0800000000000000
@@ -3224,8 +3224,8 @@ TextureImporter:
       physicsShape:
       - - {x: -4, y: -4}
         - {x: 1, y: -4}
-        - {x: 1, y: -3}
-        - {x: -1, y: -1}
+        - {x: 1, y: -2}
+        - {x: -1, y: 0}
         - {x: -4, y: 0}
       tessellationDetail: 0
       bones: []
@@ -3273,48 +3273,6 @@ TextureImporter:
       bones: []
       spriteID: ce993321fcb514a90800000000000000
       internalID: -7331477773460727316
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_28
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 296
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 50fe0bd01c22a11b0800000000000000
-      internalID: -5685193367048098043
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_29
-      rect:
-        serializedVersion: 2
-        x: 216
-        y: 296
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4cebdb45b3fd309c0800000000000000
-      internalID: -3962077801238118716
       vertices: []
       indices: 
       edges: []
@@ -3620,27 +3578,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NTC Tilemap 1_42
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 288
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72ea253f7f0e270e0800000000000000
-      internalID: -2273507506324853209
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: NTC Tilemap 1_43
       rect:
         serializedVersion: 2
@@ -3733,27 +3670,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NTC Tilemap 1_47
-      rect:
-        serializedVersion: 2
-        x: 184
-        y: 288
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e516472851e8ecb0800000000000000
-      internalID: -4834366431249951260
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: NTC Tilemap 1_48
       rect:
         serializedVersion: 2
@@ -3791,74 +3707,6 @@ TextureImporter:
       bones: []
       spriteID: 0ff0e9db31ed43520800000000000000
       internalID: 2681011854559285232
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_50
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 288
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0c9ac9c2cb13851c0800000000000000
-      internalID: -4514803942166844992
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_51
-      rect:
-        serializedVersion: 2
-        x: 216
-        y: 288
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aae7e8a2737cf5170800000000000000
-      internalID: 8169467288824479402
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_52
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 288
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -1, y: -3}
-        - {x: -1, y: -4}
-        - {x: 4, y: -4}
-        - {x: 4, y: 0}
-        - {x: 1, y: -1}
-      tessellationDetail: 0
-      bones: []
-      spriteID: e7dc423b93f37dbb0800000000000000
-      internalID: -4911387351573017218
       vertices: []
       indices: 
       edges: []
@@ -3909,32 +3757,6 @@ TextureImporter:
       bones: []
       spriteID: 92aa4c4d7158dc6f0800000000000000
       internalID: -662727232753194455
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_55
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 288
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -4, y: -4}
-        - {x: 1, y: -4}
-        - {x: 1, y: -3}
-        - {x: -1, y: -1}
-        - {x: -4, y: 0}
-      tessellationDetail: 0
-      bones: []
-      spriteID: b27a356e127fa08a0800000000000000
-      internalID: -6337981800600328405
       vertices: []
       indices: 
       edges: []
@@ -4416,27 +4238,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NTC Tilemap 1_76
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 280
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: adb491e29a1f4c400800000000000000
-      internalID: 343665180512177114
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: NTC Tilemap 1_77
       rect:
         serializedVersion: 2
@@ -4537,27 +4338,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NTC Tilemap 1_81
-      rect:
-        serializedVersion: 2
-        x: 184
-        y: 280
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30828b8ba3f882fd0800000000000000
-      internalID: -2366484121813243901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: NTC Tilemap 1_82
       rect:
         serializedVersion: 2
@@ -4642,52 +4422,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NTC Tilemap 1_86
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 280
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 477d907c98c095340800000000000000
-      internalID: 4852923859357783924
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_87
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 280
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -1, y: 4}
-        - {x: -1, y: -4}
-        - {x: 4, y: -4}
-        - {x: 4, y: 4}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2d7f10a3936a26de0800000000000000
-      internalID: -1341326974286432302
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: NTC Tilemap 1_88
       rect:
         serializedVersion: 2
@@ -4725,31 +4459,6 @@ TextureImporter:
       bones: []
       spriteID: 3db1e12a8279607c0800000000000000
       internalID: -4105427809527260205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_90
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 280
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -4, y: 4}
-        - {x: -4, y: -4}
-        - {x: 1, y: -4}
-        - {x: 1, y: 4}
-      tessellationDetail: 0
-      bones: []
-      spriteID: f2de9f0b22f8a1c90800000000000000
-      internalID: -7198283675237487313
       vertices: []
       indices: 
       edges: []
@@ -5252,132 +4961,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NTC Tilemap 1_112
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 272
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 17f0b6fecf5420060800000000000000
-      internalID: 6918168930245349233
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_113
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 272
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 16050c6f0098f0410800000000000000
-      internalID: 1445524642642022497
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_114
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 272
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 310a0dab32cd917e0800000000000000
-      internalID: -1794160930514231277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_115
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 272
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 295929b1868d40cf0800000000000000
-      internalID: -286866534594079342
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_116
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 272
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fabfafb89287da280800000000000000
-      internalID: -9030429557970502737
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_117
-      rect:
-        serializedVersion: 2
-        x: 184
-        y: 272
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c401029732ec40c90800000000000000
-      internalID: -7204406852134629300
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: NTC Tilemap 1_118
       rect:
         serializedVersion: 2
@@ -5462,52 +5045,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NTC Tilemap 1_122
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 272
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 59900029828ecc5c0800000000000000
-      internalID: -4193721892042962539
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_123
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 272
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -1, y: 4}
-        - {x: 2, y: 0}
-        - {x: 4, y: 0}
-        - {x: 4, y: 4}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 187bbfce4bd99c3a0800000000000000
-      internalID: -6644606374812862591
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: NTC Tilemap 1_124
       rect:
         serializedVersion: 2
@@ -5553,31 +5090,6 @@ TextureImporter:
       bones: []
       spriteID: 545edd47debc1c230800000000000000
       internalID: 3657428593129940293
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_126
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 272
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -4, y: 4}
-        - {x: -4, y: 0}
-        - {x: -1, y: 0}
-        - {x: 1, y: 4}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e5f06ffab6731300800000000000000
-      internalID: 221651352191825385
       vertices: []
       indices: 
       edges: []
@@ -6019,48 +5531,6 @@ TextureImporter:
       bones: []
       spriteID: 5e461289e25088590800000000000000
       internalID: -7671876267546680091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_148
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 256
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1b5f386d81689ea0800000000000000
-      internalID: -5865831254682805474
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NTC Tilemap 1_149
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 256
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13d209c866598a3e0800000000000000
-      internalID: -2042218163335058127
       vertices: []
       indices: 
       edges: []
