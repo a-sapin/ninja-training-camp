@@ -37,61 +37,60 @@ public class Dialogue : MonoBehaviour
         playerManager.LockGameplayInput(); // freeze player during dialogue
         //lock
         int dialogueIndex = 0;
+        bool waiting = false;
         canvas.SetActive(true);
         if (dialogue.Length > 0)
         {
-
-            sensei.SetActive(dialogue[dialogueIndex].isSenseiTalking);
-            player.SetActive(!dialogue[dialogueIndex].isSenseiTalking);
-
-            //LOKI (remove when finished)
-            int lengthOfSentence = dialogue[dialogueIndex].text.Length;
-            char[] charsArray = new char[lengthOfSentence];
-            for (int i = 0; i < lengthOfSentence; i++) //Put each char of DIALOGUE TEXT into a slot of the array
+            while (dialogueIndex < dialogue.Length)
             {
-                charsArray[i] = dialogue[dialogueIndex].text[i];
-            }
-
-            string current_Text = "";
-
-            for (int o = 0; o < lengthOfSentence; o++) //Append each char of the dialogue to current_text then display it until everything is here
-            {
-                //IF a key is pressed, skip to end of dialogue
-                if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
+                if (!waiting)
                 {
-                    textZone.text = dialogue[dialogueIndex].text;
-                    o = lengthOfSentence;
+                    sensei.SetActive(dialogue[dialogueIndex].isSenseiTalking);
+                    player.SetActive(!dialogue[dialogueIndex].isSenseiTalking);
+
+                    //LOKI (remove when finished)
+                    int lengthOfSentence = dialogue[dialogueIndex].text.Length;
+                    char[] charsArray = new char[lengthOfSentence];
+                    for (int i = 0; i < lengthOfSentence; i++) //Put each char of DIALOGUE TEXT into a slot of the array
+                    {
+                        charsArray[i] = dialogue[dialogueIndex].text[i];
+                    }
+
+                    string current_Text = "";
+
+                    for (int o = 0; o < lengthOfSentence; o++) //Append each char of the dialogue to current_text then display it until everything is here
+                    {
+                        //IF a key is pressed, skip to end of dialogue
+                        if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
+                        {
+                            textZone.text = dialogue[dialogueIndex].text;
+                            o = lengthOfSentence;
+                        }
+                        else
+                        {
+                            current_Text = current_Text + charsArray[o]; //Append char
+                            textZone.text = current_Text;
+                            mySoundManager.Play("Talking");
+                            yield return new WaitForSecondsRealtime(writeDelay);
+                        }
+                    }
+                    waiting = true;
+                    //Debug.Log("BULLE COMPLETEE");
                 }
-                else
+                else if (waiting && Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
                 {
-                    current_Text = current_Text + charsArray[o]; //Append char
-                    textZone.text = current_Text;
-                    mySoundManager.Play("Talking");
-                    yield return new WaitForSecondsRealtime(writeDelay);
+                    dialogueIndex++;
+                    textZone.text = "";
+                    waiting = false;
                 }
+                yield return null;
             }
 
             //LOKI (remove when finished)
 
             //textZone.text = dialogue[dialogueIndex].text;
         }
-        yield return new WaitForSecondsRealtime(0.5f);
-        while (true)
-        {
-            if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
-            {
-
-                dialogueIndex++;
-                if (dialogueIndex >= dialogue.Length) break;
-
-                textZone.text = dialogue[dialogueIndex].text;
-                sensei.SetActive(dialogue[dialogueIndex].isSenseiTalking);
-                player.SetActive(!dialogue[dialogueIndex].isSenseiTalking);
-
-                yield return new WaitForSecondsRealtime(0.5f);
-            }
-            yield return null;
-        }
+        
         playerManager.UnlockGameplayInput(); // once dialogue is done, let player move
         canvas.SetActive(false);
         Time.timeScale = 1;
