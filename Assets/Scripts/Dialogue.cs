@@ -56,10 +56,19 @@ public class Dialogue : MonoBehaviour
 
             for (int o = 0; o < lengthOfSentence; o++) //Append each char of the dialogue to current_text then display it until everything is here
             {
-                current_Text = current_Text + charsArray[o]; //Append char
-                textZone.text = current_Text;
-                mySoundManager.Play("Talking");
-                yield return new WaitForSecondsRealtime(writeDelay);
+                //IF a key is pressed, skip to end of dialogue
+                if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
+                {
+                    textZone.text = dialogue[dialogueIndex].text;
+                    o = lengthOfSentence;
+                }
+                else
+                {
+                    current_Text = current_Text + charsArray[o]; //Append char
+                    textZone.text = current_Text;
+                    mySoundManager.Play("Talking");
+                    yield return new WaitForSecondsRealtime(writeDelay);
+                }
             }
 
             //LOKI (remove when finished)
