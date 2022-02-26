@@ -20,17 +20,9 @@ public class SoundAnimation : MonoBehaviour
     }
     private void MovementSound()
     {
-        //if(touchGround.GetLocomotion().IsGrounded())
+        //if(touchGround)
         //{
             vfxManager.Play("Movement");
-        //}
-    }
-
-   private void MovementV2Sound()
-    {
-        //if (touchGround.GetLocomotion().IsGrounded())
-        //{
-            vfxManager.Play("Movement3");
         //}
     }
 

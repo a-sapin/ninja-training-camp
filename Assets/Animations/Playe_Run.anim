@@ -86,7 +86,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.16666667
-    functionName: MovementV2Sound
+    functionName: MovementSound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -100,7 +100,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: MovementV2Sound
+    functionName: MovementSound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
