@@ -37,4 +37,9 @@ public class SoundAnimation : MonoBehaviour
         vfxManager.Play("Double Jump");
 
     }
+    private void LadderSound() // ne fonctionne pas car l'état double jump ne s'active jamais... SAD :(
+    {
+        vfxManager.Stop("Movement");
+        vfxManager.Play("Ladder");
+    }
 }
