@@ -190,6 +190,11 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public bool isSpriteFlipped()
+    {
+        return playerSprite.flipX;
+    }
+
     #endregion
 
     #region Sound Effects
