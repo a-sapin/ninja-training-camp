@@ -8,9 +8,11 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] State currentState;
     InputManager inputManager;
     [SerializeReference] Animator myAnimator;
+    [SerializeReference] SpriteRenderer playerSprite;
     VFXManager mySoundManager;
     BlastZone myBlastZone; // handles the player respawning
     GrapplingGun myGrapplingGun;
+    Smoke smoke;
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
     [SerializeField] bool hasDashPower = false;
@@ -49,7 +51,7 @@ public class PlayerManager : MonoBehaviour
     /// <param name="nextState">The next state to switch to.</param>
     public void ChangeState(State nextState)
     {
-        if(currentState.GetType() == nextState.GetType())
+        if (currentState.GetType() == nextState.GetType())
         {
             return; // Don't change the state if we are already in that state
         }
@@ -120,7 +122,11 @@ public class PlayerManager : MonoBehaviour
     {
         myBlastZone.Respawn();
     }
-
+    public void CreateSmoke(bool doubleJump = false)
+    {
+        if (doubleJump) smoke.CreateDoubleJumpSmoke();
+        else smoke.CreateJumpSmoke();
+    }
     void Start()
     {
         mySoundManager = FindObjectOfType<VFXManager>();
@@ -128,6 +134,7 @@ public class PlayerManager : MonoBehaviour
         myBlastZone = GetComponent<BlastZone>();
         inputManager = GetComponent<InputManager>();
         myGrapplingGun = GetComponentInChildren<GrapplingGun>();
+        smoke = GetComponent<Smoke>();
         canGrapple = true;
         currentState = State.grounded; // set a default state at the start
         isActionable = true;
@@ -143,40 +150,52 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        FlipSprite();
+        SetBoolDash(currentState == State.dashing);
+        SetBoolGrounded(currentState == State.grounded || currentState == State.running);
+        SetBoolJump(currentState == State.jumping);
+        SetBoolRun(GetInput().IsMoveInput());
+        SetIntLadderInput(GetInput().LadderInputDir());
+    }
+
     void FixedUpdate()
     {
         currentState.PhysicsUpdate(this);
+        SetFloatYVelocity(GetLocomotion().GetVelocity().y);
+        SetBoolTouchLadder(GetLocomotion().IsTouchingLadder());
     }
 
     #region Animation
 
-    public void SetAnimIdle()
+    public Animator GetAnimator() { return myAnimator; }
+
+    public void SetBoolGrounded(bool value) { myAnimator.SetBool("isGrounded", value); }
+    public void SetBoolRun(bool value) { myAnimator.SetBool("Run", value); }
+    public void SetBoolDash(bool value) { myAnimator.SetBool("Dash", value); }
+    public void SetBoolJump(bool value) { myAnimator.SetBool("Jump", value); }
+    public void SetBoolGrapple(bool value) { myAnimator.SetBool("Grapple", value); myAnimator.SetTrigger("StartGrapple"); }
+    public void SetBoolTouchLadder(bool value) { myAnimator.SetBool("TouchingLadder", value); }
+    public void SetFloatYVelocity(float value) { myAnimator.SetFloat("Y_Velocity", value); }
+    public void SetIntLadderInput(int value) { myAnimator.SetInteger("LadderInput", value); }
+
+    /// <summary>
+    /// Flips sprite to make player avater face the direction
+    /// the move input is currently held.
+    /// </summary>
+    public void FlipSprite()
     {
-        myAnimator.SetBool("runLeft", false); // not running
-        myAnimator.SetBool("runRight", false);
-
-        myAnimator.SetBool("jump", false); // not jumping (left or right)
-        myAnimator.SetBool("jumpL", false);// so grounded or on ladder
-
-        myAnimator.SetBool("dash", false); // not dashing
+        if (GetInput().Move().x < 0f) // inputting left
+        {
+            playerSprite.flipX = true;
+        }
+        else if (GetInput().Move().x > 0f) // inputting right
+        {
+            playerSprite.flipX = false;
+        }
     }
 
-    public void SetAnimRun(bool runRight)
-    {
-        myAnimator.SetBool("runLeft", !runRight);
-        myAnimator.SetBool("runRight", runRight);
-    }
-
-    public void SetAnimDashTo(bool setBoolToThis) 
-    {
-        myAnimator.SetBool("dash", setBoolToThis);
-    }
-
-    public void SetAnimJump(bool inputRight)
-    {
-        // empty for now
-        // TODO: add proper jump animation
-    }
     #endregion
 
     #region Sound Effects

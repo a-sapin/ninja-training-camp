@@ -16,26 +16,31 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private DialoguePart[] dialogue;
     [SerializeField] private float writeDelay; //LOKI
     private PlayerManager playerManager;
+    private PlayerLocomotion playerLocomotion;
+    private Timer timer;
     VFXManager mySoundManager;
 
     void Start()
     {
+        timer = FindObjectOfType<Timer>();
+        playerLocomotion = FindObjectOfType<PlayerLocomotion>();
         StartFirstDialogue();
     }
-
+    
     private void StartFirstDialogue()
     {
         IEnumerator firstDialogue = PlayDialogue(dialogue);
         StartCoroutine(firstDialogue);
     }
-
+    
     IEnumerator PlayDialogue(DialoguePart[] dialogue)
     {
         yield return new WaitForSecondsRealtime(0.05f);
         mySoundManager = FindObjectOfType<VFXManager>(); //Find sound manager for dialogue "beep"
         playerManager = FindObjectOfType<PlayerManager>();
         playerManager.LockGameplayInput(); // freeze player during dialogue
-        //lock
+        timer.PauseTimer();
+
         int dialogueIndex = 0;
         bool waiting = false;
         canvas.SetActive(true);
@@ -92,6 +97,8 @@ public class Dialogue : MonoBehaviour
         }
         
         playerManager.UnlockGameplayInput(); // once dialogue is done, let player move
+
+        timer.RestartTimer();
         canvas.SetActive(false);
         Time.timeScale = 1;
     }

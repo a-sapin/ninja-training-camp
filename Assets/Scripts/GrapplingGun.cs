@@ -31,6 +31,8 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private float maxDistnace = 20;
 
     [HideInInspector] public bool isGrapplingWithPad = false;
+    [HideInInspector] public GameObject grappleTarget;
+    private VFXManager vfxManager;
 
     private enum LaunchType
     {
@@ -55,6 +57,8 @@ public class GrapplingGun : MonoBehaviour
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
+        
+        vfxManager = FindObjectOfType<VFXManager>();
     }
 
     private void Update()
@@ -91,10 +95,11 @@ public class GrapplingGun : MonoBehaviour
     }
     public void StopGrappling()
     {
+        playerRef.SetBoolGrapple(false);
         isGrapplingWithPad = false;
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
-        m_rigidbody.gravityScale = 1;
+        m_rigidbody.gravityScale = 0; // return gravity to normal after grappling
     }
     public Vector2 GetNearestTargetPos(Vector2 origin)
     {
@@ -105,6 +110,7 @@ public class GrapplingGun : MonoBehaviour
             float newDist = Vector2.Distance(origin, target.transform.position);
             if (newDist < minDistance)
             {
+                grappleTarget = target;
                 minDistance = newDist;
                 nearest = target.transform.position;
             }
@@ -143,25 +149,30 @@ public class GrapplingGun : MonoBehaviour
                 {
                     if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
                     {
+                        playerRef.SetBoolGrapple(true);
                         grapplePoint = _hit.transform.position;
-                        
+                        grappleTarget = _hit.transform.gameObject;
                         grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
                         grappleRope.enabled = true;
+                        vfxManager.Play("Grapple");
                     }
                 }
             }
         }
         else
         {
+            playerRef.SetBoolGrapple(true);
             grapplePoint = point;
             grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
             grappleRope.enabled = true;
+            vfxManager.Play("Grapple");
         }
         
     }
 //physique du grapple. utilisation du sprint joint pour le mouvement. Unity gere le mouvement et la collision avec le spring joint
     public void Grapple()
     {
+        m_rigidbody.gravityScale = 1f; // increase gravity during grapple for better swinging
         m_springJoint2D.autoConfigureDistance = false;
         if (!launchToPoint && !autoConfigureDistance)
         {
@@ -193,7 +204,6 @@ public class GrapplingGun : MonoBehaviour
                     m_springJoint2D.enabled = true;
                     break;
                 case LaunchType.Transform_Launch:
-                    m_rigidbody.gravityScale = 0;
                     m_rigidbody.velocity = Vector2.zero;
                     break;
             }
