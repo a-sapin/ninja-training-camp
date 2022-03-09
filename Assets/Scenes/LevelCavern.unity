@@ -89689,6 +89689,10 @@ PrefabInstance:
       value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 8189802186982668742, guid: 15b3d8dc9cfbc2b4cbdbe1b19ac77e2f, type: 3}
+      propertyPath: rb2d
+      value: 
+      objectReference: {fileID: 1679963330}
+    - target: {fileID: 8189802186982668742, guid: 15b3d8dc9cfbc2b4cbdbe1b19ac77e2f, type: 3}
       propertyPath: speed
       value: -0.08
       objectReference: {fileID: 0}
@@ -90133,6 +90137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 2066852236}
+  attackRange: 4
 --- !u!4 &2102536753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7701596165757395554, guid: 5da1b0ead4c6f2940ba9c538dbc8c068, type: 3}

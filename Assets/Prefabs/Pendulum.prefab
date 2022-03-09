@@ -175,10 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1adc5934142054c93e8187e3589251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody2D: {fileID: 1629577950779627701}
-  leftSwingRange: 0
-  rightSwingRange: 0
-  velocityMax: 0
+  rb2d: {fileID: 1629577950779627701}
+  speed: 0
 --- !u!1 &5702499808109411866
 GameObject:
   m_ObjectHideFlags: 0
