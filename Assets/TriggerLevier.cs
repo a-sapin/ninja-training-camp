@@ -19,7 +19,8 @@ public class TriggerLevier : MonoBehaviour
     {
         RaiseWall,
         MoveRight,
-        MoveLeft
+        MoveLeft,
+        MoveDown
     }
 
     private void Start()
@@ -40,11 +41,14 @@ public class TriggerLevier : MonoBehaviour
                 case TypeLevier.RaiseWall:
                     Debug.Log("TiggerLevier || RaiseWall");
                     
-                    StartCoroutine(RaiseWall(timer));
+                    StartCoroutine(RaiseWall(timer,Vector3.up));
                     break;
                 case TypeLevier.MoveRight:
                     break;
                 case TypeLevier.MoveLeft:
+                    break;
+                case TypeLevier.MoveDown:
+                    StartCoroutine(RaiseWall(timer, Vector3.down));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -56,14 +60,14 @@ public class TriggerLevier : MonoBehaviour
         }
     }
 
-    private IEnumerator RaiseWall(float delayTime)
+    private IEnumerator RaiseWall(float delayTime, Vector3 directionVector)
     {
         var startTime = Time.time;
         while (Time.time - startTime <= delayTime)
         {
             var position = associatedGo.transform.position;
             position = Vector3.Lerp(position,
-                position + associatedGo.transform.up * Time.deltaTime * distanceToMove,
+                position + directionVector * Time.deltaTime * distanceToMove,
                 Time.time - startTime);
             associatedGo.transform.position = position;
             yield return null;
