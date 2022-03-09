@@ -12,6 +12,9 @@ public class TriggerLevier : MonoBehaviour
     [SerializeField] private bool doOnce = false;
 
     private bool isActivated;
+    private Animator animator;
+    private static readonly int LevierToggled = Animator.StringToHash("LevierToggled");
+
     private enum TypeLevier
     {
         RaiseWall,
@@ -22,6 +25,7 @@ public class TriggerLevier : MonoBehaviour
     private void Start()
     {
         isActivated = false;
+        animator = GetComponent<Animator>();
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -35,6 +39,7 @@ public class TriggerLevier : MonoBehaviour
             {
                 case TypeLevier.RaiseWall:
                     Debug.Log("TiggerLevier || RaiseWall");
+                    
                     StartCoroutine(RaiseWall(timer));
                     break;
                 case TypeLevier.MoveRight:
@@ -47,6 +52,7 @@ public class TriggerLevier : MonoBehaviour
             
             if(doOnce)
                 isActivated = true;
+            animator.SetBool(LevierToggled, isActivated);
         }
     }
 
