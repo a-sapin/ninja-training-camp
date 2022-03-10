@@ -1266,7 +1266,7 @@ AudioSource:
   m_GameObject: {fileID: 1035317345}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3264421926529515087, guid: eddba8cae9bc9854d97dae06848d8987, type: 2}
   m_audioClip: {fileID: 8300000, guid: f2a708825afdd4a49a21979364fda937, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
@@ -1757,6 +1757,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1645305072301960260, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
+      propertyPath: BGM
+      value: 
+      objectReference: {fileID: 1035317347}
     - target: {fileID: 1645305072301960261, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
       propertyPath: m_Name
       value: VOLUMEMANAGER

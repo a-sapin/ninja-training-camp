@@ -22,6 +22,7 @@ public class Dialogue : MonoBehaviour
 
     void Start()
     {
+        writeDelay = PlayerPrefs.GetFloat("writeDelay", 0.03f);
         timer = FindObjectOfType<Timer>();
         playerLocomotion = FindObjectOfType<PlayerLocomotion>();
         StartFirstDialogue();

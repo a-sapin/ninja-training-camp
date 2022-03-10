@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class VFXManager : MonoBehaviour
 {
     public SoundEffect[] sounds;
-
     public static VFXManager instance;
     
+    public AudioMixerGroup mixer;
     // Use this for initialization
     void Awake()
     {
@@ -27,10 +28,12 @@ public class VFXManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-
+            s.source.outputAudioMixerGroup = mixer;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            
+            
         }
     }
 

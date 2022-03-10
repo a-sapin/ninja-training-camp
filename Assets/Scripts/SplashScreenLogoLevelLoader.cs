@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,6 +6,17 @@ using UnityEngine.SceneManagement;
 public class SplashScreenLogoLevelLoader : MonoBehaviour
 {
     public float transitionTime = 7f;
+
+    private void Awake()
+    {
+        Screen.fullScreen = intToBool(PlayerPrefs.GetInt("fullscreen", 1));
+        PlayerPrefs.SetFloat("musicTime", 0f);
+    }
+
+    private bool intToBool(int i)
+    {
+        return i == 1;
+    }
 
     // Update is called once per frame
     void Update()
