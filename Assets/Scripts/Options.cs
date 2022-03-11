@@ -20,7 +20,7 @@ public class Options : MonoBehaviour
     [Header("Window")] [SerializeField] private Toggle fullscreen;
     [SerializeField] private Dropdown resolutionDropdown;
     private Resolution[] resolutions;
-    private void Start()
+    private void Awake()
     {
         volumeMaster.value = PlayerPrefs.GetFloat("volumeMaster", 1);
         volumeMaster.onValueChanged.AddListener(ChangeVolumeMaster);
@@ -37,6 +37,9 @@ public class Options : MonoBehaviour
 
         resolutions = Screen.resolutions;
         Array.Reverse(resolutions);
+
+        ChangeResolutionFromString();
+        
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         int currentRes = 0;
@@ -56,10 +59,19 @@ public class Options : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
+    private void ChangeResolutionFromString()
+    {
+        string res = PlayerPrefs.GetString("resolution", "1920 x 1080");
+        int width = Int32.Parse(res.Split('x').First().Trim()); 
+        int height = Int32.Parse(res.Split('x').Last().Trim());
+        Screen.SetResolution(width, height, Screen.fullScreen);
+    }
+
     public void ChangeResolution(int index)
     {
         Resolution res = resolutions[index];
         Screen.SetResolution(res.width, res.height, Screen.fullScreen);
+        PlayerPrefs.SetString("resolution", res.width + " x " + res.height);
     }
     
     private bool intToBool(int i)

@@ -7,7 +7,7 @@ public class MusicManager : MonoBehaviour
 
     private float musicTime;
     private string music;
-    void Start()
+    void Awake()
     {
         music = BGM.clip.ToString();
         if (music == PlayerPrefs.GetString("music"))
