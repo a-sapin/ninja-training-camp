@@ -63,7 +63,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Grapple
-    clip: {fileID: 8300000, guid: 1fbf2e0ec1e29d042b1c58c8a7fe7636, type: 3}
+    clip: {fileID: 8300000, guid: df2c3a4420d97644fbeb5ee8b6498f55, type: 3}
     volume: 0.15
     pitch: 1.75
     loop: 0
