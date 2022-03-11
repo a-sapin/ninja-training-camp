@@ -9,6 +9,7 @@ class DialoguePart
     public bool isSenseiTalking;
     public string text;
 }
+
 public class Dialogue : MonoBehaviour
 {
     [SerializeField] private Text textZone;
@@ -22,17 +23,18 @@ public class Dialogue : MonoBehaviour
 
     void Start()
     {
+        writeDelay = PlayerPrefs.GetFloat("writeDelay", 0.03f);
         timer = FindObjectOfType<Timer>();
         playerLocomotion = FindObjectOfType<PlayerLocomotion>();
         StartFirstDialogue();
     }
-    
+
     private void StartFirstDialogue()
     {
         IEnumerator firstDialogue = PlayDialogue(dialogue);
         StartCoroutine(firstDialogue);
     }
-    
+
     IEnumerator PlayDialogue(DialoguePart[] dialogue)
     {
         yield return new WaitForSecondsRealtime(0.05f);
@@ -63,7 +65,9 @@ public class Dialogue : MonoBehaviour
 
                     string current_Text = "";
 
-                    for (int o = 0; o < lengthOfSentence; o++) //Append each char of the dialogue to current_text then display it until everything is here
+                    for (int o = 0;
+                         o < lengthOfSentence;
+                         o++) //Append each char of the dialogue to current_text then display it until everything is here
                     {
                         //IF a key is pressed, skip to end of dialogue
                         if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
@@ -79,6 +83,7 @@ public class Dialogue : MonoBehaviour
                             yield return new WaitForSecondsRealtime(writeDelay);
                         }
                     }
+
                     waiting = true;
                     //Debug.Log("BULLE COMPLETEE");
                 }
@@ -88,6 +93,7 @@ public class Dialogue : MonoBehaviour
                     textZone.text = "";
                     waiting = false;
                 }
+
                 yield return null;
             }
 
@@ -95,7 +101,7 @@ public class Dialogue : MonoBehaviour
 
             //textZone.text = dialogue[dialogueIndex].text;
         }
-        
+
         playerManager.UnlockGameplayInput(); // once dialogue is done, let player move
 
         timer.RestartTimer();
