@@ -119,7 +119,7 @@ MonoBehaviour:
   minIntensity: 1
   maxIntensity: 1
   minRadius: 10
-  maxRadius: 11
+  maxRadius: 10.5
   lightLoopSpeed: 0.5
 --- !u!114 &8395592841816776898
 MonoBehaviour:
