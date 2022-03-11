@@ -693,9 +693,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1645305072301960260, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
+      propertyPath: BGM
+      value: 
+      objectReference: {fileID: 2109180913}
     - target: {fileID: 1645305072301960261, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
       propertyPath: m_Name
-      value: VOLUMEMANAGER
+      value: MUSICMANAGER
       objectReference: {fileID: 0}
     - target: {fileID: 1645305072301960263, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
       propertyPath: m_RootOrder
@@ -1107,7 +1111,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105456629}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc77631ab77129844a580c5d58df8a75, type: 3}
   m_Name: 
@@ -1494,7 +1498,7 @@ AudioSource:
   m_GameObject: {fileID: 2109180912}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3264421926529515087, guid: eddba8cae9bc9854d97dae06848d8987, type: 2}
   m_audioClip: {fileID: 8300000, guid: f3b5ef4df97e72b439550b5ba69d092d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.15

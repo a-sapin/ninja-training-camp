@@ -196,20 +196,26 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public bool isSpriteFlipped()
+    {
+        return playerSprite.flipX;
+    }
+
     #endregion
 
     #region Sound Effects
+    //I commented the lines to put the sounds all in the same place.
 
-    public void PlayJumpSound()
+    /*public void PlayJumpSound()
     {
         mySoundManager.Play("Jump");
     }
-
+    */
     public void PlayDashSound()
     {
         mySoundManager.Play("Dash");
     }
-
-    #endregion
+    
+    #endregion 
 
 }
