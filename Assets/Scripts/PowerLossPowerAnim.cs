@@ -10,11 +10,16 @@ public class PowerLossPowerAnim : MonoBehaviour
     [SerializeField] private GameObject bottomHalf;
     private Animator bottomHalfAnimator;
     
+    [SerializeField] private GameObject text;
+    private Animator textAnimator;
+    
     void Start()
     {
         topHalfAnimator = topHalf.GetComponent<Animator>();
         
         bottomHalfAnimator = bottomHalf.GetComponent<Animator>();
+
+        textAnimator = text.GetComponent<Animator>();
         
         topHalfAnimator.fireEvents = false;
         bottomHalfAnimator.fireEvents = false;
@@ -31,5 +36,8 @@ public class PowerLossPowerAnim : MonoBehaviour
         
         topHalfAnimator.SetBool("break", false);
         bottomHalfAnimator.SetBool("break", false);
+        yield return new WaitForSeconds(0.35f);
+        
+        textAnimator.SetTrigger("FadeOut");
     }
 }
