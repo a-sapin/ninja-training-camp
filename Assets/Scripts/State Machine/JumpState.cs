@@ -7,6 +7,7 @@ public class JumpState : AirDriftState
     public override void Enter(PlayerManager player)
     {
         base.Enter(player);
+        player.CreateSmoke();
         player.GetLocomotion().ApplyJumpForce();
         //player.PlayJumpSound();
     }
@@ -14,8 +15,7 @@ public class JumpState : AirDriftState
     public override void HandleSurroundings(PlayerManager player)
     {
         // when jumping, dont detect ground
-
-        if(Time.time - startTime >= 0.07f)
+        if (Time.time - startTime >= 0.07f)
         { // stay in this state for a short time (to avoid applying a jump many frames in a row)
             player.ChangeState(airdrift);
         }

@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     VFXManager mySoundManager;
     BlastZone myBlastZone; // handles the player respawning
     GrapplingGun myGrapplingGun;
+    Smoke smoke;
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
     [SerializeField] bool hasDashPower = false;
@@ -121,7 +122,11 @@ public class PlayerManager : MonoBehaviour
     {
         myBlastZone.Respawn();
     }
-
+    public void CreateSmoke(bool doubleJump = false)
+    {
+        if (doubleJump) smoke.CreateDoubleJumpSmoke();
+        else smoke.CreateJumpSmoke();
+    }
     void Start()
     {
         mySoundManager = FindObjectOfType<VFXManager>();
@@ -129,6 +134,7 @@ public class PlayerManager : MonoBehaviour
         myBlastZone = GetComponent<BlastZone>();
         inputManager = GetComponent<InputManager>();
         myGrapplingGun = GetComponentInChildren<GrapplingGun>();
+        smoke = GetComponent<Smoke>();
         canGrapple = true;
         currentState = State.grounded; // set a default state at the start
         isActionable = true;
@@ -188,6 +194,11 @@ public class PlayerManager : MonoBehaviour
         {
             playerSprite.flipX = false;
         }
+    }
+
+    public bool isSpriteFlipped()
+    {
+        return playerSprite.flipX;
     }
 
     #endregion
