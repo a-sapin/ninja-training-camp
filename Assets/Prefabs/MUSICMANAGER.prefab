@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1645305072301960263}
   - component: {fileID: 1645305072301960260}
   m_Layer: 0
-  m_Name: VOLUMEMANAGER
+  m_Name: MUSICMANAGER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfaac8ed1ec01341a6d96169de44a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BGM: {fileID: 0}
