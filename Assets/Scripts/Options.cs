@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class Options : MonoBehaviour
 {
-    [Header("Volume")]
-    [SerializeField] private AudioMixer mixer;
+    [Header("Volume")] [SerializeField] private AudioMixer mixer;
 
     [SerializeField] private Slider volumeMaster;
     [SerializeField] private Slider volumeBGM;
@@ -20,6 +19,7 @@ public class Options : MonoBehaviour
     [Header("Window")] [SerializeField] private Toggle fullscreen;
     [SerializeField] private Dropdown resolutionDropdown;
     private Resolution[] resolutions;
+
     private void Awake()
     {
         volumeMaster.value = PlayerPrefs.GetFloat("volumeMaster", 1);
@@ -39,16 +39,17 @@ public class Options : MonoBehaviour
         Array.Reverse(resolutions);
 
         ChangeResolutionFromString();
-        
+
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         int currentRes = 0;
-        for(int i = 0 ; i < resolutions.Length; i++)
+        for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
-            
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
             {
                 currentRes = i;
             }
@@ -62,7 +63,7 @@ public class Options : MonoBehaviour
     private void ChangeResolutionFromString()
     {
         string res = PlayerPrefs.GetString("resolution", "1920 x 1080");
-        int width = Int32.Parse(res.Split('x').First().Trim()); 
+        int width = Int32.Parse(res.Split('x').First().Trim());
         int height = Int32.Parse(res.Split('x').Last().Trim());
         Screen.SetResolution(width, height, Screen.fullScreen);
     }
@@ -73,7 +74,7 @@ public class Options : MonoBehaviour
         Screen.SetResolution(res.width, res.height, Screen.fullScreen);
         PlayerPrefs.SetString("resolution", res.width + " x " + res.height);
     }
-    
+
     private bool intToBool(int i)
     {
         return i == 1;
@@ -89,7 +90,7 @@ public class Options : MonoBehaviour
         PlayerPrefs.SetInt("fullscreen", boolToInt(fullscreen));
         Screen.fullScreen = fullscreen;
     }
-    
+
     private void ChangeVolumeMaster(float value)
     {
         PlayerPrefs.SetFloat("volumeMaster", value);
@@ -110,6 +111,6 @@ public class Options : MonoBehaviour
 
     private void ChangeDialogSpeed(float value)
     {
-        PlayerPrefs.SetFloat("writeDelay", 0.05f-value);
+        PlayerPrefs.SetFloat("writeDelay", 0.05f - value);
     }
 }

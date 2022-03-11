@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour
@@ -7,6 +6,7 @@ public class MusicManager : MonoBehaviour
 
     private float musicTime;
     private string music;
+
     void Awake()
     {
         music = BGM.clip.ToString();
