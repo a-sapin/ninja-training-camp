@@ -22,7 +22,7 @@ public abstract class State : ScriptableObject
     public virtual void Enter(PlayerManager player)
     {
         startTime = Time.time;
-        Debug.Log("Entering " + ToString());
+        //Debug.Log("Entering " + ToString());
     }
 
     public virtual void Exit(PlayerManager player)
