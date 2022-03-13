@@ -18,8 +18,10 @@ public class Dummy : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player")) // on contact with player, ...
         {
-            Vector2 dir = (collision.transform.position - transform.position).normalized; // pointing away from this dummy
-
+            Vector3 slightlyOffsetPos = transform.position - new Vector3(0f, 0.3f, 0f); // makes dir point slightly up
+            Vector2 dir = (collision.transform.position - slightlyOffsetPos).normalized; // pointing away from this dummy
+            
+            Debug.DrawRay(collision.transform.position, dir, Color.red, 1f);
             // Apply a force on the player, towards dir
             collision.gameObject.GetComponent<PlayerLocomotion>().ApplyExternForce(dir * force);
         }
