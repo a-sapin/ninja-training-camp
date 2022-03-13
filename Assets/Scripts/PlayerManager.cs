@@ -68,6 +68,8 @@ public class PlayerManager : MonoBehaviour
     {
         if (!hasGrapplePower)
             return false;
+        else if (!isActionable) // player cannot grapple when locked
+            return false;
         else
             return canGrapple;
     }
@@ -82,8 +84,8 @@ public class PlayerManager : MonoBehaviour
     /// <returns>TRUE if player can dash, or FALSE if unable or cooling down.</returns>
     public bool CanDash()
     {
-        if (!hasDashPower)
-            return false; // no dash power, no need to calculate cooldown
+        if (!hasDashPower || !isActionable)
+            return false; // no dash power or not actionable, so no need to calculate cooldown
 
         if (canDash)
         {
@@ -156,7 +158,7 @@ public class PlayerManager : MonoBehaviour
         SetBoolDash(currentState == State.dashing);
         SetBoolGrounded(currentState == State.grounded || currentState == State.running);
         SetBoolJump(currentState == State.jumping);
-        SetBoolRun(GetInput().IsMoveInput());
+        SetBoolRun(isActionable && GetInput().IsMoveInput()); // disable run anim when locked
         SetIntLadderInput(GetInput().LadderInputDir());
     }
 
