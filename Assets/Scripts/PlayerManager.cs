@@ -43,6 +43,8 @@ public class PlayerManager : MonoBehaviour
 
     // when false, the player is locked and cannot act
     bool isActionable = true;
+    
+    public bool IsActionable() { return isActionable; }
 
     /// <summary>
     /// Properly changes the state of the player by calling Exit() function 

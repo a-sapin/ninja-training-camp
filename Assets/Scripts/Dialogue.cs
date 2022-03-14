@@ -17,7 +17,6 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private DialoguePart[] dialogue;
     [SerializeField] private float writeDelay; //LOKI
     private PlayerManager playerManager;
-    private PlayerLocomotion playerLocomotion;
     private Timer timer;
     VFXManager mySoundManager;
 
@@ -25,7 +24,8 @@ public class Dialogue : MonoBehaviour
     {
         writeDelay = PlayerPrefs.GetFloat("writeDelay", 0.03f);
         timer = FindObjectOfType<Timer>();
-        playerLocomotion = FindObjectOfType<PlayerLocomotion>();
+        mySoundManager = FindObjectOfType<VFXManager>(); //Find sound manager for dialogue "beep"
+        playerManager = FindObjectOfType<PlayerManager>();
         StartFirstDialogue();
     }
 
@@ -38,8 +38,6 @@ public class Dialogue : MonoBehaviour
     IEnumerator PlayDialogue(DialoguePart[] dialogue)
     {
         yield return new WaitForSecondsRealtime(0.05f);
-        mySoundManager = FindObjectOfType<VFXManager>(); //Find sound manager for dialogue "beep"
-        playerManager = FindObjectOfType<PlayerManager>();
         playerManager.LockGameplayInput(); // freeze player during dialogue
         timer.PauseTimer();
 
