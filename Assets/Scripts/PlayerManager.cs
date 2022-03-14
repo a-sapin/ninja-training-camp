@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     private PlayerLocomotion myPlayerLocomotion;
     [SerializeField] State currentState;
+    public State getState() { return currentState;}
     InputManager inputManager;
     [SerializeReference] Animator myAnimator;
     [SerializeReference] SpriteRenderer playerSprite;

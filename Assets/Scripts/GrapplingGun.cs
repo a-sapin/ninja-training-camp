@@ -61,7 +61,7 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
-        if (playerRef.IsActionable())
+        if (playerRef.IsActionable() && playerRef.getState()!=State.ladderClimb && playerRef.getState()!=State.ladderGrab)
         {
             //event appeler lorsque le joueur utilise clic gauche pour la grapple
             if (Input.GetKeyDown(KeyCode.Mouse0) && playerRef.CanGrapple())
