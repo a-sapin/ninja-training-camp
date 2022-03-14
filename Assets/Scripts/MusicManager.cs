@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
@@ -10,13 +11,9 @@ public class MusicManager : MonoBehaviour
     void Awake()
     {
         music = BGM.clip.ToString();
-        if (music == PlayerPrefs.GetString("music"))
+        if ( !SceneManager.GetActiveScene().name.Contains("level") && music == PlayerPrefs.GetString("music"))
         {
             BGM.time = PlayerPrefs.GetFloat("musicTime");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("musicTime", 0f);
         }
     }
 
