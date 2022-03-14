@@ -21123,9 +21123,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1645305072301960260, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
+      propertyPath: BGM
+      value: 
+      objectReference: {fileID: 1601219931}
     - target: {fileID: 1645305072301960261, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
       propertyPath: m_Name
-      value: VOLUMEMANAGER
+      value: MUSICMANAGER
       objectReference: {fileID: 0}
     - target: {fileID: 1645305072301960263, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
       propertyPath: m_RootOrder
@@ -22257,16 +22261,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7883df830ba278d47b9fa928172804c2, type: 3}
---- !u!1 &1258933396936370002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1705688426227701854, guid: 7883df830ba278d47b9fa928172804c2, type: 3}
-  m_PrefabInstance: {fileID: 491864151678304012}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1860789871915389954 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2234253053691816718, guid: 7883df830ba278d47b9fa928172804c2, type: 3}
-  m_PrefabInstance: {fileID: 491864151678304012}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2632919473460973276 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2475134370941317584, guid: 7883df830ba278d47b9fa928172804c2, type: 3}
@@ -22463,11 +22457,11 @@ PrefabInstance:
     - target: {fileID: 5574019301524737304, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
       propertyPath: grappleUI
       value: 
-      objectReference: {fileID: 1258933396936370002}
+      objectReference: {fileID: 0}
     - target: {fileID: 5574019301524737304, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
       propertyPath: doubleJumpUI
       value: 
-      objectReference: {fileID: 1860789871915389954}
+      objectReference: {fileID: 0}
     - target: {fileID: 5574019301524737304, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
       propertyPath: competencesCanvas
       value: 
