@@ -6650,6 +6650,10 @@ PrefabInstance:
       propertyPath: audioSourceInScene
       value: 
       objectReference: {fileID: 1601219931}
+    - target: {fileID: 8619551538510115514, guid: 6179315b25e892d499984b443dc623a3, type: 3}
+      propertyPath: musicPlayerInScene
+      value: 
+      objectReference: {fileID: 1601219930}
     m_RemovedComponents:
     - {fileID: 1658422631579540815, guid: 6179315b25e892d499984b443dc623a3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6179315b25e892d499984b443dc623a3, type: 3}
