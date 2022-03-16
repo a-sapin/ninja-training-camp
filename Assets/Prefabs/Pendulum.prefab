@@ -269,6 +269,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3247283676418571756}
     m_Modifications:
+    - target: {fileID: 426369612, guid: 4c916d2207d2300418a5957aa19521d4, type: 3}
+      propertyPath: lightLoopSpeed
+      value: 3.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1892329565095138, guid: 4c916d2207d2300418a5957aa19521d4, type: 3}
       propertyPath: m_Name
       value: BlueMotes (1)
@@ -347,6 +351,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3247283676418571756}
     m_Modifications:
+    - target: {fileID: 426369612, guid: 4c916d2207d2300418a5957aa19521d4, type: 3}
+      propertyPath: lightLoopSpeed
+      value: 7.7
+      objectReference: {fileID: 0}
     - target: {fileID: 1892329565095138, guid: 4c916d2207d2300418a5957aa19521d4, type: 3}
       propertyPath: m_Name
       value: BlueMotes
