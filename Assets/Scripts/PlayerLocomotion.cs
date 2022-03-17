@@ -34,6 +34,7 @@ public class PlayerLocomotion : MonoBehaviour
     /// </summary>
     public void ApplyExternForce(Vector2 impulseForce)
     {
+        rb.velocity = Vector2.zero;
         rb.AddForce(impulseForce, ForceMode2D.Impulse);
     }
 
