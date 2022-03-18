@@ -26,11 +26,12 @@ public class Dialogue : MonoBehaviour
         writeDelay = PlayerPrefs.GetFloat("writeDelay", 0.03f);
         timer = FindObjectOfType<Timer>();
         playerLocomotion = FindObjectOfType<PlayerLocomotion>();
-        StartFirstDialogue();
+        canvas.SetActive(false);
     }
 
-    private void StartFirstDialogue()
+    public void StartFirstDialogue()
     {
+        canvas.SetActive(true);
         IEnumerator firstDialogue = PlayDialogue(dialogue);
         StartCoroutine(firstDialogue);
     }
@@ -45,7 +46,7 @@ public class Dialogue : MonoBehaviour
 
         int dialogueIndex = 0;
         bool waiting = false;
-        canvas.SetActive(true);
+        
         if (dialogue.Length > 0)
         {
             while (dialogueIndex < dialogue.Length)
