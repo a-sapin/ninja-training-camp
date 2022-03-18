@@ -97,7 +97,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         Tilemap tileMap;
 
-        if(hit.collider.TryGetComponent<Tilemap>(out tileMap))
+        if(hit.collider.TryGetComponent(out tileMap))
         {
             Vector2 hitPos = hit.point - new Vector2(0f, 0.1f); // offset the point slightly down to make sure we are not above the tile we want
             Vector3Int tilePos = tileMap.WorldToCell(hitPos);
