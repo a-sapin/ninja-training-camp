@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerLocomotion : MonoBehaviour
 {
@@ -79,6 +80,7 @@ public class PlayerLocomotion : MonoBehaviour
         if (hit.collider != null)
         {
             groundNormal = hit.normal;
+            GetTileTypeFromHit(hit);
             Debug.DrawRay(hit.point, groundNormal, Color.green, 0.02f);
             return true;
         }
@@ -87,6 +89,33 @@ public class PlayerLocomotion : MonoBehaviour
             groundNormal = Vector2.up;
             Debug.DrawRay(hit.point, groundNormal, Color.green, 0.02f);
             return false;
+        }
+    }
+
+    private TileBase groundType; // used for footstep sfx
+    public void GetTileTypeFromHit(RaycastHit2D hit)
+    {
+        Tilemap tileMap;
+
+        if(hit.collider.TryGetComponent<Tilemap>(out tileMap))
+        {
+            Vector2 hitPos = hit.point - new Vector2(0f, 0.1f); // offset the point slightly down to make sure we are not above the tile we want
+            Vector3Int tilePos = tileMap.WorldToCell(hitPos);
+            TileBase tileBase = tileMap.GetTile(tilePos);
+
+            if (groundType != tileBase)
+            {
+                groundType = tileBase;
+                Debug.Log(tileBase);
+            }
+        }
+        else if (hit.collider.TryGetComponent<PlatformEffector2D>(out var platform))
+        {
+            groundType = null; // TODO: a ladder was detected!!
+        }
+        else
+        {
+            groundType = null;
         }
     }
 
