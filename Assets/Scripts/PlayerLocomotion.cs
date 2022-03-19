@@ -80,7 +80,7 @@ public class PlayerLocomotion : MonoBehaviour
         if (hit.collider != null)
         {
             groundNormal = hit.normal;
-            GetTileTypeFromHit(hit);
+            UpdateGroundTypeFromHit(hit);
             Debug.DrawRay(hit.point, groundNormal, Color.green, 0.02f);
             return true;
         }
@@ -93,7 +93,7 @@ public class PlayerLocomotion : MonoBehaviour
     }
 
     private TileBase groundType; // used for footstep sfx
-    public void GetTileTypeFromHit(RaycastHit2D hit)
+    public void UpdateGroundTypeFromHit(RaycastHit2D hit)
     {
         Tilemap tileMap;
 
