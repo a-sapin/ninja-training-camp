@@ -93,6 +93,7 @@ public class PlayerLocomotion : MonoBehaviour
     }
 
     private TileBase groundType; // used for footstep sfx
+    public TileBase GetGroundType() { return groundType; }
     public void UpdateGroundTypeFromHit(RaycastHit2D hit)
     {
         Tilemap tileMap;
