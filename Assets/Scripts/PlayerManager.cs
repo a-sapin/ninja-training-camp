@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     BlastZone myBlastZone; // handles the player respawning
     GrapplingGun myGrapplingGun;
     Smoke smoke;
+    FootstepHandler footstepHandler;
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
     [SerializeField] bool hasDashPower = false;
@@ -140,6 +141,7 @@ public class PlayerManager : MonoBehaviour
         canGrapple = true;
         currentState = State.grounded; // set a default state at the start
         isActionable = true;
+        footstepHandler = GetComponent<FootstepHandler>();
     }
 
     void Update()
@@ -210,6 +212,26 @@ public class PlayerManager : MonoBehaviour
     public void PlayDashSound()
     {
         mySoundManager.Play("Dash");
+    }
+
+    public void PlayCorrespondingFootstepSound()
+    {
+        if (footstepHandler.IsGrass(myPlayerLocomotion.GetGroundType()))
+        {
+            //mySoundManager.Play(GRASS);
+        }
+        else if (footstepHandler.IsStone(myPlayerLocomotion.GetGroundType()))
+        {
+            //mySoundManager.Play(STONE);
+        }
+        else if (footstepHandler.IsWood(myPlayerLocomotion.GetGroundType()))
+        {
+            //mySoundManager.Play(WOOD);
+        }
+        else if (footstepHandler.IsDirt(myPlayerLocomotion.GetGroundType()))
+        {
+            //mySoundManager.Play(DIRT);
+        }
     }
 
     #endregion
