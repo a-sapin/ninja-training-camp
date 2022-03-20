@@ -15,6 +15,9 @@ public class GroundTypeList : ScriptableObject
     /// <returns>True or False</returns>
     public bool Contains(TileBase theTile)
     {
+        if (theTile is null)
+            return false;
+
         foreach (TileBase currentTileInArray in tiles)
         {
             if (theTile.Equals(currentTileInArray))
