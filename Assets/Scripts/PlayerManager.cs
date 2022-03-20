@@ -162,6 +162,7 @@ public class PlayerManager : MonoBehaviour
         SetBoolJump(currentState == State.jumping);
         SetBoolRun(isActionable && GetInput().IsMoveInput()); // disable run anim when locked
         SetIntLadderInput(GetInput().LadderInputDir());
+        PlayCorrespondingFootstepSound();
     }
 
     void FixedUpdate()
@@ -218,18 +219,22 @@ public class PlayerManager : MonoBehaviour
     {
         if (footstepHandler.IsGrass(myPlayerLocomotion.GetGroundType()))
         {
+            Debug.Log("GRASS FOOTSTEP");
             //mySoundManager.Play(GRASS);
         }
         else if (footstepHandler.IsStone(myPlayerLocomotion.GetGroundType()))
         {
+            Debug.Log("STONE FOOTSTEP");
             //mySoundManager.Play(STONE);
         }
         else if (footstepHandler.IsWood(myPlayerLocomotion.GetGroundType()))
         {
+            Debug.Log("WOOD FOOTSTEP");
             //mySoundManager.Play(WOOD);
         }
         else if (footstepHandler.IsDirt(myPlayerLocomotion.GetGroundType()))
         {
+            Debug.Log("DIRT FOOTSTEP");
             //mySoundManager.Play(DIRT);
         }
     }
