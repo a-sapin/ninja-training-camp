@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: lilypad2
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: b5b40dbd8a6b03149868f62988bc41c4, type: 3}
+  - {fileID: 21300000, guid: 73018b8697c5bce4f9ca4bd36755448e, type: 3}
+  - {fileID: 21300000, guid: 8c1f9f4229c836e4da536d2d75d1db92, type: 3}
+  - {fileID: 21300000, guid: a9ac05276db39454ab23dfb6d4426fc1, type: 3}
+  - {fileID: 21300000, guid: 20939c830bce3e441bb3718a083d2aad, type: 3}
+  - {fileID: 21300000, guid: 346e6f40b047d97459b90215842e21f3, type: 3}
+  - {fileID: 21300000, guid: 6f48b4c288528e14f96d46e070bf6f5e, type: 3}
+  - {fileID: 21300000, guid: f86cb9112a1e48540ae416db5f5e0726, type: 3}
+  - {fileID: 21300000, guid: fb07f62ed0e55474aa7bc9cf01b8ef37, type: 3}
+  - {fileID: 21300000, guid: 929754e134c78ba4592f32f328623764, type: 3}
+  - {fileID: 21300000, guid: e23e649a2b2c22e43ab19dd8ea4f5c92, type: 3}
+  - {fileID: 21300000, guid: 8aaec80c2671e624fb06732d02712794, type: 3}
+  - {fileID: 21300000, guid: b549bd959306a7745956ec749d5e5515, type: 3}
+  - {fileID: 21300000, guid: 41b0461f0f6a7ff42935d62ea83e1185, type: 3}
+  - {fileID: 21300000, guid: 862d386d36252d04db5b5036f6fd3d5b, type: 3}
+  - {fileID: 21300000, guid: a45c24206067cf5409541724a42f9510, type: 3}
+  - {fileID: 21300000, guid: 636f2b327c6f0d649b508f3e61c9fd4c, type: 3}
+  - {fileID: 21300000, guid: 1ea997424afa8b840924794cbf558972, type: 3}
+  - {fileID: 21300000, guid: 1180d327075fbbf4d9ba245a7c23351d, type: 3}
+  - {fileID: 21300000, guid: 05d05391ece06944f9374f72bc062cd9, type: 3}
+  - {fileID: 21300000, guid: 42b0aaa410f6f8b47b2bd960790f623f, type: 3}
+  - {fileID: 21300000, guid: 2f43088e73cc26c47adf9cd0a626b818, type: 3}
+  - {fileID: 21300000, guid: 24266574ab92fe14ba473301afbc6109, type: 3}
+  - {fileID: 21300000, guid: 74a538380a183804093ca7ff174ef8d6, type: 3}
+  - {fileID: 21300000, guid: f5ad793f5fd34944c9cbc7f5a1c5492f, type: 3}
+  - {fileID: 21300000, guid: b9a2e8e08bd692e44a331909fb4c9c6a, type: 3}
+  - {fileID: 21300000, guid: 496d801b68c0fde479691039df131c49, type: 3}
+  - {fileID: 21300000, guid: d03181ca46520354d82e3e6b1edb0299, type: 3}
+  - {fileID: 21300000, guid: 2e087834a3aee6443a5ed86f5abc5e80, type: 3}
+  - {fileID: 21300000, guid: a03fda5c1b5fed148a397900df6ce41d, type: 3}
+  - {fileID: 21300000, guid: 02cae398d2620a248ba8823f3fcb53ed, type: 3}
+  - {fileID: 21300000, guid: b5b40dbd8a6b03149868f62988bc41c4, type: 3}
+  - {fileID: 21300000, guid: b5b40dbd8a6b03149868f62988bc41c4, type: 3}
+  - {fileID: 21300000, guid: b5b40dbd8a6b03149868f62988bc41c4, type: 3}
+  - {fileID: 21300000, guid: b5b40dbd8a6b03149868f62988bc41c4, type: 3}
+  m_MinSpeed: 7
+  m_MaxSpeed: 7
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 9
+  m_TileColliderType: 0
