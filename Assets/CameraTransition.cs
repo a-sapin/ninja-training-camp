@@ -2,13 +2,14 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CameraTransition : MonoBehaviour
 {
     public float stayOnToriTime,speed;
 
     [SerializeField] GameObject tori,player;
-    [SerializeField] CinemachineVirtualCamera camera;
+    [FormerlySerializedAs("camera")] [SerializeField] CinemachineVirtualCamera cinemachineCamera;
 
      PlayerManager playerManager;
     [SerializeField] Dialogue dialogues;
@@ -22,10 +23,10 @@ public class CameraTransition : MonoBehaviour
     {
         FindObjectOfType<Timer>().PauseTimer();
 
-        Cinemachine.CinemachineTransposer transposer = camera.GetCinemachineComponent<Cinemachine.CinemachineTransposer>();
+        Cinemachine.CinemachineTransposer transposer = cinemachineCamera.GetCinemachineComponent<Cinemachine.CinemachineTransposer>();
         float xDampling = transposer.m_XDamping;
         float yDampling = transposer.m_YDamping;
-        camera.Follow = tori.transform;
+        cinemachineCamera.Follow = tori.transform;
         transposer.m_XDamping = 0;
         transposer.m_YDamping = 0;
         Debug.Log("YOOO11");
@@ -34,7 +35,7 @@ public class CameraTransition : MonoBehaviour
         playerManager = FindObjectOfType<PlayerManager>();
         playerManager.LockGameplayInput();
 
-        camera.Follow = player.transform;
+        cinemachineCamera.Follow = player.transform;
         transposer.m_XDamping = speed;
         transposer.m_YDamping = speed;
 
