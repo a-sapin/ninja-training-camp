@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TriggerLevier : MonoBehaviour
 {
-    [SerializeField] private GameObject associatedGo;
+    public GameObject associatedGo;
     [SerializeField] private TypeLevier typeLevier;
 
     [SerializeField] private float timer = 1;
@@ -14,6 +15,7 @@ public class TriggerLevier : MonoBehaviour
     private bool isActivated;
     private Animator animator;
     private static readonly int LevierToggled = Animator.StringToHash("LevierToggled");
+    public Vector3 originalLiftPosition;
 
     private enum TypeLevier
     {
@@ -27,6 +29,8 @@ public class TriggerLevier : MonoBehaviour
     {
         isActivated = false;
         animator = GetComponent<Animator>();
+        originalLiftPosition = associatedGo.transform.position;
+        Debug.Log(originalLiftPosition);
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -72,5 +76,11 @@ public class TriggerLevier : MonoBehaviour
             associatedGo.transform.position = position;
             yield return null;
         }
+    }
+
+    public void ResetLevier()
+    {
+        associatedGo.transform.position = originalLiftPosition;
+        isActivated = false;
     }
 }

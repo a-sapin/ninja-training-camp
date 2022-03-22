@@ -50,13 +50,10 @@ public class BlastZone : MonoBehaviour
     {
         player.UnlockGameplayInput();
         playerLocomotion.ResetPlayerAndPosition(respawnLocation.transform.position);
+        
+        var spikeRef = FindObjectOfType<SpikesScript>();
+        if(spikeRef)
+            spikeRef.RestartMap();
     }
     
-    public void RespawnPlayer()
-    {
-        isTransition = true;
-        Waiter();
-        currentDeathCount++;
-
-    }
 }

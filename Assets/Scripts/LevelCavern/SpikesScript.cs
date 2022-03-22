@@ -10,7 +10,24 @@ public class SpikesScript : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player Collide");
-            col.gameObject.GetComponent<BlastZone>().RespawnPlayer();
+            col.gameObject.GetComponent<BlastZone>().Respawn();
+            col.gameObject.GetComponent<PlayerManager>().GetGrapplingGun().StopGrappling();
+            RestartMap();
+        }
+    }
+
+    public void RestartMap()
+    {
+        var objects = FindObjectsOfType<FallingRock>();
+        foreach (var t in objects)
+        {
+            Destroy(t.gameObject);
+        }
+
+        var leviers = FindObjectsOfType<TriggerLevier>();
+        foreach (var t in leviers)
+        {
+            t.ResetLevier();
         }
     }
 }
