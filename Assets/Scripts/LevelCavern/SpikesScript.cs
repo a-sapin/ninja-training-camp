@@ -9,8 +9,7 @@ public class SpikesScript : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player Collide");
-            col.gameObject.GetComponent<BlastZone>().Respawn();
+            col.gameObject.GetComponent<BlastZone>().Waiter(1.0f);
             col.gameObject.GetComponent<PlayerManager>().GetGrapplingGun().StopGrappling();
             RestartMap();
         }

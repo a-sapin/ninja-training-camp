@@ -26,21 +26,19 @@ public class BlastZone : MonoBehaviour
     private void Update()
     {
         if (gameObject.transform.position.y < blastZoneYLevel && !isTransition)
-        {
-            ScreenShake.Shake(0.3f, 3f);
-            player.LockGameplayInput();
-            transition.TransitToCanvas(respawnLocation, respawnLocation);
-            isTransition = true;
-            Invoke(nameof(Waiter), 1f);
-            
-            currentDeathCount++;
-        }
+            Waiter(1.0f);
+        
     }
     
-    private void Waiter()
+    public void Waiter(float timer)
     {
-        Respawn();
-        isTransition = false;
+        ScreenShake.Shake(0.3f, 3f);
+        isTransition = true;
+        player.LockGameplayInput();
+        currentDeathCount++;
+        transition.TransitToCanvas(respawnLocation, respawnLocation);
+        Invoke(nameof(Respawn), timer);
+
     }
 
     /// <summary>
@@ -54,6 +52,8 @@ public class BlastZone : MonoBehaviour
         var spikeRef = FindObjectOfType<SpikesScript>();
         if(spikeRef)
             spikeRef.RestartMap();
+
+        isTransition = false;
     }
     
 }

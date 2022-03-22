@@ -30,7 +30,6 @@ public class TriggerLevier : MonoBehaviour
         isActivated = false;
         animator = GetComponent<Animator>();
         originalLiftPosition = associatedGo.transform.position;
-        Debug.Log(originalLiftPosition);
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -43,7 +42,7 @@ public class TriggerLevier : MonoBehaviour
             switch (typeLevier)
             {
                 case TypeLevier.RaiseWall:
-                    Debug.Log("TiggerLevier || RaiseWall");
+                    Debug.Log("TriggerLevier || RaiseWall");
                     
                     StartCoroutine(RaiseWall(timer,Vector3.up));
                     break;
