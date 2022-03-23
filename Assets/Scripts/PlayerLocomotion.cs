@@ -11,6 +11,7 @@ public class PlayerLocomotion : MonoBehaviour
     Vector3 groundNormal; // indicates the slope the player is on (equal to Vector2.up when airborn)
 
     Ladder currentLadderObject;
+    FootstepHandler footsteps;
 
     public float gravityMultiplier = 1.0f;
     public float maxVelocity = 5.0f;
@@ -26,6 +27,7 @@ public class PlayerLocomotion : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        footsteps = GetComponent<FootstepHandler>();
     }
 
     public bool IsTouchingLadder() { return currentLadderObject != null; }
@@ -92,8 +94,7 @@ public class PlayerLocomotion : MonoBehaviour
         }
     }
 
-    private TileBase groundType; // used for footstep sfx
-    public TileBase GetGroundType() { return groundType; }
+    private TileBase groundTile; // used for footstep sfx
     public void UpdateGroundTypeFromHit(RaycastHit2D hit)
     {
         Tilemap tileMap;
@@ -104,20 +105,27 @@ public class PlayerLocomotion : MonoBehaviour
             Vector3Int tilePos = tileMap.WorldToCell(hitPos);
             TileBase tileBase = tileMap.GetTile(tilePos);
 
-            if (groundType != tileBase)
+            if (groundTile != tileBase) // if ground type changed, change to new ground type
             {
-                groundType = tileBase;
-                Debug.Log(tileBase);
+                groundTile = tileBase;
+                UpdateGroundType(tileBase);
             }
         }
         else if (hit.collider.TryGetComponent<PlatformEffector2D>(out var platform))
         {
-            groundType = null; // TODO: a ladder was detected!!
+            groundTile = null; // TODO: a ladder was detected!! maybe wood?
         }
         else
         {
-            groundType = null;
+            groundTile = null;
         }
+    }
+
+    private GroundType groundType = GroundType.NULL;
+    public GroundType GetGroundType() { return groundType; }
+    private void UpdateGroundType(TileBase tile)
+    {
+        groundType = footsteps.DetermineGroundType(tile);
     }
 
     public void ApplyFallAccel()

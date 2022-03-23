@@ -13,7 +13,6 @@ public class PlayerManager : MonoBehaviour
     BlastZone myBlastZone; // handles the player respawning
     GrapplingGun myGrapplingGun;
     Smoke smoke;
-    FootstepHandler footstepHandler;
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
     [SerializeField] bool hasDashPower = false;
@@ -141,7 +140,6 @@ public class PlayerManager : MonoBehaviour
         canGrapple = true;
         currentState = State.grounded; // set a default state at the start
         isActionable = true;
-        footstepHandler = GetComponent<FootstepHandler>();
     }
 
     void Update()
@@ -162,7 +160,6 @@ public class PlayerManager : MonoBehaviour
         SetBoolJump(currentState == State.jumping);
         SetBoolRun(isActionable && GetInput().IsMoveInput()); // disable run anim when locked
         SetIntLadderInput(GetInput().LadderInputDir());
-        PlayCorrespondingFootstepSound();
     }
 
     void FixedUpdate()
@@ -217,25 +214,26 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayCorrespondingFootstepSound()
     {
-        if (footstepHandler.IsGrass(myPlayerLocomotion.GetGroundType()))
+        switch (myPlayerLocomotion.GetGroundType())
         {
-            Debug.Log("GRASS FOOTSTEP");
-            //mySoundManager.Play(GRASS);
-        }
-        else if (footstepHandler.IsStone(myPlayerLocomotion.GetGroundType()))
-        {
-            Debug.Log("STONE FOOTSTEP");
-            //mySoundManager.Play(STONE);
-        }
-        else if (footstepHandler.IsWood(myPlayerLocomotion.GetGroundType()))
-        {
-            Debug.Log("WOOD FOOTSTEP");
-            //mySoundManager.Play(WOOD);
-        }
-        else if (footstepHandler.IsDirt(myPlayerLocomotion.GetGroundType()))
-        {
-            Debug.Log("DIRT FOOTSTEP");
-            //mySoundManager.Play(DIRT);
+            case GroundType.GRASS:
+                //play sound
+                break;
+
+            case GroundType.STONE:
+                //play sound
+                break;
+
+            case GroundType.WOOD:
+                //play sound
+                break;
+
+            case GroundType.DIRT:
+                //play sound
+                break;
+
+            default:
+                break;
         }
     }
 
