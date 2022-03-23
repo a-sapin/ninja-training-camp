@@ -16,6 +16,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private GameObject sensei, player, canvas;
     [SerializeField] private DialoguePart[] dialogue;
     [SerializeField] private float writeDelay; //LOKI
+    [HideInInspector] public bool isInDialogue = false;
     private PlayerManager playerManager;
     private PlayerLocomotion playerLocomotion;
     private Timer timer;
@@ -37,6 +38,7 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator PlayDialogue(DialoguePart[] dialogue)
     {
+        isInDialogue = true;
         yield return new WaitForSecondsRealtime(0.05f);
         mySoundManager = FindObjectOfType<VFXManager>(); //Find sound manager for dialogue "beep"
         playerManager = FindObjectOfType<PlayerManager>();
@@ -103,7 +105,7 @@ public class Dialogue : MonoBehaviour
         }
 
         playerManager.UnlockGameplayInput(); // once dialogue is done, let player move
-
+        isInDialogue = false;
         timer.RestartTimer();
         canvas.SetActive(false);
         Time.timeScale = 1;
