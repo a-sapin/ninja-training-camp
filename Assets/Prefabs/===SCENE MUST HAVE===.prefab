@@ -206,7 +206,7 @@ AudioSource:
   m_GameObject: {fileID: 8637676692548666209}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3264421926529515087, guid: eddba8cae9bc9854d97dae06848d8987, type: 2}
   m_audioClip: {fileID: 8300000, guid: ccd805b6e1171e641b1dfa3ccbc706e8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.05
@@ -348,6 +348,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: --[CANVAS]--
       objectReference: {fileID: 0}
+    - target: {fileID: 8412538424602863355, guid: 75d513f29c57be74c9292a7b736a831a, type: 3}
+      propertyPath: audioSourceInScene
+      value: 
+      objectReference: {fileID: 4989283898730528584}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75d513f29c57be74c9292a7b736a831a, type: 3}
 --- !u!4 &1287844655891126671 stripped

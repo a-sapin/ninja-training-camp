@@ -124776,6 +124776,10 @@ PrefabInstance:
       propertyPath: audioSourceInScene
       value: 
       objectReference: {fileID: 37250242}
+    - target: {fileID: 889718533833737214, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
+      propertyPath: m_Name
+      value: MUSICMANAGER
+      objectReference: {fileID: 0}
     - target: {fileID: 889718533833737215, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
       propertyPath: BGM
       value: 
