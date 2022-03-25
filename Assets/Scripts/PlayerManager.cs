@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     private PlayerLocomotion myPlayerLocomotion;
     [SerializeField] State currentState;
+    public State getState() { return currentState;}
     InputManager inputManager;
     [SerializeReference] Animator myAnimator;
     [SerializeReference] SpriteRenderer playerSprite;
@@ -43,6 +44,8 @@ public class PlayerManager : MonoBehaviour
 
     // when false, the player is locked and cannot act
     bool isActionable = true;
+    
+    public bool IsActionable() { return isActionable; }
 
     /// <summary>
     /// Properly changes the state of the player by calling Exit() function 
@@ -68,6 +71,8 @@ public class PlayerManager : MonoBehaviour
     {
         if (!hasGrapplePower)
             return false;
+        else if (!isActionable) // player cannot grapple when locked
+            return false;
         else
             return canGrapple;
     }
@@ -82,8 +87,8 @@ public class PlayerManager : MonoBehaviour
     /// <returns>TRUE if player can dash, or FALSE if unable or cooling down.</returns>
     public bool CanDash()
     {
-        if (!hasDashPower)
-            return false; // no dash power, no need to calculate cooldown
+        if (!hasDashPower || !isActionable)
+            return false; // no dash power or not actionable, so no need to calculate cooldown
 
         if (canDash)
         {
@@ -156,7 +161,7 @@ public class PlayerManager : MonoBehaviour
         SetBoolDash(currentState == State.dashing);
         SetBoolGrounded(currentState == State.grounded || currentState == State.running);
         SetBoolJump(currentState == State.jumping);
-        SetBoolRun(GetInput().IsMoveInput());
+        SetBoolRun(isActionable && GetInput().IsMoveInput()); // disable run anim when locked
         SetIntLadderInput(GetInput().LadderInputDir());
     }
 
@@ -186,6 +191,9 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void FlipSprite()
     {
+        if (!isActionable) // don't flip player when locked
+            return;
+
         if (GetInput().Move().x < 0f) // inputting left
         {
             playerSprite.flipX = true;
@@ -215,7 +223,32 @@ public class PlayerManager : MonoBehaviour
     {
         mySoundManager.Play("Dash");
     }
-    
-    #endregion 
+
+    public void PlayCorrespondingFootstepSound()
+    {
+        switch (myPlayerLocomotion.GetGroundType())
+        {
+            case GroundType.GRASS:
+                //play sound
+                break;
+
+            case GroundType.STONE:
+                //play sound
+                break;
+
+            case GroundType.WOOD:
+                //play sound
+                break;
+
+            case GroundType.DIRT:
+                //play sound
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    #endregion
 
 }

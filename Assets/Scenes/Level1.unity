@@ -21133,7 +21133,7 @@ PrefabInstance:
       objectReference: {fileID: 1601219931}
     - target: {fileID: 1645305072301960261, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
       propertyPath: m_Name
-      value: VOLUMEMANAGER
+      value: MUSICMANAGER
       objectReference: {fileID: 0}
     - target: {fileID: 1645305072301960263, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
       propertyPath: m_RootOrder

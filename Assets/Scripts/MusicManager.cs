@@ -15,10 +15,6 @@ public class MusicManager : MonoBehaviour
         {
             BGM.time = PlayerPrefs.GetFloat("musicTime");
         }
-        else
-        {
-            PlayerPrefs.SetFloat("musicTime", 0f);
-        }
     }
 
     private void Update()
