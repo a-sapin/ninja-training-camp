@@ -191,6 +191,9 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void FlipSprite()
     {
+        if (!isActionable) // don't flip player when locked
+            return;
+
         if (GetInput().Move().x < 0f) // inputting left
         {
             playerSprite.flipX = true;
