@@ -63,7 +63,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Grapple
-    clip: {fileID: 8300000, guid: 1fbf2e0ec1e29d042b1c58c8a7fe7636, type: 3}
+    clip: {fileID: 8300000, guid: df2c3a4420d97644fbeb5ee8b6498f55, type: 3}
     volume: 0.15
     pitch: 1.75
     loop: 0
@@ -78,6 +78,18 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7ec0529b3adb6574f8180b6e3e3ca294, type: 3}
     volume: 0.32
     pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Satoru is talking
+    clip: {fileID: 8300000, guid: 0af360651d8c481459424e50583a3ad0, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Sensei is talking
+    clip: {fileID: 8300000, guid: 0bc4ae4ce56e7c14f8c26073fdd85575, type: 3}
+    volume: 0.15
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Sword

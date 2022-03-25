@@ -3,7 +3,7 @@ using UnityEngine;
 public class SoundAnimation : MonoBehaviour
 {
     VFXManager vfxManager;
-    public PlayerManager touchGround;
+    //public PlayerManager touchGround;
 
     private void Start()
     {

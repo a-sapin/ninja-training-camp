@@ -7,13 +7,14 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public Animator animator;
-    public AudioSource audioSourceInScene;
+    public GameObject musicPlayerInScene;
     public ControllerInMenu controller;
     float transitionTime2 = 0.6f;
     private float exMenuKeyValue=0;
     private PlayerLocomotion player;
     private VFXManager vfxManager;
     private Transition transition;
+    private AudioSource[] musicPlayer;
 
     private Timer timer;
     
@@ -22,6 +23,7 @@ public class PauseMenu : MonoBehaviour
         timer = FindObjectOfType<Timer>();
         transition = FindObjectOfType<Transition>();
         vfxManager = FindObjectOfType<VFXManager>();
+        musicPlayer = musicPlayerInScene.GetComponentsInChildren<AudioSource>();
     }
     
     void Update()
@@ -63,7 +65,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         controller.StartMove();
         GameIsPaused = true;
-        audioSourceInScene.Pause();
+        PauseAllAudio();
         vfxManager.PauseAll(); //pause all vfxmanager SoundEffect
         timer.SendMessage("displayPowerDesc");
     }
@@ -82,7 +84,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
         GameIsPaused = false;
-        audioSourceInScene.Play();
+        PlayAllAudio();
     }
     
     IEnumerator AnimationTimeWaitTransition()
@@ -96,5 +98,19 @@ public class PauseMenu : MonoBehaviour
         yield return new WaitForSecondsRealtime(transitionTime2);
         animator.SetTrigger("FadeOut");
         transition.TransitToScene(SceneManager.GetActiveScene().name);
+    }
+    public void PlayAllAudio()
+    {
+        foreach (AudioSource audioS in musicPlayer)
+        {
+            audioS.Play();
+        }
+    }
+    public void PauseAllAudio()
+    {
+        foreach (AudioSource audioS in musicPlayer)
+        {
+            audioS.Pause();
+        }
     }
 }
