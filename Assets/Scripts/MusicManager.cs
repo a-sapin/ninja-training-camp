@@ -11,7 +11,7 @@ public class MusicManager : MonoBehaviour
     void Awake()
     {
         music = BGM.clip.ToString();
-        if ( !SceneManager.GetActiveScene().name.Contains("level") && music == PlayerPrefs.GetString("music"))
+        if (!SceneManager.GetActiveScene().name.Contains("level") && music == PlayerPrefs.GetString("music") && !SceneManager.GetActiveScene().name.Equals("CreditScene"))
         {
             BGM.time = PlayerPrefs.GetFloat("musicTime");
         }
