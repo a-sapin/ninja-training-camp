@@ -9,8 +9,9 @@ public class LevelButton : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
 
     void Start()
     {
-        if(level != "Level1")
-            gameObject.SetActive(PlayerPrefs.GetInt(levelPrerequis+ "Finished", 0) > 0);
+        //TODO: remove the comments when not testing
+        //if(level != "Level1")
+            //gameObject.SetActive(PlayerPrefs.GetInt(levelPrerequis+ "Finished", 0) > 0);
 
         info = FindObjectOfType<LevelInformations>();
     }

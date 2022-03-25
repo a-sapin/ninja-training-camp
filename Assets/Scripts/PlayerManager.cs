@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     private PlayerLocomotion myPlayerLocomotion;
     [SerializeField] State currentState;
+    public State getState() { return currentState;}
     InputManager inputManager;
     [SerializeReference] Animator myAnimator;
     [SerializeReference] SpriteRenderer playerSprite;
@@ -43,6 +44,8 @@ public class PlayerManager : MonoBehaviour
 
     // when false, the player is locked and cannot act
     bool isActionable = true;
+    
+    public bool IsActionable() { return isActionable; }
 
     /// <summary>
     /// Properly changes the state of the player by calling Exit() function 
@@ -198,15 +201,21 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public bool isSpriteFlipped()
+    {
+        return playerSprite.flipX;
+    }
+
     #endregion
 
     #region Sound Effects
+    //I commented the lines to put the sounds all in the same place.
 
-    public void PlayJumpSound()
+    /*public void PlayJumpSound()
     {
         mySoundManager.Play("Jump");
     }
-
+    */
     public void PlayDashSound()
     {
         mySoundManager.Play("Dash");

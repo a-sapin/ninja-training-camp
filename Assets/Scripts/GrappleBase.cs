@@ -134,9 +134,12 @@ public class GrappleBase : MonoBehaviour
             Vector2 offset = Vector2.Perpendicular(grapplingGun.grappleDistanceVector).normalized *
                              ropeAnimationCurve.Evaluate(delta)
                              * waveSize * wiggleModifier * ropeWhipCurve.Evaluate(delta);
-            Vector2 targetPosition = Vector2.Lerp(grapplingGun.firePoint.position, grapplingGun.grapplePoint, delta) +
+
+            Vector3 firePointPos = updateFirePointPosition();
+            
+            Vector2 targetPosition = Vector2.Lerp(firePointPos, grapplingGun.grapplePoint, delta) +
                                      offset;
-            Vector2 currentPosition = Vector2.Lerp(grapplingGun.firePoint.position, targetPosition,
+            Vector2 currentPosition = Vector2.Lerp(firePointPos, targetPosition,
                 ropeProgressionCurve.Evaluate(moveTime) * ropeProgressionSpeed);
 
             m_lineRenderer.SetPosition(i, currentPosition);
@@ -157,7 +160,24 @@ public class GrappleBase : MonoBehaviour
 
     void DrawRopeNoWaves()
     {
-        m_lineRenderer.SetPosition(0, grapplingGun.firePoint.position);
+        Vector3 firePointPos = updateFirePointPosition();
+
+        m_lineRenderer.SetPosition(0, firePointPos);
         m_lineRenderer.SetPosition(1, grapplingGun.grapplePoint);
+    }
+
+    private Vector3 updateFirePointPosition()
+    {
+        Vector3 firePointPos = grapplingGun.firePoint.position;
+        if (grapplingGun.playerRef.isSpriteFlipped())
+        {
+            firePointPos = grapplingGun.firePoint.position + new Vector3(-0.2f, 0.7f, 0f);
+        }
+        else
+        {
+            firePointPos = grapplingGun.firePoint.position + new Vector3(0.2f, 0.7f, 0f);
+        }
+
+        return firePointPos;
     }
 }

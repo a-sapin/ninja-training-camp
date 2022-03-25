@@ -57,9 +57,9 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Movement
-    clip: {fileID: 8300000, guid: c61552748d36d804ea02a229b28e8416, type: 3}
+    clip: {fileID: 8300000, guid: 36e1c1b15b54adf46b6bdfdae3b60a7b, type: 3}
     volume: 0.5
-    pitch: 2.5
+    pitch: 1.75
     loop: 0
     source: {fileID: 0}
   - name: Grapple
@@ -74,6 +74,12 @@ MonoBehaviour:
     pitch: 1.5
     loop: 0
     source: {fileID: 0}
+  - name: Ladder
+    clip: {fileID: 8300000, guid: 7ec0529b3adb6574f8180b6e3e3ca294, type: 3}
+    volume: 0.32
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
   - name: Sword
     clip: {fileID: 8300000, guid: c0567b618e64a344fbccf4d9a1090da3, type: 3}
     volume: 0.15
@@ -86,3 +92,4 @@ MonoBehaviour:
     pitch: 0.5
     loop: 0
     source: {fileID: 0}
+  mixer: {fileID: 2328981380685443612, guid: eddba8cae9bc9854d97dae06848d8987, type: 2}
