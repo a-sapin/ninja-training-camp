@@ -224,31 +224,6 @@ public class PlayerManager : MonoBehaviour
         mySoundManager.Play("Dash");
     }
 
-    public void PlayCorrespondingFootstepSound()
-    {
-        switch (myPlayerLocomotion.GetGroundType())
-        {
-            case GroundType.GRASS:
-                //play sound
-                break;
-
-            case GroundType.STONE:
-                //play sound
-                break;
-
-            case GroundType.WOOD:
-                //play sound
-                break;
-
-            case GroundType.DIRT:
-                //play sound
-                break;
-
-            default:
-                break;
-        }
-    }
-
     #endregion
 
 }
