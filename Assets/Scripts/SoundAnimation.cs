@@ -46,10 +46,6 @@ public class SoundAnimation : MonoBehaviour
             default:
                 break;
         }
-        //if(touchGround)
-        //{
-        vfxManager.Play("Movement");
-        //}
     }
 
     /*private void DashSound() //Problème avec le son qui ne ce joue pas tout le temps donc j'ai réactiver son bout de script dans le playerManager
@@ -63,9 +59,15 @@ public class SoundAnimation : MonoBehaviour
         vfxManager.Play("Double Jump");
 
     }
-    private void LadderSound() // ne fonctionne pas car l'état double jump ne s'active jamais... SAD :(
+    private void LadderSound()
     {
         //vfxManager.StopAllSFXMovement();
         vfxManager.Play("Ladder");
+    }
+
+    private void LeverSound() // ne fonctionne pas car l'état double jump ne s'active jamais... SAD :(
+    {
+        //vfxManager.StopAllSFXMovement();
+        vfxManager.Play("Lever");
     }
 }
