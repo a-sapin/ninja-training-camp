@@ -10,6 +10,7 @@ public class EndLevel : MonoBehaviour
     [SerializeField] private GameObject grappleLost;
     private float lostTime = 5f;
 
+    [SerializeField] private GameObject powerUI;
     [SerializeField] private GameObject dashUI;
     [SerializeField] private GameObject doubleJumpUI;
     [SerializeField] private GameObject grappleUI;
@@ -70,9 +71,16 @@ public class EndLevel : MonoBehaviour
     private void HideDashLost()
     {
         playerManager.UnlockGameplayInput();
-        dashUI.SetActive(false);
         transition.TransitToCanvas(competencesCanvas, dashLost);
-        Invoke(nameof(RestartTimer), 1.4f);
+        StartCoroutine(nameof(AnimateDashLoss));
+    }
+
+    private IEnumerator AnimateDashLoss()
+    {
+        yield return new WaitForSeconds(1.3f);
+        powerUI.GetComponent<Animator>().SetTrigger("3rdPowerLoss");
+        yield return new WaitForSeconds(0.1f);
+        RestartTimer();
     }
     public void DisplayDoubleJumpLost()
     {
@@ -83,10 +91,15 @@ public class EndLevel : MonoBehaviour
     }
     private void HideDoubleJumpLost()
     {
-        doubleJumpUI.SetActive(false);
         playerManager.UnlockGameplayInput();
         transition.TransitToCanvas(competencesCanvas, doubleJumpLost);
-        Invoke(nameof(RestartTimer), 1.4f);
+        StartCoroutine(nameof(AnimateJumpLoss));
+    }
+    private IEnumerator AnimateJumpLoss(){
+        yield return new WaitForSeconds(1.3f);
+        powerUI.GetComponent<Animator>().SetTrigger("2ndPowerLoss");
+        yield return new WaitForSeconds(0.1f);
+        RestartTimer();
     }
     public void DisplayGrappleLost()
     {
@@ -97,12 +110,20 @@ public class EndLevel : MonoBehaviour
     }
     private void HideGrappleLost()
     {
-
         grappleUI.SetActive(false);
         playerManager.UnlockGameplayInput();
         transition.TransitToCanvas(competencesCanvas, grappleLost);
-        Invoke(nameof(RestartTimer), 1.4f);
+        StartCoroutine(nameof(AnimateGrappleLoss));
     }
+
+    private IEnumerator AnimateGrappleLoss()
+    {
+        yield return new WaitForSeconds(1.3f);
+        powerUI.GetComponent<Animator>().SetTrigger("1stPowerLoss");
+        yield return new WaitForSeconds(0.1f);
+        RestartTimer();
+    }
+    
     private void RestartTimer()
     {
         timer.RestartTimer();

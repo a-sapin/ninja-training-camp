@@ -144,7 +144,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: b6349d08a5335cd4aa534282435d11cc, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 20
     m_Alignment: 0
@@ -285,6 +285,7 @@ MonoBehaviour:
       do the job without them.
   - isSenseiTalking: 0
     text: Very well, master.
+  writeDelay: 0
 --- !u!1 &5687664089374091198
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +372,7 @@ Animator:
   m_GameObject: {fileID: 5687664089374091198}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 36bb62363f2adb04bb615157d22eb8e2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 67e14fbe25ea575498e2172c8d56cac9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 2
   m_ApplyRootMotion: 0
