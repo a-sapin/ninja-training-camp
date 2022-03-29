@@ -349,15 +349,15 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Jump
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: TouchingLadder
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isGrounded
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: Y_Velocity
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7726887079415351372}
   m_Solo: 0
