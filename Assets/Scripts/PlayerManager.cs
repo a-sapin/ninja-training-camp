@@ -184,6 +184,7 @@ public class PlayerManager : MonoBehaviour
     public void SetBoolTouchLadder(bool value) { myAnimator.SetBool("TouchingLadder", value); }
     public void SetFloatYVelocity(float value) { myAnimator.SetFloat("Y_Velocity", value); }
     public void SetIntLadderInput(int value) { myAnimator.SetInteger("LadderInput", value); }
+    public void SetTriggerDoubleJump() { myAnimator.SetTrigger("DoubleJump"); }
 
     /// <summary>
     /// Flips sprite to make player avater face the direction
