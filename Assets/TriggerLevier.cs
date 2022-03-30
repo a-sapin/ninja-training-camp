@@ -81,5 +81,6 @@ public class TriggerLevier : MonoBehaviour
     {
         associatedGo.transform.position = originalLiftPosition;
         isActivated = false;
+        animator.SetBool(LevierToggled, isActivated);
     }
 }
