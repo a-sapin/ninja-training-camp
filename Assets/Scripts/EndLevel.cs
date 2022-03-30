@@ -18,6 +18,7 @@ public class EndLevel : MonoBehaviour
     [SerializeField] private GameObject BG;
     [SerializeField] private GameObject endUI;
     [SerializeField] private Text score;
+    [SerializeField] private Text levelCompletedText;
     [SerializeField] private GameObject silver;
     [SerializeField] private GameObject bronze;
     [SerializeField] private GameObject gold;
@@ -40,6 +41,7 @@ public class EndLevel : MonoBehaviour
         doubleJumpLost.SetActive(false);
         grappleLost.SetActive(false);
         endUI.SetActive(false);
+        levelCompletedText.text = currentLevel + " completed !";
     }
     public void DisplayEnd()
     {
