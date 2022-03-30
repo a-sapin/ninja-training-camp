@@ -49,5 +49,6 @@ public class GroundedState : State
     public override void PhysicsUpdate(PlayerManager player)
     {
         player.GetLocomotion().SlowDown();
+        player.GetLocomotion().ApplyFallAccel();
     }
 }
