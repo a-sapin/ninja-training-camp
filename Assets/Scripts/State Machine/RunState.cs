@@ -29,5 +29,6 @@ public class RunState : GroundedState
     {
         player.GetLocomotion().RunTowards(player.GetInput().Move());
         player.GetLocomotion().ApplySlideFriction();
+        player.GetLocomotion().ApplyFallAccel();
     }
 }
