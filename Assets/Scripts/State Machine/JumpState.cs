@@ -9,7 +9,7 @@ public class JumpState : AirDriftState
         base.Enter(player);
         player.CreateSmoke();
         player.GetLocomotion().ApplyJumpForce();
-        player.PlayJumpSound();
+        //player.PlayJumpSound();
     }
 
     public override void HandleSurroundings(PlayerManager player)
