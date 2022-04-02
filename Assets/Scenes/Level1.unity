@@ -22265,9 +22265,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7883df830ba278d47b9fa928172804c2, type: 3}
---- !u!1 &2632919473460973276 stripped
+--- !u!1 &491864151678304013 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 2475134370941317584, guid: 7883df830ba278d47b9fa928172804c2, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2968340927227711278, guid: 7883df830ba278d47b9fa928172804c2, type: 3}
   m_PrefabInstance: {fileID: 491864151678304012}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3292150794704775030
@@ -22437,7 +22437,11 @@ PrefabInstance:
     - target: {fileID: 5574019301524737304, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
       propertyPath: dashUI
       value: 
-      objectReference: {fileID: 2632919473460973276}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574019301524737304, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
+      propertyPath: powerUI
+      value: 
+      objectReference: {fileID: 491864151678304013}
     - target: {fileID: 5574019301524737304, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
       propertyPath: grappleUI
       value: 
@@ -22450,6 +22454,10 @@ PrefabInstance:
       propertyPath: competencesCanvas
       value: 
       objectReference: {fileID: 630177871}
+    - target: {fileID: 5574019301524737304, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
+      propertyPath: levelCompletedText
+      value: 
+      objectReference: {fileID: 5574019301477518513}
     - target: {fileID: 5574019301866708973, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 11.604004
@@ -22472,6 +22480,17 @@ PrefabInstance:
       objectReference: {fileID: 1359841817}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
+--- !u!114 &5574019301477518513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5574019301297875214, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
+  m_PrefabInstance: {fileID: 5574019301477518512}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5687664089207908679
 PrefabInstance:
   m_ObjectHideFlags: 0
