@@ -19,6 +19,7 @@ public class Dialogue : MonoBehaviour
     private PlayerManager playerManager;
     private Timer timer;
     VFXManager mySoundManager;
+    private String vfxDialogue;
 
     void Start()
     {
@@ -53,6 +54,15 @@ public class Dialogue : MonoBehaviour
                     sensei.SetActive(dialogue[dialogueIndex].isSenseiTalking);
                     player.SetActive(!dialogue[dialogueIndex].isSenseiTalking);
 
+                    if (dialogue[dialogueIndex].isSenseiTalking)
+                    {
+                        vfxDialogue = "Sensei is talking";
+                    }
+                    else if(!dialogue[dialogueIndex].isSenseiTalking)
+                    {
+                        vfxDialogue = "Satoru is talking";
+                    }
+
                     //LOKI (remove when finished)
                     int lengthOfSentence = dialogue[dialogueIndex].text.Length;
                     char[] charsArray = new char[lengthOfSentence];
@@ -77,7 +87,7 @@ public class Dialogue : MonoBehaviour
                         {
                             current_Text = current_Text + charsArray[o]; //Append char
                             textZone.text = current_Text;
-                            mySoundManager.Play("Talking");
+                            mySoundManager.Play(vfxDialogue);
                             yield return new WaitForSecondsRealtime(writeDelay);
                         }
                     }
