@@ -406,7 +406,7 @@ PrefabInstance:
     - target: {fileID: 5574019301524737304, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
       propertyPath: dashUI
       value: 
-      objectReference: {fileID: 445540806137263443}
+      objectReference: {fileID: 8112063931903406536}
     - target: {fileID: 5574019301524737304, guid: 010049b4f6cedf14783d7cd46e5d62a1, type: 3}
       propertyPath: powerUI
       value: 
@@ -667,11 +667,6 @@ GameObject:
 --- !u!1 &5152509550684264827 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7203213738085080568, guid: 7883df830ba278d47b9fa928172804c2, type: 3}
-  m_PrefabInstance: {fileID: 2627727890599478403}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &445540806137263443 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2475134370941317584, guid: 7883df830ba278d47b9fa928172804c2, type: 3}
   m_PrefabInstance: {fileID: 2627727890599478403}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6706095702866827068
