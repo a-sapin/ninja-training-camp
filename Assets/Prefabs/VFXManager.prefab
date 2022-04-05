@@ -104,4 +104,10 @@ MonoBehaviour:
     pitch: 0.5
     loop: 0
     source: {fileID: 0}
+  - name: Spring
+    clip: {fileID: 8300000, guid: e16a7cb6d332bb84ab94b8531c6ccd78, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   mixer: {fileID: 2328981380685443612, guid: eddba8cae9bc9854d97dae06848d8987, type: 2}
