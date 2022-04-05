@@ -6,6 +6,7 @@ public class Dummy : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float force;
     [SerializeField] private GameObject leftPoint, rightPoint;
+    private VFXManager vfxManager;
     private SpriteRenderer dummySprite;
     private Animator animator;
     private bool goLeft = true;
@@ -14,6 +15,7 @@ public class Dummy : MonoBehaviour
     {
         dummySprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        vfxManager = FindObjectOfType<VFXManager>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -24,6 +26,8 @@ public class Dummy : MonoBehaviour
             else animator.SetTrigger(!goLeft ? "bounceLeft" : "bounceRight");
 
             Vector2 dir = (collision.transform.position - transform.position).normalized; // pointing away from this dummy
+            vfxManager.Stop("Spring");
+            vfxManager.Play("Spring");
 
             if (dir.y <= 0.7f)
             {
@@ -47,6 +51,7 @@ public class Dummy : MonoBehaviour
             {
                 dummySprite.flipX = !dummySprite.flipX;
                 goLeft = !goLeft;
+                animator.SetTrigger("flip");
             }
         }
         else
@@ -56,7 +61,14 @@ public class Dummy : MonoBehaviour
             {
                 dummySprite.flipX = !dummySprite.flipX;
                 goLeft = !goLeft;
+                animator.SetTrigger("flip");
             }
         }
+        
+    }
+
+    public void resetFlip()
+    {
+        animator.ResetTrigger("flip");
     }
 }
