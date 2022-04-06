@@ -62,7 +62,7 @@ public class AirbornState : State
         
     }
 
-    protected boolean authoriseWallJump(PlayerManager player)
+    protected bool authoriseWallJump(PlayerManager player)
     {
         if (player.HasWallJump())
         {
