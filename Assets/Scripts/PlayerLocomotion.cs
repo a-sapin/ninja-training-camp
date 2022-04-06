@@ -94,6 +94,35 @@ public class PlayerLocomotion : MonoBehaviour
         }
     }
 
+    //Used for wall jump
+    public bool IsAgainstWall(Vector2 colliderVector)
+    {
+        // Cast a ray using the direction that is provided with an argument, this detects stuff on ground layer
+        //Ideally you want to call this with Vector2 LEFT or RIGHT so that it would detect a wall on the provided side.
+        // /!\ mostly reused from the IsGrounded() code
+
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, groundDetectCircleRadius, colliderVector,
+            groundDetectionDistance - groundDetectCircleRadius, groundLayerMask);
+        // subtract circle radius so the max distance to detect ground is still equal to groundDetectionDistance
+        Debug.DrawRay(transform.position, Vector2.down * groundDetectionDistance, Color.red, 0.02f);
+
+        if (hit.collider != null)
+        {
+            //I don't think we need the stuff below but not 100% sure for now
+            //groundNormal = hit.normal;
+            //UpdateGroundTypeFromHit(hit);
+            Debug.DrawRay(hit.point, groundNormal, Color.green, 0.02f);
+            Debug.Log("Raycast has detected a wall [ PlayerLocomotion.IsAgainstWall() ]");
+            return true;
+        }
+        else
+        {
+            //groundNormal = Vector2.up;
+            Debug.DrawRay(hit.point, groundNormal, Color.green, 0.02f);
+            return false;
+        }
+    }
+
     private TileBase groundTile; // used for footstep sfx
     public void UpdateGroundTypeFromHit(RaycastHit2D hit)
     {
