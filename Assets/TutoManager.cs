@@ -7,7 +7,7 @@ public class TutoManager : MonoBehaviour
     private Dialogue dialogue;
     [SerializeField] float maxDist;
     [SerializeField] Transform player;
-    [SerializeField] Transform leftRight,jump,grapple,jump2,dash;
+    [SerializeField] Transform leftRight,jump,grapple,jump2,dash,grapple2,grapple3;
     void Start()
     {
         dialogue = FindObjectOfType<Dialogue>();
@@ -50,6 +50,8 @@ public class TutoManager : MonoBehaviour
         jump2.GetComponent<SpriteRenderer>().enabled = false;
         dash.GetComponent<SpriteRenderer>().enabled = false;
         grapple.GetComponent<SpriteRenderer>().enabled = false;
+        grapple2.GetComponent<SpriteRenderer>().enabled = false;
+        grapple3.GetComponent<SpriteRenderer>().enabled = false;
     }
     void DisplayInputHelp()
     {
@@ -61,9 +63,6 @@ public class TutoManager : MonoBehaviour
         {
             leftRight.GetComponent<SpriteRenderer>().enabled = false;
         }
-
-
-
         if (Vector3.Distance(player.position, jump.position) < maxDist && PlayerPrefs.GetInt("haveJumped", 0) == 0)
         {
             jump.GetComponent<SpriteRenderer>().enabled = true;
@@ -90,7 +89,22 @@ public class TutoManager : MonoBehaviour
         {
             grapple.GetComponent<SpriteRenderer>().enabled = false;
         }
-
+        if (Vector3.Distance(player.position, grapple2.position) < maxDist && PlayerPrefs.GetInt("haveGrappled", 0) == 0)
+        {
+            grapple2.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else
+        {
+            grapple2.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        if (Vector3.Distance(player.position, grapple3.position) < maxDist && PlayerPrefs.GetInt("haveGrappled", 0) == 0)
+        {
+            grapple3.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else
+        {
+            grapple3.GetComponent<SpriteRenderer>().enabled = false;
+        }
         if (Vector3.Distance(player.position, dash.position) < maxDist && PlayerPrefs.GetInt("haveDashed", 0) == 0)
         {
             dash.GetComponent<SpriteRenderer>().enabled = true;
