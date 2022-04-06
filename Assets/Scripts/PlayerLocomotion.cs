@@ -210,6 +210,13 @@ public class PlayerLocomotion : MonoBehaviour
         rb.AddForce(Vector2.up * jumpForceMultiplier * relativeDoubleJumpForceMultiplier, ForceMode2D.Impulse);
     }
 
+    public void WallJump()
+    {
+        //Functionally identical to doubleJump at the moment
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+        rb.AddForce(Vector2.up * jumpForceMultiplier * relativeDoubleJumpForceMultiplier, ForceMode2D.Impulse);
+    }
+
     public Vector2 GetVelocity() { return rb.velocity; }
     public void SetVelocity(Vector2 vel) { rb.velocity = vel; }
 

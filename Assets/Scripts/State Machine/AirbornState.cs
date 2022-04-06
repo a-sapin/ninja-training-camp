@@ -61,4 +61,25 @@ public class AirbornState : State
         }
         
     }
+
+    protected boolean authoriseWallJump(PlayerManager player)
+    {
+        if (player.HasWallJump())
+        {
+            if (player.GetLocomotion().IsAgainstWall(Vector2.left) == true)
+            {
+                player.GetLocomotion().WallJump();
+                return true;
+            }
+            else if (player.GetLocomotion().IsAgainstWall(Vector2.left) == true)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
+    }
 }
