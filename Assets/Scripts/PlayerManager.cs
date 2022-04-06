@@ -209,6 +209,12 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    // Will flip the sprite of the player regardless of any other factors, unlike FlipSprite()
+    public void NeutralFlip()
+    {
+        playerSprite.flipX = !playerSprite.flipX;
+    }
+
     public bool isSpriteFlipped()
     {
         return playerSprite.flipX;
