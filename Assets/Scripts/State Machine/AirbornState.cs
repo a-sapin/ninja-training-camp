@@ -55,6 +55,7 @@ public class AirbornState : State
             {
                 player.CreateSmoke(true);
                 doubleJumpAvailable = false;
+                player.SetTriggerDoubleJump();
                 player.GetLocomotion().DoubleJump();
                 //Debug.Log("DJ **********");
             }
