@@ -101,8 +101,8 @@ public class PlayerLocomotion : MonoBehaviour
         // Cast a ray using the direction that is provided with an argument, this detects stuff on ground layer
         //Ideally you want to call this with Vector2 LEFT or RIGHT so that it would detect a wall on the provided side.
         // /!\ mostly reused from the IsGrounded() code
-        // Wall detection distance is 33% more lenient than ground detection
-        float wallDetectionDistance = groundDetectionDistance * 1.33f;
+        // Wall detection distance is 33% less lenient than ground detection
+        float wallDetectionDistance = groundDetectionDistance * 0.66f;
 
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, groundDetectCircleRadius, colliderVector,
             wallDetectionDistance - groundDetectCircleRadius, groundLayerMask);
