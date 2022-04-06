@@ -192,6 +192,7 @@ public class PlayerManager : MonoBehaviour
     /// <summary>
     /// Flips sprite to make player avater face the direction
     /// the move input is currently held.
+    /// NOTE TO WHOM IT MAY CONCERN : please kindly do not name your function FlipSprite() when it's not really what it does, as it reads inputs!
     /// </summary>
     public void FlipSprite()
     {
