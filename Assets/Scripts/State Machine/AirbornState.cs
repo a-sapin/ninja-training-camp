@@ -72,6 +72,7 @@ public class AirbornState : State
                 player.GetLocomotion().WallJump(new Vector2(1,0.8f));
                 Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
                 player.NeutralFlip();
+                player.CreateSmoke(true);
                 return true;
             }
             else if (player.GetLocomotion().IsAgainstWall(Vector2.right) == true && player.isSpriteFlipped() == false)
@@ -79,6 +80,7 @@ public class AirbornState : State
                 player.GetLocomotion().WallJump(new Vector2(-1, 0.8f));
                 Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
                 player.NeutralFlip();
+                player.CreateSmoke(true);
                 return true;
             }
             else
