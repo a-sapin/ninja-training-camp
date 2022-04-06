@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ControllerInLevelSelection : MonoBehaviour
@@ -57,9 +57,8 @@ public class ControllerInLevelSelection : MonoBehaviour
                     {
                         if (currentPos > 0) info.OpenLevelInfo("Level" + currentPos);
                     }
-                    catch (Exception e)
+                    catch
                     {
-                        print(e.Message);
                     }
 
                     arrow.transform.position = arrowPos[currentPos].transform.position;

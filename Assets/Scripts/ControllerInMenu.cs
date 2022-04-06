@@ -8,7 +8,7 @@ public class ControllerInMenu : MonoBehaviour
     [SerializeField] GameObject[] arrowPos;
     [SerializeField] Button[] linkedButton;
     private IEnumerator move;
-    int currentPos;
+    int currentPos = 0;
     private void Start()
     {
         StartMove();

@@ -147,7 +147,7 @@ public class SaveLoadData : MonoBehaviour
         //Debug.Log("Game data loaded!");
     }
 
-    public static void SaveNewTime(TimeSpan time)
+    public static void saveNewTime(TimeSpan time)
     {
         TimeSpan worseTime = time;
         int worseNumber = 0;
@@ -194,7 +194,7 @@ public class SaveLoadData : MonoBehaviour
         //Debug.Log("-----------------------------------");
     }
 
-    public static TimeSpan GetBestTime(String levelName)
+    public static TimeSpan getBestTime(String levelName)
     {
         LoadPlayerTime(levelName);
         //Debug.Log("--------Best time--------");
@@ -217,19 +217,19 @@ public class SaveLoadData : MonoBehaviour
         return bestTime;
     }
 
-    public static TimeSpan[] GetTimes(String levelName)
+    public static TimeSpan[] getTimes(String levelName)
     {
         LoadPlayerTime(levelName);
         return new[] {_playerTime1, _playerTime2, _playerTime3};
     }
 
-    public static TimeSpan[] GetMedalTimes(String levelName)
+    public static TimeSpan[] getMedalTimes(String levelName)
     {
         LoadMedalTime(levelName);
         return new[] {bronzeTime, silverTime, goldTime};
     }
 
-    private static void DebugData()
+    private static void debugData()
     {
         Debug.Log("Bronze time: " + bronzeTime);
         Debug.Log("Silver time: " + silverTime);

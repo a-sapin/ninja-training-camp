@@ -3,23 +3,23 @@ using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource bgm;
+    [SerializeField] private AudioSource BGM;
 
     private float musicTime;
     private string music;
 
     void Awake()
     {
-        music = bgm.clip.ToString();
+        music = BGM.clip.ToString();
         if (!SceneManager.GetActiveScene().name.Contains("level") && music == PlayerPrefs.GetString("music") && !SceneManager.GetActiveScene().name.Equals("CreditScene"))
         {
-            bgm.time = PlayerPrefs.GetFloat("musicTime");
+            BGM.time = PlayerPrefs.GetFloat("musicTime");
         }
     }
 
     private void Update()
     {
-        musicTime = bgm.time;
+        musicTime = BGM.time;
     }
 
     private void OnDestroy()

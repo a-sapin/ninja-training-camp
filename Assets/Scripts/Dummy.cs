@@ -10,7 +10,6 @@ public class Dummy : MonoBehaviour
     private SpriteRenderer dummySprite;
     private Animator animator;
     private bool goLeft = true;
-    private static readonly int Flip = Animator.StringToHash("flip");
 
     void Start()
     {
@@ -52,7 +51,7 @@ public class Dummy : MonoBehaviour
             {
                 dummySprite.flipX = !dummySprite.flipX;
                 goLeft = !goLeft;
-                animator.SetTrigger(Flip);
+                animator.SetTrigger("flip");
             }
         }
         else
@@ -62,14 +61,14 @@ public class Dummy : MonoBehaviour
             {
                 dummySprite.flipX = !dummySprite.flipX;
                 goLeft = !goLeft;
-                animator.SetTrigger(Flip);
+                animator.SetTrigger("flip");
             }
         }
         
     }
 
-    public void ResetFlip()
+    public void resetFlip()
     {
-        animator.ResetTrigger(Flip);
+        animator.ResetTrigger("flip");
     }
 }

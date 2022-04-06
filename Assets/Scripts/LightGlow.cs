@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
@@ -7,7 +8,7 @@ public class LightGlow : MonoBehaviour
     [SerializeField] private float minIntensity, maxIntensity;
     [SerializeField] private float minRadius, maxRadius;
     [SerializeField] private float lightLoopSpeed;
-    new Light2D light;
+    Light2D light;
  
     void Start()
     {

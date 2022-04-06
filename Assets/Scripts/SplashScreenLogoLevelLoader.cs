@@ -10,7 +10,7 @@ public class SplashScreenLogoLevelLoader : MonoBehaviour
 
     private void Awake()
     {
-        Screen.fullScreen = INTToBool(PlayerPrefs.GetInt("fullscreen", 1));
+        Screen.fullScreen = intToBool(PlayerPrefs.GetInt("fullscreen", 1));
         PlayerPrefs.SetString("music", "");
         PlayerPrefs.SetFloat("musicTime", 0f);
         ChangeResolutionFromString();
@@ -24,7 +24,7 @@ public class SplashScreenLogoLevelLoader : MonoBehaviour
         Screen.SetResolution(width, height, Screen.fullScreen);
     }
 
-    private static bool INTToBool(int i)
+    private bool intToBool(int i)
     {
         return i == 1;
     }

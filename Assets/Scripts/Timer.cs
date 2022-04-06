@@ -10,8 +10,7 @@ public class Timer : MonoBehaviour
     public int Time { get; private set; }
     IEnumerator timer;
 
-    [SerializeField] private GameObject powerText1, powerText2, powerText3;
-    private static readonly int FadeOut = Animator.StringToHash("FadeOut");
+    [SerializeField] private GameObject powerText1, powerText2, powerText3; 
 
     private void Start()
     {
@@ -25,7 +24,7 @@ public class Timer : MonoBehaviour
     public void StartTimer()
     {
         Time = 0;
-        timer = CalculTime();
+        timer = calculTime();
         StartCoroutine(timer);
     }
     public float PauseTimer()
@@ -36,11 +35,11 @@ public class Timer : MonoBehaviour
     public void RestartTimer()
     {
         if (timer != null) StopCoroutine(timer);
-        timer = CalculTime();
+        timer = calculTime();
         StartCoroutine(timer);
     }
 
-    private IEnumerator CalculTime()
+    private IEnumerator calculTime()
     {
         while (true)
         {
@@ -50,18 +49,18 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void DisplayPowerDesc()
+    public void displayPowerDesc()
     {
         powerText1.SetActive(true);
         powerText2.SetActive(true);
         powerText3.SetActive(true);
     }
 
-    public IEnumerator HidePowerDesc()
+    public IEnumerator hidePowerDesc()
     {
-        powerText1.GetComponent<Animator>().SetTrigger(FadeOut);
-        powerText2.GetComponent<Animator>().SetTrigger(FadeOut);
-        powerText3.GetComponent<Animator>().SetTrigger(FadeOut);
+        powerText1.GetComponent<Animator>().SetTrigger("FadeOut");
+        powerText2.GetComponent<Animator>().SetTrigger("FadeOut");
+        powerText3.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSecondsRealtime(0.2f);
         
         powerText1.SetActive(false);

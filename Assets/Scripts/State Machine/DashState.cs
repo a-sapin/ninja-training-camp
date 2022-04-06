@@ -1,61 +1,61 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace State_Machine
+/// <summary>
+/// When the player is dashing
+/// </summary>
+public class DashState : AirDriftState
 {
-    /// <summary>
-    /// When the player is dashing
-    /// </summary>
-    public class DashState : AirDriftState
+    Vector2 dashDirection = Vector2.zero;
+    float horizontalVelocity;
+
+    public override void Enter(PlayerManager player)
     {
-        Vector2 dashDirection = Vector2.zero;
-        float horizontalVelocity;
+        base.Enter(player);
+        dashDirection = new Vector2(player.GetInput().Move().x, 0f); // save horizontal player input
+        dashDirection.Normalize();
 
-        public override void Enter(PlayerManager player)
-        {
-            base.Enter(player);
-            dashDirection = new Vector2(player.GetInput().Move().x, 0f); // save horizontal player input
-            dashDirection.Normalize();
-
-            player.PlayDashSound();
-            // TODO: do we really need this?
-            /*
+        player.PlayDashSound();
+        // TODO: do we really need this?
+        /*
         horizontalVelocity = player.GetLocomotion().GetVelocity().x; // save player horizontal velocity as they start dashing
         if(horizontalVelocity > player.GetLocomotion().maxVelocity)
         {
             horizontalVelocity = player.GetLocomotion().maxVelocity; // clamp velocity to max
         }*/
-            player.GetLocomotion().StartDash(dashDirection);
-        }
+        player.GetLocomotion().StartDash(dashDirection);
+    }
 
-        public override void Exit(PlayerManager player)
+    public override void Exit(PlayerManager player)
+    {
+        player.GetLocomotion().EndDash();
+    }
+
+    public override void HandleSurroundings(PlayerManager player)
+    {
+        if(Time.time - startTime >= player.DashDuration)
         {
-            player.GetLocomotion().EndDash();
+            base.HandleSurroundings(player); // return to airdrift or running state when dash is finished
         }
+    }
 
-        public override void HandleSurroundings(PlayerManager player)
+    public override void HandleInputs(PlayerManager player)
+    {
+        if (player.GetLocomotion().IsTouchingLadder() && IsInputLadder(player))
         {
-            if(Time.time - startTime >= player.DashDuration)
-            {
-                base.HandleSurroundings(player); // return to airdrift or running state when dash is finished
-            }
+            player.ChangeState(ladderGrab);
+            return;
         }
+    }
 
-        public override void HandleInputs(PlayerManager player)
-        {
-            if (player.GetLocomotion().IsTouchingLadder() && IsInputLadder(player))
-            {
-                player.ChangeState(ladderGrab);
-            }
-        }
+    public override void LogicUpdate(PlayerManager player)
+    {
 
-        public override void LogicUpdate(PlayerManager player)
-        {
+    }
 
-        }
+    public override void PhysicsUpdate(PlayerManager player)
+    {
 
-        public override void PhysicsUpdate(PlayerManager player)
-        {
-
-        }
     }
 }
