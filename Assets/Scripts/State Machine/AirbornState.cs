@@ -69,13 +69,13 @@ public class AirbornState : State
         {
             if (player.GetLocomotion().IsAgainstWall(Vector2.left) == true)
             {
-                player.GetLocomotion().WallJump();
+                player.GetLocomotion().WallJump(new Vector2(1,0.8f));
                 Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
                 return true;
             }
-            else if (player.GetLocomotion().IsAgainstWall(Vector2.left) == true)
+            else if (player.GetLocomotion().IsAgainstWall(Vector2.right) == true)
             {
-                player.GetLocomotion().WallJump();
+                player.GetLocomotion().WallJump(new Vector2(-1, 0.8f));
                 Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
                 return true;
             }

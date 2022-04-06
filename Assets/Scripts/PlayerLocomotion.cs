@@ -18,6 +18,7 @@ public class PlayerLocomotion : MonoBehaviour
     public float accelerationMultiplier = 1.0f;
     public float jumpForceMultiplier = 10.0f;
     public float relativeDoubleJumpForceMultiplier = 0.75f; // is relative to jumpForceMultiplier
+    public float relativeWallJumpForceMultiplier = 0.9f; // is relative to jumpForceMultiplier
     public float counterForceMult = 10000.0f;
     public float dashSpeedGain = 40.0f;
     public float ladderClimbSpeed = 1.0f;
@@ -210,11 +211,11 @@ public class PlayerLocomotion : MonoBehaviour
         rb.AddForce(Vector2.up * jumpForceMultiplier * relativeDoubleJumpForceMultiplier, ForceMode2D.Impulse);
     }
 
-    public void WallJump()
+    public void WallJump(Vector2 direction)
     {
         //Functionally identical to doubleJump at the moment
-        rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.AddForce(Vector2.up * jumpForceMultiplier * relativeDoubleJumpForceMultiplier, ForceMode2D.Impulse);
+        rb.velocity = new Vector2(0, 0); //Resets momentum (stall like Fox shine)
+        rb.AddForce(direction * jumpForceMultiplier * relativeDoubleJumpForceMultiplier, ForceMode2D.Impulse);
     }
 
     public Vector2 GetVelocity() { return rb.velocity; }
