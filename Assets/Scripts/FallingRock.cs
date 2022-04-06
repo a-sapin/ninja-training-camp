@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingRock : MonoBehaviour
@@ -19,12 +17,6 @@ public class FallingRock : MonoBehaviour
 
             StartCoroutine(KnockbackPlayer(pushingDirection, thePlayer));
         }
-    }
-
-    private void Start()
-    {
-        
-        //Physics.IgnoreLayerCollision(ignoredLayer.value,ignoredLayer.value,true);
     }
 
     private void Update()

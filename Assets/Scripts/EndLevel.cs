@@ -12,7 +12,7 @@ public class EndLevel : MonoBehaviour
 
     [SerializeField] private GameObject powerUI;
 
-    [SerializeField] private GameObject BG;
+    [SerializeField] private GameObject bg;
     [SerializeField] private GameObject endUI;
     [SerializeField] private Text score;
     [SerializeField] private Text levelCompletedText;
@@ -57,7 +57,7 @@ public class EndLevel : MonoBehaviour
         bronze.SetActive(timer.Time < PlayerPrefs.GetInt(currentLevel + "Bronze", 12000));
        
         score.text = Timer.IntToStringTime(timer.Time);
-        Invoke(nameof(waitForMusicVictory), 0.3f);
+        Invoke(nameof(WaitForMusicVictory), 0.3f);
     }
     public void DisplayDashLost()
     {
@@ -127,7 +127,7 @@ public class EndLevel : MonoBehaviour
         timer.RestartTimer();
         playerManager.UnlockGameplayInput(); // player actionable when timer restarts
     }
-    private void waitForMusicVictory()
+    private void WaitForMusicVictory()
     {
         endMusicVictory.Play();
     }

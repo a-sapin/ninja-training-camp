@@ -1,3 +1,4 @@
+using State_Machine;
 using UnityEngine;
 
 public class GrapplingGun : MonoBehaviour
@@ -6,43 +7,43 @@ public class GrapplingGun : MonoBehaviour
     public PlayerManager playerRef;
 
     [Header("Layers Settings:")] [SerializeField]
-    private bool grappleToAll = false;
+    private bool grappleToAll;
 
     [SerializeField] private int grappableLayerNumber = 9;
 
-    [Header("Main Camera:")] public Camera m_camera;
+    [Header("Main Camera:")] public Camera mCamera;
 
     [Header("Transform Ref:")] public Transform gunHolder;
     public Transform gunPivot;
     public Transform firePoint;
 
-    [Header("Physics Ref:")] public SpringJoint2D m_springJoint2D;
-    public Rigidbody2D m_rigidbody;
+    [Header("Physics Ref:")] public SpringJoint2D mSpringJoint2D;
+    public Rigidbody2D mRigidbody;
 
     [Header("Rotation:")] private bool rotateOverTime = true;
     private float rotationSpeed = 4;
 
-    [Header("Distance:")] [SerializeField] private bool hasMaxDistance = false;
+    [Header("Distance:")] [SerializeField] private bool hasMaxDistance;
     [SerializeField] private float maxDistnace = 20;
 
-    [HideInInspector] public bool isGrapplingWithPad = false;
+    [HideInInspector] public bool isGrapplingWithPad;
     [HideInInspector] public GameObject grappleTarget;
     private VFXManager vfxManager;
 
     private enum LaunchType
     {
-        Transform_Launch,
-        Physics_Launch
+        TransformLaunch,
+        PhysicsLaunch
     }
 
     [Header("Launching:")] [SerializeField]
     private bool launchToPoint = true;
 
-    [SerializeField] private LaunchType launchType = LaunchType.Physics_Launch;
+    [SerializeField] private LaunchType launchType = LaunchType.PhysicsLaunch;
     [SerializeField] private float launchSpeed = 1;
 
     [Header("No Launch To Point")] [SerializeField]
-    private bool autoConfigureDistance = false;
+    private bool autoConfigureDistance;
 
     [SerializeField] private float targetDistance = 3;
     [SerializeField] private float targetFrequncy = 1;
@@ -53,7 +54,7 @@ public class GrapplingGun : MonoBehaviour
     private void Start()
     {
         grappleRope.enabled = false;
-        m_springJoint2D.enabled = false;
+        mSpringJoint2D.enabled = false;
 
 
         vfxManager = FindObjectOfType<VFXManager>();
@@ -61,7 +62,7 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
-        if (playerRef.IsActionable() && playerRef.getState()!=State.ladderClimb && playerRef.getState()!=State.ladderGrab)
+        if (playerRef.IsActionable() && playerRef.GetState()!=State.ladderClimb && playerRef.GetState()!=State.ladderGrab)
         {
             //event appeler lorsque le joueur utilise clic gauche pour la grapple
             if (Input.GetKeyDown(KeyCode.Mouse0) && playerRef.CanGrapple())
@@ -71,12 +72,12 @@ public class GrapplingGun : MonoBehaviour
             else if ((Input.GetKey(KeyCode.Mouse0) || isGrapplingWithPad) &&
                      playerRef.CanGrapple()) //appeler lorsque le joueur maintien le clic gauche
             {
-                Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePos = mCamera.ScreenToWorldPoint(Input.mousePosition);
                 RotateGun(mousePos, true); //utiliser pour avoir le vecteur joueur-clic
 
                 if (launchToPoint && grappleRope.isGrappling)
                 {
-                    if (launchType == LaunchType.Transform_Launch)
+                    if (launchType == LaunchType.TransformLaunch)
                     {
                         Vector2 firePointDistnace = firePoint.position - gunHolder.localPosition;
                         Vector2 targetPos = grapplePoint - firePointDistnace;
@@ -91,7 +92,7 @@ public class GrapplingGun : MonoBehaviour
             }
             else
             {
-                Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePos = mCamera.ScreenToWorldPoint(Input.mousePosition);
                 RotateGun(mousePos, true);
             }
         }
@@ -102,8 +103,8 @@ public class GrapplingGun : MonoBehaviour
         playerRef.SetBoolGrapple(false);
         isGrapplingWithPad = false;
         grappleRope.enabled = false;
-        m_springJoint2D.enabled = false;
-        m_rigidbody.gravityScale = 0; // return gravity to normal after grappling
+        mSpringJoint2D.enabled = false;
+        mRigidbody.gravityScale = 0; // return gravity to normal after grappling
     }
 
     public Vector2 GetNearestTargetPos(Vector2 origin)
@@ -147,17 +148,17 @@ public class GrapplingGun : MonoBehaviour
         isGrapplingWithPad = isPad;
         if (!isPad)
         {
-            Vector2 distanceVector = m_camera.ScreenToWorldPoint(point) - gunPivot.position;
+            Vector2 distanceVector = mCamera.ScreenToWorldPoint(point) - gunPivot.position;
             if (Physics2D.Raycast(firePoint.position, distanceVector.normalized))
             {
-                RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);
-                if (_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll)
+                RaycastHit2D hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);
+                if (hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll)
                 {
-                    if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
+                    if (Vector2.Distance(hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
                     {
                         playerRef.SetBoolGrapple(true);
-                        grapplePoint = _hit.transform.position;
-                        grappleTarget = _hit.transform.gameObject;
+                        grapplePoint = hit.transform.position;
+                        grappleTarget = hit.transform.gameObject;
                         grappleDistanceVector = grapplePoint - (Vector2) gunPivot.position;
                         grappleRope.enabled = true;
                         vfxManager.Play("Grapple");
@@ -178,40 +179,40 @@ public class GrapplingGun : MonoBehaviour
 //physique du grapple. utilisation du sprint joint pour le mouvement. Unity gere le mouvement et la collision avec le spring joint
     public void Grapple()
     {
-        m_rigidbody.gravityScale = 1f; // increase gravity during grapple for better swinging
-        m_springJoint2D.autoConfigureDistance = false;
+        mRigidbody.gravityScale = 1f; // increase gravity during grapple for better swinging
+        mSpringJoint2D.autoConfigureDistance = false;
         if (!launchToPoint && !autoConfigureDistance)
         {
-            m_springJoint2D.distance = targetDistance;
-            m_springJoint2D.frequency = targetFrequncy;
+            mSpringJoint2D.distance = targetDistance;
+            mSpringJoint2D.frequency = targetFrequncy;
         }
 
         if (!launchToPoint)
         {
             if (autoConfigureDistance)
             {
-                m_springJoint2D.autoConfigureDistance = true;
-                m_springJoint2D.frequency = 0;
+                mSpringJoint2D.autoConfigureDistance = true;
+                mSpringJoint2D.frequency = 0;
             }
 
-            m_springJoint2D.connectedAnchor = grapplePoint;
-            m_springJoint2D.enabled = true;
+            mSpringJoint2D.connectedAnchor = grapplePoint;
+            mSpringJoint2D.enabled = true;
         }
         else
         {
             switch (launchType)
             {
-                case LaunchType.Physics_Launch:
-                    m_springJoint2D.connectedAnchor = grapplePoint;
+                case LaunchType.PhysicsLaunch:
+                    mSpringJoint2D.connectedAnchor = grapplePoint;
 
                     Vector2 distanceVector = firePoint.position - gunHolder.position;
 
-                    m_springJoint2D.distance = distanceVector.magnitude;
-                    m_springJoint2D.frequency = launchSpeed;
-                    m_springJoint2D.enabled = true;
+                    mSpringJoint2D.distance = distanceVector.magnitude;
+                    mSpringJoint2D.frequency = launchSpeed;
+                    mSpringJoint2D.enabled = true;
                     break;
-                case LaunchType.Transform_Launch:
-                    m_rigidbody.velocity = Vector2.zero;
+                case LaunchType.TransformLaunch:
+                    mRigidbody.velocity = Vector2.zero;
                     break;
             }
         }

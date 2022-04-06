@@ -19,18 +19,20 @@ public class Ladder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lr.SetPosition(0, top.localPosition);
-        lr.SetPosition(1, bottom.localPosition);
+        Vector3 topPosition = top.localPosition;
+        Vector3 bottomPosition = bottom.localPosition;
+        lr.SetPosition(0, topPosition);
+        lr.SetPosition(1, bottomPosition);
 
         // total height of ladder
-        float size_y = top.localPosition.y - bottom.localPosition.y;
+        float sizeY = topPosition.y - bottomPosition.y;
 
         // how high above 0 the center of the collider should be
         // we take half the ladder's height and add it to the bottom position
-        float offset_y = (size_y / 2.0f) + bottom.localPosition.y;
+        float offsetY = (sizeY / 2.0f) + bottomPosition.y;
 
-        myBox.size = new Vector2(1, size_y);
-        myBox.offset = new Vector2(0, offset_y);
+        myBox.size = new Vector2(1, sizeY);
+        myBox.offset = new Vector2(0, offsetY);
     }
 
     public void DisableTopPlatform()

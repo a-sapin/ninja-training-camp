@@ -32,7 +32,7 @@ public class Options : MonoBehaviour
         dialogSpeed.value = 0.05f - PlayerPrefs.GetFloat("writeDelay", 0.02f);
         dialogSpeed.onValueChanged.AddListener(ChangeDialogSpeed);
 
-        fullscreen.isOn = intToBool(PlayerPrefs.GetInt("fullscreen", 1));
+        fullscreen.isOn = INTToBool(PlayerPrefs.GetInt("fullscreen", 1));
         fullscreen.onValueChanged.AddListener(ToggleFullscreen);
 
         resolutions = Screen.resolutions;
@@ -75,19 +75,19 @@ public class Options : MonoBehaviour
         PlayerPrefs.SetString("resolution", res.width + " x " + res.height);
     }
 
-    private bool intToBool(int i)
+    private static bool INTToBool(int i)
     {
         return i == 1;
     }
 
-    private int boolToInt(bool b)
+    private static int BoolToInt(bool b)
     {
         return b ? 1 : 0;
     }
 
     private void ToggleFullscreen(bool fullscreen)
     {
-        PlayerPrefs.SetInt("fullscreen", boolToInt(fullscreen));
+        PlayerPrefs.SetInt("fullscreen", BoolToInt(fullscreen));
         Screen.fullScreen = fullscreen;
     }
 

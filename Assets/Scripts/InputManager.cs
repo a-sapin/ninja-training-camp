@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
         HandleGrapple();
     }
 
-    private bool jumpButtonHeld = false;
+    private bool jumpButtonHeld;
     /// <summary>
     /// Detects a jump button press, but not a hold.
     /// </summary>

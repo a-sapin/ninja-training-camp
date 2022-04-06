@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class MainMenuAnimation : MonoBehaviour
 {
     [Header("Torii")] [SerializeField] private RawImage torii;
-    [SerializeField] private Texture2D torii_flat;
-    [SerializeField] private Texture2D torii_front;
-    [SerializeField] private Texture2D torii_back;
+    [SerializeField] private Texture2D toriiFlat;
+    [SerializeField] private Texture2D toriiFront;
+    [SerializeField] private Texture2D toriiBack;
 
     [Header("Player")]
     [SerializeField] private RawImage player;
@@ -69,19 +69,19 @@ public class MainMenuAnimation : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    torii.texture = torii_flat;
+                    torii.texture = toriiFlat;
                     i++;
                     break;
                 case 1:
-                    torii.texture = torii_front;
+                    torii.texture = toriiFront;
                     i++;
                     break;
                 case 2:
-                    torii.texture = torii_flat;
+                    torii.texture = toriiFlat;
                     i++;
                     break;
                 case 3:
-                    torii.texture = torii_back;
+                    torii.texture = toriiBack;
                     i = 0;
                     break;
             }
