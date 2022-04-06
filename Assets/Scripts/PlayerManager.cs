@@ -33,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerLocomotion GetLocomotion() { return myPlayerLocomotion; }
     public InputManager GetInput() { return inputManager; }
     public GrapplingGun GetGrapplingGun() { return myGrapplingGun; }
+    public SpriteRenderer GetSpriteRenderer() { return playerSprite; }
 
     public bool HasDash() { return hasDashPower; }
     public bool HasDoubleJump() { return hasDoubleJumpPower; }

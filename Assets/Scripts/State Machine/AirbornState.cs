@@ -67,16 +67,18 @@ public class AirbornState : State
         Debug.Log("Attempt to check for wall jump conditions [ AirbornState.cs ]");
         if (player.HasWallJump())
         {
-            if (player.GetLocomotion().IsAgainstWall(Vector2.left) == true)
+            if (player.GetLocomotion().IsAgainstWall(Vector2.left) == true && player.isSpriteFlipped() == true)
             {
                 player.GetLocomotion().WallJump(new Vector2(1,0.8f));
                 Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
+                player.FlipSprite();
                 return true;
             }
-            else if (player.GetLocomotion().IsAgainstWall(Vector2.right) == true)
+            else if (player.GetLocomotion().IsAgainstWall(Vector2.right) == true && player.isSpriteFlipped() == false)
             {
                 player.GetLocomotion().WallJump(new Vector2(-1, 0.8f));
                 Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
+                player.FlipSprite();
                 return true;
             }
             else
