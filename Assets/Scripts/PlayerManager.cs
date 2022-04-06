@@ -19,6 +19,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] bool hasDashPower = false;
     [SerializeField] bool hasDoubleJumpPower = false;
     [SerializeField] bool hasGrapplePower = false;
+    [SerializeField] bool hasWallJumpPower = false;
+
 
     [Header("Power Logic Variables")]
     [SerializeField] float dashCooldown = 1.0f;
@@ -35,6 +37,7 @@ public class PlayerManager : MonoBehaviour
     public bool HasDash() { return hasDashPower; }
     public bool HasDoubleJump() { return hasDoubleJumpPower; }
     public bool HasGrapple() { return hasGrapplePower; }
+    public bool HasWallJump() { return hasWallJumpPower; }
 
 
     // Used by other scripts to take away powers
