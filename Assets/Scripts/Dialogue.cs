@@ -18,15 +18,16 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private float writeDelay; //LOKI
     [HideInInspector] public bool isInDialogue = false;
     private PlayerManager playerManager;
-    private PlayerLocomotion playerLocomotion;
     private Timer timer;
     VFXManager mySoundManager;
+    private String vfxDialogue;
 
     void Start()
     {
         writeDelay = PlayerPrefs.GetFloat("writeDelay", 0.03f);
         timer = FindObjectOfType<Timer>();
-        playerLocomotion = FindObjectOfType<PlayerLocomotion>();
+        mySoundManager = FindObjectOfType<VFXManager>(); //Find sound manager for dialogue "beep"
+        playerManager = FindObjectOfType<PlayerManager>();
         StartFirstDialogue();
     }
 
@@ -40,8 +41,6 @@ public class Dialogue : MonoBehaviour
     {
         isInDialogue = true;
         yield return new WaitForSecondsRealtime(0.05f);
-        mySoundManager = FindObjectOfType<VFXManager>(); //Find sound manager for dialogue "beep"
-        playerManager = FindObjectOfType<PlayerManager>();
         playerManager.LockGameplayInput(); // freeze player during dialogue
         timer.PauseTimer();
 
@@ -56,6 +55,15 @@ public class Dialogue : MonoBehaviour
                 {
                     sensei.SetActive(dialogue[dialogueIndex].isSenseiTalking);
                     player.SetActive(!dialogue[dialogueIndex].isSenseiTalking);
+
+                    if (dialogue[dialogueIndex].isSenseiTalking)
+                    {
+                        vfxDialogue = "Sensei is talking";
+                    }
+                    else if(!dialogue[dialogueIndex].isSenseiTalking)
+                    {
+                        vfxDialogue = "Satoru is talking";
+                    }
 
                     //LOKI (remove when finished)
                     int lengthOfSentence = dialogue[dialogueIndex].text.Length;
@@ -81,7 +89,7 @@ public class Dialogue : MonoBehaviour
                         {
                             current_Text = current_Text + charsArray[o]; //Append char
                             textZone.text = current_Text;
-                            mySoundManager.Play("Talking");
+                            mySoundManager.Play(vfxDialogue);
                             yield return new WaitForSecondsRealtime(writeDelay);
                         }
                     }

@@ -11,6 +11,7 @@ public class SplashScreenLogoLevelLoader : MonoBehaviour
     private void Awake()
     {
         Screen.fullScreen = intToBool(PlayerPrefs.GetInt("fullscreen", 1));
+        PlayerPrefs.SetString("music", "");
         PlayerPrefs.SetFloat("musicTime", 0f);
         ChangeResolutionFromString();
     }

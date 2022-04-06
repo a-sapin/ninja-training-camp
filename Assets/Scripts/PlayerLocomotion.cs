@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerLocomotion : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerLocomotion : MonoBehaviour
     Vector3 groundNormal; // indicates the slope the player is on (equal to Vector2.up when airborn)
 
     Ladder currentLadderObject;
+    FootstepHandler footsteps;
 
     public float gravityMultiplier = 1.0f;
     public float maxVelocity = 5.0f;
@@ -25,6 +27,7 @@ public class PlayerLocomotion : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        footsteps = GetComponent<FootstepHandler>();
     }
 
     public bool IsTouchingLadder() { return currentLadderObject != null; }
@@ -34,6 +37,7 @@ public class PlayerLocomotion : MonoBehaviour
     /// </summary>
     public void ApplyExternForce(Vector2 impulseForce)
     {
+        rb.velocity = Vector2.zero;
         rb.AddForce(impulseForce, ForceMode2D.Impulse);
     }
 
@@ -78,6 +82,7 @@ public class PlayerLocomotion : MonoBehaviour
         if (hit.collider != null)
         {
             groundNormal = hit.normal;
+            UpdateGroundTypeFromHit(hit);
             Debug.DrawRay(hit.point, groundNormal, Color.green, 0.02f);
             return true;
         }
@@ -87,6 +92,40 @@ public class PlayerLocomotion : MonoBehaviour
             Debug.DrawRay(hit.point, groundNormal, Color.green, 0.02f);
             return false;
         }
+    }
+
+    private TileBase groundTile; // used for footstep sfx
+    public void UpdateGroundTypeFromHit(RaycastHit2D hit)
+    {
+        Tilemap tileMap;
+
+        if(hit.collider.TryGetComponent(out tileMap))
+        {
+            Vector2 hitPos = hit.point - new Vector2(0f, 0.1f); // offset the point slightly down to make sure we are not above the tile we want
+            Vector3Int tilePos = tileMap.WorldToCell(hitPos);
+            TileBase tileBase = tileMap.GetTile(tilePos);
+
+            if (groundTile != tileBase) // if ground type changed, change to new ground type
+            {
+                groundTile = tileBase;
+                UpdateGroundType(tileBase);
+            }
+        }
+        else if (hit.collider.TryGetComponent<PlatformEffector2D>(out var platform))
+        {
+            groundTile = null; // TODO: a ladder was detected!! maybe wood?
+        }
+        else
+        {
+            groundTile = null;
+        }
+    }
+
+    private GroundType groundType = GroundType.NULL;
+    public GroundType GetGroundType() { return groundType; }
+    private void UpdateGroundType(TileBase tile)
+    {
+        groundType = footsteps.DetermineGroundType(tile);
     }
 
     public void ApplyFallAccel()
