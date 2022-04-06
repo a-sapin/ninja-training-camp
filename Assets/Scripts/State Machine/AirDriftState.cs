@@ -1,33 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-/// <summary>
-/// When in the air and moving
-/// </summary>
-public class AirDriftState : AirbornState
+namespace State_Machine
 {
-    public override void HandleSurroundings(PlayerManager player)
+    /// <summary>
+    /// When in the air and moving
+    /// </summary>
+    public class AirDriftState : AirbornState
     {
-        if (player.GetLocomotion().IsGrounded())
+        public override void HandleSurroundings(PlayerManager player)
         {
-            doubleJumpAvailable = true; // refresh DJ on land
-            player.ChangeState(running);
+            if (player.GetLocomotion().IsGrounded())
+            {
+                doubleJumpAvailable = true; // refresh DJ on land
+                player.ChangeState(running);
+            }
+            else
+            {
+                player.ChangeState(airdrift);
+            }
         }
-        else
+
+        public override void LogicUpdate(PlayerManager player)
         {
-            player.ChangeState(airdrift);
+
         }
-    }
 
-    public override void LogicUpdate(PlayerManager player)
-    {
-
-    }
-
-    public override void PhysicsUpdate(PlayerManager player)
-    {
-        base.PhysicsUpdate(player);
-        player.GetLocomotion().RunTowards(player.GetInput().Move());
+        public override void PhysicsUpdate(PlayerManager player)
+        {
+            base.PhysicsUpdate(player);
+            player.GetLocomotion().RunTowards(player.GetInput().Move());
+        }
     }
 }

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class InteractActionHandler : MonoBehaviour
 {
-    [SerializeField] bool tryingToInteract = false;
-    bool holdingButton = false;
+    [SerializeField] bool tryingToInteract;
+    bool holdingButton;
 
     // Update is called once per frame
     void Update()

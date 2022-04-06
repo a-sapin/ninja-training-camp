@@ -1,56 +1,54 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScreenShake : MonoBehaviour
 {
-    static public float ShakeDuration = 0f;          // Time the Camera Shake effect will last
-    static public float ShakeAmplitude = 0f;         // Cinemachine Noise Profile Parameter
-    public float ShakeFrequency = 1.0f;         // Cinemachine Noise Profile Parameter
+    public static float shakeDuration;          // Time the Camera Shake effect will last
+    public static float shakeAmplitude;         // Cinemachine Noise Profile Parameter
+    public float shakeFrequency = 1.0f;         // Cinemachine Noise Profile Parameter
 
-    static private float ShakeElapsedTime = 0f;
+    private static float _shakeElapsedTime;
 
     // Cinemachine Shake
-    public CinemachineVirtualCamera VirtualCamera;
+    public CinemachineVirtualCamera virtualCamera;
     private CinemachineBasicMultiChannelPerlin virtualCameraNoise;
 
-    static public void Shake(float duration, float amplitude)
+    public static void Shake(float duration, float amplitude)
     {
         Debug.Log("Shake:" + duration + "," + amplitude);
-        ShakeDuration = duration;
-        ShakeAmplitude = amplitude;
-        ShakeElapsedTime = ShakeDuration;
+        shakeDuration = duration;
+        shakeAmplitude = amplitude;
+        _shakeElapsedTime = shakeDuration;
     }
     // Use this for initialization
     void Start()
     {
         // Get Virtual Camera Noise Profile
-        if (VirtualCamera != null)
-            virtualCameraNoise = VirtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
+        if (virtualCamera != null)
+            virtualCameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // If the Cinemachine componet is not set, avoid update
-        if (VirtualCamera != null && virtualCameraNoise != null)
+        if (virtualCamera != null && virtualCameraNoise != null)
         {
             // If Camera Shake effect is still playing
-            if (ShakeElapsedTime > 0)
+            if (_shakeElapsedTime > 0)
             {
                 // Set Cinemachine Camera Noise parameters
-                virtualCameraNoise.m_AmplitudeGain = ShakeAmplitude;
-                virtualCameraNoise.m_FrequencyGain = ShakeFrequency;
+                virtualCameraNoise.m_AmplitudeGain = shakeAmplitude;
+                virtualCameraNoise.m_FrequencyGain = shakeFrequency;
 
                 // Update Shake Timer
-                ShakeElapsedTime -= Time.deltaTime;
+                _shakeElapsedTime -= Time.deltaTime;
             }
             else
             {
                 // If Camera Shake effect is over, reset variables
                 virtualCameraNoise.m_AmplitudeGain = 0f;
-                ShakeElapsedTime = 0f;
+                _shakeElapsedTime = 0f;
             }
         }
     }

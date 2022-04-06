@@ -1,12 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
+using State_Machine;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
     private PlayerLocomotion myPlayerLocomotion;
     [SerializeField] State currentState;
-    public State getState() { return currentState;}
+    public State GetState() { return currentState;}
     InputManager inputManager;
     [SerializeReference] Animator myAnimator;
     [SerializeReference] SpriteRenderer playerSprite;
@@ -16,9 +16,9 @@ public class PlayerManager : MonoBehaviour
     Smoke smoke;
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
-    [SerializeField] bool hasDashPower = false;
-    [SerializeField] bool hasDoubleJumpPower = false;
-    [SerializeField] bool hasGrapplePower = false;
+    [SerializeField] bool hasDashPower;
+    [SerializeField] bool hasDoubleJumpPower;
+    [SerializeField] bool hasGrapplePower;
 
     [Header("Power Logic Variables")]
     [SerializeField] float dashCooldown = 1.0f;
@@ -54,16 +54,11 @@ public class PlayerManager : MonoBehaviour
     /// <param name="nextState">The next state to switch to.</param>
     public void ChangeState(State nextState)
     {
-        if (currentState.GetType() == nextState.GetType())
-        {
-            return; // Don't change the state if we are already in that state
-        }
-        else
-        {
-            currentState.Exit(this);
-            currentState = nextState;
-            currentState.Enter(this);
-        }
+        if (currentState.GetType() == nextState.GetType()) return;
+        
+        currentState.Exit(this);
+        currentState = nextState;
+        currentState.Enter(this);
     }
 
     private bool canGrapple = true;
@@ -204,7 +199,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public bool isSpriteFlipped()
+    public bool IsSpriteFlipped()
     {
         return playerSprite.flipX;
     }
@@ -228,23 +223,20 @@ public class PlayerManager : MonoBehaviour
     {
         switch (myPlayerLocomotion.GetGroundType())
         {
-            case GroundType.GRASS:
+            case GroundType.Grass:
                 //play sound
                 break;
 
-            case GroundType.STONE:
+            case GroundType.Stone:
                 //play sound
                 break;
 
-            case GroundType.WOOD:
+            case GroundType.Wood:
                 //play sound
                 break;
 
-            case GroundType.DIRT:
+            case GroundType.Dirt:
                 //play sound
-                break;
-
-            default:
                 break;
         }
     }

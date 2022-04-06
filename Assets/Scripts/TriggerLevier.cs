@@ -9,7 +9,7 @@ public class TriggerLevier : MonoBehaviour
 
     [SerializeField] private float timer = 1;
     [SerializeField] private float distanceToMove = 1;
-    [SerializeField] private bool doOnce = false;
+    [SerializeField] private bool doOnce;
 
     private bool isActivated;
     private Animator animator;
@@ -67,7 +67,7 @@ public class TriggerLevier : MonoBehaviour
         {
             var position = associatedGo.transform.position;
             position = Vector3.Lerp(position,
-                position + directionVector * Time.deltaTime * distanceToMove,
+                position + directionVector * (Time.deltaTime * distanceToMove),
                 Time.time - startTime);
             associatedGo.transform.position = position;
             yield return null;

@@ -4,10 +4,10 @@ public class GateController : MonoBehaviour
 {
     enum MoveDirection
     {
-        up,
-        down,
-        left,
-        right
+        Up,
+        Down,
+        Left,
+        Right
     };
 
     [SerializeField] Transform gatePosition;
@@ -57,16 +57,16 @@ public class GateController : MonoBehaviour
             openDoor = true;
             switch (moveDirection)
             {
-                case MoveDirection.up:
+                case MoveDirection.Up:
                     openPosition = Vector2.up * distanceToMove;
                     break;
-                case MoveDirection.down:
+                case MoveDirection.Down:
                     openPosition = Vector2.down * distanceToMove;
                     break;
-                case MoveDirection.left:
+                case MoveDirection.Left:
                     openPosition = Vector2.left * distanceToMove;
                     break;
-                case MoveDirection.right:
+                case MoveDirection.Right:
                     openPosition = Vector2.right * distanceToMove;
                     break;
             }

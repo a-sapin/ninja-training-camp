@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +6,6 @@ public class LevelInformations : MonoBehaviour
     [SerializeField] private GameObject score;
     [SerializeField] private Text levelName,levelName2,highScore;
     [SerializeField] private GameObject goldMedal, silverMedal, bronzeMedal, grapple, dash, doubleJump;
-    private ScenesTransitionManager transition;
     private void Start()
     {
         score.SetActive(false);
@@ -41,14 +39,8 @@ public class LevelInformations : MonoBehaviour
         goldMedal.SetActive(highScoreValue < PlayerPrefs.GetInt(level+ "Gold", 30000));
         silverMedal.SetActive(highScoreValue < PlayerPrefs.GetInt(level + "Silver", 60000));
         bronzeMedal.SetActive(highScoreValue < PlayerPrefs.GetInt(level + "Bronze", 120000));
-        if(PlayerPrefs.GetInt(level + "HighScore", -1) == -1)
-        {
-            highScore.text = "";
-        }
-        else
-        {
-            highScore.text = Timer.IntToStringTime(highScoreValue);
-        }
+        
+        highScore.text = PlayerPrefs.GetInt(level + "HighScore", -1) == -1 ? "" : Timer.IntToStringTime(highScoreValue);
 
         grapple.SetActive(PlayerPrefs.GetString(level+"Powers").Contains("Grapple"));
         dash.SetActive(PlayerPrefs.GetString(level+"Powers").Contains("Dash"));

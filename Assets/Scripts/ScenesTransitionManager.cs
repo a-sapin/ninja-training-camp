@@ -35,23 +35,19 @@ public class ScenesTransitionManager : MonoBehaviour
         int nextIndex = SceneManager.GetSceneByName(level).buildIndex;
         if (level == "Level1")
         {
-            if (currentIndex == nextIndex) PlayerPrefs.SetInt("playDialogue1", 0);
-            else PlayerPrefs.SetInt("playDialogue1", 1);
+            PlayerPrefs.SetInt("playDialogue1", currentIndex == nextIndex ? 0 : 1);
         }
         else if (level == "Level2")
         {
-            if (currentIndex == nextIndex) PlayerPrefs.SetInt("playDialogue2", 0);
-            else PlayerPrefs.SetInt("playDialogue2", 1);
+            PlayerPrefs.SetInt("playDialogue2", currentIndex == nextIndex ? 0 : 1);
         }
         else if (level == "Level3")
         {
-            if (currentIndex == nextIndex) PlayerPrefs.SetInt("playDialogue3", 0);
-            else PlayerPrefs.SetInt("playDialogue3", 1);
+            PlayerPrefs.SetInt("playDialogue3", currentIndex == nextIndex ? 0 : 1);
         }
         else if (level == "Level4")
         {
-            if (currentIndex == nextIndex) PlayerPrefs.SetInt("playDialogue4", 0);
-            else PlayerPrefs.SetInt("playDialogue4", 1);
+            PlayerPrefs.SetInt("playDialogue4", currentIndex == nextIndex ? 0 : 1);
         }
         transition.TransitToScene(level);
     }

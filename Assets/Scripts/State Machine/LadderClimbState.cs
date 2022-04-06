@@ -1,20 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LadderClimbState : LadderGrabState
+namespace State_Machine
 {
-    public override void HandleSurroundings(PlayerManager player)
+    public class LadderClimbState : LadderGrabState
     {
-        if (!player.GetLocomotion().IsTouchingLadder()) // not touching ladder
+        public override void HandleSurroundings(PlayerManager player)
         {
-            player.ChangeState(MovementState(player));
+            if (!player.GetLocomotion().IsTouchingLadder()) // not touching ladder
+            {
+                player.ChangeState(MovementState(player));
+            }
         }
-    }
 
-    public override void LogicUpdate(PlayerManager player)
-    {
-        player.GetLocomotion().ClimbLadder(player.GetInput().Move(), Time.deltaTime);
-    }
+        public override void LogicUpdate(PlayerManager player)
+        {
+            player.GetLocomotion().ClimbLadder(player.GetInput().Move(), Time.deltaTime);
+        }
 
+    }
 }

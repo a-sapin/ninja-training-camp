@@ -41,7 +41,6 @@ public class VFXManager : MonoBehaviour
         if(s == null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
-            return;
         }
         else if (!s.source.isPlaying)
         {

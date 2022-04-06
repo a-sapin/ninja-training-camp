@@ -32,11 +32,11 @@ public class Dialogue : MonoBehaviour
 
     private void StartFirstDialogue()
     {
-        IEnumerator firstDialogue = PlayDialogue(dialogue);
+        IEnumerator firstDialogue = PlayDialogue();
         StartCoroutine(firstDialogue);
     }
 
-    IEnumerator PlayDialogue(DialoguePart[] dialogue)
+    IEnumerator PlayDialogue()
     {
         yield return new WaitForSecondsRealtime(0.05f);
         playerManager.LockGameplayInput(); // freeze player during dialogue
@@ -71,7 +71,7 @@ public class Dialogue : MonoBehaviour
                         charsArray[i] = dialogue[dialogueIndex].text[i];
                     }
 
-                    string current_Text = "";
+                    string currentText = "";
 
                     for (int o = 0;
                          o < lengthOfSentence;
@@ -85,8 +85,8 @@ public class Dialogue : MonoBehaviour
                         }
                         else
                         {
-                            current_Text = current_Text + charsArray[o]; //Append char
-                            textZone.text = current_Text;
+                            currentText += charsArray[o]; //Append char
+                            textZone.text = currentText;
                             mySoundManager.Play(vfxDialogue);
                             yield return new WaitForSecondsRealtime(writeDelay);
                         }
@@ -95,7 +95,7 @@ public class Dialogue : MonoBehaviour
                     waiting = true;
                     //Debug.Log("BULLE COMPLETEE");
                 }
-                else if (waiting && Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
+                else if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
                 {
                     dialogueIndex++;
                     textZone.text = "";

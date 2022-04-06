@@ -6,7 +6,7 @@ using UnityEngine;
 public class PowerRemover : MonoBehaviour
 {
     [SerializeField] Power[] powerToRemove;
-    int currentIndex = 0;
+    int currentIndex;
     EndLevel endLevel;
     PlayerManager player;
 
@@ -18,7 +18,7 @@ public class PowerRemover : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if(collision.CompareTag("Player"))
         {
             RemovePower();
         }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -49,11 +48,11 @@ public class PlayerLocomotion : MonoBehaviour
         transform.position = position;
     }
 
-    private const int ladderLayer = 9; // for some reason a layermask doesnt work
+    private const int LadderLayer = 9; // for some reason a layermask doesnt work
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == ladderLayer)
+        if (collision.gameObject.layer == LadderLayer)
         {
             currentLadderObject = collision.gameObject.GetComponent<Ladder>();
         }
@@ -62,7 +61,7 @@ public class PlayerLocomotion : MonoBehaviour
     // TODO: May need to remove this for proper ladder behaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == ladderLayer)
+        if (collision.gameObject.layer == LadderLayer)
         {
             currentLadderObject.EnableTopPlatform();
             currentLadderObject = null;
@@ -74,10 +73,11 @@ public class PlayerLocomotion : MonoBehaviour
     public bool IsGrounded()
     {
         // Cast a ray straight down.
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, groundDetectCircleRadius, Vector2.down,
+        Vector3 position = transform.position;
+        RaycastHit2D hit = Physics2D.CircleCast(position, groundDetectCircleRadius, Vector2.down,
             groundDetectionDistance - groundDetectCircleRadius, groundLayerMask);
         // subtract circle radius so the max distance to detect ground is still equal to groundDetectionDistance
-        Debug.DrawRay(transform.position, Vector2.down * groundDetectionDistance, Color.red, 0.02f);
+        Debug.DrawRay(position, Vector2.down * groundDetectionDistance, Color.red, 0.02f);
 
         if (hit.collider != null)
         {
@@ -111,7 +111,7 @@ public class PlayerLocomotion : MonoBehaviour
                 UpdateGroundType(tileBase);
             }
         }
-        else if (hit.collider.TryGetComponent<PlatformEffector2D>(out var platform))
+        else if (hit.collider.TryGetComponent<PlatformEffector2D>(out _))
         {
             groundTile = null; // TODO: a ladder was detected!! maybe wood?
         }
@@ -121,7 +121,7 @@ public class PlayerLocomotion : MonoBehaviour
         }
     }
 
-    private GroundType groundType = GroundType.NULL;
+    private GroundType groundType = GroundType.Null;
     public GroundType GetGroundType() { return groundType; }
     private void UpdateGroundType(TileBase tile)
     {
@@ -204,14 +204,13 @@ public class PlayerLocomotion : MonoBehaviour
         if (IsTouchingLadder())
         {
             // the position horizontally aligned with the ladder that is closest to player
-            Vector2 closestLadderMid = new Vector2(currentLadderObject.transform.position.x, transform.position.y);
+            Vector3 position = transform.position;
+            Vector2 closestLadderMid = new Vector2(currentLadderObject.transform.position.x, position.y);
 
-            return Vector2.Distance(closestLadderMid, transform.position);
+            return Vector2.Distance(closestLadderMid, position);
         }
-        else
-        {
-            return 0f;
-        }
+
+        return 0f;
     }
 
     public void StopPlayer()
@@ -224,8 +223,10 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if (IsTouchingLadder())
         {
-            Vector2 closestLadderMid = new Vector2(currentLadderObject.transform.position.x, transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, closestLadderMid, ladderGrabSpeed * delta);
+            Vector3 position = transform.position;
+            Vector2 closestLadderMid = new Vector2(currentLadderObject.transform.position.x, position.y);
+            position = Vector2.MoveTowards(position, closestLadderMid, ladderGrabSpeed * delta);
+            transform.position = position;
         }
     }
 
@@ -254,10 +255,13 @@ public class PlayerLocomotion : MonoBehaviour
             if(input.y < 0f)
                 return; // dont let player clip through ground
         }
-        Vector2 climbOffset = transform.position + (input.y * 10f * Vector3.up); 
+
+        Vector3 position = transform.position;
+        Vector2 climbOffset = position + (input.y * 10f * Vector3.up); 
         // 10f just to make sure the target is not reachable in a single update
         
-        transform.position = Vector2.MoveTowards(transform.position, climbOffset, ladderClimbSpeed * delta);
+        position = Vector2.MoveTowards(position, climbOffset, ladderClimbSpeed * delta);
+        transform.position = position;
     }
 
     #endregion
