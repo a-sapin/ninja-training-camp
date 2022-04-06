@@ -51,7 +51,7 @@ public class AirbornState : State
                 player.ChangeState(jumping);
                 return;
             }
-            else if (doubleJumpAvailable && player.HasDoubleJump())
+            else if (authoriseWallJump(player)==false && doubleJumpAvailable && player.HasDoubleJump())
             {
                 player.CreateSmoke(true);
                 doubleJumpAvailable = false;
@@ -64,6 +64,7 @@ public class AirbornState : State
 
     protected bool authoriseWallJump(PlayerManager player)
     {
+        Debug.Log("Attempt to check for wall jump conditions [ AirbornState.cs ]");
         if (player.HasWallJump())
         {
             if (player.GetLocomotion().IsAgainstWall(Vector2.left) == true)
@@ -83,6 +84,10 @@ public class AirbornState : State
                 return false;
             }
             return false;
+        }
+        else
+        {
+            Debug.Log("Player's wall jump power is disabled [ AirbornState.cs ]");
         }
         return false;
 
