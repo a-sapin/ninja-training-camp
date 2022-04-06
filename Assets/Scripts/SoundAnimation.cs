@@ -2,25 +2,44 @@ using UnityEngine;
 
 public class SoundAnimation : MonoBehaviour
 {
-    public PlayerLocomotion touchGround;
+    VFXManager vfxManager;
+    //public PlayerManager touchGround;
 
+    private void Start()
+    {
+        vfxManager = FindObjectOfType<VFXManager>();
+    }
     private void IdleNoSound()
     {
-        FindObjectOfType<VFXManager>().Stop("Movement");
+        vfxManager.Stop("Movement");
     }
     private void JumpSound()
     {
-        FindObjectOfType<VFXManager>().Stop("Movement");
+        vfxManager.Stop("Movement");
+        vfxManager.Play("Jump");
     }
     private void MovementSound()
-    {/*
-        if(touchGround.isGrounded)
-        {
-            FindObjectOfType<VFXManager>().Play("Movement");
-        }*/
-    }
-    private void DashSound()
     {
-        FindObjectOfType<VFXManager>().Stop("Movement");
+        //if(touchGround)
+        //{
+            vfxManager.Play("Movement");
+        //}
+    }
+
+    /*private void DashSound() //Problème avec le son qui ne ce joue pas tout le temps donc j'ai réactiver son bout de script dans le playerManager
+    {
+        vfxManager.Stop("Movement");
+        vfxManager.Play("Dash");
+    }*/
+    private void DoubleJumpSound() // ne fonctionne pas car l'état double jump ne s'active jamais... SAD :(
+    {
+        vfxManager.Stop("Movement");
+        vfxManager.Play("Double Jump");
+
+    }
+    private void LadderSound() // ne fonctionne pas car l'état double jump ne s'active jamais... SAD :(
+    {
+        vfxManager.Stop("Movement");
+        vfxManager.Play("Ladder");
     }
 }
