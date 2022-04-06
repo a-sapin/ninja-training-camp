@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2709a06cece8bd14381e5b798dad519c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShakeFrequency: 1
-  VirtualCamera: {fileID: 1051568151366251082}
+  shakeFrequency: 1
+  virtualCamera: {fileID: 1051568151366251082}
 --- !u!1 &1051568151484783513
 GameObject:
   m_ObjectHideFlags: 0

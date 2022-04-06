@@ -472,6 +472,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4002382124292658686}
     m_Modifications:
+    - target: {fileID: 1645305072301960260, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
+      propertyPath: bgm
+      value: 
+      objectReference: {fileID: 4989283898730528584}
     - target: {fileID: 1645305072301960261, guid: 9e4a313cfab797c43aee6fa62322f0e5, type: 3}
       propertyPath: m_Name
       value: VOLUMEMANAGER
