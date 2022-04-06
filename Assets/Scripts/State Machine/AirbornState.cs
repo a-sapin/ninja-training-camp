@@ -73,11 +73,11 @@ public class AirbornState : State
             }
             else if (player.GetLocomotion().IsAgainstWall(Vector2.left) == true)
             {
-
+                return true;
             }
             else
             {
-
+                return false;
             }
         }
 
