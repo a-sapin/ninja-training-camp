@@ -40,7 +40,7 @@ public class Attack : MonoBehaviour
         RaycastHit hits;
         
         if(Physics.BoxCast(transform1.position, transform1.localScale, transform1.forward,out hits, transform.rotation, attackRange * 2))
-            Debug.Log($"Hit= {hits.collider.name}");
+            Debug.Log($"Attack || Hit= {hits.collider.name}");
     }
     
 }

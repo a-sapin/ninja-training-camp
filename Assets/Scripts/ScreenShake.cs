@@ -17,7 +17,7 @@ public class ScreenShake : MonoBehaviour
 
     static public void Shake(float duration, float amplitude)
     {
-        Debug.Log("Shake:" + duration + "," + amplitude);
+        Debug.Log("ScreenShake || Shake:" + duration + "," + amplitude);
         ShakeDuration = duration;
         ShakeAmplitude = amplitude;
         ShakeElapsedTime = ShakeDuration;
