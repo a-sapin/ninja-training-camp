@@ -3,27 +3,49 @@ using UnityEngine;
 public class SoundAnimation : MonoBehaviour
 {
     VFXManager vfxManager;
-    //public PlayerManager touchGround;
+    PlayerLocomotion myPlayerLocomotion;
 
     private void Start()
     {
         vfxManager = FindObjectOfType<VFXManager>();
+        myPlayerLocomotion = FindObjectOfType<PlayerLocomotion>();
     }
     private void IdleNoSound()
     {
-        vfxManager.Stop("Movement");
+        //vfxManager.StopAllSFXMovement();
     }
     private void JumpSound()
     {
-        vfxManager.Stop("Movement");
+        //vfxManager.StopAllSFXMovement();
         vfxManager.Play("Jump");
     }
     private void MovementSound()
     {
-        //if(touchGround)
-        //{
-            vfxManager.Play("Movement");
-        //}
+        switch (myPlayerLocomotion.GetGroundType())
+        {
+            case GroundType.GRASS:
+                //play sound
+                vfxManager.Play("Movement Grass");
+                break;
+
+            case GroundType.STONE:
+                //play sound
+                vfxManager.Play("Movement Stone");
+                break;
+
+            case GroundType.WOOD:
+                //play sound
+                vfxManager.Play("Movement Wood");
+                break;
+
+            case GroundType.DIRT:
+                //play sound
+                vfxManager.Play("Movement Dirt");
+                break;
+
+            default:
+                break;
+        }
     }
 
     /*private void DashSound() //Problème avec le son qui ne ce joue pas tout le temps donc j'ai réactiver son bout de script dans le playerManager
@@ -33,13 +55,19 @@ public class SoundAnimation : MonoBehaviour
     }*/
     private void DoubleJumpSound() // ne fonctionne pas car l'état double jump ne s'active jamais... SAD :(
     {
-        vfxManager.Stop("Movement");
+        //vfxManager.StopAllSFXMovement();
         vfxManager.Play("Double Jump");
 
     }
-    private void LadderSound() // ne fonctionne pas car l'état double jump ne s'active jamais... SAD :(
+    private void LadderSound()
     {
-        vfxManager.Stop("Movement");
+        //vfxManager.StopAllSFXMovement();
         vfxManager.Play("Ladder");
+    }
+
+    private void LeverSound() // ne fonctionne pas car l'état double jump ne s'active jamais... SAD :(
+    {
+        //vfxManager.StopAllSFXMovement();
+        vfxManager.Play("Lever");
     }
 }
