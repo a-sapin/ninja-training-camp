@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Salut, ceci est un giga test mon bro
+  m_Text: 
 --- !u!1 &5687664088935292204
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +285,8 @@ MonoBehaviour:
       do the job without them.
   - isSenseiTalking: 0
     text: Very well, master.
-  writeDelay: 0
+  writeDelay: 0.03
+  isInDialogue: 0
 --- !u!1 &5687664089374091198
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5687664089374091197
 RectTransform:
   m_ObjectHideFlags: 0
@@ -399,7 +400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5687664089816441826
 RectTransform:
   m_ObjectHideFlags: 0

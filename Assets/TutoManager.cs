@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TutoManager : MonoBehaviour
 {
-    private Dialogue dialogue;
+    [SerializeField] Dialogue dialogue;
     [SerializeField] float maxDist;
     [SerializeField] Transform player;
     [SerializeField] Transform leftRight,jump,grapple,jump2,dash,grapple2,grapple3;
     void Start()
     {
-        dialogue = FindObjectOfType<Dialogue>();
+        
     }
 
     // Update is called once per frame

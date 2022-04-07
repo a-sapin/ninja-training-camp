@@ -24,16 +24,18 @@ public class Dialogue : MonoBehaviour
 
     void Start()
     {
+        canvas.SetActive(false);
         writeDelay = PlayerPrefs.GetFloat("writeDelay", 0.03f);
         timer = FindObjectOfType<Timer>();
         mySoundManager = FindObjectOfType<VFXManager>(); //Find sound manager for dialogue "beep"
         playerManager = FindObjectOfType<PlayerManager>();
-        StartFirstDialogue();
+        //StartFirstDialogue();
     }
 
-    private void StartFirstDialogue()
+    public void StartFirstDialogue()
     {
         IEnumerator firstDialogue = PlayDialogue(dialogue);
+        canvas.SetActive(true);
         StartCoroutine(firstDialogue);
     }
 

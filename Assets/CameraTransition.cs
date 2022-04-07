@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class CameraTransition : MonoBehaviour
 {
-    public float stayOnToriTime,speed;
+    public float stayOnToriTime,damping,transitionTime;
 
     [SerializeField] GameObject tori,player;
     [FormerlySerializedAs("camera")] [SerializeField] CinemachineVirtualCamera cinemachineCamera;
@@ -16,7 +16,7 @@ public class CameraTransition : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("YOOO");
+        //Debug.Log("YOOO");
         StartCoroutine(ToriToPlayerTransition());
     }
     IEnumerator ToriToPlayerTransition()
@@ -29,17 +29,17 @@ public class CameraTransition : MonoBehaviour
         cinemachineCamera.Follow = tori.transform;
         transposer.m_XDamping = 0;
         transposer.m_YDamping = 0;
-        Debug.Log("YOOO11");
+        //Debug.Log("YOOO11");
         yield return new WaitForSeconds(stayOnToriTime);
 
         playerManager = FindObjectOfType<PlayerManager>();
         playerManager.LockGameplayInput();
 
         cinemachineCamera.Follow = player.transform;
-        transposer.m_XDamping = speed;
-        transposer.m_YDamping = speed;
+        transposer.m_XDamping = damping;
+        transposer.m_YDamping = damping;
 
-        yield return new WaitForSeconds(speed/1.2f);
+        yield return new WaitForSeconds(transitionTime);
         transposer.m_XDamping = xDampling;
         transposer.m_YDamping = yDampling;
         FindObjectOfType<Timer>().RestartTimer();
