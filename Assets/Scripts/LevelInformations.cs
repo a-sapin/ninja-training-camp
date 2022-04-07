@@ -1,17 +1,19 @@
-using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelInformations : MonoBehaviour
 {
     [SerializeField] private GameObject score;
-    [SerializeField] private Text levelName,levelName2,highScore;
+    [SerializeField] private Text levelName, levelName2, highScore, goldTime, silverTime, bronzeTime;
     [SerializeField] private GameObject goldMedal, silverMedal, bronzeMedal, grapple, dash, doubleJump;
     private ScenesTransitionManager transition;
+    private Animator animator;
     private void Start()
     {
         score.SetActive(false);
         SetHighScoreValue();
+        animator = score.GetComponent<Animator>();
     }
     public void SetHighScoreValue()
     {
@@ -38,9 +40,19 @@ public class LevelInformations : MonoBehaviour
         score.SetActive(true);
         levelName.text = levelName2.text = level;
         int highScoreValue  = PlayerPrefs.GetInt(level + "HighScore", 999999);
-        goldMedal.SetActive(highScoreValue < PlayerPrefs.GetInt(level+ "Gold", 30000));
-        silverMedal.SetActive(highScoreValue < PlayerPrefs.GetInt(level + "Silver", 60000));
-        bronzeMedal.SetActive(highScoreValue < PlayerPrefs.GetInt(level + "Bronze", 120000));
+        
+        int goldtime = PlayerPrefs.GetInt(level + "Gold", 30000);
+        goldTime.text = Timer.IntToStringTime(goldtime);
+        goldMedal.SetActive(highScoreValue < goldtime);
+        
+        int silvertime = PlayerPrefs.GetInt(level + "Silver", 60000);
+        silverTime.text = Timer.IntToStringTime(silvertime);
+        silverMedal.SetActive(highScoreValue < silvertime);
+
+        int bronzetime = PlayerPrefs.GetInt(level + "Bronze", 120000);
+        bronzeTime.text = Timer.IntToStringTime(bronzetime);
+        bronzeMedal.SetActive(highScoreValue < bronzetime);
+        
         if(PlayerPrefs.GetInt(level + "HighScore", -1) == -1)
         {
             highScore.text = "";
@@ -56,6 +68,13 @@ public class LevelInformations : MonoBehaviour
         
     }
     public void CloseLevelInfo() {
+        animator.SetTrigger("FadeOut");
+        StartCoroutine(waitAndClose());
+    }
+
+    private IEnumerator waitAndClose()
+    {
+        yield return new WaitForSeconds(0.1f);
         score.SetActive(false);
     }
 
