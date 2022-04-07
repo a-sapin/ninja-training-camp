@@ -5,9 +5,6 @@ public class PowerLossAnimCharacter : MonoBehaviour
 {
     private Animator myAnimator;
     private VFXManager vfxManager;
-
-    private static readonly int Attack = Animator.StringToHash("attack");
-
     // Start is called before the first frame update
     void Start()
     {
@@ -21,16 +18,16 @@ public class PowerLossAnimCharacter : MonoBehaviour
     {
         yield return new WaitForSeconds(1.1f);
         myAnimator.fireEvents = true;
-        myAnimator.SetBool(Attack, true);
+        myAnimator.SetBool("attack", true);
         yield return new WaitForSeconds(1.4f);
-        myAnimator.SetBool(Attack, false);
+        myAnimator.SetBool("attack", false);
         
         myAnimator.fireEvents = false;
         yield return new WaitForSeconds(0.7f);
         myAnimator.SetBool("fadeOut", true);
     }
 
-    public void AttackSound()
+    public void attackSound()
     {
         vfxManager.Play("Sword");
     }

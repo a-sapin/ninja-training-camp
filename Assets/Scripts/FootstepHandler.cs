@@ -1,13 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public enum GroundType
 {
-    Grass,
-    Stone,
-    Wood,
-    Dirt,
-    Null // is NULL necessary?
+    GRASS,
+    STONE,
+    WOOD,
+    DIRT,
+    NULL // is NULL necessary?
 }
 
 public class FootstepHandler : MonoBehaviour
@@ -24,23 +26,23 @@ public class FootstepHandler : MonoBehaviour
     {
         if (IsGrass(currentGround))
         {
-            return GroundType.Grass;
+            return GroundType.GRASS;
         }
         else if (IsStone(currentGround))
         {
-            return GroundType.Stone;
+            return GroundType.STONE;
         }
         else if (IsWood(currentGround))
         {
-            return GroundType.Wood;
+            return GroundType.WOOD;
         }
         else if (IsDirt(currentGround))
         {
-            return GroundType.Dirt;
+            return GroundType.DIRT;
         }
         else
         {
-            return GroundType.Null;
+            return GroundType.NULL;
         }
     }
 

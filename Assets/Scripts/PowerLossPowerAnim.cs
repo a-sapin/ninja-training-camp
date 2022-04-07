@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerLossPowerAnim : MonoBehaviour
 {
@@ -11,8 +12,7 @@ public class PowerLossPowerAnim : MonoBehaviour
     
     [SerializeField] private GameObject text;
     private Animator textAnimator;
-    private static readonly int Break = Animator.StringToHash("break");
-
+    
     void Start()
     {
         topHalfAnimator = topHalf.GetComponent<Animator>();
@@ -30,12 +30,12 @@ public class PowerLossPowerAnim : MonoBehaviour
     {
         yield return new WaitForSeconds(1.45f);
         
-        topHalfAnimator.SetBool(Break, true);
-        bottomHalfAnimator.SetBool(Break, true);
+        topHalfAnimator.SetBool("break", true);
+        bottomHalfAnimator.SetBool("break", true);
         yield return new WaitForSeconds(1.5f);
         
-        topHalfAnimator.SetBool(Break, false);
-        bottomHalfAnimator.SetBool(Break, false);
+        topHalfAnimator.SetBool("break", false);
+        bottomHalfAnimator.SetBool("break", false);
         yield return new WaitForSeconds(0.35f);
         
         textAnimator.SetTrigger("FadeOut");
