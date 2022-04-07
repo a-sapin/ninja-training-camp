@@ -51,7 +51,7 @@ public class AirbornState : State
                 player.ChangeState(jumping);
                 return;
             }
-            else if (authoriseWallJump(player)==false && doubleJumpAvailable && player.HasDoubleJump())
+            else if (AuthoriseWallJump(player)==false && doubleJumpAvailable && player.HasDoubleJump())
             {
                 player.CreateSmoke(true);
                 doubleJumpAvailable = false;
@@ -63,15 +63,15 @@ public class AirbornState : State
         
     }
 
-    protected bool authoriseWallJump(PlayerManager player)
+    protected bool AuthoriseWallJump(PlayerManager player)
     {
-        Debug.Log("Attempt to check for wall jump conditions [ AirbornState.cs ]");
+        //Debug.Log("Attempt to check for wall jump conditions [ AirbornState.cs ]");
         if (player.HasWallJump())
         {
             if (player.GetLocomotion().IsAgainstWall(Vector2.left) == true && player.isSpriteFlipped() == true)
             {
                 player.GetLocomotion().WallJump(new Vector2(1,0.8f));
-                Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
+                //Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
                 player.NeutralFlip();
                 player.CreateSmoke(true);
                 return true;
@@ -79,7 +79,7 @@ public class AirbornState : State
             else if (player.GetLocomotion().IsAgainstWall(Vector2.right) == true && player.isSpriteFlipped() == false)
             {
                 player.GetLocomotion().WallJump(new Vector2(-1, 0.8f));
-                Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
+                //Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
                 player.NeutralFlip();
                 player.CreateSmoke(true);
                 return true;
@@ -88,7 +88,6 @@ public class AirbornState : State
             {
                 return false;
             }
-            return false;
         }
         else
         {
