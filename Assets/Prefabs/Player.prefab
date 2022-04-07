@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grapplingGun: {fileID: 6804948593936073735}
-  mLineRenderer: {fileID: 1613305949300218062}
+  m_lineRenderer: {fileID: 1613305949300218062}
   grappleParticle: {fileID: 0}
   resolution: 100
   straightenLineSpeed: 15
@@ -313,7 +313,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  startWaveSize: 2
+  StartWaveSize: 3
   ropeProgressionCurve:
     serializedVersion: 2
     m_Curve:
@@ -761,12 +761,12 @@ MonoBehaviour:
   playerRef: {fileID: 4181588388592163803}
   grappleToAll: 0
   grappableLayerNumber: 7
-  mCamera: {fileID: 0}
+  m_camera: {fileID: 0}
   gunHolder: {fileID: 5409001243050288741}
   gunPivot: {fileID: 8376435810720634295}
   firePoint: {fileID: 1232598038823963069}
-  mSpringJoint2D: {fileID: 5409001243050288767}
-  mRigidbody: {fileID: 5409001243050288740}
+  m_springJoint2D: {fileID: 5409001243050288767}
+  m_rigidbody: {fileID: 5409001243050288740}
   hasMaxDistance: 1
   maxDistnace: 20
   isGrapplingWithPad: 0
@@ -1007,3 +1007,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44383912368aebf43aa7fc45a5853859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchGround: {fileID: 5409001243050288736}
