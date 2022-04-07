@@ -644,6 +644,7 @@ MonoBehaviour:
   hasDashPower: 1
   hasDoubleJumpPower: 1
   hasGrapplePower: 1
+  hasWallJumpPower: 1
   dashCooldown: 1
   dashDuration: 0.2
 --- !u!114 &5409001243050288736
@@ -666,6 +667,7 @@ MonoBehaviour:
   accelerationMultiplier: 30
   jumpForceMultiplier: 18
   relativeDoubleJumpForceMultiplier: 0.75
+  relativeWallJumpForceMultiplier: 0.9
   counterForceMult: 10
   dashSpeedGain: 30
   ladderClimbSpeed: 6
