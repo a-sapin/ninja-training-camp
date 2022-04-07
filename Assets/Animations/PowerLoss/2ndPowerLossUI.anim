@@ -22,7 +22,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 45
+        value: -300
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -30,8 +30,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 45
+        time: 0.75
+        value: -300
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -42,7 +42,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Dash/dashTop
+    path: DoubleJump
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -50,7 +50,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -22.5
+        value: 60
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -58,8 +58,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: -500
+        time: 0.75
+        value: -360
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -70,7 +70,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Dash/dashTop
+    path: DoubleJump
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -78,7 +78,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -280.6
+        value: -285
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -86,8 +86,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: -280.6
+        time: 0.75
+        value: -285
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -98,7 +98,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: cordeDash2
+    path: cordeJump2
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -106,7 +106,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 7.2
+        value: 95
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -114,8 +114,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: -350
+        time: 0.75
+        value: -330
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -126,7 +126,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: cordeDash2
+    path: cordeJump2
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -134,7 +134,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -313.19998
+        value: -315
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -142,8 +142,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: -313.19998
+        time: 0.75
+        value: -315
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -154,7 +154,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: cordeDash1
+    path: cordeJump1
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -162,7 +162,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 7.1999817
+        value: 95
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -170,8 +170,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: -350
+        time: 0.75
+        value: -330
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -182,63 +182,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: cordeDash1
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 45
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 45
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: DoubleJump/JumpBottom
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -67.5
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: -540
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.y
-    path: DoubleJump/JumpBottom
+    path: cordeJump1
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -250,56 +194,42 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 639442695
+      path: 129565385
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2392387915
+      path: 2054199745
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 395419889
+      path: 3816409211
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3857438057
-      attribute: 538195251
-      script: {fileID: 0}
-      typeID: 224
-      customType: 28
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 639442695
+      path: 129565385
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2392387915
+      path: 2054199745
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 395419889
-      attribute: 1460864421
-      script: {fileID: 0}
-      typeID: 224
-      customType: 28
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3857438057
+      path: 3816409211
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
@@ -311,7 +241,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -332,7 +262,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 45
+        value: -300
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -340,8 +270,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 45
+        time: 0.75
+        value: -300
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -352,7 +282,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Dash/dashTop
+    path: DoubleJump
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -360,7 +290,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -22.5
+        value: 60
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -368,8 +298,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: -500
+        time: 0.75
+        value: -360
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -380,7 +310,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Dash/dashTop
+    path: DoubleJump
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -388,7 +318,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -280.6
+        value: -285
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -396,8 +326,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: -280.6
+        time: 0.75
+        value: -285
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -408,7 +338,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: cordeDash2
+    path: cordeJump2
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -416,7 +346,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 7.2
+        value: 95
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -424,8 +354,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: -350
+        time: 0.75
+        value: -330
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -436,7 +366,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: cordeDash2
+    path: cordeJump2
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -444,7 +374,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -313.19998
+        value: -315
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -452,8 +382,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: -313.19998
+        time: 0.75
+        value: -315
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -464,7 +394,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: cordeDash1
+    path: cordeJump1
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -472,7 +402,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 7.1999817
+        value: 95
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -480,8 +410,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: -350
+        time: 0.75
+        value: -330
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -492,63 +422,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: cordeDash1
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 45
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 45
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.x
-    path: DoubleJump/JumpBottom
-    classID: 224
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -67.5
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: -540
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_AnchoredPosition.y
-    path: DoubleJump/JumpBottom
+    path: cordeJump1
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []

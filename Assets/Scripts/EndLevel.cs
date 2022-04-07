@@ -11,13 +11,11 @@ public class EndLevel : MonoBehaviour
     private float lostTime = 5f;
 
     [SerializeField] private GameObject powerUI;
-    [SerializeField] private GameObject dashUI;
-    [SerializeField] private GameObject doubleJumpUI;
-    [SerializeField] private GameObject grappleUI;
 
     [SerializeField] private GameObject BG;
     [SerializeField] private GameObject endUI;
     [SerializeField] private Text score;
+    [SerializeField] private Text levelCompletedText;
     [SerializeField] private GameObject silver;
     [SerializeField] private GameObject bronze;
     [SerializeField] private GameObject gold;
@@ -40,6 +38,7 @@ public class EndLevel : MonoBehaviour
         doubleJumpLost.SetActive(false);
         grappleLost.SetActive(false);
         endUI.SetActive(false);
+        levelCompletedText.text = currentLevel + " completed !";
     }
     public void DisplayEnd()
     {
@@ -78,7 +77,7 @@ public class EndLevel : MonoBehaviour
     private IEnumerator AnimateDashLoss()
     {
         yield return new WaitForSeconds(1.3f);
-        powerUI.GetComponent<Animator>().SetTrigger("3rdPowerLoss");
+        powerUI.GetComponent<Animator>().SetTrigger("1stPowerLoss");
         yield return new WaitForSeconds(0.1f);
         RestartTimer();
     }
@@ -110,7 +109,6 @@ public class EndLevel : MonoBehaviour
     }
     private void HideGrappleLost()
     {
-        grappleUI.SetActive(false);
         playerManager.UnlockGameplayInput();
         transition.TransitToCanvas(competencesCanvas, grappleLost);
         StartCoroutine(nameof(AnimateGrappleLoss));
@@ -119,7 +117,7 @@ public class EndLevel : MonoBehaviour
     private IEnumerator AnimateGrappleLoss()
     {
         yield return new WaitForSeconds(1.3f);
-        powerUI.GetComponent<Animator>().SetTrigger("1stPowerLoss");
+        powerUI.GetComponent<Animator>().SetTrigger("3rdPowerLoss");
         yield return new WaitForSeconds(0.1f);
         RestartTimer();
     }
