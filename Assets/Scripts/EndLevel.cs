@@ -12,7 +12,6 @@ public class EndLevel : MonoBehaviour
 
     [SerializeField] private GameObject powerUI;
 
-    [SerializeField] private GameObject BG;
     [SerializeField] private GameObject endUI;
     [SerializeField] private Text score;
     [SerializeField] private Text levelCompletedText;
