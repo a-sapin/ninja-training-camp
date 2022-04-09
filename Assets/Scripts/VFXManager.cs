@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 public class VFXManager : MonoBehaviour
 {
     public SoundEffect[] sounds;
-    public SoundEffect[] soundsMovements;
+    //public SoundEffect[] soundsMovements;
     public static VFXManager instance;
     
     public AudioMixerGroup mixer;
@@ -84,11 +84,11 @@ public class VFXManager : MonoBehaviour
         }
     }
 
-    public void StopAllSFXMovement()
+    /*public void StopAllSFXMovement()
     {
         for (int i = 0; i < sounds.Length; i++)
         {
-            if (sounds[i].name.Equals("Movement Grass") || sounds[i].name.Equals("Movement Stone") || sounds[i].name.Equals("Movement Snow") || sounds[i].name.Equals("Movement Wood") || sounds[i].name.Equals("Movement Dirt"))
+            if (sounds[i].name.Equals("Movement Grass") || sounds[i].name.Equals("Movement Stone") || sounds[i].name.Equals("Movement Wood") || sounds[i].name.Equals("Movement Dirt"))
             {
                 soundsMovements[i] = sounds[i];
             }
@@ -101,7 +101,7 @@ public class VFXManager : MonoBehaviour
             SoundEffect s = soundsMovements[i];
             s.source.Stop();
         }
-    }
+    }*/
 
     public void PauseAll()
     {
