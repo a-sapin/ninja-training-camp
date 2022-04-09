@@ -4,11 +4,6 @@ using UnityEngine.UI;
 
 public class MainMenuAnimation : MonoBehaviour
 {
-    [Header("Torii")] [SerializeField] private RawImage torii;
-    [SerializeField] private Texture2D torii_flat;
-    [SerializeField] private Texture2D torii_front;
-    [SerializeField] private Texture2D torii_back;
-
     [Header("Player")]
     [SerializeField] private RawImage player;
     [SerializeField] private Texture2D defaultPlayer;
@@ -24,7 +19,6 @@ public class MainMenuAnimation : MonoBehaviour
         player.transform.localPosition = new Vector3(550,-178,0);
         player.GetComponent<RawImage>().texture = dash;
         StartCoroutine(TitleAnimator());
-        StartCoroutine(ToriiAnimator());
         StartCoroutine(PlayerAnimator());
     }
 
@@ -58,35 +52,6 @@ public class MainMenuAnimation : MonoBehaviour
             }
             
             yield return new WaitForSecondsRealtime(0.2f);
-        }
-    }
-
-    IEnumerator ToriiAnimator()
-    {
-        int i = 1;
-        while (true)
-        {
-            switch (i)
-            {
-                case 0:
-                    torii.texture = torii_flat;
-                    i++;
-                    break;
-                case 1:
-                    torii.texture = torii_front;
-                    i++;
-                    break;
-                case 2:
-                    torii.texture = torii_flat;
-                    i++;
-                    break;
-                case 3:
-                    torii.texture = torii_back;
-                    i = 0;
-                    break;
-            }
-
-            yield return new WaitForSecondsRealtime(0.5f);
         }
     }
 

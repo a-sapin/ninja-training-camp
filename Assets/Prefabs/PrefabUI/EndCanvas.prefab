@@ -443,17 +443,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471d0c6de01b2ae43ba211d11473ed6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: Level1
+  currentLevel: Level 1
   dashLost: {fileID: 8657355559580676079}
   doubleJumpLost: {fileID: 1244256355940370688}
   grappleLost: {fileID: 5896040462266938613}
   powerUI: {fileID: 0}
-  dashUI: {fileID: 0}
-  doubleJumpUI: {fileID: 0}
-  grappleUI: {fileID: 0}
   BG: {fileID: 0}
   endUI: {fileID: 5574019301791119270}
   score: {fileID: 5574019301655676085}
+  levelCompletedText: {fileID: 0}
   silver: {fileID: 5574019302608935652}
   bronze: {fileID: 5574019301625941805}
   gold: {fileID: 5574019300981299619}
