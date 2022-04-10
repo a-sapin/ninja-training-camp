@@ -65,4 +65,9 @@ public class SoundAnimation : MonoBehaviour
     {
         vfxManager.Play("Player Die");
     }
+
+    private void WallJumpSound()
+    {
+        vfxManager.Play("Wall Jump");
+    }
 }

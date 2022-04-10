@@ -146,4 +146,10 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Wall Jump
+    clip: {fileID: 8300000, guid: 1445aac0619c3b346b2699038d59005c, type: 3}
+    volume: 0.075
+    pitch: 0.75
+    loop: 0
+    source: {fileID: 0}
   mixer: {fileID: 2328981380685443612, guid: eddba8cae9bc9854d97dae06848d8987, type: 2}
