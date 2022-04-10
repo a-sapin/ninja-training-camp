@@ -11,6 +11,8 @@ public class ControllerInLevelSelection : MonoBehaviour
     private LevelInformations info;
     private int currentPos;
 
+    public AudioSource buttonArrow;
+
     private void Start()
     {
         StartCoroutine(nameof(ArrowMove));
@@ -28,6 +30,7 @@ public class ControllerInLevelSelection : MonoBehaviour
         {
             if (Input.GetAxisRaw("Vertical") > 0.3 || Input.GetAxisRaw("Horizontal") > 0.3)
             {
+                buttonArrow.Play();
                 if (currentPos == 0 ||
                     (currentPos == 1 && PlayerPrefs.GetInt("Level1Finished", 0) > 0))
                 {
@@ -49,6 +52,7 @@ public class ControllerInLevelSelection : MonoBehaviour
             }
             else if (Input.GetAxisRaw("Vertical") < -0.3 || Input.GetAxisRaw("Horizontal") < -0.3)
             {
+                buttonArrow.Play();
                 if (currentPos > 0)
                 {
                     info.CloseLevelInfo();
