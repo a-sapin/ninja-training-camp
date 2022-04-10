@@ -70,4 +70,9 @@ public class SoundAnimation : MonoBehaviour
     {
         vfxManager.Play("Wall Jump");
     }
+
+    private void WaterSound()
+    {
+        vfxManager.Play("Plouf Water");
+    }
 }

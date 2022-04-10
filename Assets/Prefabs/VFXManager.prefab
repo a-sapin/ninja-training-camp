@@ -152,4 +152,10 @@ MonoBehaviour:
     pitch: 0.75
     loop: 0
     source: {fileID: 0}
+  - name: Plouf Water
+    clip: {fileID: 8300000, guid: de3e625af45b9dd4c8faaf02c0248f8e, type: 3}
+    volume: 0.075
+    pitch: 1.25
+    loop: 0
+    source: {fileID: 0}
   mixer: {fileID: 2328981380685443612, guid: eddba8cae9bc9854d97dae06848d8987, type: 2}
