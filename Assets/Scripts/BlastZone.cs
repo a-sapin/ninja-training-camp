@@ -13,6 +13,8 @@ public class BlastZone : MonoBehaviour
 
     private Transition transition;
 
+    private VFXManager vfxManager;
+
     private bool isTransition = false;
     // Start is called before the first frame update
     private void Start()
@@ -20,6 +22,7 @@ public class BlastZone : MonoBehaviour
         transition = FindObjectOfType<Transition>();
         player = FindObjectOfType<PlayerManager>();
         playerLocomotion = FindObjectOfType<PlayerLocomotion>();
+        vfxManager = FindObjectOfType<VFXManager>();
     }
 
     // Update is called once per frame
@@ -33,6 +36,7 @@ public class BlastZone : MonoBehaviour
     public void Waiter(float timer)
     {
         ScreenShake.Shake(0.3f, 3f);
+        vfxManager.Play("Player Die");
         isTransition = true;
         player.LockGameplayInput();
         currentDeathCount++;

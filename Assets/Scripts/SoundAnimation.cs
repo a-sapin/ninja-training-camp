@@ -56,8 +56,13 @@ public class SoundAnimation : MonoBehaviour
         vfxManager.Play("Ladder");
     }
 
-    private void LeverSound() // ne fonctionne pas car l'état double jump ne s'active jamais... SAD :(
+    private void LeverSound()
     {
         vfxManager.Play("Lever");
+    }
+
+    private void DieSound()
+    {
+        vfxManager.Play("Player Die");
     }
 }
