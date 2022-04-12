@@ -10,18 +10,17 @@ public class PlayerManager : MonoBehaviour
     InputManager inputManager;
     [SerializeReference] Animator myAnimator;
     [SerializeReference] SpriteRenderer playerSprite;
-    VFXManager mySoundManager;
+    VFXManager vfxManager;
     BlastZone myBlastZone; // handles the player respawning
     GrapplingGun myGrapplingGun;
-    Smoke smoke;
+    Props props;
 
     [Header("Available Powers")] // TODO: these should (ideally) be set by the level, not in Start() or Awake() functions
     [SerializeField] bool hasDashPower = false;
     [SerializeField] bool hasDoubleJumpPower = false;
     [SerializeField] bool hasGrapplePower = false;
     [SerializeField] bool hasWallJumpPower = false;
-
-
+    
     [Header("Power Logic Variables")]
     [SerializeField] float dashCooldown = 1.0f;
     public float DashCooldown { get { return dashCooldown; } }
@@ -133,17 +132,24 @@ public class PlayerManager : MonoBehaviour
     }
     public void CreateSmoke(bool doubleJump = false)
     {
-        if (doubleJump) smoke.CreateDoubleJumpSmoke();
-        else smoke.CreateJumpSmoke();
+        if (doubleJump) props.CreateDoubleJumpSmoke();
+        else props.CreateJumpSmoke();
+    }
+
+    public void CreateWaterSplash(bool exiting = false)
+    {
+        if (exiting) props.CreateWaterSplashExit();
+        else props.CreateWaterSplashEnter();
+        vfxManager.Play("Splash");
     }
     void Start()
     {
-        mySoundManager = FindObjectOfType<VFXManager>();
+        vfxManager = FindObjectOfType<VFXManager>();
         myPlayerLocomotion = GetComponent<PlayerLocomotion>();
         myBlastZone = GetComponent<BlastZone>();
         inputManager = GetComponent<InputManager>();
         myGrapplingGun = GetComponentInChildren<GrapplingGun>();
-        smoke = GetComponent<Smoke>();
+        props = GetComponent<Props>();
         canGrapple = true;
         currentState = State.grounded; // set a default state at the start
         isActionable = true;
@@ -233,7 +239,7 @@ public class PlayerManager : MonoBehaviour
     */
     public void PlayDashSound()
     {
-        mySoundManager.Play("Dash");
+        vfxManager.Play("Dash");
     }
 
     #endregion
