@@ -29,7 +29,7 @@ public class BlastZone : MonoBehaviour
     private void Update()
     {
         if (gameObject.transform.position.y < blastZoneYLevel && !isTransition)
-            Waiter(1.0f);
+            Waiter(1f);
         
     }
     
@@ -41,8 +41,8 @@ public class BlastZone : MonoBehaviour
         player.LockGameplayInput();
         currentDeathCount++;
         transition.TransitToCanvas(respawnLocation, respawnLocation);
-        Invoke(nameof(Respawn), timer);
-
+        Invoke(nameof(Respawn), timer*0.8f);
+        Invoke(nameof(reloadLevel), timer);
     }
 
     /// <summary>
@@ -50,9 +50,12 @@ public class BlastZone : MonoBehaviour
     /// </summary>
     public void Respawn()
     {
-        player.UnlockGameplayInput();
         playerLocomotion.ResetPlayerAndPosition(respawnLocation.transform.position);
-        
+    }
+
+    public void reloadLevel()
+    {
+        player.UnlockGameplayInput();
         var spikeRef = FindObjectOfType<SpikesScript>();
         if(spikeRef)
             spikeRef.RestartMap();

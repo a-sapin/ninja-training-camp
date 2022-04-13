@@ -138,9 +138,12 @@ public class PlayerManager : MonoBehaviour
 
     public void CreateWaterSplash(bool exiting = false)
     {
-        if (exiting) props.CreateWaterSplashExit();
-        else props.CreateWaterSplashEnter();
-        vfxManager.Play("Splash");
+        if (isActionable)
+        {
+            if (exiting) props.CreateWaterSplashExit();
+            else props.CreateWaterSplashEnter();
+            vfxManager.Play("Splash");    
+        }
     }
     void Start()
     {

@@ -18,10 +18,10 @@ public class Props : MonoBehaviour
     
     public void CreateWaterSplashEnter()
     {
-        Instantiate(waterSplashEnter, gameObject.transform.position, gameObject.transform.rotation);
+        Instantiate(waterSplashEnter, gameObject.transform.position+new Vector3(0,-1,-9), gameObject.transform.rotation);
     }
     public void CreateWaterSplashExit()
     {
-        Instantiate(waterSplashExit, gameObject.transform.position+new Vector3(0,1,0), gameObject.transform.rotation);
+        Instantiate(waterSplashExit, gameObject.transform.position+new Vector3(0,-1.2f,-9), gameObject.transform.rotation);
     }
 }
