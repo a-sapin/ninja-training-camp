@@ -126,7 +126,7 @@ public class InputManager : MonoBehaviour
             if (Vector2.Distance(nearestTarget, playerTransform.position) < maxGrappleDistance)
             {
                 //LANCER LE GRAPPIN
-                Debug.Log("Grapplinnnnnnnnnnng");
+                Debug.Log("Input Manager || Grapplinnnnnnnnnnng");
                 grapple.SetGrapplePoint(nearestTarget, true);
             }
         }

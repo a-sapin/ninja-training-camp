@@ -678,10 +678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7922b3cf0f274613920a32af6cfee944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torii: {fileID: 1489697844}
-  torii_flat: {fileID: 2800000, guid: d17e18de99002914e9b85e1d4852e58e, type: 3}
-  torii_front: {fileID: 2800000, guid: 1396fa757b721554b97beb69b5a86f3d, type: 3}
-  torii_back: {fileID: 2800000, guid: 798d58cfdd1ac8a40a58cf94378bbc5b, type: 3}
   player: {fileID: 1081392959}
   defaultPlayer: {fileID: 2800000, guid: 5dfa4eec45cfff346beec56479016e1e, type: 3}
   dash: {fileID: 2800000, guid: a20958c9d85e6e64a8d19c5e10693e08, type: 3}
@@ -1301,8 +1297,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 140.00009, y: -25.647629}
-  m_SizeDelta: {x: 680, y: 520}
+  m_AnchoredPosition: {x: 141, y: -15}
+  m_SizeDelta: {x: 510, y: 390}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489697844
 MonoBehaviour:
@@ -1324,7 +1320,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 798d58cfdd1ac8a40a58cf94378bbc5b, type: 3}
+  m_Texture: {fileID: 2800000, guid: 7d0da80e62e9c364bb22e5a2721ca7af, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

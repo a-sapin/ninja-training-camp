@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: rock1-0
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: -2634682073089987604, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: -8151348896379962037, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: 4978366787838140605, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: -8070596373327311091, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: -3888959189340409149, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: -8759201380549166572, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: 5888842456674183681, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: -2794995304792161033, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: 6407108939994478662, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: -4903304335867727712, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: -4903304335867727712, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: -4903304335867727712, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: -4903304335867727712, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: -4903304335867727712, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  - {fileID: -4903304335867727712, guid: 7c646e3d695a715408457d7ff9027846, type: 3}
+  m_MinSpeed: 6
+  m_MaxSpeed: 6
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0

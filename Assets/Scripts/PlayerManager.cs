@@ -19,6 +19,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] bool hasDashPower = false;
     [SerializeField] bool hasDoubleJumpPower = false;
     [SerializeField] bool hasGrapplePower = false;
+    [SerializeField] bool hasWallJumpPower = false;
+
 
     [Header("Power Logic Variables")]
     [SerializeField] float dashCooldown = 1.0f;
@@ -31,10 +33,12 @@ public class PlayerManager : MonoBehaviour
     public PlayerLocomotion GetLocomotion() { return myPlayerLocomotion; }
     public InputManager GetInput() { return inputManager; }
     public GrapplingGun GetGrapplingGun() { return myGrapplingGun; }
+    public SpriteRenderer GetSpriteRenderer() { return playerSprite; }
 
     public bool HasDash() { return hasDashPower; }
     public bool HasDoubleJump() { return hasDoubleJumpPower; }
     public bool HasGrapple() { return hasGrapplePower; }
+    public bool HasWallJump() { return hasWallJumpPower; }
 
 
     // Used by other scripts to take away powers
@@ -189,6 +193,7 @@ public class PlayerManager : MonoBehaviour
     /// <summary>
     /// Flips sprite to make player avater face the direction
     /// the move input is currently held.
+    /// NOTE TO WHOM IT MAY CONCERN : please kindly do not name your function FlipSprite() when it's not really what it does, as it reads inputs!
     /// </summary>
     public void FlipSprite()
     {
@@ -203,6 +208,12 @@ public class PlayerManager : MonoBehaviour
         {
             playerSprite.flipX = false;
         }
+    }
+
+    // Will flip the sprite of the player regardless of any other factors, unlike FlipSprite()
+    public void NeutralFlip()
+    {
+        playerSprite.flipX = !playerSprite.flipX;
     }
 
     public bool isSpriteFlipped()
@@ -223,31 +234,6 @@ public class PlayerManager : MonoBehaviour
     public void PlayDashSound()
     {
         mySoundManager.Play("Dash");
-    }
-
-    public void PlayCorrespondingFootstepSound()
-    {
-        switch (myPlayerLocomotion.GetGroundType())
-        {
-            case GroundType.GRASS:
-                //play sound
-                break;
-
-            case GroundType.STONE:
-                //play sound
-                break;
-
-            case GroundType.WOOD:
-                //play sound
-                break;
-
-            case GroundType.DIRT:
-                //play sound
-                break;
-
-            default:
-                break;
-        }
     }
 
     #endregion
