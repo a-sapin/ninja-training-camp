@@ -136,12 +136,12 @@ public class PlayerManager : MonoBehaviour
         else props.CreateJumpSmoke();
     }
 
-    public void CreateWaterSplash(bool exiting = false)
+    public void CreateWaterSplash(bool exiting, Vector2 position)
     {
         if (isActionable)
         {
-            if (exiting) props.CreateWaterSplashExit();
-            else props.CreateWaterSplashEnter();
+            if (exiting) props.CreateWaterSplashExit(position);
+            else props.CreateWaterSplashEnter(position);
             vfxManager.Stop("Plouf Water");
             vfxManager.Play("Plouf Water");
         }

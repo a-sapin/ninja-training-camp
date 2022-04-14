@@ -5,23 +5,29 @@ using UnityEngine.Serialization;
 
 public class Props : MonoBehaviour
 {
-    [SerializeField] GameObject jumpSmoke, doubleJumpSmoke, waterSplashEnter, waterSplashExit;
+    [Header("Double jump")] [SerializeField]
+    private GameObject jumpSmoke;
+    [SerializeField] GameObject doubleJumpSmoke;
+
+    [Header("Water splash")] [SerializeField]
+    private GameObject waterSplashEnter;
+    [SerializeField] GameObject waterSplashExit;
 
     public void CreateJumpSmoke()
     {
-        Instantiate(jumpSmoke, gameObject.transform.position, gameObject.transform.rotation);
+        Instantiate(jumpSmoke, gameObject.transform.position, Quaternion.identity);
     }
     public void CreateDoubleJumpSmoke()
     {
-        Instantiate(doubleJumpSmoke, gameObject.transform.position-new Vector3(0,0,0), gameObject.transform.rotation);
+        Instantiate(doubleJumpSmoke, gameObject.transform.position, Quaternion.identity);
     }
     
-    public void CreateWaterSplashEnter()
+    public void CreateWaterSplashEnter(Vector2 position)
     {
-        Instantiate(waterSplashEnter, gameObject.transform.position+new Vector3(0,-1,-9), gameObject.transform.rotation);
+        Instantiate(waterSplashEnter, new Vector3(position.x, position.y, -9), Quaternion.identity);
     }
-    public void CreateWaterSplashExit()
+    public void CreateWaterSplashExit(Vector2 position)
     {
-        Instantiate(waterSplashExit, gameObject.transform.position+new Vector3(0,-1.2f,-9), gameObject.transform.rotation);
+        Instantiate(waterSplashExit, new Vector3(position.x, position.y-0.2f, -9), Quaternion.identity);
     }
 }
