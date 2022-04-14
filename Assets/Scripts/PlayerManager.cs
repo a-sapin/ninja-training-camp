@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -140,8 +141,8 @@ public class PlayerManager : MonoBehaviour
     {
         if (isActionable)
         {
-            if (exiting) props.CreateWaterSplashExit(position);
-            else props.CreateWaterSplashEnter(position);
+            if (exiting) props.CreateWaterSplashExit(position, Mathf.Abs(myPlayerLocomotion.GetVelocity().y));
+            else props.CreateWaterSplashEnter(position, Mathf.Abs(myPlayerLocomotion.GetVelocity().y));
             vfxManager.Stop("Plouf Water");
             vfxManager.Play("Plouf Water");
         }
