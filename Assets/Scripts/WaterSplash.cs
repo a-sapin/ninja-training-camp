@@ -10,9 +10,7 @@ public class WaterSplash : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            Vector2 position = collider.ClosestPoint(collider.transform.position);
-            print(position);
-            playerManager.CreateWaterSplash(false, position);
+            playerManager.CreateWaterSplash(false, collider.ClosestPoint(collider.transform.position));
         }
     }
 
@@ -20,9 +18,7 @@ public class WaterSplash : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            Vector2 position = collider.ClosestPoint(collider.transform.position);
-            print(position);
-            playerManager.CreateWaterSplash(true, position);
+            playerManager.CreateWaterSplash(true, collider.ClosestPoint(collider.transform.position));
         }
     }
 }
