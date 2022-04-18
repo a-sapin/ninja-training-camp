@@ -12,7 +12,6 @@ public class EndLevel : MonoBehaviour
 
     [SerializeField] private GameObject powerUI;
 
-    [SerializeField] private GameObject BG;
     [SerializeField] private GameObject endUI;
     [SerializeField] private Text score;
     [SerializeField] private Text levelCompletedText;
@@ -26,6 +25,7 @@ public class EndLevel : MonoBehaviour
     private Transition transition;
     private PlayerManager playerManager;
     private GameObject musicPlayer;
+    private int lostPower;
     public AudioSource endMusicVictory;
 
     private void Start()
@@ -77,7 +77,7 @@ public class EndLevel : MonoBehaviour
     private IEnumerator AnimateDashLoss()
     {
         yield return new WaitForSeconds(1.3f);
-        powerUI.GetComponent<Animator>().SetTrigger("1stPowerLoss");
+        AnimatePowerLoss();
         yield return new WaitForSeconds(0.1f);
         RestartTimer();
     }
@@ -96,7 +96,7 @@ public class EndLevel : MonoBehaviour
     }
     private IEnumerator AnimateJumpLoss(){
         yield return new WaitForSeconds(1.3f);
-        powerUI.GetComponent<Animator>().SetTrigger("2ndPowerLoss");
+        AnimatePowerLoss();
         yield return new WaitForSeconds(0.1f);
         RestartTimer();
     }
@@ -117,9 +117,26 @@ public class EndLevel : MonoBehaviour
     private IEnumerator AnimateGrappleLoss()
     {
         yield return new WaitForSeconds(1.3f);
-        powerUI.GetComponent<Animator>().SetTrigger("3rdPowerLoss");
+        AnimatePowerLoss();
         yield return new WaitForSeconds(0.1f);
         RestartTimer();
+    }
+
+    private void AnimatePowerLoss()
+    {
+        switch (lostPower)
+        {
+            case 0:
+                powerUI.GetComponent<Animator>().SetTrigger("1stPowerLoss");
+                break;
+            case 1:
+                powerUI.GetComponent<Animator>().SetTrigger("2ndPowerLoss");
+                break;
+            case 2:
+                powerUI.GetComponent<Animator>().SetTrigger("3rdPowerLoss");
+                break;
+        }
+        lostPower++;
     }
     
     private void RestartTimer()
