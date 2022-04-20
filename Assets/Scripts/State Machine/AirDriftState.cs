@@ -18,6 +18,7 @@ public class AirDriftState : AirbornState
         {
             player.ChangeState(airdrift);
         }
+        CheckWallJumpLogic(player);
     }
 
     public override void LogicUpdate(PlayerManager player)
