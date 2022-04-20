@@ -161,12 +161,17 @@ public class PlayerManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        FlipSprite();
+        FlipSpriteTowardsMoveInput();
         SetBoolDash(currentState == State.dashing);
         SetBoolGrounded(currentState == State.grounded || currentState == State.running);
         SetBoolJump(currentState == State.jumping);
         SetBoolRun(isActionable && GetInput().IsMoveInput()); // disable run anim when locked
         SetIntLadderInput(GetInput().LadderInputDir());
+        if(currentState != State.airborn && currentState != State.airdrift)
+        {
+            SetBoolWallSlide(false);
+        }
+        
     }
 
     void FixedUpdate()
@@ -186,6 +191,7 @@ public class PlayerManager : MonoBehaviour
     public void SetBoolJump(bool value) { myAnimator.SetBool("Jump", value); }
     public void SetBoolGrapple(bool value) { myAnimator.SetBool("Grapple", value); myAnimator.SetTrigger("StartGrapple"); }
     public void SetBoolTouchLadder(bool value) { myAnimator.SetBool("TouchingLadder", value); }
+    public void SetBoolWallSlide(bool value) { myAnimator.SetBool("WallSlide", value); }
     public void SetFloatYVelocity(float value) { myAnimator.SetFloat("Y_Velocity", value); }
     public void SetIntLadderInput(int value) { myAnimator.SetInteger("LadderInput", value); }
     public void SetTriggerDoubleJump() { myAnimator.SetTrigger("DoubleJump"); }
@@ -193,9 +199,8 @@ public class PlayerManager : MonoBehaviour
     /// <summary>
     /// Flips sprite to make player avater face the direction
     /// the move input is currently held.
-    /// NOTE TO WHOM IT MAY CONCERN : please kindly do not name your function FlipSprite() when it's not really what it does, as it reads inputs!
     /// </summary>
-    public void FlipSprite()
+    public void FlipSpriteTowardsMoveInput()
     {
         if (!isActionable) // don't flip player when locked
             return;
@@ -210,7 +215,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    // Will flip the sprite of the player regardless of any other factors, unlike FlipSprite()
+    // Will flip the sprite of the player regardless of any other factors, unlike FlipSpriteTowardsMoveDirection()
     public void NeutralFlip()
     {
         playerSprite.flipX = !playerSprite.flipX;
@@ -224,13 +229,12 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     #region Sound Effects
-    //I commented the lines to put the sounds all in the same place.
-
-    /*public void PlayJumpSound()
+    
+    public void PlayWallJumpSound()
     {
         mySoundManager.Play("Jump");
     }
-    */
+    
     public void PlayDashSound()
     {
         mySoundManager.Play("Dash");

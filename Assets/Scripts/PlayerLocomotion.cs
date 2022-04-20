@@ -145,7 +145,7 @@ public class PlayerLocomotion : MonoBehaviour
         }
         else if (hit.collider.TryGetComponent<PlatformEffector2D>(out var platform))
         {
-            groundTile = null; // TODO: a ladder was detected!! maybe wood?
+            SetGroundTypeTo(GroundType.WOOD); // ladder detected, change to wood type
         }
         else
         {
@@ -159,6 +159,8 @@ public class PlayerLocomotion : MonoBehaviour
     {
         groundType = footsteps.DetermineGroundType(tile);
     }
+
+    private void SetGroundTypeTo(GroundType gType) { groundType = gType; }
 
     public void ApplyFallAccel()
     {
