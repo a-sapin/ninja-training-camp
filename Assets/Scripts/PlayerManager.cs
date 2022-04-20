@@ -161,7 +161,7 @@ public class PlayerManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        FlipSpriteTowardsMoveDirection();
+        FlipSpriteTowardsMoveInput();
         SetBoolDash(currentState == State.dashing);
         SetBoolGrounded(currentState == State.grounded || currentState == State.running);
         SetBoolJump(currentState == State.jumping);
@@ -194,7 +194,7 @@ public class PlayerManager : MonoBehaviour
     /// Flips sprite to make player avater face the direction
     /// the move input is currently held.
     /// </summary>
-    public void FlipSpriteTowardsMoveDirection()
+    public void FlipSpriteTowardsMoveInput()
     {
         if (!isActionable) // don't flip player when locked
             return;
