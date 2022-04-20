@@ -24,7 +24,7 @@ public class Props : MonoBehaviour
     
     public void CreateWaterSplashEnter(Vector2 position)
     {
-        GameObject splash = Instantiate(waterSplashEnter, new Vector3(position.x, -2.515f, -9), Quaternion.identity);
+        GameObject splash = Instantiate(waterSplashEnter, new Vector3(position.x, -2.515f, -8), Quaternion.identity);
         splash.transform.localScale = new Vector3(4, 4, 1);
     }
     public void CreateWaterSplashExit(Vector2 position)

@@ -716,8 +716,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpSmoke: {fileID: 4403437865286007672, guid: 86e3b36d088e40e4ba1adc302c45d6d1, type: 3}
   doubleJumpSmoke: {fileID: 4403437865286007672, guid: 86e3b36d088e40e4ba1adc302c45d6d1, type: 3}
-  waterSplashEnter: {fileID: 0}
-  waterSplashExit: {fileID: 0}
+  waterSplashEnter: {fileID: 1267771344639004127, guid: b69563b488b022f44a71b45ef38b7f96, type: 3}
+  waterSplashExit: {fileID: 7891247322532148260, guid: 864c828bfe1d7294a810cc2491f5aefb, type: 3}
 --- !u!114 &3915244177741624535
 MonoBehaviour:
   m_ObjectHideFlags: 0
