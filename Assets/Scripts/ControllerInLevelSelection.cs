@@ -12,6 +12,8 @@ public class ControllerInLevelSelection : MonoBehaviour
     private LevelInformations info;
     private int currentPos;
 
+    public AudioSource buttonArrow;
+
     private void Start()
     {
         if (simulateCompletionLVL1) PlayerPrefs.SetInt("Level1Finished", 1);
@@ -34,6 +36,7 @@ public class ControllerInLevelSelection : MonoBehaviour
         {
             if (Input.GetAxisRaw("Vertical") > 0.3 || Input.GetAxisRaw("Horizontal") > 0.3)
             {
+                buttonArrow.Play();
                 if (currentPos == 0 ||
                     (currentPos == 1 && PlayerPrefs.GetInt("Level1Finished", 0) > 0 )||
                     (currentPos == 2 && PlayerPrefs.GetInt("Level2Finished", 0) > 0))
@@ -47,7 +50,7 @@ public class ControllerInLevelSelection : MonoBehaviour
             }
             else if (Input.GetAxisRaw("Vertical") < -0.3 || Input.GetAxisRaw("Horizontal") < -0.3)
             {
-                
+                buttonArrow.Play();
                 if (currentPos > 0)
                 {
                     if (currentPos == 1) info.CloseLevelInfo();
