@@ -22,14 +22,15 @@ public class CameraTransition : MonoBehaviour
     IEnumerator ToriToPlayerTransition()
     {
         playerManager = FindObjectOfType<PlayerManager>();
-        playerManager.LockGameplayInput();
+        
         Cinemachine.CinemachineTransposer transposer = cinemachineCamera.GetCinemachineComponent<Cinemachine.CinemachineTransposer>();
         float xDampling = transposer.m_XDamping;
         float yDampling = transposer.m_YDamping;
         cinemachineCamera.Follow = tori.transform;
         transposer.m_XDamping = 0;
         transposer.m_YDamping = 0;
-        //Debug.Log("YOOO11");
+        yield return null;
+        playerManager.LockGameplayInput();
         yield return new WaitForSeconds(stayOnToriTime);
 
         cinemachineCamera.Follow = player.transform;
