@@ -125356,7 +125356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1287844657303884336, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
       propertyPath: currentLevel
-      value: Level 3
+      value: Level3
       objectReference: {fileID: 0}
     - target: {fileID: 1287844657303884336, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
       propertyPath: doubleJumpUI
