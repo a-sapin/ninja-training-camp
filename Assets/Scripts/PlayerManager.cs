@@ -229,13 +229,12 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     #region Sound Effects
-    //I commented the lines to put the sounds all in the same place.
-
-    /*public void PlayJumpSound()
+    
+    public void PlayWallJumpSound()
     {
         mySoundManager.Play("Jump");
     }
-    */
+    
     public void PlayDashSound()
     {
         mySoundManager.Play("Dash");

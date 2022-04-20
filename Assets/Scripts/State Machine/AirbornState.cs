@@ -103,6 +103,7 @@ public class AirbornState : State
                 //Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
                 player.NeutralFlip();
                 player.CreateSmoke(true);
+                player.PlayWallJumpSound();
                 return true;
             }
             else if (player.GetLocomotion().IsAgainstWall(Vector2.right) == true && player.isSpriteFlipped() == false)
@@ -111,6 +112,7 @@ public class AirbornState : State
                 //Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
                 player.NeutralFlip();
                 player.CreateSmoke(true);
+                player.PlayWallJumpSound();
                 return true;
             }
             else
