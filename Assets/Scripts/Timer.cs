@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        RestartTimer();
+        if(FindObjectOfType<Dialogue>() ==null)RestartTimer();
     }
     internal static string IntToStringTime(int value)
     {

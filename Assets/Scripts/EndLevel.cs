@@ -69,7 +69,6 @@ public class EndLevel : MonoBehaviour
     }
     private void HideDashLost()
     {
-        playerManager.UnlockGameplayInput();
         transition.TransitToCanvas(competencesCanvas, dashLost);
         StartCoroutine(nameof(AnimateDashLoss));
     }
@@ -79,6 +78,7 @@ public class EndLevel : MonoBehaviour
         yield return new WaitForSeconds(1.3f);
         AnimatePowerLoss();
         yield return new WaitForSeconds(0.1f);
+        playerManager.UnlockGameplayInput();
         RestartTimer();
     }
     public void DisplayDoubleJumpLost()
