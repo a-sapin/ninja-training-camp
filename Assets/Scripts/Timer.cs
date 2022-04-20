@@ -21,6 +21,12 @@ public class Timer : MonoBehaviour
         TimeSpan time = TimeSpan.FromMilliseconds(value * 10);
         return time.ToString(@"mm\:ss\:ff");
     }
+
+    internal static int toRealInt(int value)
+    {
+        return (int) TimeSpan.FromMilliseconds(value * 10).TotalMilliseconds;
+    }
+    
     public void StartTimer()
     {
         Time = 0;
