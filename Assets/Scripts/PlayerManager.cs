@@ -167,6 +167,11 @@ public class PlayerManager : MonoBehaviour
         SetBoolJump(currentState == State.jumping);
         SetBoolRun(isActionable && GetInput().IsMoveInput()); // disable run anim when locked
         SetIntLadderInput(GetInput().LadderInputDir());
+        if(currentState != State.airborn && currentState != State.airdrift)
+        {
+            SetBoolWallSlide(false);
+        }
+        
     }
 
     void FixedUpdate()
@@ -186,6 +191,7 @@ public class PlayerManager : MonoBehaviour
     public void SetBoolJump(bool value) { myAnimator.SetBool("Jump", value); }
     public void SetBoolGrapple(bool value) { myAnimator.SetBool("Grapple", value); myAnimator.SetTrigger("StartGrapple"); }
     public void SetBoolTouchLadder(bool value) { myAnimator.SetBool("TouchingLadder", value); }
+    public void SetBoolWallSlide(bool value) { myAnimator.SetBool("WallSlide", value); }
     public void SetFloatYVelocity(float value) { myAnimator.SetFloat("Y_Velocity", value); }
     public void SetIntLadderInput(int value) { myAnimator.SetInteger("LadderInput", value); }
     public void SetTriggerDoubleJump() { myAnimator.SetTrigger("DoubleJump"); }
