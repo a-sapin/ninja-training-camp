@@ -22,14 +22,14 @@ public class Props : MonoBehaviour
         Instantiate(doubleJumpSmoke, gameObject.transform.position, Quaternion.identity);
     }
     
-    public void CreateWaterSplashEnter(Vector2 position, float speed)
+    public void CreateWaterSplashEnter(Vector2 position)
     {
-        GameObject splash = Instantiate(waterSplashEnter, new Vector3(position.x, position.y, -9), Quaternion.identity);
-        splash.transform.localScale = new Vector3(3.5f, speed/2, 1);
+        GameObject splash = Instantiate(waterSplashEnter, new Vector3(position.x, -2.515f, -9), Quaternion.identity);
+        splash.transform.localScale = new Vector3(4, 4, 1);
     }
-    public void CreateWaterSplashExit(Vector2 position, float speed)
+    public void CreateWaterSplashExit(Vector2 position)
     {
-        GameObject splash = Instantiate(waterSplashExit, new Vector3(position.x, position.y-0.2f, -9), Quaternion.identity);
-        splash.transform.localScale = new Vector3(3.5f, speed/2, 1);
+        GameObject splash = Instantiate(waterSplashExit, new Vector3(position.x, -2.515f, -9), Quaternion.identity);
+        splash.transform.localScale = new Vector3(4, 4, 1);
     }
 }

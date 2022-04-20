@@ -141,8 +141,8 @@ public class PlayerManager : MonoBehaviour
     {
         if (isActionable)
         {
-            if (exiting) props.CreateWaterSplashExit(position, Mathf.Abs(myPlayerLocomotion.GetVelocity().y));
-            else props.CreateWaterSplashEnter(position, Mathf.Abs(myPlayerLocomotion.GetVelocity().y));
+            if (exiting) props.CreateWaterSplashExit(position);
+            else props.CreateWaterSplashEnter(position);
             vfxManager.Stop("Plouf Water");
             vfxManager.Play("Plouf Water");
         }
