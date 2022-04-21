@@ -123811,7 +123811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   associatedGo: {fileID: 1078870701}
   typeLevier: 3
-  timer: 20
+  timer: 1
   distanceToMove: 200
   doOnce: 1
   originalLiftPosition: {x: 0, y: 0, z: 0}
@@ -125350,6 +125350,14 @@ PrefabInstance:
       propertyPath: BGM
       value: 
       objectReference: {fileID: 37250242}
+    - target: {fileID: 1287844655426709647, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287844655891126671, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1287844657303884336, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
       propertyPath: grappleUI
       value: 
@@ -125361,6 +125369,10 @@ PrefabInstance:
     - target: {fileID: 1287844657303884336, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
       propertyPath: doubleJumpUI
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287844657303884347, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2496370022962101184, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
       propertyPath: m_IsActive
@@ -125386,6 +125398,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2117381015}
+    - target: {fileID: 2819589065592638184, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -77.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819589065592638184, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5.06
+      objectReference: {fileID: 0}
     - target: {fileID: 2888611984949049645, guid: 4f32b6efdf7d9604d8c4e0d2e0e68c83, type: 3}
       propertyPath: m_LocalPosition.x
       value: -110.71
