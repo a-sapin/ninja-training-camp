@@ -243,7 +243,7 @@ public class PlayerManager : MonoBehaviour
     
     public void PlayWallJumpSound()
     {
-        mySoundManager.Play("Jump");
+        vfxManager.Play("Jump");
     }
     
     public void PlayDashSound()
