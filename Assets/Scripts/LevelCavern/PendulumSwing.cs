@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +12,11 @@ public class PendulumSwing : MonoBehaviour
 
     private void Update()
     {
-        velocityMax = speed * Mathf.Sin(Time.unscaledTime);
-        rb2d.angularVelocity = velocityMax;
-        transform.Rotate(Vector3.forward, velocityMax);
+        if (Math.Abs(Time.timeScale - 1.0f) < 0.01f)
+        {
+            velocityMax = speed * Mathf.Sin(Time.time);
+            transform.Rotate(Vector3.forward, velocityMax);
+        }
 
     }
 
