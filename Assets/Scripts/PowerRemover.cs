@@ -56,5 +56,6 @@ public class PowerRemover : MonoBehaviour
     {
     	FindObjectOfType<VFXManager>().StopAll(); // Stops all Animation Sound Effect
         player.Respawn();
+        if (FindObjectOfType<SpikesScript>() != null) FindObjectOfType<SpikesScript>().RestartMap();
     }
 }
