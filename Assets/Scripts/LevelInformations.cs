@@ -42,15 +42,15 @@ public class LevelInformations : MonoBehaviour
         int highScoreValue  = PlayerPrefs.GetInt(level + "HighScore", 999999);
         
         int goldtime = PlayerPrefs.GetInt(level + "Gold", 30000);
-        goldTime.text = Timer.MilliSecondsToString(goldtime);
+        goldTime.text = Timer.IntToStringTime(goldtime);
         goldMedal.SetActive(highScoreValue < goldtime);
         
         int silvertime = PlayerPrefs.GetInt(level + "Silver", 60000);
-        silverTime.text = Timer.MilliSecondsToString(silvertime);
+        silverTime.text = Timer.IntToStringTime(silvertime);
         silverMedal.SetActive(highScoreValue < silvertime);
 
         int bronzetime = PlayerPrefs.GetInt(level + "Bronze", 120000);
-        bronzeTime.text = Timer.MilliSecondsToString(bronzetime);
+        bronzeTime.text = Timer.IntToStringTime(bronzetime);
         bronzeMedal.SetActive(highScoreValue < bronzetime);
         
         if(PlayerPrefs.GetInt(level + "HighScore", -1) == -1)
@@ -59,7 +59,7 @@ public class LevelInformations : MonoBehaviour
         }
         else
         {
-            highScore.text = Timer.MilliSecondsToString(highScoreValue);
+            highScore.text = Timer.IntToStringTime(highScoreValue);
         }
 
         grapple.SetActive(PlayerPrefs.GetString(level+"Powers").Contains("Grapple"));

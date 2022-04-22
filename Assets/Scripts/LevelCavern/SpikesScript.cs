@@ -5,18 +5,13 @@ using UnityEngine;
 
 public class SpikesScript : MonoBehaviour
 {
-    private bool reset;
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
-            if (!reset)
-            {
-                reset = true;
-                col.gameObject.GetComponent<BlastZone>().Waiter(1.0f);
-                col.gameObject.GetComponent<PlayerManager>().GetGrapplingGun().StopGrappling();
-                Invoke(nameof(RestartMap), 0.5f);
-            }
+            col.gameObject.GetComponent<BlastZone>().Waiter(1.0f);
+            col.gameObject.GetComponent<PlayerManager>().GetGrapplingGun().StopGrappling();
+            RestartMap();
         }
     }
 
@@ -33,8 +28,6 @@ public class SpikesScript : MonoBehaviour
         {
             t.ResetLevier();
         }
-
-        reset = false;
     }
 }
     

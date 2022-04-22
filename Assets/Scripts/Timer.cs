@@ -14,25 +14,13 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        if(FindObjectOfType<Dialogue>() ==null)RestartTimer();
+        RestartTimer();
     }
-    internal static string CentiSecondsToString(int value)
+    internal static string IntToStringTime(int value)
     {
         TimeSpan time = TimeSpan.FromMilliseconds(value * 10);
         return time.ToString(@"mm\:ss\:ff");
     }
-
-    internal static string MilliSecondsToString(int value)
-    {
-        TimeSpan time = TimeSpan.FromMilliseconds(value);
-        return time.ToString(@"mm\:ss\:ff");
-    }
-
-    internal static int toRealInt(int value)
-    {
-        return (int) TimeSpan.FromMilliseconds(value * 10).TotalMilliseconds;
-    }
-    
     public void StartTimer()
     {
         Time = 0;
@@ -56,7 +44,7 @@ public class Timer : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.01f);
-            timerText.text = CentiSecondsToString(Time);
+            timerText.text = IntToStringTime(Time);
             Time++;
         }
     }
