@@ -145,7 +145,7 @@ public class PlayerLocomotion : MonoBehaviour
         }
         else if (hit.collider.TryGetComponent<PlatformEffector2D>(out var platform))
         {
-            groundTile = null; // TODO: a ladder was detected!! maybe wood?
+            SetGroundTypeTo(GroundType.WOOD); // ladder detected, change to wood type
         }
         else
         {
@@ -159,6 +159,8 @@ public class PlayerLocomotion : MonoBehaviour
     {
         groundType = footsteps.DetermineGroundType(tile);
     }
+
+    private void SetGroundTypeTo(GroundType gType) { groundType = gType; }
 
     public void ApplyFallAccel()
     {
@@ -174,7 +176,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         // if velocity is less than max speed or opposite to the move direction
         //TODO: slope movement can go over maxVelocity, fix it after testing
-        if (Mathf.Abs(rb.velocity.x) < maxVelocity || Mathf.Clamp(rb.velocity.x, -1f, 1f) == -horizInput.x)
+        if (Mathf.Abs(rb.velocity.x) < maxVelocity || Vector2.Dot(rb.velocity, horizInput) < 0f)
         {
             rb.AddForce(angledMoveDir * accelerationMultiplier);
             Debug.DrawRay(transform.position, angledMoveDir * accelerationMultiplier, Color.blue, 0.1f);

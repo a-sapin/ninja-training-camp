@@ -13,6 +13,9 @@ public class SettingController : MonoBehaviour
     [SerializeField] Button returnButton;
     private IEnumerator move;
     int currentPos = 0;
+
+    public AudioSource buttonArrow;
+
     private void OnEnable()
     {
         StartMove();
@@ -69,6 +72,7 @@ public class SettingController : MonoBehaviour
                         yield return new WaitForSecondsRealtime(0.2f);
                         break;
                     case 2:
+                        buttonArrow.Play();
                         effectVolumeSlider.value = effectVolumeSlider.value + (horizontal > 0 ? 0.05f : -0.05f);
                         effectVolumeSlider.onValueChanged.Invoke(effectVolumeSlider.value + (horizontal > 0 ? 0.05f : -0.05f));
                         yield return new WaitForSecondsRealtime(0.2f);
@@ -86,6 +90,7 @@ public class SettingController : MonoBehaviour
 
             if (Input.GetAxisRaw("Vertical") > 0.3)
             {
+                buttonArrow.Play();
                 currentPos = (currentPos - 1);
                 currentPos = (currentPos >= 0 ? currentPos : arrowPos.Length - 1);
                 arrow.transform.position = arrowPos[currentPos].transform.position;
@@ -94,6 +99,7 @@ public class SettingController : MonoBehaviour
             }
             else if (Input.GetAxisRaw("Vertical") < -0.3)
             {
+                buttonArrow.Play();
                 currentPos = (currentPos + 1) % arrowPos.Length;
                 Debug.Log(currentPos);
                 arrow.transform.position = arrowPos[currentPos].transform.position;

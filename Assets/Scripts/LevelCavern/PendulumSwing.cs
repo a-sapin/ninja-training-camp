@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class PendulumSwing : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb2d;
     private float velocityMax;
     [SerializeField] private float speed;
 
 
     private void Update()
     {
-        velocityMax = speed * Mathf.Sin(Time.unscaledTime);
-        rb2d.angularVelocity = velocityMax;
-        transform.Rotate(Vector3.forward, velocityMax);
+        if (Mathf.Abs(Time.timeScale - 1.0f) < 0.01f)
+        {
+            velocityMax = speed * Mathf.Sin(Time.time);
+            transform.Rotate(Vector3.forward, velocityMax);
+        }
 
     }
 
