@@ -9,9 +9,6 @@ public class ControllerInMenu : MonoBehaviour
     [SerializeField] Button[] linkedButton;
     private IEnumerator move;
     int currentPos = 0;
-
-    public AudioSource buttonArrow;
-
     private void Start()
     {
         StartMove();
@@ -35,7 +32,6 @@ public class ControllerInMenu : MonoBehaviour
         {
             if (Input.GetAxisRaw("Vertical") > 0.3)
             {
-                buttonArrow.Play();
                 currentPos = (currentPos - 1);
                 currentPos = (currentPos >= 0 ? currentPos : arrowPos.Length - 1);
                 arrow.transform.position = arrowPos[currentPos].transform.position;
@@ -44,7 +40,6 @@ public class ControllerInMenu : MonoBehaviour
             }
             else if(Input.GetAxisRaw("Vertical") < -0.3)
             {
-                buttonArrow.Play();
                 currentPos = (currentPos + 1) % arrowPos.Length;
                 Debug.Log(currentPos);
                 arrow.transform.position = arrowPos[currentPos].transform.position;

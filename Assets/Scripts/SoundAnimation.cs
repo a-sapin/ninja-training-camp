@@ -47,32 +47,27 @@ public class SoundAnimation : MonoBehaviour
                 break;
         }
     }
-    private void DoubleJumpSound()
+
+    /*private void DashSound() //Problème avec le son qui ne ce joue pas tout le temps donc j'ai réactiver son bout de script dans le playerManager
     {
+        vfxManager.Stop("Movement");
+        vfxManager.Play("Dash");
+    }*/
+    private void DoubleJumpSound() // ne fonctionne pas car l'état double jump ne s'active jamais... SAD :(
+    {
+        //vfxManager.StopAllSFXMovement();
         vfxManager.Play("Double Jump");
+
     }
     private void LadderSound()
     {
+        //vfxManager.StopAllSFXMovement();
         vfxManager.Play("Ladder");
     }
 
-    private void LeverSound()
+    private void LeverSound() // ne fonctionne pas car l'état double jump ne s'active jamais... SAD :(
     {
+        //vfxManager.StopAllSFXMovement();
         vfxManager.Play("Lever");
-    }
-
-    private void DieSound()
-    {
-        vfxManager.Play("Player Die");
-    }
-
-    private void WallJumpSound()
-    {
-        vfxManager.Play("Wall Jump");
-    }
-
-    private void WaterSound()
-    {
-        vfxManager.Play("Plouf Water");
     }
 }

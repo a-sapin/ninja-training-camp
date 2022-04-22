@@ -9,7 +9,6 @@ public class JumpState : AirDriftState
         base.Enter(player);
         player.CreateSmoke();
         player.GetLocomotion().ApplyJumpForce();
-        player.SetBoolJump(true); // somehow, this line fixes the jump sound on ladder
         //player.PlayJumpSound();
     }
 

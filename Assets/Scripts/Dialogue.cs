@@ -27,13 +27,9 @@ public class Dialogue : MonoBehaviour
         canvas.SetActive(false);
         writeDelay = PlayerPrefs.GetFloat("writeDelay", 0.03f);
         timer = FindObjectOfType<Timer>();
-        playerManager = FindObjectOfType<PlayerManager>();
-        Invoke(nameof(DelayedStart), 0.1f);
-        //StartFirstDialogue();
-    }
-    void DelayedStart()
-    {
         mySoundManager = FindObjectOfType<VFXManager>(); //Find sound manager for dialogue "beep"
+        playerManager = FindObjectOfType<PlayerManager>();
+        //StartFirstDialogue();
     }
 
     public void StartFirstDialogue()

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    private static bool GameIsPaused = false;
+    public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public Animator animator;
     public GameObject musicPlayerInScene;

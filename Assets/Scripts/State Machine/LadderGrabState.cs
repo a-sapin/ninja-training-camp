@@ -26,7 +26,17 @@ public class LadderGrabState : State
 
     public override void HandleInputs(PlayerManager player)
     {
-        // Player inputs are locked in ladder grab state until close enough to center of ladder
+        if (player.GetInput().JumpButtonDown())
+        {
+            player.ChangeState(jumping);
+            return;
+        }
+
+        if (player.GetInput().IsMoveInput())
+        { // if holding left or right, release from ladder
+            player.ChangeState(MovementState(player));
+            return;
+        }
     }
 
     public override void LogicUpdate(PlayerManager player)

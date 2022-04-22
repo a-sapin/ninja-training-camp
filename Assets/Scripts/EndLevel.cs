@@ -38,7 +38,7 @@ public class EndLevel : MonoBehaviour
         doubleJumpLost.SetActive(false);
         grappleLost.SetActive(false);
         endUI.SetActive(false);
-        levelCompletedText.text ="Level completed !";
+        levelCompletedText.text = currentLevel + " completed !";
     }
     public void DisplayEnd()
     {
@@ -48,17 +48,15 @@ public class EndLevel : MonoBehaviour
 
         transition.TransitToCanvas(endUI, competencesCanvas);
         PlayerPrefs.SetInt(currentLevel + "Finished", 1);
-        if(PlayerPrefs.GetInt(currentLevel + "HighScore", 999999) > Timer.toRealInt(timer.Time))
+        if(PlayerPrefs.GetInt(currentLevel + "HighScore", 999999) > timer.Time)
         {
-            PlayerPrefs.SetInt(currentLevel + "HighScore", Timer.toRealInt(timer.Time));
+            PlayerPrefs.SetInt(currentLevel + "HighScore", timer.Time);
         }
-        print(Timer.toRealInt(timer.Time));
-        print(PlayerPrefs.GetInt(currentLevel + "Gold", 3000));
-        gold.SetActive(Timer.toRealInt(timer.Time) < PlayerPrefs.GetInt(currentLevel + "Gold", 45000));
-        silver.SetActive(Timer.toRealInt(timer.Time) < PlayerPrefs.GetInt(currentLevel + "Silver", 60000));
-        bronze.SetActive(Timer.toRealInt(timer.Time) < PlayerPrefs.GetInt(currentLevel + "Bronze", 120000));
+        gold.SetActive(timer.Time < PlayerPrefs.GetInt(currentLevel + "Gold", 3000));
+        silver.SetActive(timer.Time < PlayerPrefs.GetInt(currentLevel + "Silver", 6000));
+        bronze.SetActive(timer.Time < PlayerPrefs.GetInt(currentLevel + "Bronze", 12000));
        
-        score.text = Timer.CentiSecondsToString(timer.Time);
+        score.text = Timer.IntToStringTime(timer.Time);
         Invoke(nameof(waitForMusicVictory), 0.3f);
     }
     public void DisplayDashLost()
@@ -71,6 +69,7 @@ public class EndLevel : MonoBehaviour
     }
     private void HideDashLost()
     {
+        playerManager.UnlockGameplayInput();
         transition.TransitToCanvas(competencesCanvas, dashLost);
         StartCoroutine(nameof(AnimateDashLoss));
     }
@@ -80,7 +79,6 @@ public class EndLevel : MonoBehaviour
         yield return new WaitForSeconds(1.3f);
         AnimatePowerLoss();
         yield return new WaitForSeconds(0.1f);
-        playerManager.UnlockGameplayInput();
         RestartTimer();
     }
     public void DisplayDoubleJumpLost()

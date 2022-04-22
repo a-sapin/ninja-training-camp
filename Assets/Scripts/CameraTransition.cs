@@ -21,17 +21,19 @@ public class CameraTransition : MonoBehaviour
     }
     IEnumerator ToriToPlayerTransition()
     {
-        playerManager = FindObjectOfType<PlayerManager>();
-        
+        FindObjectOfType<Timer>().PauseTimer();
+
         Cinemachine.CinemachineTransposer transposer = cinemachineCamera.GetCinemachineComponent<Cinemachine.CinemachineTransposer>();
         float xDampling = transposer.m_XDamping;
         float yDampling = transposer.m_YDamping;
         cinemachineCamera.Follow = tori.transform;
         transposer.m_XDamping = 0;
         transposer.m_YDamping = 0;
-        yield return null;
-        playerManager.LockGameplayInput();
+        //Debug.Log("YOOO11");
         yield return new WaitForSeconds(stayOnToriTime);
+
+        playerManager = FindObjectOfType<PlayerManager>();
+        playerManager.LockGameplayInput();
 
         cinemachineCamera.Follow = player.transform;
         transposer.m_XDamping = damping;
@@ -41,9 +43,8 @@ public class CameraTransition : MonoBehaviour
         transposer.m_XDamping = xDampling;
         transposer.m_YDamping = yDampling;
         FindObjectOfType<Timer>().RestartTimer();
-        playerManager.UnlockGameplayInput();
         if (dialogues != null) dialogues.StartFirstDialogue();
-       
+        playerManager.UnlockGameplayInput();
 
         
     }
