@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 6851174165644829406}
   animator: {fileID: 5978806965589256398}
-  audioSourceInScene: {fileID: 0}
+  musicPlayerInScene: {fileID: 0}
   controller: {fileID: 2332078819105773026}
 --- !u!1 &6851174166342656917
 GameObject:
@@ -2110,6 +2110,14 @@ PrefabInstance:
     - target: {fileID: 1884835262530220123, guid: 24c8c859f153ba249b9b7e9122026126, type: 3}
       propertyPath: m_Name
       value: ControllerArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200787800721218996, guid: 24c8c859f153ba249b9b7e9122026126, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -344.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200787800721218996, guid: 24c8c859f153ba249b9b7e9122026126, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 246
       objectReference: {fileID: 0}
     - target: {fileID: 6357538981440298686, guid: 24c8c859f153ba249b9b7e9122026126, type: 3}
       propertyPath: m_LocalPosition.x
