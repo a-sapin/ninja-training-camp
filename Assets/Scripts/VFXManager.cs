@@ -4,6 +4,8 @@ using UnityEngine.Audio;
 
 public class VFXManager : MonoBehaviour
 {
+    public bool isBruh = false;
+    public AudioSource bruh;
     public SoundEffect[] sounds;
     //public SoundEffect[] soundsMovements;
     public static VFXManager instance;
@@ -38,6 +40,11 @@ public class VFXManager : MonoBehaviour
 
     public void Play(string name)
     {
+        if (isBruh)
+        {
+            bruh.Play();
+            return;
+        }
        SoundEffect s = Array.Find(sounds, sound => sound.name == name);
         if(s == null)
         {
