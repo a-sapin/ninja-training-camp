@@ -13,6 +13,7 @@ public class AirbornState : State
             doubleJumpAvailable = true; // refresh DJ on land
             player.ChangeState(grounded);
         }
+        CheckWallJumpLogic(player);
     }
 
     public override void HandleInputs(PlayerManager player)
@@ -52,7 +53,7 @@ public class AirbornState : State
                 return;
             }
             else if (AuthoriseWallJump(player)==false && doubleJumpAvailable && player.HasDoubleJump())
-            {
+            { // wall jump does NOT consume DJ because WJ condition is verified before DJ
                 player.CreateSmoke(true);
                 doubleJumpAvailable = false;
                 player.SetTriggerDoubleJump();
@@ -63,6 +64,34 @@ public class AirbornState : State
         
     }
 
+    /// <summary>
+    /// Checks if an available wall is close enough to the player and if  
+    /// player is facing the right way. Also sets the wall slide animation.
+    /// </summary>
+    /// <param name="player">The player manager in this context</param>
+    /// <returns></returns>
+    protected void CheckWallJumpLogic(PlayerManager player)
+    {
+        if (!player.HasWallJump()) // no power, no anim
+        {
+            player.SetBoolWallSlide(false);
+            return;
+        }
+
+        if (player.GetLocomotion().IsAgainstWall(Vector2.left) && player.isSpriteFlipped())
+        {
+            player.SetBoolWallSlide(true);
+        }
+        else if (player.GetLocomotion().IsAgainstWall(Vector2.right) && !player.isSpriteFlipped())
+        {
+            player.SetBoolWallSlide(true);
+        }
+        else
+        {
+            player.SetBoolWallSlide(false);
+        }
+    }
+
     protected bool AuthoriseWallJump(PlayerManager player)
     {
         //Debug.Log("Attempt to check for wall jump conditions [ AirbornState.cs ]");
@@ -70,18 +99,20 @@ public class AirbornState : State
         {
             if (player.GetLocomotion().IsAgainstWall(Vector2.left) == true && player.isSpriteFlipped() == true)
             {
-                player.GetLocomotion().WallJump(new Vector2(1,0.8f));
+                player.GetLocomotion().WallJump(new Vector2(1,1.0f));
                 //Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
                 player.NeutralFlip();
                 player.CreateSmoke(true);
+                player.PlayWallJumpSound();
                 return true;
             }
             else if (player.GetLocomotion().IsAgainstWall(Vector2.right) == true && player.isSpriteFlipped() == false)
             {
-                player.GetLocomotion().WallJump(new Vector2(-1, 0.8f));
+                player.GetLocomotion().WallJump(new Vector2(-1, 1.0f));
                 //Debug.Log("Successful wall jump [ AirbornState.authoriseWallJump() ]");
                 player.NeutralFlip();
                 player.CreateSmoke(true);
+                player.PlayWallJumpSound();
                 return true;
             }
             else

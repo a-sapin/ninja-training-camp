@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ControllerInLevelSelection : MonoBehaviour
 {
+    [SerializeField] private bool simulateCompletionLVL1, simulateCompletionLVL2, simulateCompletionLVL3;
     [SerializeField] private GameObject arrow;
     [SerializeField] private GameObject[] arrowPos;
     [SerializeField] private Button[] linkedButton;
@@ -15,6 +16,13 @@ public class ControllerInLevelSelection : MonoBehaviour
 
     private void Start()
     {
+        if (simulateCompletionLVL1) PlayerPrefs.SetInt("Level1Finished", 1);
+        if (simulateCompletionLVL2) PlayerPrefs.SetInt("Level2Finished", 1);
+        if (simulateCompletionLVL3) PlayerPrefs.SetInt("Level3Finished", 1);
+
+        if (PlayerPrefs.GetInt("Level1Finished", 0) == 1) linkedButton[2].gameObject.SetActive(true);
+        if (PlayerPrefs.GetInt("Level2Finished", 0) == 1) linkedButton[3].gameObject.SetActive(true);
+        if (PlayerPrefs.GetInt("Level3Finished", 0) == 1) linkedButton[4].gameObject.SetActive(true);
         StartCoroutine(nameof(ArrowMove));
         info = FindObjectOfType<LevelInformations>();
     }
@@ -32,19 +40,13 @@ public class ControllerInLevelSelection : MonoBehaviour
             {
                 buttonArrow.Play();
                 if (currentPos == 0 ||
-                    (currentPos == 1 && PlayerPrefs.GetInt("Level1Finished", 0) > 0))
-                {
-                    if (currentPos > 0) info.CloseLevelInfo();
-                    currentPos++;
-                    try
-                    {
-                        if (currentPos > 0) info.OpenLevelInfo("Level" + currentPos);
-                    }
-                    catch
-                    {
-                        Debug.Log($"ControllerInLevelSelection || Cannot open Level{currentPos}");
-                    }
+                    (currentPos == 1 && PlayerPrefs.GetInt("Level1Finished", 0) > 0 )||
+                    (currentPos == 2 && PlayerPrefs.GetInt("Level2Finished", 0) > 0) ||
+                    (currentPos == 3 && PlayerPrefs.GetInt("Level3Finished", 0) > 0)) 
 
+                {
+                    currentPos++;
+                    info.OpenLevelInfo("Level" + currentPos);
                     arrow.transform.position = arrowPos[currentPos].transform.position;
                 }
 
@@ -55,16 +57,9 @@ public class ControllerInLevelSelection : MonoBehaviour
                 buttonArrow.Play();
                 if (currentPos > 0)
                 {
-                    info.CloseLevelInfo();
-                    currentPos--;
-                    try
-                    {
-                        if (currentPos > 0) info.OpenLevelInfo("Level" + currentPos);
-                    }
-                    catch
-                    {
-                    }
-
+                    if (currentPos == 1) info.CloseLevelInfo();
+                        currentPos--;
+                    if (currentPos > 0) info.OpenLevelInfo("Level" + currentPos);
                     arrow.transform.position = arrowPos[currentPos].transform.position;
                 }
 
