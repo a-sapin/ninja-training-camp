@@ -22,6 +22,7 @@ public class SpikesScript : MonoBehaviour
 
     public void RestartMap()
     {
+        FindObjectOfType<VFXManager>().isBruh = false;
         var objects = FindObjectsOfType<FallingRock>();
         foreach (var t in objects)
         {
