@@ -64,7 +64,10 @@ public class PauseMenu : MonoBehaviour
     {
         StartCoroutine(RemovePauseCanvas());
     }
-    
+    private void OnDestroy()
+    {
+        GameIsPaused = false;
+    }
     void Paused()
     {
         Time.timeScale = 0;
@@ -87,8 +90,9 @@ public class PauseMenu : MonoBehaviour
 
     IEnumerator RemovePauseCanvas()
     {
-        timer.SendMessage("hidePowerDesc");
+        
         yield return new WaitForSecondsRealtime(0.30f);
+        timer.SendMessage("hidePowerDesc");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
         GameIsPaused = false;

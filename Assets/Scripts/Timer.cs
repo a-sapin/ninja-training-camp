@@ -73,6 +73,7 @@ public class Timer : MonoBehaviour
         powerText1.GetComponent<Animator>().SetTrigger("FadeOut");
         powerText2.GetComponent<Animator>().SetTrigger("FadeOut");
         powerText3.GetComponent<Animator>().SetTrigger("FadeOut");
+
         yield return new WaitForSecondsRealtime(0.2f);
         
         powerText1.SetActive(false);
