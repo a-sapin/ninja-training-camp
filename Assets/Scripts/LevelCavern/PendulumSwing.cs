@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PendulumSwing : MonoBehaviour
 {
-    private float velocityMax;
-    [SerializeField] private float speed;
+    [SerializeField] private float totalAngleRange = 60f;
+    [SerializeField] private float frequency = 1f;
+    [SerializeField] private float middleAngleOffset = 0f;
 
     private GameObject playerPos; // used to keep track of the player's relative position
     private GameObject player; // a ref to the player, both are handled in the script
@@ -16,18 +17,23 @@ public class PendulumSwing : MonoBehaviour
         playerPos.transform.parent = transform;
     }
 
+    private float time = 0;
     private void Update()
     {
         if (Mathf.Abs(Time.timeScale - 1.0f) < 0.01f)
         {
+            time += Time.deltaTime;
             if(player != null)
             {
                 playerPos.transform.position = player.transform.position; // save the player's position before rotating
                 player.transform.parent = null; // unlink player
             }
-            
-            velocityMax = speed * Mathf.Sin(Time.time);
-            transform.Rotate(Vector3.forward, velocityMax);
+
+            float amplitude = totalAngleRange/2f;
+
+            float sinusoid = amplitude * Mathf.Sin(frequency * time) + middleAngleOffset;
+
+            transform.rotation = Quaternion.Euler(0f, 0f, sinusoid);
 
             if (player != null)
             {
@@ -47,6 +53,7 @@ public class PendulumSwing : MonoBehaviour
             collider.transform.parent = transform; // make player a child of this object
         }
     }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Player")) // on contact with player

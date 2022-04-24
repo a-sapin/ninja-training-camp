@@ -47,7 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1adc5934142054c93e8187e3589251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  minAngle: -30
+  maxAngle: 30
+  frequency: 1
+  angleOffset: 0
 --- !u!61 &622075411505346912
 BoxCollider2D:
   m_ObjectHideFlags: 0
