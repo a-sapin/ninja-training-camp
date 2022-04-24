@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     private static bool GameIsPaused = false;
+    [HideInInspector] public bool statutPause = false;
+    private Dialogue statutDialog;
     public GameObject pauseMenuUI;
     public Animator animator;
     public GameObject musicPlayerInScene;
@@ -15,15 +17,18 @@ public class PauseMenu : MonoBehaviour
     private VFXManager vfxManager;
     private Transition transition;
     private AudioSource[] musicPlayer;
+    private PlayerManager playerManager;
 
     private Timer timer;
     
     private void Start()
     {
         timer = FindObjectOfType<Timer>();
+        statutDialog = FindObjectOfType<Dialogue>();
         transition = FindObjectOfType<Transition>();
         vfxManager = FindObjectOfType<VFXManager>();
-        musicPlayer = musicPlayerInScene.GetComponentsInChildren<AudioSource>();
+        musicPlayer = musicPlayerInScene.GetComponents<AudioSource>();
+        playerManager = FindObjectOfType<PlayerManager>();
     }
     
     void Update()
@@ -38,6 +43,7 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
+                statutPause = true;
                 Paused();
             }
         }
@@ -62,12 +68,14 @@ public class PauseMenu : MonoBehaviour
     void Paused()
     {
         Time.timeScale = 0;
+        timer.SendMessage("displayPowerDesc");
         pauseMenuUI.SetActive(true);
         controller.StartMove();
+        playerManager.LockGameplayInput();
         GameIsPaused = true;
         PauseAllAudio();
         vfxManager.PauseAll(); //pause all vfxmanager SoundEffect
-        timer.SendMessage("displayPowerDesc");
+        //vfxManager.MuteAll();
     }
     
     IEnumerator TimeTransitionButton()
@@ -85,6 +93,19 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         GameIsPaused = false;
         PlayAllAudio();
+        statutPause = false;
+        if(statutDialog != null)
+        {
+            if (statutDialog.isInDialogue == false)
+            {
+                playerManager.UnlockGameplayInput();
+            }
+        }
+        else
+        {
+            playerManager.UnlockGameplayInput();
+        }
+        //vfxManager.DeMuteAll();
     }
     
     IEnumerator AnimationTimeWaitTransition()

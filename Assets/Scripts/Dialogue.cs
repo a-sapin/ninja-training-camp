@@ -21,12 +21,14 @@ public class Dialogue : MonoBehaviour
     private Timer timer;
     VFXManager mySoundManager;
     private String vfxDialogue;
+    private PauseMenu pauseMenu;
 
     void Start()
     {
         canvas.SetActive(false);
         writeDelay = PlayerPrefs.GetFloat("writeDelay", 0.03f);
         timer = FindObjectOfType<Timer>();
+        pauseMenu = FindObjectOfType<PauseMenu>();
         playerManager = FindObjectOfType<PlayerManager>();
         Invoke(nameof(DelayedStart), 0.1f);
         //StartFirstDialogue();
@@ -86,12 +88,12 @@ public class Dialogue : MonoBehaviour
                          o++) //Append each char of the dialogue to current_text then display it until everything is here
                     {
                         //IF a key is pressed, skip to end of dialogue
-                        if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
+                        if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.statutPause)
                         {
                             textZone.text = dialogue[dialogueIndex].text;
                             o = lengthOfSentence;
                         }
-                        else
+                        else/* if (!pauseMenu.statutPause)*/
                         {
                             current_Text = current_Text + charsArray[o]; //Append char
                             textZone.text = current_Text;
@@ -103,7 +105,7 @@ public class Dialogue : MonoBehaviour
                     waiting = true;
                     //Debug.Log("BULLE COMPLETEE");
                 }
-                else if (waiting && Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
+                else if (waiting && Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.statutPause)
                 {
                     dialogueIndex++;
                     textZone.text = "";

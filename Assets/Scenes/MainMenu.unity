@@ -679,7 +679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1081392959}
-  defaultPlayer: {fileID: 2800000, guid: 5dfa4eec45cfff346beec56479016e1e, type: 3}
+  defaultPlayer: {fileID: 2800000, guid: 12136bdabdc94444ca5035df51e491a7, type: 3}
   dash: {fileID: 2800000, guid: a20958c9d85e6e64a8d19c5e10693e08, type: 3}
   title: {fileID: 1569146510}
 --- !u!1001 &947973846
@@ -949,7 +949,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5dfa4eec45cfff346beec56479016e1e, type: 3}
+  m_Texture: {fileID: 2800000, guid: 12136bdabdc94444ca5035df51e491a7, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1661,7 +1661,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
