@@ -11,14 +11,14 @@ public class FallingRock : MonoBehaviour
     [SerializeField] private LayerMask ignoredLayer;
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.collider.CompareTag("Player"))
+        /*if (col.collider.CompareTag("Player"))
         {
             //we get a vector pointing from rock towards player
             Vector2 pushingDirection = (col.transform.position - gameObject.transform.position).normalized;
             PlayerManager thePlayer = col.gameObject.GetComponentInChildren<PlayerManager>();
 
             StartCoroutine(KnockbackPlayer(pushingDirection, thePlayer));
-        }
+        }*/
     }
 
     private void Start()
