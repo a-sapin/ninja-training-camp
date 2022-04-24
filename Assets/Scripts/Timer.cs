@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        if(FindObjectOfType<Dialogue>() ==null)RestartTimer();
+        if(FindObjectOfType<Dialogue>() ==null && FindObjectOfType<CameraTransition>() == null) RestartTimer();
     }
     internal static string CentiSecondsToString(int value)
     {
@@ -73,6 +73,7 @@ public class Timer : MonoBehaviour
         powerText1.GetComponent<Animator>().SetTrigger("FadeOut");
         powerText2.GetComponent<Animator>().SetTrigger("FadeOut");
         powerText3.GetComponent<Animator>().SetTrigger("FadeOut");
+
         yield return new WaitForSecondsRealtime(0.2f);
         
         powerText1.SetActive(false);
