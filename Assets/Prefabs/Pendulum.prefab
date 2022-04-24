@@ -3641,10 +3641,6 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[49].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
-    - target: {fileID: 7636708676269897757, guid: 827a96779798925409bafde14cc21161, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 827a96779798925409bafde14cc21161, type: 3}
 --- !u!4 &3995307922282567275 stripped
