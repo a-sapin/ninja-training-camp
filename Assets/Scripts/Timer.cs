@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        if(FindObjectOfType<Dialogue>() ==null)RestartTimer();
+        if(FindObjectOfType<Dialogue>() ==null && FindObjectOfType<CameraTransition>() == null) RestartTimer();
     }
     internal static string CentiSecondsToString(int value)
     {
