@@ -13,6 +13,7 @@ public class ControllerInLevelSelection : MonoBehaviour
     private int currentPos;
 
     public AudioSource buttonArrow;
+    private bool isPressed = false;
 
     private void Start()
     {
@@ -29,7 +30,11 @@ public class ControllerInLevelSelection : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxisRaw("Jump") > 0) linkedButton[currentPos].onClick.Invoke();
+        if (Input.GetAxisRaw("Jump") > 0 && !isPressed)
+        {
+            isPressed = true;
+            linkedButton[currentPos].onClick.Invoke();
+        }
     }
 
     private IEnumerator ArrowMove()
