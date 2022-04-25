@@ -16,7 +16,6 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         TickMoveInput();
-        HandleGrapple();
     }
 
     private bool jumpButtonHeld = false;
@@ -115,25 +114,5 @@ public class InputManager : MonoBehaviour
             return true;
         else
             return false;
-    }
-
-    void HandleGrapple()
-    {
-        if (Input.GetAxis("Grapple") > 0 && !grapple.isGrapplingWithPad)
-        {
-            Vector2 nearestTarget = grapple.GetNearestTargetPos(playerTransform.position);
-
-            if (Vector2.Distance(nearestTarget, playerTransform.position) < maxGrappleDistance)
-            {
-                //LANCER LE GRAPPIN
-                Debug.Log("Input Manager || Grapplinnnnnnnnnnng");
-                grapple.SetGrapplePoint(nearestTarget, true);
-            }
-        }
-        else if (Input.GetAxis("Grapple") <= 0 && grapple.isGrapplingWithPad)
-        {
-            grapple.StopGrappling();
-
-        }
     }
 }
