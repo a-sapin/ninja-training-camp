@@ -8,10 +8,8 @@ License: https://filmmusic.io/standard-license
 
 Nowhere Land by Kevin MacLeod
 Lien: https://incompetech.filmmusic.io/song/4148-nowhere-land
-License: https://filmmusic.io/standard-license			       Musique Crédit (pas sure pour l'instant)
+License: https://filmmusic.io/standard-license			      
 
-The True Story of Beelzebub
-Lien et Créateur: https://patrickdearteaga.com (Musique fait par Patrick de Arteaga) Musique qui n'est pas utilisé pour l'instant
 
 Deeper into the Woods by Vindsvept 					Musique pas utilisé pour l'instant
 Créateur : Vindsvept
@@ -29,11 +27,10 @@ Modification apporter : Terminé la musique 7 secondes plutôt
 
 //// EFFET SONORE ////
 
-Lien : https://lasonotheque.org/
-License : https://creativecommons.org/publicdomain/zero/1.0/deed.fr
-
-Lien : https://www.sound-fishing.net/
-License : https://www.sound-fishing.net/licence-LESF.html
+Bruh - Orangefreesound.com
+Lien original : https://orangefreesounds.com/bruh-sound-effect/
+License : https://creativecommons.org/licenses/by/4.0/deed.fr
+Modification apporter : Modifier au niveau de la durée du son
 
 
 //// ASSETS ////
