@@ -7,6 +7,8 @@ public class GrapplingGun : MonoBehaviour
 
     [Header("Layers Settings:")] [SerializeField]
     private bool grappleToAll = false;
+    [SerializeField] LayerMask grappleTargetLayer;
+    [SerializeField] LayerMask blockGrappleLayer;
 
     [SerializeField] private int grappableLayerNumber = 9;
 
@@ -61,6 +63,7 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
+        GetBestTargetPos(transform.position);
         ReadInputAndActivateGrapple(Time.deltaTime);
     }
 
@@ -94,7 +97,7 @@ public class GrapplingGun : MonoBehaviour
         }
         else if (Input.GetAxis("Grapple") > 0 && !isGrapplingWithPad && playerRef.CanGrapple())
         {
-            Vector2 nearestTarget = GetNearestTargetPos(transform.position);
+            Vector2 nearestTarget = GetBestTargetPos(transform.position);
 
             if (Vector2.Distance(nearestTarget, transform.position) < maxDistnace)
             {
@@ -123,6 +126,27 @@ public class GrapplingGun : MonoBehaviour
         m_rigidbody.gravityScale = 0; // return gravity to normal after grappling
     }
 
+    private Vector2 GetBestTargetPos(Vector2 origin)
+    {
+        Vector2 castDir = new Vector2(m_rigidbody.velocity.x, 0f);
+        RaycastHit2D hit = Physics2D.CircleCast(origin, maxDistnace/2f,
+            castDir, maxDistnace, grappleTargetLayer);
+
+        if (hit.collider != null && Vector2.Distance(origin, hit.point) <= maxDistnace)
+        {
+            RaycastHit2D hitGround = Physics2D.CircleCast(origin, 0.49f,
+            hit.point - origin, Vector2.Distance(origin, hit.point), blockGrappleLayer);
+
+            if(hitGround.collider == null || Vector2.Distance(origin, hitGround.point) > maxDistnace) // make sure we dont grapple through the ground
+            {
+                Debug.DrawRay(origin, hit.point - origin, Color.yellow, 0.1f); 
+                return hit.point;
+            }
+        }
+
+        return GetNearestTargetPos(origin);
+    }
+
     public Vector2 GetNearestTargetPos(Vector2 origin)
     {
         float minDistance = float.PositiveInfinity;
@@ -138,6 +162,12 @@ public class GrapplingGun : MonoBehaviour
             }
         }
 
+        RaycastHit2D hitGround = Physics2D.CircleCast(origin, 0.49f, nearest - origin,
+             Vector2.Distance(origin, nearest), blockGrappleLayer);
+
+        if (hitGround.collider != null && hitGround.distance <= maxDistnace) return new Vector2(99999f, 99999f); // return invalid distance when obstacle is in the way
+
+        if (minDistance <= maxDistnace) Debug.DrawRay(origin, nearest - origin, Color.white, 0.1f);
         return nearest;
     }
 

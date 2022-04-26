@@ -781,6 +781,12 @@ MonoBehaviour:
   grappleRope: {fileID: 4177329401065184524}
   playerRef: {fileID: 4181588388592163803}
   grappleToAll: 0
+  grappleTargetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  blockGrappleLayer:
+    serializedVersion: 2
+    m_Bits: 64
   grappableLayerNumber: 7
   m_camera: {fileID: 0}
   gunHolder: {fileID: 5409001243050288741}
