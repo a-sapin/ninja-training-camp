@@ -35,6 +35,7 @@ public class VFXManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.mute = s.mute;
         }
     }
 
@@ -91,25 +92,6 @@ public class VFXManager : MonoBehaviour
         }
     }
 
-    /*public void StopAllSFXMovement()
-    {
-        for (int i = 0; i < sounds.Length; i++)
-        {
-            if (sounds[i].name.Equals("Movement Grass") || sounds[i].name.Equals("Movement Stone") || sounds[i].name.Equals("Movement Wood") || sounds[i].name.Equals("Movement Dirt"))
-            {
-                soundsMovements[i] = sounds[i];
-            }
-            SoundEffect s = sounds[i];
-            s.source.Stop();
-        }
-
-        for (int i = 0; i < soundsMovements.Length; i++)
-        {
-            SoundEffect s = soundsMovements[i];
-            s.source.Stop();
-        }
-    }*/
-
     public void PauseAll()
     {
         for (int i = 0; i < sounds.Length; i++)
@@ -117,5 +99,23 @@ public class VFXManager : MonoBehaviour
             SoundEffect s = sounds[i];
             s.source.Pause();
         }
-    } 
+    }
+
+    public void MuteAll()
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            SoundEffect s = sounds[i];
+            s.source.mute = true;
+        }
+    }
+
+    public void DeMuteAll()
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            SoundEffect s = sounds[i];
+            s.source.mute = false;
+        }
+    }
 }

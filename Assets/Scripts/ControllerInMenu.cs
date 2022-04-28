@@ -11,6 +11,7 @@ public class ControllerInMenu : MonoBehaviour
     int currentPos = 0;
 
     public AudioSource buttonArrow;
+    private bool isPressed = false;
 
     private void Start()
     {
@@ -18,8 +19,9 @@ public class ControllerInMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetAxisRaw("Jump") > 0)
+        if (Input.GetAxisRaw("Jump") > 0 && !isPressed)
         {
+            isPressed = true;
             linkedButton[currentPos].onClick.Invoke();
         }
     }
