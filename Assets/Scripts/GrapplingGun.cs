@@ -64,7 +64,6 @@ public class GrapplingGun : MonoBehaviour
 
     private void Update()
     {
-        GetBestTargetPos(transform.position); // THIS IS JUST HERE FOR GIZMOS, IT CAN BE REMOVED
         ReadInputAndActivateGrapple(Time.deltaTime);
     }
 
@@ -103,7 +102,6 @@ public class GrapplingGun : MonoBehaviour
             if (Vector2.Distance(nearestTarget, transform.position) < maxDistnace)
             {
                 //LANCER LE GRAPPIN
-                Debug.Log("GrapplingGun.cs || Grappling");
                 SetGrapplePoint(nearestTarget, true);
             }
         }
