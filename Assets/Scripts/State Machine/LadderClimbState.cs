@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class LadderClimbState : LadderGrabState
 {
+    public override void Enter(PlayerManager player)
+    {
+        base.Enter(player);
+
+        player.GetLocomotion().StopPlayer();
+    }
+
     public override void HandleSurroundings(PlayerManager player)
     {
         if (!player.GetLocomotion().IsTouchingLadder()) // not touching ladder

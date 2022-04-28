@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class LadderGrabState : State
 {
-    public override void Enter(PlayerManager player)
-    {
-        base.Enter(player);
-
-        // TODO: start of idle ladder animation
-
-    }
-
+    
     public override void HandleSurroundings(PlayerManager player)
     {
         if (!player.GetLocomotion().IsTouchingLadder()) // not touching ladder
@@ -36,7 +29,7 @@ public class LadderGrabState : State
 
     public override void PhysicsUpdate(PlayerManager player)
     {
-        player.GetLocomotion().StopPlayer();
+        player.GetLocomotion().SlowDown();
     }
 
     /// <summary>

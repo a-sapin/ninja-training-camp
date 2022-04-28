@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GrapplingGun : MonoBehaviour
@@ -7,6 +8,8 @@ public class GrapplingGun : MonoBehaviour
 
     [Header("Layers Settings:")] [SerializeField]
     private bool grappleToAll = false;
+    [SerializeField] LayerMask grappleTargetLayer;
+    [SerializeField] LayerMask blockGrappleLayer;
 
     [SerializeField] private int grappableLayerNumber = 9;
 
@@ -94,12 +97,11 @@ public class GrapplingGun : MonoBehaviour
         }
         else if (Input.GetAxis("Grapple") > 0 && !isGrapplingWithPad && playerRef.CanGrapple())
         {
-            Vector2 nearestTarget = GetNearestTargetPos(transform.position);
+            Vector2 nearestTarget = GetBestTargetPos(transform.position);
 
             if (Vector2.Distance(nearestTarget, transform.position) < maxDistnace)
             {
                 //LANCER LE GRAPPIN
-                Debug.Log("GrapplingGun.cs || Grappling");
                 SetGrapplePoint(nearestTarget, true);
             }
         }
@@ -123,21 +125,73 @@ public class GrapplingGun : MonoBehaviour
         m_rigidbody.gravityScale = 0; // return gravity to normal after grappling
     }
 
-    public Vector2 GetNearestTargetPos(Vector2 origin)
+    private Vector2 GetBestTargetPos(Vector2 origin)
     {
+        
+        Vector2 nearest = new Vector2(9999f, 9999f);
         float minDistance = float.PositiveInfinity;
-        Vector2 nearest = Vector2.zero;
-        foreach (GameObject target in GameObject.FindGameObjectsWithTag("GrappleTarget"))
+
+        //finds the closest target in the correct quadrant depending on player input
+        foreach (Collider2D collider in Physics2D.OverlapCircleAll(origin, maxDistnace, grappleTargetLayer))
         {
-            float newDist = Vector2.Distance(origin, target.transform.position);
-            if (newDist < minDistance)
-            {
-                grappleTarget = target;
-                minDistance = newDist;
-                nearest = target.transform.position;
+            Vector2 direction = collider.transform.position; //cast vector3 to vector2
+            direction -= origin;
+
+            if(playerRef.GetInput().Move().x * direction.x >= 0f && (playerRef.GetInput().Move().y + 0.01f) * direction.y >= 0f)
+            { // target is in the same quadrant as input vector (or above)
+
+                Vector2 posAsV2 = collider.transform.position;
+                float newDist = Vector2.Distance(origin, posAsV2);
+                if (newDist < minDistance)
+                {
+                    RaycastHit2D hitGround = Physics2D.CircleCast(origin, 0.49f, posAsV2 - origin,
+                        Vector2.Distance(origin, posAsV2), blockGrappleLayer);
+
+                    if (hitGround.collider == null || Vector2.Distance(origin, hitGround.point) > maxDistnace)
+                    {// make sure we dont grapple through the ground
+                        grappleTarget = collider.gameObject;
+                        minDistance = newDist; // update the closest target
+                        nearest = posAsV2;
+                    }
+                }
             }
         }
 
+        if(minDistance < maxDistnace)
+        {
+            Debug.DrawRay(origin, nearest - origin, Color.red, 0.05f);
+            return nearest;
+        }
+        // if no suitable target is found in quadrant, find the closest one
+        return GetNearestTargetPos(origin);
+        
+    }
+
+    public Vector2 GetNearestTargetPos(Vector2 origin)
+    {
+        float minDistance = float.PositiveInfinity;
+        Vector2 nearest = new Vector2(9999f, 9999f);
+
+        //finds the closest target, regardless of input
+        foreach (GameObject target in GameObject.FindGameObjectsWithTag("GrappleTarget"))
+        {
+            Vector2 posAsV2 = target.transform.position;
+            float newDist = Vector2.Distance(origin, posAsV2);
+            if (newDist < minDistance)
+            {
+                RaycastHit2D hitGround = Physics2D.CircleCast(origin, 0.49f, posAsV2 - origin,
+                    Vector2.Distance(origin, posAsV2), blockGrappleLayer);
+
+                if (hitGround.collider == null || Vector2.Distance(origin, hitGround.point) > maxDistnace)
+                {
+                    grappleTarget = target;
+                    minDistance = newDist;
+                    nearest = posAsV2;
+                }
+            }
+        }
+
+        if (minDistance <= maxDistnace) Debug.DrawRay(origin, nearest - origin, Color.white, 0.05f);
         return nearest;
     }
 
@@ -167,7 +221,7 @@ public class GrapplingGun : MonoBehaviour
             Vector2 distanceVector = m_camera.ScreenToWorldPoint(point) - gunPivot.position;
             if (Physics2D.Raycast(firePoint.position, distanceVector.normalized))
             {
-                RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);
+                RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized, maxDistnace, grappleTargetLayer);
                 if (_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll)
                 {
                     if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
