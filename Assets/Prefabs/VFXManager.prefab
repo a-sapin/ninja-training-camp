@@ -83,14 +83,14 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Movement Stone
     clip: {fileID: 8300000, guid: 24a771fdfbcbef04c9fc4e92a5939697, type: 3}
-    volume: 0.4
+    volume: 0.35
     pitch: 1.75
     loop: 0
     mute: 0
     source: {fileID: 0}
   - name: Movement Dirt
     clip: {fileID: 8300000, guid: e70a5c50d69ca24409dbea8a56011a4c, type: 3}
-    volume: 0.4
+    volume: 0.35
     pitch: 1.75
     loop: 0
     mute: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Lever
     clip: {fileID: 8300000, guid: ab313340aedc7594791cbafef0a7975b, type: 3}
-    volume: 0.15
+    volume: 0.175
     pitch: 0.5
     loop: 0
     mute: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Ladder
     clip: {fileID: 8300000, guid: 7ec0529b3adb6574f8180b6e3e3ca294, type: 3}
-    volume: 0.32
+    volume: 0.25
     pitch: 0.5
     loop: 0
     mute: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Sword
     clip: {fileID: 8300000, guid: c0567b618e64a344fbccf4d9a1090da3, type: 3}
-    volume: 0.15
+    volume: 0.135
     pitch: 1
     loop: 0
     mute: 0
