@@ -128,7 +128,7 @@ public class PauseMenu : MonoBehaviour
     {
         foreach (AudioSource audioS in musicPlayer)
         {
-            audioS.Play();
+            audioS.UnPause();
         }
     }
     public void PauseAllAudio()

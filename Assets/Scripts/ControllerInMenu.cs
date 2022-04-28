@@ -19,9 +19,9 @@ public class ControllerInMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetAxisRaw("Jump") > 0 && !isPressed)
+        if (Input.GetAxisRaw("Jump") > 0)
         {
-            isPressed = true;
+  
             linkedButton[currentPos].onClick.Invoke();
         }
     }
