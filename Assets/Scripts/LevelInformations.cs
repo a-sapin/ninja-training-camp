@@ -17,21 +17,21 @@ public class LevelInformations : MonoBehaviour
     }
     public void SetHighScoreValue()
     {
-        PlayerPrefs.SetInt("Level1Gold", 45000);
-        PlayerPrefs.SetInt("Level1Silver", 70000);
+        PlayerPrefs.SetInt("Level1Gold", 50000);
+        PlayerPrefs.SetInt("Level1Silver", 80000);
         PlayerPrefs.SetInt("Level1Bronze",120000);
         
         PlayerPrefs.SetString("Level1Powers", "Dash,DoubleJump,Grapple");
 
-        PlayerPrefs.SetInt("Level2Gold", 45000);
-        PlayerPrefs.SetInt("Level2Silver", 70000);
-        PlayerPrefs.SetInt("Level2Bronze", 120000);
+        PlayerPrefs.SetInt("Level2Gold", 30000);
+        PlayerPrefs.SetInt("Level2Silver", 50000);
+        PlayerPrefs.SetInt("Level2Bronze", 80000);
         
         PlayerPrefs.SetString("Level2Powers", "Dash,DoubleJump,Grapple");
         
-        PlayerPrefs.SetInt("Level3Gold", 90000);
-        PlayerPrefs.SetInt("Level3Silver",120000);
-        PlayerPrefs.SetInt("Level3Bronze",240000);
+        PlayerPrefs.SetInt("Level3Gold", 150000);
+        PlayerPrefs.SetInt("Level3Silver", 190000);
+        PlayerPrefs.SetInt("Level3Bronze",260000);
 
         PlayerPrefs.SetString("Level3Powers", "Grapple,Dash,DoubleJump");
 
