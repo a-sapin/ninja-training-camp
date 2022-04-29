@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelPrerequis: 
-  level: Level3
+  level: Level4
 --- !u!95 &561805036
 Animator:
   serializedVersion: 3
