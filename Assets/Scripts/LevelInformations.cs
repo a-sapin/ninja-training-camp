@@ -32,12 +32,7 @@ public class LevelInformations : MonoBehaviour
         PlayerPrefs.SetInt("Level3Gold", 90000);
         PlayerPrefs.SetInt("Level3Silver",120000);
         PlayerPrefs.SetInt("Level3Bronze",240000);
-        
-<<<<<<< Updated upstream
-        PlayerPrefs.SetString("Level3Powers", "Dash,DoubleJump,Grapple");
-        
-        PlayerPrefs.SetString("Level4Powers", "Dash,DoubleJump,Grapple");
-=======
+
         PlayerPrefs.SetString("Level3Powers", "Grapple,Dash,DoubleJump");
 
         PlayerPrefs.SetInt("Level4Gold", 90000);
@@ -45,7 +40,6 @@ public class LevelInformations : MonoBehaviour
         PlayerPrefs.SetInt("Level4Bronze", 180000);
 
         PlayerPrefs.SetString("Level4Powers", "Grapple,DoubleJump,Dash");
->>>>>>> Stashed changes
     }
     public void OpenLevelInfo(string level)
     {
