@@ -35,9 +35,9 @@ public class LevelInformations : MonoBehaviour
 
         PlayerPrefs.SetString("Level3Powers", "Grapple,Dash,DoubleJump");
 
-        PlayerPrefs.SetInt("Level4Gold", 90000);
+        PlayerPrefs.SetInt("Level4Gold", 80000);
         PlayerPrefs.SetInt("Level4Silver", 120000);
-        PlayerPrefs.SetInt("Level4Bronze", 180000);
+        PlayerPrefs.SetInt("Level4Bronze", 160000);
 
         PlayerPrefs.SetString("Level4Powers", "Grapple,DoubleJump,Dash");
     }
