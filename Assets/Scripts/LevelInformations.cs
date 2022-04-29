@@ -17,8 +17,8 @@ public class LevelInformations : MonoBehaviour
     }
     public void SetHighScoreValue()
     {
-        PlayerPrefs.SetInt("Level1Gold", 45000);
-        PlayerPrefs.SetInt("Level1Silver", 70000);
+        PlayerPrefs.SetInt("Level1Gold", 50000);
+        PlayerPrefs.SetInt("Level1Silver", 80000);
         PlayerPrefs.SetInt("Level1Bronze",120000);
         
         PlayerPrefs.SetString("Level1Powers", "Dash,DoubleJump,Grapple");
