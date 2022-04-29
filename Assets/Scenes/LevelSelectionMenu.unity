@@ -1324,8 +1324,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Latch onto a nearby grappling target by left-clicking it or pressing X
-    on controller.
+  m_Text: Press  SHIFT or  RT  to gain strong horizontal acceleration in the direction
+    you're moving.
 --- !u!222 &592048430
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3668,10 +3668,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Press SHIFT to gain strong horizontal acceleration in the direction you''re
-    moving.
-
-'
+  m_Text: 'Latch onto a nearby grappling target by left-clicking it or pressing 
+    X  on controller. '
 --- !u!222 &1736367889
 CanvasRenderer:
   m_ObjectHideFlags: 0
