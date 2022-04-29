@@ -1735,15 +1735,15 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 150
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 2.5
   m_Text: "Annie-Kim Bouchard\t          Francis Houde\t\t\t    Maxime Merrien\t\t\t\tNathan
-    de la Noe\n        Samuel Cauchon\t          Alexandre Tanguay         Michael
-    Morneau\t\t\t\t\n\n\n\n"
+    de la Noe\nSamuel Cauchon\t\tAlexandre Tanguay         Michael Morneau\t\tJayson
+    Brunet"
 --- !u!222 &516111698
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4449,7 +4449,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 2.5
-  m_Text: "              Remi Espi\t\t         Kevin Morneau\n              Romain
+  m_Text: "              Remi Espie\t\t        \t Kevin Morneau\n              Romain
     Salha\n\n"
 --- !u!222 &1607409453
 CanvasRenderer:
