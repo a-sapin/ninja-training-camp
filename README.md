@@ -1,5 +1,11 @@
 # Ninja-Training-Camp
 
+This game development project was made using Unity in 2021-2022, with a team of developers from [UQAC](https://en.wikipedia.org/wiki/Universit%C3%A9_du_Qu%C3%A9bec_%C3%A0_Chicoutimi).
+
+_Original concept of the game and one-pager by Arthur Sapin._
+
+A version of the game has been uploaded to [Romain Salha's itch.io](https://romains.itch.io/ninja-training-camp).
+
 ### Mails:
 
 | bruno.bouchard@uqac.ca   | Bruno Bouchard |
